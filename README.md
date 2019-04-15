@@ -39,8 +39,9 @@ additional a defined button to refresh the favorites
 ### Favorites
 
 for each favorite
- ----------------- | ------------------------------  
+
  state             | Description                     
+ ----------------- | ------------------------------  
  Name              | Name of the favorite           
  hasitems          | indicates if this is a dir     
  id                | id of the favorite             
@@ -53,6 +54,7 @@ at the moment only one level of favorites is available as a state
 ### Players
 
 for each player
+
  state             | Description                                            
  ----------------- | -----------------------------------------------------  
  Album             | Name of the current album                             
@@ -81,6 +83,7 @@ for each player
  state             | get/set play state: pause(0),play(1),stop(2)          
 
 additional a defined buttons 
+
  button            | Description                                    
  ----------------- | ---------------------------------------------  
  btnForward        | Next song                                     
