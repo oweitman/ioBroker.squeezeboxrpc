@@ -3,15 +3,6 @@
     ioBroker.squeezeboxrpc
 </h1>
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
-[![Dependency Status](https://img.shields.io/david/oweitman/iobroker.squeezeboxrpc.svg)](https://david-dm.org/oweitman/iobroker.squeezeboxrpc)
-[![Known Vulnerabilities](https://snyk.io/test/github/oweitman/ioBroker.squeezeboxrpc/badge.svg)](https://snyk.io/test/github/oweitman/ioBroker.squeezeboxrpc)
-
-[![NPM](https://nodei.co/npm/iobroker.squeezeboxrpc.png?downloads=true)](https://nodei.co/npm/iobroker.squeezeboxrpc/)
-
-**Tests:** Linux/Mac: [![Travis-CI](http://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc/master.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/oweitman/ioBroker.squeezeboxrpc?branch=master&svg=true)](https://ci.appveyor.com/project/oweitman/ioBroker-squeezeboxrpc/)
 
 ## squeezeboxrpc adapter for ioBroker
 
