@@ -1,0 +1,107 @@
+{
+    "common": {
+        "name": "squeezeboxrpc",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "SqueezeboxRPC",
+        "titleLang": {
+            "en": "SqueezeboxRPC",
+            "de": "SqueezeboxRPC",
+            "ru": "SqueezeboxRPC",
+            "pt": "SqueezeboxRPC",
+            "nl": "SqueezeboxRPC",
+            "fr": "SqueezeboxRPC",
+            "it": "SqueezeboxRPC",
+            "es": "SqueezeboxRPC",
+            "pl": "SqueezeboxRPC",
+            "zh-cn": "SqueezeboxRPC"
+        },
+        "desc": {
+            "en": "SqueezeboxRPC",
+            "de": "SqueezeboxRPC",
+            "ru": "SqueezeboxRPC",
+            "pt": "SqueezeboxRPC",
+            "nl": "SqueezeboxRPC",
+            "fr": "SqueezeboxRPC",
+            "it": "SqueezeboxRPC",
+            "es": "SqueezeboxRPC",
+            "pl": "SqueezeboxRPC",
+            "zh-cn": "SqueezeboxRPC"
+        },
+        "authors": [
+            "oweitman <oweitman@gmx.de>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "squeezeboxrpc.js",
+        "icon": "squeezeboxrpc.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/master/admin/squeezeboxrpc.png",
+        "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/master/README.md",
+        "loglevel": "debug",
+        "mode": "daemon",
+        "type": "multimedia",
+        "compact": true,
+        "materialize": true,
+        "dependencies": [
+            {
+                "admin": ">=3.0.0"
+            },
+            {
+                "js-controller": ">=1.4.2"
+            }
+        ]
+    },
+    "native": {
+        "server": "0.0.0.0",
+        "port": 9000,
+        "username": "",
+        "password": "",
+        "elapsedInterval": 5,
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
+}
