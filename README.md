@@ -9,10 +9,14 @@
 SqueezeboxRPC
 
 This is an alternate Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
+Why another squeezebox adapter?
+The existing adapter use telnet to access the LMS. The telnet has some disadvantages.
+The actual main web interface of the LMS also uses the rpc/json-protocol to get all needed informations or send commands to the server/players.
 
 - Install the package
 - Create an instance
 - Configure the Instance with the IP of the logitech media server and the port (normaly 9000)
+- start/restart the instance
 
 ## Provided states
 
@@ -99,6 +103,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * more testing/fixing
 * add artwork (station-logo/playlist-cover) for favorites
 * implement more levels (subdirectories) of favorites
+* add telnet communication to get push events from the server to optimize the polling
 
 ## Changelog
 
