@@ -2,14 +2,20 @@
 
 # ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
 
+[![NPM version](http://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc) 
+[![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Travis](https://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc/) 
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/oweitman/iobroker-squeezeboxrpc.svg)](https://ci.appveyor.com/project/oweitman/iobroker-squeezeboxrpc) 
 [![GitHub issues](https://img.shields.io/github/issues/oweitman/ioBroker.squeezeboxrpc.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc/issues)
 
 This is an alternate Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
+
 Why another squeezebox adapter?
+
 The existing adapter use telnet to access the LMS. The telnet has some disadvantages.
 The actual main web interface of the LMS also uses the rpc/json-protocol to get all needed informations or send commands to the server/players.
+
+## Installation
 
 - Install the package
 - Create an instance
@@ -102,6 +108,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * add artwork (station-logo/playlist-cover) for favorites
 * implement more levels (subdirectories) of favorites
 * add telnet communication to get push events from the server to optimize the polling
+* autodiscover logitech media server
 
 ## Changelog
 
