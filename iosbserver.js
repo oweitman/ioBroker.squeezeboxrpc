@@ -48,7 +48,7 @@ function IoSbServer(adapter) {
         read:   true,
         write:  false,
         type:   "string",
-        role:   "value",
+        role:   "info.mac",
         exist:  false 
     },
 	"info total albums": {
@@ -88,7 +88,7 @@ function IoSbServer(adapter) {
         read:   true,
         write:  false,
         type:   "number",
-        role:   "value",
+        role:   "media.duration",
         exist:  false 
     },
 	"player count": {
@@ -163,7 +163,7 @@ function IoSbServer(adapter) {
         read:   true,
         write:  false,
         type:   "number",
-        role:   "value",
+        role:   "media.url",
         exist:  false 
     },
 	"image": {
@@ -171,7 +171,7 @@ function IoSbServer(adapter) {
         read:   true,
         write:  false,
         type:   "string",
-        role:   "value",
+        role:   "url.icon",
         exist:  false 
     },
 	"isaudio": {

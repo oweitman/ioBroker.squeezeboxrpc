@@ -1,12 +1,9 @@
-<h1>
-    <img src="admin/squeezeboxrpc.png" width="64"/>
-    ioBroker.squeezeboxrpc
-</h1>
+![Logo](admin/squeezeboxrpc.png)
 
+# ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
 
-## squeezeboxrpc adapter for ioBroker
-
-SqueezeboxRPC
+[![Travis](https://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc/) 
+[![GitHub issues](https://img.shields.io/github/issues/oweitman/ioBroker.squeezeboxrpc.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc/issues)
 
 This is an alternate Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
 Why another squeezebox adapter?

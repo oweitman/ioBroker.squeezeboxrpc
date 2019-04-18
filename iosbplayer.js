@@ -34,7 +34,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "info.name",
             exist:  false 
         },
         "player_connected": {
@@ -50,7 +50,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "info.ip",
             exist:  false 
         },
        "power": {
@@ -67,7 +67,7 @@ function ioSBPlayer(server,playerdata) {
             name:   "Mode",
             read:   true,
             write:  false,
-            type:   "string",
+            type:   "media.state",
             role:   "value",
             exist:  false 
         },         
@@ -76,7 +76,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "number",
-            role:   "value",
+            role:   "media.elapsed",
             exist:  false 
         },               
         "rate": {
@@ -118,7 +118,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "number",
-            role:   "value",
+            role:   "media.mode.repeat",
             exist:  false 
         },
         "playlist shuffle": {
@@ -126,7 +126,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "number",
-            role:   "value",
+            role:   "media.mode.shuffle",
             exist:  false 
         },
         "remote": {
@@ -142,7 +142,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  true,
             type:   "number",
-            role:   "switch",
+            role:   "media.state",
             exist:  false,
             min:    0,
             max:    2
@@ -154,7 +154,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "number",
-            role:   "value",
+            role:   "media.duration",
             exist:  false 
         },                                
         "artwork_url": {
@@ -162,7 +162,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.cover",
             exist:  false 
         },       
         "bitrate": {
@@ -170,7 +170,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.bitrate",
             exist:  false 
         },      
         "album": {
@@ -178,7 +178,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.album",
             exist:  false 
         },      
         "coverid": {
@@ -194,7 +194,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.genre",
             exist:  false
         },       
         "type": {
@@ -210,7 +210,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.title",
             exist:  false 
         },                    
         "artist": {
@@ -218,7 +218,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.artist",
             exist:  false 
         },                    
         "url": {
@@ -226,7 +226,7 @@ function ioSBPlayer(server,playerdata) {
             read:   true,
             write:  false,
             type:   "string",
-            role:   "value",
+            role:   "media.url",
             exist:  false 
         },
         "remote_title": {
@@ -243,7 +243,7 @@ function ioSBPlayer(server,playerdata) {
             read:   false,
             write:  true,
             type:   "boolean",
-            role:   "switch",
+            role:   "button.forward",
             exist:  false,
             val:    1
         },
@@ -252,7 +252,7 @@ function ioSBPlayer(server,playerdata) {
             read:   false,
             write:  true,
             type:   "boolean",
-            role:   "switch",
+            role:   "button",
             exist:  false,
             val:    1 
         },
@@ -261,7 +261,7 @@ function ioSBPlayer(server,playerdata) {
             read:   false,
             write:  true,
             type:   "boolean",
-            role:   "switch",
+            role:   "button",
             exist:  false,
             val:    1 
         },
@@ -270,7 +270,7 @@ function ioSBPlayer(server,playerdata) {
             read:   false,
             write:  true,
             type:   "boolean",
-            role:   "switch",
+            role:   "button",
             exist:  false,
             val:    1 
         },
@@ -306,7 +306,7 @@ function ioSBPlayer(server,playerdata) {
             read:   false,
             write:  true,
             type:   "boolean",
-            role:   "button",
+            role:   "button.reverse",
             exist:  false,
             val:    true 
     }};        
