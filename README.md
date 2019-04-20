@@ -8,7 +8,7 @@
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/oweitman/iobroker-squeezeboxrpc.svg)](https://ci.appveyor.com/project/oweitman/iobroker-squeezeboxrpc) 
 [![GitHub issues](https://img.shields.io/github/issues/oweitman/ioBroker.squeezeboxrpc.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc/issues)
 
-This is an alternate Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
+This is an alternative Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
 
 Why another squeezebox adapter?
 
