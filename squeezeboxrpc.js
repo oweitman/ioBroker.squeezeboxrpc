@@ -41,51 +41,11 @@ adapter.on('stateChange', function (id, state) {
 });
 
 function main() {
-    if (!squeezeboxServer) squeezeboxServer = new IoSbServer(adapter);
-/*    
-    if (adapter.config.server == '0.0.0.0') {
-        adapter.log.warn('Can\'n start adapter for invalid server address: ' + adapter.config.server);
-        return;
+    if (!squeezeboxServer) {
+        squeezeboxServer = new IoSbServer(adapter);
+        adapter.subscribeStates('*');
+        adapter.setState('info.connection', false, true);
     }
-
-    adapter.setState('info.connection', false, true);
-    adapter.subscribeStates('*');
-    
-    squeezeboxServer = new SqueezeServer('http://192.168.1.20', 9000);
-    
-    squeezeboxServer.on('register', function(){
-    //you're ready to use the api, eg.
-    squeezeboxServer.getPlayers( function(reply) {
-            adapter.log.debug(JSON.stringify(reply));
-            adapter.log.info('creating/updating player channels');
-            reply.result.forEach(function(player) {
-                adapter.log.debug(JSON.stringify(player));
-
-                adapter.log.info("Found player " + player.playerid);
-                var device = {
-                    mac: player.playerid,
-                    name: null,
-                    channelName: null,
-                    player: player.name,
-                    duration: 0,
-                    elapsed: 0,
-                    searchingArtwork: true,
-                    isSleep: false,
-                    intervalReqTimerSleep: null
-                };
-                devices[device.mac] = device;
-
-
-
-                });
-
-    });
-});
-
-*/    
-    
-    adapter.subscribeStates('*');
-    adapter.setState('info.connection', false, true);
 }
 
 
