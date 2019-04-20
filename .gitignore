@@ -3,6 +3,7 @@
 node_modules
 nbproject
 package-lock.json
+debug.info
 
 # npm package files
 iobroker.*.tgz

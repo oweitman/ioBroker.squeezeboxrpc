@@ -199,7 +199,7 @@ function IoSbServer(adapter) {
     this.sbServer = new SqueezeServer('http://'+adapter.config.server, Number.parseInt(adapter.config.port));
 
     this.log = {};
-    this.logsilly = false;
+    this.logsilly = true;
     this.logdebug = true;
     this.errmax = 5;
     this.errcnt = -1;
@@ -267,7 +267,7 @@ function IoSbServer(adapter) {
             var favorite = favorites[favkey];
             for (var key in this.sbFavoritesState){
                 if (favorite.hasOwnProperty(key)) {
-                    this.setState(this.sbFavoritesState[key].name,favorite[key],this.FavoritesStatePath,favkey);
+                    this.setState(this.sbFavoritesState[key].name,favorite[key],this.FavoritesStatePath,favkey,false);
                 }
             }
         }
@@ -407,13 +407,17 @@ function IoSbServer(adapter) {
             }
         }.bind(this));                
     }
-    this.setState = function(name, value,level1path=false,level2path=false) {
+    this.setState = function(name, value,level1path=false,level2path=false,check=true) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
         if (name=="Players.SqueezeKitchen.Name")             this.log.debug("setState name: " + name + " value: " + value);
-        if (this.currentStates[name] !== value) {
+        if (this.currentStates[name] !== value && check) {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
             this.adapter.setState(name, value, true);
+        } else {
+            this.currentStates[name] = value;
+            this.log.silly("setState name: " + name + " value: " + value);
+            this.adapter.setState(name, value, true);            
         }
     }
     this.test = function() {

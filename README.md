@@ -28,13 +28,13 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 
 | state             | Description                    | 
 | ----------------- | ------------------------------ | 
-| LastScan          | timestamp of last scan         |
+| LastScan          | timestamp of last music scan         |
 | PlayerCount       | Number of known players        |
 | PlayerCountOther  | Number of known other Players  |
 | PlayerCountSN     | Number of known SN Players     |
 | TotalAlbums       | Number of all known Albums     |
 | TotalArtists      | Number of all known Artists    |
-| TotalDuration     | Sum of playtime all songs      |
+| TotalDuration     | Sum  playtime of all songs      |
 | TotalGenres       | Number of all known Genres     |
 | TotalSongs        | Number of all known songs      |
 | Version           | Version of LMS                 |
@@ -90,7 +90,7 @@ for each player
  Volume            | get/set Volume of the player (0-100)                  
  state             | get/set play state: pause(0),play(1),stop(2)          
 
-additional a defined buttons 
+additional defined buttons 
 
  button            | Description                                    
  ----------------- | ---------------------------------------------  
@@ -100,6 +100,7 @@ additional a defined buttons
  
 
 For more information visit the CLI-documentation:
+
 https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Todo
