@@ -2,7 +2,7 @@
 
 # ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
 
-[![Number of Installations](http://iobroker.live/badges/squeezeboxrpc-installed.svg)
+![Number of Installations](http://iobroker.live/badges/squeezeboxrpc-installed.svg)
 [![NPM version](http://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc) 
 [![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Travis](https://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc/) 
