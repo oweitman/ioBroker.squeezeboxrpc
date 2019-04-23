@@ -3,6 +3,7 @@
 //node --inspect-brk=192.168.1.23:9229 node_modules/iobroker.squeezeboxrpc/squeezeboxrpc.js --force --logs
 
 const utils = require('@iobroker/adapter-core');
+const dgram = require('dgram');
 const SqueezeServer = require('squeezenode-pssc');
 const ioSBPlayer = require(__dirname +'/iosbplayer');
 
@@ -115,6 +116,14 @@ function IoSbServer(adapter) {
         role:   "value",
         exist:  false 
     },
+    "otherServers": {
+        name:   "otherServers",
+        read:   true,
+        write:  true,
+        type:   "string",
+        role:   "value",
+        exist:  false 
+    },
 	"getFavorites": {
         name:   "getFavorites",
         read:   true,
@@ -199,7 +208,7 @@ function IoSbServer(adapter) {
     this.sbServer = new SqueezeServer('http://'+adapter.config.server, Number.parseInt(adapter.config.port));
 
     this.log = {};
-    this.logsilly = true;
+    this.logsilly = false;
     this.logdebug = true;
     this.errmax = 5;
     this.errcnt = -1;
@@ -208,6 +217,7 @@ function IoSbServer(adapter) {
     
     this.init = function() {
         this.setState('connection', true, "info");
+        this.getDiscoverServers();
         this.doObserverServer();
         this.doObserverFavorites();
     }
@@ -237,6 +247,66 @@ function IoSbServer(adapter) {
         this.getFavorites();
         this.setTimeout('favorites',this.doObserverFavorites.bind(this),12*60*60*1000)
     }
+    this.getDiscoverServers = function() {
+        this.log.silly("getDiscoverServers");
+        var socket = dgram.createSocket('udp4');
+        const msg = Buffer.from('eIPAD\0NAME\0JSON\0UUID\0VERS');
+        var broadcastAddress = '255.255.255.255';
+        var broadcastPort = 3483;
+        socket.bind(broadcastPort, '0.0.0.0', function() {
+            socket.setBroadcast(true);
+        });
+        socket.on("message", function ( data, rinfo ) {
+            this.log.silly("getDiscoverServers: Message resceived");
+            if (data.toString().charAt()=="E") {
+                var msg = data.toString();
+                msg = msg.substr(1);
+                var srv = {};
+                var len = msg.length;
+                var tag,len2,val;
+                while (len>0) {
+                    tag = msg.substr(0,4);
+                    len2 = msg.charCodeAt(4);
+                    val = msg.substr(5,len2);
+                    msg = msg.substr(len2+5);
+                    len=len-len2-5;
+                    srv[tag] = val;
+                }
+                srv['ADDRESS'] = rinfo.address;
+                srv['TIMESTAMP'] = Date.now();
+                var state = {}; 
+                Object.assign(state,this.sbServerStatus['otherServers']);
+                state.name = srv['ADDRESS'].replace(/\./g,"-");
+                state.def = JSON.stringify(srv);
+                this.createState(state,this.ServerStatePath,this.sbServerStatus['otherServers'].name,function(a,b,c) {
+                    this.setState(srv['ADDRESS'].replace(/\./g,"-"), JSON.stringify(srv),this.ServerStatePath, this.sbServerStatus['otherServers'].name,false);
+                }.bind(this));
+                this.log.debug("Autodiscover: Server found " + srv['NAME'] + " IP: " + srv['ADDRESS'] + " Port " + srv['JSON'] + " UUID " + srv['UUID']);
+            }
+        }.bind(this));
+
+        setInterval(function () {
+            this.getStates('*', this.ServerStatePath,this.sbServerStatus['otherServers'].name, function (err, states) {
+                for (var id in states) {
+                    var srv = JSON.parse(states[id].val);
+                    if ( ((Date.now()-srv.TIMESTAMP)/1000)> 60) {
+                        this.delObject(id);
+                        this.log.debug("Autodiscover: Server removed " + srv['NAME'] + " IP: " + srv['ADDRESS'] + " Port " + srv['JSON'] + " UUID " + srv['UUID']);
+                    }
+                }
+            }.bind(this));
+            socket.send(new Buffer(msg), 
+                    0, 
+                    msg.length, 
+                    broadcastPort, 
+                    broadcastAddress, 
+                    function (err) {
+                        if (err) this.log.error(err);
+                    }
+            );
+        }.bind(this), 30*1000);        
+    }
+    
     this.getServerstatus = function() {
         this.log.silly("getServerstatus");
         this.request("",["serverstatus", "0", "888"], this.doServerstatus.bind(this));        
@@ -354,10 +424,10 @@ function IoSbServer(adapter) {
             if (this.players[key].playername == name) return this.players[key] ;
         }
     }    
-    this.createState = function(stateTemplate,level1path=false,level2path=false) {
+    this.createState = function(stateTemplate,level1path=false,level2path=false,callback) {
         var name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + stateTemplate.name;
         this.log.silly("Create Key " + name);
-        this.adapter.createState(level1path,level2path,stateTemplate.name,stateTemplate);
+        this.adapter.createState(level1path,level2path,stateTemplate.name,stateTemplate,callback);
         stateTemplate.exist = true;
         return stateTemplate;
     }
@@ -407,18 +477,30 @@ function IoSbServer(adapter) {
             }
         }.bind(this));                
     }
-    this.setState = function(name, value,level1path=false,level2path=false,check=true) {
+    this.setState = function(name, value,level1path=false,level2path=false,check=true,callback) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
         if (name=="Players.SqueezeKitchen.Name")             this.log.debug("setState name: " + name + " value: " + value);
         if (this.currentStates[name] !== value && check) {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
-            this.adapter.setState(name, value, true);
+            this.adapter.setState(name, value, true, callback);
         } else {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
-            this.adapter.setState(name, value, true);            
+            this.adapter.setState(name, value, true, callback);            
         }
+    }
+    this.getState = function(name, level1path=false,level2path=false,callback) {
+        name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
+        this.adapter.getState(name, callback);            
+    }
+    this.delObject = function(name, level1path=false,level2path=false,callback) {
+        name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
+        this.adapter.delObject(name, callback);            
+    }
+    this.getStates = function(pattern, level1path=false,level2path=false,callback) {
+        var name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + pattern;
+        this.adapter.getStates(name, callback);            
     }
     this.test = function() {
     }
@@ -430,6 +512,5 @@ function IoSbServer(adapter) {
         if (this.logdebug) this.adapter.log.debug(s);
     }.bind(this);
     this.sbServer.on('register', this.init.bind(this));
-    
 }
 module.exports = IoSbServer;

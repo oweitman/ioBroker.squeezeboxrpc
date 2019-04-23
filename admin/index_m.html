@@ -2,8 +2,7 @@
 
 <head>
 
-    <!-- Load ioBroker scripts and styles-->
-    <link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
     <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
     <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
@@ -12,12 +11,14 @@
     <script type="text/javascript" src="../../js/translate.js"></script>
     <script type="text/javascript" src="../../lib/js/materialize.js"></script>
     <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+    <script type="text/javascript" src="words.js"></script>
 
     <!-- Load our own files -->
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script type="text/javascript" src="words.js"></script>
 
     <script type="text/javascript">
+
         // This will be called by the admin adapter when the settings page loads
         function load(settings, onChange) {
             // example: select elements with id=key and class=value and insert value
@@ -41,6 +42,29 @@
             onChange(false);
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
             if (M) M.updateTextFields();
+            socket.emit('getObjects', function (err, obj) {
+            
+                var ds = Object.entries(obj).filter(function(entry) {
+                    return entry[0].startsWith([adapter,instance,"Server","otherServer"].join("."));
+                });
+                
+                var $dropdown = $(".discover");
+                $.each(ds, function() {
+                    var srv = JSON.parse(this[1].common.def);
+                    $dropdown.append($("<option />").val("")
+                                                    .text(srv.NAME + " (" + srv.ADDRESS + ":" + srv.JSON +")")
+                                                    .data(srv)
+                                                    );
+                });
+                $dropdown.on('change', function() {
+                    var srv = $("option:selected", this).data()||{};
+                    $("#server").val(srv.ADDRESS ||"").change();
+                    $("#port").val(srv.JSON||"").change();
+                });
+                var elems = document.querySelectorAll('select');
+                var instances = M.FormSelect.init(elems, {});
+
+            });           
         }
 
         // This will be called by the admin adapter when the user presses the save button
@@ -63,33 +87,52 @@
 
 <body>
 
-    <div id="adapter-container">
-        <table><tr><td><img src="squeezeboxrpc.png" width="64" height="64"></td><td><h3 class="translate">Logitech Squeezebox adapter settings</h3></td></tr></table>
-        <div id="settings">
-            <table>
-                <tr>
-                    <td class="translate">Logitech Media Server Address</td>
-                    <td><input type="text" id="server" class="value"></td>
-                </tr>
-                <tr>
-                    <td class="translate">Logitech Media Server Port</td>
-                    <td><input type="text" id="port" class="value"></td>
-                </tr>
-                <tr>
-                    <td class="translate">Username (optional)</td>
-                    <td><input type="text" id="username" class="value"></td>
-                </tr>
-                <tr>
-                    <td class="translate">Password (optional)</td>
-                    <td><input type="text" id="password" class="value"></td>
-                </tr>
-                <tr>
-                    <td class="translate">Track time update interval (sec)</td>
-                    <td><input type="text" id="elapsedInterval" class="value"></td>
-                    <td></td>
-                </tr>
-            </table>
+    <div class="m adapter-container s6">
+        <div class="row valign-wrapper">
+            <div class="col">
+                <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+            </div>
+            <div class="col">
+                <h3 class="translate">Logitech Squeezebox adapter settings</h3>
+            </div>
         </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="server" type="text" />
+                <label class="translate" for="server">Logitech Media Server Address:</label>
+            </div>
+            <div class="input-field col s3">
+                <select name="discover" class="discover" size="1">
+                    <option value=""></option>
+                </select>
+                <label class="translate" for="discover">Autodiscover Servers (select entry to fill data automaticly):</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="port" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="port">Logitech Media Server Port:</label>
+            </div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="username" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="username">Username (optional):</label>
+            </div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="password" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="password">Password (optional):</label>
+            </div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="elapsedInterval" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="elapsedInterval">Track time update interval (sec):</label>
+            </div>        
+        </div>
+        
     </div>
 
 </body>
