@@ -3,6 +3,9 @@
         "name": "squeezeboxrpc",
         "version": "0.0.2",
         "news": {
+            "0.0.3": {
+                "en": "repair the no-data symbols for buttons in vis"
+            },
             "0.0.2": {
                 "en": "added autodiscovery"
             },

@@ -2,6 +2,7 @@
 
 # ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
 
+[![Number of Installations](http://iobroker.live/badges/squeezeboxrpc-installed.svg)
 [![NPM version](http://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc) 
 [![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Travis](https://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc/) 
@@ -106,13 +107,17 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 ## Todo
 
 * more testing/fixing
-* add artwork (station-logo/playlist-cover) for favorites
+* ~~add artwork (station-logo/playlist-cover) for favorites~~
 * implement more levels (subdirectories) of favorites
 * add telnet communication to get push events from the server to optimize the polling
-* autodiscover logitech media server
+* ~~autodiscover logitech media server~~
 
 ## Changelog
 
+### 0.0.3
+* (oweitman) repair the no-data symbols for buttons in vis 
+### 0.0.2
+* (oweitman) added autodiscovery
 ### 0.0.1
 * (oweitman) initial release
 

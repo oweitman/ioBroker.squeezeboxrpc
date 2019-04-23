@@ -130,7 +130,6 @@ function IoSbServer(adapter) {
         write:  true,
         type:   "boolean",
         role:   "button",
-        states: "false:no;true:yes",
         def: false,
         exist:  false 
     }};

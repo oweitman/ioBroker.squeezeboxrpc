@@ -240,75 +240,75 @@ function ioSBPlayer(server,playerdata) {
     this.sbPlayerButtons = {
         "forward": {
             name:   "btnForward",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button.forward",
             exist:  false,
-            val:    1
+            def:    false
         },
         "preset_1": {
             name:   "btnPreset_1",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "preset_2": {
             name:   "btnPreset_2",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "preset_3": {
             name:   "btnPreset_3",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "preset_4": {
             name:   "btnPreset_4",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "preset_5": {
             name:   "btnPreset_5",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "preset_6": {
             name:   "btnPreset_6",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button",
             exist:  false,
-            val:    1 
+            def:    false
         },
         "rewind": {
             name:   "btnRewind",
-            read:   false,
+            read:   true,
             write:  true,
             type:   "boolean",
             role:   "button.reverse",
             exist:  false,
-            val:    true 
+            def:    false
     }};        
     
     
@@ -420,6 +420,7 @@ function ioSBPlayer(server,playerdata) {
         for (var key in this.sbPlayerButtons ) {
             var stateTemplate = this.sbPlayerButtons[key];
             if (!stateTemplate.exist) {
+                stateTemplate.create = true;
                 this.sbPlayerButtons[key]=this.createState(stateTemplate,this.statePath, this.playername);
             }
         }
@@ -428,7 +429,9 @@ function ioSBPlayer(server,playerdata) {
         this.log.silly("doServerStateChange");
         idParts.shift();
         if (idParts[0] == "Volume") {
-            if (state.val != null) this.request(this.playerid,["mixer", "volume", Math.round(state.val)]);
+            if (state.val != null) {
+                this.request(this.playerid,["mixer", "volume", Math.round(state.val)]);
+            }
         }
         if (idParts[0] == "Power") {
             if (state.val==0) this.request(this.playerid,["power", 0]);
@@ -446,14 +449,23 @@ function ioSBPlayer(server,playerdata) {
             }
         }
         if (idParts[0] == "btnForward") {
-            this.request(this.playerid,["button", "jump_fwd"]);
+            if (state.val) {
+                this.request(this.playerid,["button", "jump_fwd"]);
+                this.setState(idParts[0],false,this.statePath,this.playername,false);
+            }
         }
         if (idParts[0] == "btnRewind") {
-            this.request(this.playerid,["button", "jump_rew"]);
+            if (state.val) {
+                this.request(this.playerid,["button", "jump_rew"]);
+                this.setState(idParts[0],false,this.statePath,this.playername,false);
+            }
         }
         if (idParts[0].startsWith("btnPreset_") ) {
             var name = "preset_" + idParts[0].split("_")[1] + ".single";
-            this.request(this.playerid,["button", name]);
+            if (state.val) {
+                this.request(this.playerid,["button", name]);
+                this.setState(idParts[0],false,this.statePath,this.playername,false);
+            }
         }
         
     }
@@ -471,10 +483,9 @@ function ioSBPlayer(server,playerdata) {
         this.doObserverPlayer();
         this.connected = 1;
     }
-    this.createState = function(stateTemplate,level1path=false,level2path=false) {
+    this.createState = function(stateTemplate,level1path=false,level2path=false,check=true) {
         var name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + stateTemplate.name;
         this.log.silly("Create Key " + name);
-        if (name=="Players.SqueezeKitchen.Name")             this.log.silly("setState name: " + name );
         if (!this.currentStates[name]) this.adapter.createState(level1path,level2path,stateTemplate.name,stateTemplate);
         stateTemplate.exist = true;
         return stateTemplate;
@@ -482,13 +493,16 @@ function ioSBPlayer(server,playerdata) {
     this.request = function(playerid,params, callback) {
         if (this.connected) this.server.request(playerid, params, callback);
     }
-    this.setState = function(name, value,level1path=false,level2path=false) {
+    this.setState = function(name, value,level1path=false,level2path=false,check=true) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '')+name
-        if (name=="Players.SqueezeKitchen.Name")             this.log.silly("setState name: " + name + " value: " + value);
-        if (this.currentStates[name] !== value) {
+        if (this.currentStates[name] !== value && check) {
             this.currentStates[name] = value;
             if (!name.includes("Time")) this.log.silly("setState name: " + name + " value: " + value);
             this.adapter.setState(name, value, true);
+        } else {
+            this.currentStates[name] = value;
+            this.log.silly("setState name: " + name + " value: " + value);
+            this.adapter.setState(name, value, true);                        
         }
     }
     this.log.silly = function(s) {
