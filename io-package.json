@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.0.2",
-        "news": {
+        "version": "0.0.4",
+        "news": { 
+            "0.0.4": {
+                "en": "added the cmdPlayFavorite for each player to play favorites"
+            },
             "0.0.3": {
                 "en": "repair the no-data symbols for buttons in vis"
             },

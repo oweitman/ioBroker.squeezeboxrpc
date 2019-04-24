@@ -238,6 +238,15 @@ function ioSBPlayer(server,playerdata) {
             exist:  false                               
     }};        
     this.sbPlayerButtons = {
+        "cmdPlayFavorite": {
+            name:   "cmdPlayFavorite",
+            read:   true,
+            write:  true,
+            type:   "string",
+            role:   "state",
+            exist:  false,
+            def:    " "
+        },
         "forward": {
             name:   "btnForward",
             read:   true,
@@ -446,6 +455,12 @@ function ioSBPlayer(server,playerdata) {
             }
             if (state.val == 2) {
                 this.request(this.playerid,["stop"]);
+            }
+        }
+        if (idParts[0] == "cmdPlayFavorite") {
+            if (state.val) {
+                this.request(this.playerid,["favorites", "playlist","play","item_id:" + state.val]);
+                this.setState(idParts[0]," ",this.statePath,this.playername,false);
             }
         }
         if (idParts[0] == "btnForward") {

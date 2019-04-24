@@ -98,7 +98,7 @@ additional defined buttons
  btnForward        | Next song                                     
  btnRewind         | Previous song                                 
  btnPreset_*       | 1-6 buttons to define in player or server     
- 
+ cmdPlayFavorite   | to play a favorite set the id of the favorite
 
 For more information visit the CLI-documentation:
 
@@ -114,6 +114,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.0.4
+* (oweitman) added the cmdPlayFavorite for each player 
 ### 0.0.3
 * (oweitman) repair the no-data symbols for buttons in vis 
 ### 0.0.2
