@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": { 
+            "0.0.5": {
+                "en": "All levels/subdirectories of favorites are now available in iobroker"
+            },
             "0.0.4": {
                 "en": "added the cmdPlayFavorite for each player to play favorites"
             },

@@ -207,7 +207,7 @@ function IoSbServer(adapter) {
     this.sbServer = new SqueezeServer('http://'+adapter.config.server, Number.parseInt(adapter.config.port));
 
     this.log = {};
-    this.logsilly = false;
+    this.logsilly = true;
     this.logdebug = true;
     this.errmax = 5;
     this.errcnt = -1;
@@ -243,8 +243,10 @@ function IoSbServer(adapter) {
     }
     this.doObserverFavorites = function() {
         this.log.silly("doObserverFavorites");
-        this.getFavorites();
-        this.setTimeout('favorites',this.doObserverFavorites.bind(this),12*60*60*1000)
+        this.adapter.deleteDevice(this.FavoritesStatePath, function(err,res) {
+            this.getFavorites();
+            this.setTimeout('favorites',this.doObserverFavorites.bind(this),12*60*60*1000);
+        }.bind(this));
     }
     this.getDiscoverServers = function() {
         this.log.silly("getDiscoverServers");
@@ -321,9 +323,9 @@ function IoSbServer(adapter) {
         this.checkNewPlayer(result.result.players_loop);
         this.checkPlayer(result.result.players_loop);
     }
-    this.getFavorites = function() {
+    this.getFavorites = function(id="") {
         this.log.silly("getFavorites");
-        this.request("",["favorites", "items", "0", "888","want_url:1"], this.doFavorites1.bind(this));        
+        this.request("",["favorites", "items", "0", "888","want_url:1","item_id:" + id], this.doFavorites1.bind(this));        
     }
     this.doFavorites1 = function(result){
         this.log.silly("doFavorites1");
@@ -334,27 +336,40 @@ function IoSbServer(adapter) {
         this.log.silly("doFavorites2");
         for (var favkey in favorites) {
             var favorite = favorites[favkey];
+            var oid = this.getFavId(favorite['id'],false);
+            var id = this.getFavId(favorite['id']);
             for (var key in this.sbFavoritesState){
                 if (favorite.hasOwnProperty(key)) {
-                    this.setState(this.sbFavoritesState[key].name,favorite[key],this.FavoritesStatePath,favkey,false);
+                    if (key=="id") favorite['id'] = oid;
+                    this.setState(this.sbFavoritesState[key].name,favorite[key],this.FavoritesStatePath,id,false);
                 }
             }
+            if (favorite["hasitems"]>0) this.getFavorites(oid);
         }
     }
     this.checkFavoriteStates = function(favorites) {
         this.log.silly("checkFavoriteStates");
-        this.adapter.deleteDevice(this.FavoritesStatePath, function(err,res) {
-            for (var favkey in favorites) {
-                var favorite = favorites[favkey];
-                for (var key in this.sbFavoritesState){
-                    if (favorite.hasOwnProperty(key)) {
-                        var stateTemplate = this.sbFavoritesState[key];
-                        this.createState(stateTemplate,this.FavoritesStatePath,favkey);
-                    }
+        for (var favkey in favorites) {
+            var favorite = favorites[favkey];
+            var id = this.getFavId(favorite['id']);
+            for (var key in this.sbFavoritesState){
+                if (favorite.hasOwnProperty(key)) {
+                    var stateTemplate = this.sbFavoritesState[key];
+                    this.createState(stateTemplate,this.FavoritesStatePath,id);
                 }
             }
-            this.doFavorites2(favorites);
-        }.bind(this));
+        }
+        this.doFavorites2(favorites);
+    }
+    this.getFavId = function(id,replace=true) {
+        var ret;
+        if (id.indexOf(".")==8) {
+            ret =  id.substr(9);
+        } else {
+            ret = id;
+        }
+        if (replace) ret = ret.replace(/\./g,"-");
+        return ret;
     }
     this.checkServerstatusStates = function(result) {
         this.log.silly("checkServerstatusStates");

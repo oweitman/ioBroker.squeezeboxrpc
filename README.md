@@ -114,6 +114,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.0.5
+* (oweitman) All levels/subdirectories of favorites are now available in iobroker
 ### 0.0.4
 * (oweitman) added the cmdPlayFavorite for each player 
 ### 0.0.3

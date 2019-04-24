@@ -458,7 +458,7 @@ function ioSBPlayer(server,playerdata) {
             }
         }
         if (idParts[0] == "cmdPlayFavorite") {
-            if (state.val) {
+            if (state.val!==" ") {
                 this.request(this.playerid,["favorites", "playlist","play","item_id:" + state.val]);
                 this.setState(idParts[0]," ",this.statePath,this.playername,false);
             }
