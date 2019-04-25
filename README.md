@@ -108,12 +108,14 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 * more testing/fixing
 * ~~add artwork (station-logo/playlist-cover) for favorites~~
-* implement more levels (subdirectories) of favorites
+* ~~implement more levels (subdirectories) of favorites~~
 * add telnet communication to get push events from the server to optimize the polling
 * ~~autodiscover logitech media server~~
 
 ## Changelog
 
+### 0.0.6
+* (oweitman) More config options
 ### 0.0.5
 * (oweitman) All levels/subdirectories of favorites are now available in iobroker
 ### 0.0.4

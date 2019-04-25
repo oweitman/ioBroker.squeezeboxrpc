@@ -105,7 +105,7 @@
                 <select name="discover" class="discover" size="1">
                     <option value=""></option>
                 </select>
-                <label class="translate" for="discover">Autodiscover Servers (select entry to fill data automaticly):</label>
+                <label class="translate" for="discover">Autodiscovered Servers (select entry to fill data automaticly):</label>
             </div>
         </div>
         <div class="row">
@@ -128,11 +128,28 @@
         </div>
         <div class="row">
             <div class="input-field col s2">
-                <input class="value" id="elapsedInterval" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="elapsedInterval">Track time update interval (sec):</label>
+                <input class="value" id="serverrefresh" size="5" maxlength="7" type="number"/>
+                <label class="translate" for="serverrefresh">Serverrefresh (sec) default: 30:</label>
             </div>        
         </div>
-        
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="playerrefresh" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="playerrefresh">Player refresh (ms) default: 950:</label>
+            </div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="favoriterefresh" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="favoriterefresh">Favorite refresh (min) default: 720:</label>
+            </div>        
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <input class="value" id="discoveryrefresh" size="5" maxlength="5" type="number"/>
+                <label class="translate" for="discoveryrefresh">Discovery refresh (sec) default: 30:</label>
+            </div>        
+        </div>
     </div>
 
 </body>

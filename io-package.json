@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "news": { 
+            "0.0.6": {
+                "en": "More config options"
+            },
             "0.0.5": {
                 "en": "All levels/subdirectories of favorites are now available in iobroker"
             },
@@ -79,9 +82,11 @@
         "port": 9000,
         "username": "",
         "password": "",
-        "elapsedInterval": 5,
-        "option1": true,
-        "option2": "42"
+        "serverrefresh": 30000,
+        "playerrefresh": 950,
+        "favoriterefresh": 720,
+        "discoveryrefresh": 30,
+        "elapsedInterval": 5
     },
     "objects": [],
     "instanceObjects": [

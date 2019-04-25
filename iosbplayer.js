@@ -26,7 +26,7 @@ function ioSBPlayer(server,playerdata) {
     this.log = {};
 
     this.logsilly = false;
-    this.logdebug = true;
+    this.logdebug = false;
 
     this.sbPlayerStatusMain = {
         "player_name": {
@@ -334,7 +334,7 @@ function ioSBPlayer(server,playerdata) {
     this.doObserverPlayer = function() {
         this.log.silly("doObserverPlayer");
         this.getPlayerUpdateStatus();
-        this.observers['player']= setTimeout(this.doObserverPlayer.bind(this),900);
+        this.observers['player']= setTimeout(this.doObserverPlayer.bind(this),this.adapter.config.playerrefresh * 900);
     }
     this.getPlayerUpdateStatus = function() {
         this.log.silly("getPlayerUpdate");
@@ -514,7 +514,8 @@ function ioSBPlayer(server,playerdata) {
             this.currentStates[name] = value;
             if (!name.includes("Time")) this.log.silly("setState name: " + name + " value: " + value);
             this.adapter.setState(name, value, true);
-        } else {
+        } 
+        if (!check) {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
             this.adapter.setState(name, value, true);                        

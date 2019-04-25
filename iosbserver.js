@@ -204,11 +204,11 @@ function IoSbServer(adapter) {
     this.adapter.setState('info.connection', false, true);
     this.adapter.subscribeStates('*');
 
-    this.sbServer = new SqueezeServer('http://'+adapter.config.server, Number.parseInt(adapter.config.port));
+    this.sbServer = new SqueezeServer('http://'+ this.adapter.config.server, Number.parseInt(this.adapter.config.port));
 
     this.log = {};
-    this.logsilly = true;
-    this.logdebug = true;
+    this.logsilly = false;
+    this.logdebug = false;
     this.errmax = 5;
     this.errcnt = -1;
     this.connected=0;
@@ -223,7 +223,7 @@ function IoSbServer(adapter) {
     this.doObserverServer = function() {
         this.log.silly("doObserverServer");
         this.getServerstatus();
-        this.setTimeout('serverstatus',this.doObserverServer.bind(this),30*1000)
+        this.setTimeout('serverstatus',this.doObserverServer.bind(this),this.adapter.config.serverrefresh*1000)
     }
     this.setTimeout = function(id,callback,time) {
         this.clearTimeout(id);
@@ -245,7 +245,7 @@ function IoSbServer(adapter) {
         this.log.silly("doObserverFavorites");
         this.adapter.deleteDevice(this.FavoritesStatePath, function(err,res) {
             this.getFavorites();
-            this.setTimeout('favorites',this.doObserverFavorites.bind(this),12*60*60*1000);
+            this.setTimeout('favorites',this.doObserverFavorites.bind(this),this.adapter.config.favoriterefresh*60*1000);
         }.bind(this));
     }
     this.getDiscoverServers = function() {
@@ -305,7 +305,7 @@ function IoSbServer(adapter) {
                         if (err) this.log.error(err);
                     }
             );
-        }.bind(this), 30*1000);        
+        }.bind(this), this.adapter.config.discoveryrefresh*1000);        
     }
     
     this.getServerstatus = function() {
@@ -518,7 +518,6 @@ function IoSbServer(adapter) {
     }
     this.test = function() {
     }
-//    this.test();
     this.log.silly = function(s) {
         if (this.logsilly) this.adapter.log.silly(s);
     }.bind(this);
