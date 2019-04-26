@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.0.6",
+        "version": "0.0.7",
         "news": { 
+            "0.0.7": {
+                "en": "Add the playlist to each player as json"
+            },
             "0.0.6": {
                 "en": "More config options"
             },
@@ -86,7 +89,7 @@
         "playerrefresh": 950,
         "favoriterefresh": 720,
         "discoveryrefresh": 30,
-        "elapsedInterval": 5
+        "useplaylist": true
     },
     "objects": [],
     "instanceObjects": [

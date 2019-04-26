@@ -137,6 +137,14 @@ function ioSBPlayer(server,playerdata) {
             role:   "value",
             exist:  false         
         },
+        "playlist": {
+            name:   "Playlist",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  false         
+        },
         "state": {
             name:   "state",
             read:   true,
@@ -319,9 +327,39 @@ function ioSBPlayer(server,playerdata) {
             exist:  false,
             def:    false
     }};        
-    
-    
-    
+    this.sbPlayerStatusPlaylist = {
+        "playlist index": {
+            name:   "index",
+            read:   true,
+            write:  false,
+            type:   "number",
+            role:   "value",
+            exist:  false 
+        },                                
+        "id": {
+            name:   "id",
+            read:   true,
+            write:  false,
+            type:   "number",
+            role:   "value",
+            exist:  false 
+        },                                
+        "url": {
+            name:   "url",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  false 
+        },                                
+        "title": {
+            name:   "title",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  false
+    }};        
     
     
 
@@ -334,12 +372,12 @@ function ioSBPlayer(server,playerdata) {
     this.doObserverPlayer = function() {
         this.log.silly("doObserverPlayer");
         this.getPlayerUpdateStatus();
-        this.observers['player']= setTimeout(this.doObserverPlayer.bind(this),this.adapter.config.playerrefresh * 900);
+        this.observers['player']= setTimeout(this.doObserverPlayer.bind(this),this.adapter.config.playerrefresh);
     }
     this.getPlayerUpdateStatus = function() {
         this.log.silly("getPlayerUpdate");
         if (this.statuscounter == 0) {
-            this.request(this.playerid,["status", "-", "1", this.fullStatus], this.doPlayerUpdateStatus.bind(this));            
+            this.request(this.playerid,["status", "-", "999", this.fullStatus], this.doPlayerUpdateStatus.bind(this));            
         } else {
             this.request(this.playerid,["status", "-", "1", this.smallStatus], this.doPlayerUpdateStatus.bind(this));
         }
@@ -354,6 +392,7 @@ function ioSBPlayer(server,playerdata) {
         for (var key in this.sbPlayerStatusMain) {
             var value = null;
             if (key == 'state') continue;
+            if (key == 'playlist')      continue;                  
             if (playerdata.hasOwnProperty(key)) {
                 var value = playerdata[key];
                 if (key == 'name')          this.playername = value;  
@@ -377,6 +416,7 @@ function ioSBPlayer(server,playerdata) {
             
             this.setState(this.sbPlayerStatusMain[key].name,value,this.statePath,this.playername);
         }
+
         if (!result.result.playlist_loop) return;
         var playerdata = result.result.playlist_loop[0];
         for (var key in this.sbPlayerStatusLoop) {
@@ -401,6 +441,27 @@ function ioSBPlayer(server,playerdata) {
                 if (fullStatus) this.setState(this.sbPlayerStatusLoop[key].name,value,this.statePath,this.playername);
             }
         }
+        if (fullStatus) {
+            var playlist = result.result.playlist_loop;
+            var pla = [];
+            for (var playlistkey in playlist) {
+                var playlistitem = playlist[playlistkey];
+                var pli = {};
+                for (var key in this.sbPlayerStatusPlaylist) {        
+                    if (playlistitem.hasOwnProperty(key)) {
+                        pli[this.sbPlayerStatusPlaylist[key].name] = playlistitem[key];
+                    }
+                }
+                pla.push(pli);
+            }
+            if (this.adapter.config.useplaylist) {
+                //this.setState(this.sbPlayerStatusMain['playlist'].name,JSON.stringify(result.result.playlist_loop),this.statePath,this.playername);
+                this.setState(this.sbPlayerStatusMain['playlist'].name,JSON.stringify(pla),this.statePath,this.playername);
+            } else {
+                this.setState(this.sbPlayerStatusMain['playlist'].name,"",this.statePath,this.playername);
+            }
+        }
+        return;
     }
     this.doPlayerStatus = function(playerdata){
         this.log.silly("doPlayerStatus");
@@ -416,6 +477,7 @@ function ioSBPlayer(server,playerdata) {
         if (playerdata.name) this.playername = playerdata.name;
         for (var key in this.sbPlayerStatusMain) {
             var stateTemplate = this.sbPlayerStatusMain[key];
+            if (key=="playlist" && !this.adapter.config.useplaylist) continue;
             if (!stateTemplate.exist) {
                 this.sbPlayerStatusMain[key]=this.createState(stateTemplate,this.statePath, this.playername);
             }
@@ -440,6 +502,7 @@ function ioSBPlayer(server,playerdata) {
         if (idParts[0] == "Volume") {
             if (state.val != null) {
                 this.request(this.playerid,["mixer", "volume", Math.round(state.val)]);
+                this.setState(idParts[0],Math.round(state.val),this.statePath,this.playername,false);
             }
         }
         if (idParts[0] == "Power") {

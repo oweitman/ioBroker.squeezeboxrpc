@@ -107,13 +107,16 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 ## Todo
 
 * more testing/fixing
+* add telnet communication to get push events from the server to optimize the polling
+* ~~add the playlist to playerdata as json array~~
 * ~~add artwork (station-logo/playlist-cover) for favorites~~
 * ~~implement more levels (subdirectories) of favorites~~
-* add telnet communication to get push events from the server to optimize the polling
 * ~~autodiscover logitech media server~~
 
 ## Changelog
 
+### 0.0.7
+* (oweitman) Add the playlist to each player as json
 ### 0.0.6
 * (oweitman) More config options
 ### 0.0.5
