@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.3",
+    "modify-package-dependencies": "^1.0.0",
     "squeezenode-pssc": "github:pssc/squeezenode"
   },
   "devDependencies": {

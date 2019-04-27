@@ -85,7 +85,7 @@
         "port": 9000,
         "username": "",
         "password": "",
-        "serverrefresh": 30000,
+        "serverrefresh": 30,
         "playerrefresh": 950,
         "favoriterefresh": 720,
         "discoveryrefresh": 30,

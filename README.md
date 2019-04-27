@@ -76,6 +76,7 @@ for each player
  IP                | IP of the player                                      
  Mode              | play / pause / stop                                   
  Playername        | Name of the Player                                    
+ Playlist          | The actual Playlist as JSON
  PlaylistRepeat    | Repeat song(1)/playlist(2)/dont repeat(0)             
  PlaylistShuffle   | shuffle playlist(1)/shuffle album(2)/dont shuffle(0)  
  Power             | get/set Powerstate of player off(0)/on(1)             

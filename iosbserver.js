@@ -1,7 +1,5 @@
 "use strict";
 
-//node --inspect-brk=192.168.1.23:9229 node_modules/iobroker.squeezeboxrpc/squeezeboxrpc.js --force --logs
-
 const utils = require('@iobroker/adapter-core');
 const dgram = require('dgram');
 const SqueezeServer = require('squeezenode-pssc');
