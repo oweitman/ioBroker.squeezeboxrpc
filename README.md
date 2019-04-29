@@ -58,7 +58,7 @@ for each favorite
  type              | Example types: link, text, audio, playlist     
  url               | url of the track               
 
-at the moment only one level of favorites is available as a state
+ All sub levels (subdirectories) of favorite are available. 
 
 ### Players
 
@@ -92,7 +92,7 @@ for each player
  Volume            | get/set Volume of the player (0-100)                  
  state             | get/set play state: pause(0),play(1),stop(2)          
 
-additional defined buttons 
+additional defined buttons: 
 
  button            | Description                                    
  ----------------- | ---------------------------------------------  

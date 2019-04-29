@@ -206,7 +206,7 @@ function IoSbServer(adapter) {
 
     this.log = {};
     this.logsilly = false;
-    this.logdebug = false;
+    this.logdebug = true;
     this.errmax = 5;
     this.errcnt = -1;
     this.connected=0;
@@ -214,7 +214,6 @@ function IoSbServer(adapter) {
     
     this.init = function() {
         this.setState('connection', true, "info");
-        this.getDiscoverServers();
         this.doObserverServer();
         this.doObserverFavorites();
     }
@@ -491,7 +490,6 @@ function IoSbServer(adapter) {
     }
     this.setState = function(name, value,level1path=false,level2path=false,check=true,callback) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
-        if (name=="Players.SqueezeKitchen.Name")             this.log.debug("setState name: " + name + " value: " + value);
         if (this.currentStates[name] !== value && check) {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
@@ -522,6 +520,8 @@ function IoSbServer(adapter) {
     this.log.debug = function(s) {
         if (this.logdebug) this.adapter.log.debug(s);
     }.bind(this);
+
+    this.getDiscoverServers();
     this.sbServer.on('register', this.init.bind(this));
 }
 module.exports = IoSbServer;
