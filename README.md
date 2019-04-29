@@ -116,6 +116,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.0.8
+* (oweitman) More playlist attributes + remove trailing and leading spaces from source
 ### 0.0.7
 * (oweitman) Add the playlist to each player as json
 ### 0.0.6

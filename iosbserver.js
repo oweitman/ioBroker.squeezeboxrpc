@@ -6,113 +6,113 @@ const SqueezeServer = require('squeezenode-pssc');
 const ioSBPlayer = require(__dirname +'/iosbplayer');
 
 function IoSbServer(adapter) {
-    
-   
+
+
     let that = this;
     this.sbServerStatus = {
-	"lastscan": {
+    "lastscan": {
         name:   "LastScan",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"version": {
+    "version": {
         name:   "Version",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"uuid": {
+    "uuid": {
         name:   "uuid",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"name": {
+    "name": {
         name:   "Name",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"mac": {
+    "mac": {
         name:   "mac",
         read:   true,
         write:  false,
         type:   "string",
         role:   "info.mac",
-        exist:  false 
+        exist:  false
     },
-	"info total albums": {
+    "info total albums": {
         name:   "TotalAlbums",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"info total artists": {
+    "info total artists": {
         name:   "TotalArtists",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"info total genres": {
+    "info total genres": {
         name:   "TotalGenres",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"info total songs": {
+    "info total songs": {
         name:   "TotalSongs",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"info total duration": {
+    "info total duration": {
         name:   "TotalDuration",
         read:   true,
         write:  false,
         type:   "number",
         role:   "media.duration",
-        exist:  false 
+        exist:  false
     },
-	"player count": {
+    "player count": {
         name:   "PlayerCount",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"sn player count": {
+    "sn player count": {
         name:   "PlayerCountSN",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"other player count": {
+    "other player count": {
         name:   "PlayerCountOther",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
     "otherServers": {
         name:   "otherServers",
@@ -120,83 +120,83 @@ function IoSbServer(adapter) {
         write:  true,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"getFavorites": {
+    "getFavorites": {
         name:   "getFavorites",
         read:   true,
         write:  true,
         type:   "boolean",
         role:   "button",
         def: false,
-        exist:  false 
+        exist:  false
     }};
     this.sbFavoritesState = {
-	"name": {
+    "name": {
         name:   "Name",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"type": {
+    "type": {
         name:   "type",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"id": {
+    "id": {
         name:   "id",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"hasitems": {
+    "hasitems": {
         name:   "hasitems",
         read:   true,
         write:  false,
         type:   "string",
         role:   "value",
-        exist:  false 
+        exist:  false
     },
-	"url": {
+    "url": {
         name:   "url",
         read:   true,
         write:  false,
         type:   "number",
         role:   "media.url",
-        exist:  false 
+        exist:  false
     },
-	"image": {
+    "image": {
         name:   "image",
         read:   true,
         write:  false,
         type:   "string",
         role:   "url.icon",
-        exist:  false 
+        exist:  false
     },
-	"isaudio": {
+    "isaudio": {
         name:   "isaudio",
         read:   true,
         write:  false,
         type:   "number",
         role:   "value",
-        exist:  false 
+        exist:  false
     }};
-    
+
     this.ServerStatePath = "Server";
     this.FavoritesStatePath = "Favorites";
     this.PlayersStatePath = "Players";
-    
+
     this.currentStates = {};
     this.players = [];
     this.observers = [];
-    
+
     this.adapter = adapter;
 
     this.adapter.setState('info.connection', false, true);
@@ -211,7 +211,7 @@ function IoSbServer(adapter) {
     this.errcnt = -1;
     this.connected=0;
     this.firstStart = true;
-    
+
     this.init = function() {
         this.setState('connection', true, "info");
         this.doObserverServer();
@@ -272,11 +272,11 @@ function IoSbServer(adapter) {
                 }
                 srv['ADDRESS'] = rinfo.address;
                 srv['TIMESTAMP'] = Date.now();
-                var state = {}; 
+                var state = {};
                 Object.assign(state,this.sbServerStatus['otherServers']);
                 state.name = srv['ADDRESS'].replace(/\./g,"-");
                 state.def = JSON.stringify(srv);
-                this.createState(state,this.ServerStatePath,this.sbServerStatus['otherServers'].name,function(a,b,c) {
+                this.createState(state,this.ServerStatePath,this.sbServerStatus['otherServers'].name,function() {
                     this.setState(srv['ADDRESS'].replace(/\./g,"-"), JSON.stringify(srv),this.ServerStatePath, this.sbServerStatus['otherServers'].name,false);
                 }.bind(this));
                 this.log.debug("Autodiscover: Server found " + srv['NAME'] + " IP: " + srv['ADDRESS'] + " Port " + srv['JSON'] + " UUID " + srv['UUID']);
@@ -293,21 +293,21 @@ function IoSbServer(adapter) {
                     }
                 }
             }.bind(this));
-            socket.send(new Buffer(msg), 
-                    0, 
-                    msg.length, 
-                    broadcastPort, 
-                    broadcastAddress, 
+            socket.send(new Buffer(msg),
+                    0,
+                    msg.length,
+                    broadcastPort,
+                    broadcastAddress,
                     function (err) {
                         if (err) this.log.error(err);
                     }
             );
-        }.bind(this), this.adapter.config.discoveryrefresh*1000);        
+        }.bind(this), this.adapter.config.discoveryrefresh*1000);
     }
-    
+
     this.getServerstatus = function() {
         this.log.silly("getServerstatus");
-        this.request("",["serverstatus", "0", "888"], this.doServerstatus.bind(this));        
+        this.request("",["serverstatus", "0", "888"], this.doServerstatus.bind(this));
     }
     this.doServerstatus = function(result){
         this.log.silly("doServerstatus");
@@ -322,7 +322,7 @@ function IoSbServer(adapter) {
     }
     this.getFavorites = function(id="") {
         this.log.silly("getFavorites");
-        this.request("",["favorites", "items", "0", "888","want_url:1","item_id:" + id], this.doFavorites1.bind(this));        
+        this.request("",["favorites", "items", "0", "888","want_url:1","item_id:" + id], this.doFavorites1.bind(this));
     }
     this.doFavorites1 = function(result){
         this.log.silly("doFavorites1");
@@ -390,7 +390,7 @@ function IoSbServer(adapter) {
         for (var key in playersdata) {
             if (!this.players.hasOwnProperty(playersdata[key].playerid)) {
                 this.players[playersdata[key].playerid] = new ioSBPlayer(this,playersdata[key]);
-            } 
+            }
         }
     }
     this.checkPlayer = function(playersdata) {
@@ -434,7 +434,7 @@ function IoSbServer(adapter) {
         for (var key in this.players) {
             if (this.players[key].playername == name) return this.players[key] ;
         }
-    }    
+    }
     this.createState = function(stateTemplate,level1path=false,level2path=false,callback) {
         var name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + stateTemplate.name;
         this.log.silly("Create Key " + name);
@@ -486,7 +486,7 @@ function IoSbServer(adapter) {
             if (result.ok) {
                 this.connect();
             }
-        }.bind(this));                
+        }.bind(this));
     }
     this.setState = function(name, value,level1path=false,level2path=false,check=true,callback) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
@@ -497,20 +497,20 @@ function IoSbServer(adapter) {
         } else {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
-            this.adapter.setState(name, value, true, callback);            
+            this.adapter.setState(name, value, true, callback);
         }
     }
     this.getState = function(name, level1path=false,level2path=false,callback) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
-        this.adapter.getState(name, callback);            
+        this.adapter.getState(name, callback);
     }
     this.delObject = function(name, level1path=false,level2path=false,callback) {
         name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + name;
-        this.adapter.delObject(name, callback);            
+        this.adapter.delObject(name, callback);
     }
     this.getStates = function(pattern, level1path=false,level2path=false,callback) {
         var name = (level1path ? level1path + '.' : '') + (level2path ? level2path + '.' : '') + pattern;
-        this.adapter.getStates(name, callback);            
+        this.adapter.getStates(name, callback);
     }
     this.test = function() {
     }

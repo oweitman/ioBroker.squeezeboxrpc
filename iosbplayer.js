@@ -22,7 +22,7 @@ function ioSBPlayer(server,playerdata) {
     this.remote = 0;
     this.statuscounter=0;
     this.connected = 0;
-    
+
     this.log = {};
 
     this.logsilly = false;
@@ -35,7 +35,7 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "string",
             role:   "info.name",
-            exist:  false 
+            exist:  false
         },
         "player_connected": {
             name:   "Connected",
@@ -43,15 +43,15 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "number",
             role:   "value",
-            exist:  false 
-        },        
+            exist:  false
+        },
        "player_ip": {
             name:   "IP",
             read:   true,
             write:  false,
             type:   "string",
             role:   "info.ip",
-            exist:  false 
+            exist:  false
         },
        "power": {
             name:   "Power",
@@ -61,7 +61,7 @@ function ioSBPlayer(server,playerdata) {
             role:   "switch",
             exist:  false,
             min:    0,
-            max:    1 
+            max:    1
         },
        "mode": {
             name:   "Mode",
@@ -69,40 +69,40 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "media.state",
             role:   "value",
-            exist:  false 
-        },         
+            exist:  false
+        },
         "time": {
             name:   "Time",
             read:   true,
             write:  false,
             type:   "number",
             role:   "media.elapsed",
-            exist:  false 
-        },               
+            exist:  false
+        },
         "rate": {
             name:   "Rate",
             read:   true,
             write:  false,
             type:   "number",
             role:   "value",
-            exist:  false 
-        },              
+            exist:  false
+        },
         "sync_slaves": {
             name:   "SyncSlaves",
             read:   true,
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false 
-        },       
+            exist:  false
+        },
         "sync_master": {
             name:   "SyncMaster",
             read:   true,
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false 
-        },               
+            exist:  false
+        },
        "mixer volume": {
             name:   "Volume",
             read:   true,
@@ -111,15 +111,15 @@ function ioSBPlayer(server,playerdata) {
             role:   "level.volume",
             exist:  false,
             min:    0,
-            max:    100            
-        },               
+            max:    100
+        },
         "playlist repeat": {
             name:   "PlaylistRepeat",
             read:   true,
             write:  false,
             type:   "number",
             role:   "media.mode.repeat",
-            exist:  false 
+            exist:  false
         },
         "playlist shuffle": {
             name:   "PlaylistShuffle",
@@ -127,7 +127,7 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "number",
             role:   "media.mode.shuffle",
-            exist:  false 
+            exist:  false
         },
         "remote": {
             name:   "Remote",
@@ -135,7 +135,7 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "number",
             role:   "value",
-            exist:  false         
+            exist:  false
         },
         "playlist": {
             name:   "Playlist",
@@ -143,7 +143,7 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false         
+            exist:  false
         },
         "state": {
             name:   "state",
@@ -154,7 +154,7 @@ function ioSBPlayer(server,playerdata) {
             exist:  false,
             min:    0,
             max:    2
-    }};        
+    }};
 
     this.sbPlayerStatusLoop = {
         "duration": {
@@ -163,32 +163,32 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "number",
             role:   "media.duration",
-            exist:  false 
-        },                                
+            exist:  false
+        },
         "artwork_url": {
             name:   "ArtworkUrl",
             read:   true,
             write:  false,
             type:   "string",
             role:   "media.cover",
-            exist:  false 
-        },       
+            exist:  false
+        },
         "bitrate": {
             name:   "Bitrate",
             read:   true,
             write:  false,
             type:   "string",
             role:   "media.bitrate",
-            exist:  false 
-        },      
+            exist:  false
+        },
         "album": {
             name:   "Album",
             read:   true,
             write:  false,
             type:   "string",
             role:   "media.album",
-            exist:  false 
-        },      
+            exist:  false
+        },
         "coverid": {
             name:   "ArtworkUrl",
             read:   true,
@@ -196,7 +196,7 @@ function ioSBPlayer(server,playerdata) {
             type:   "string",
             role:   "value",
             exist:  true
-        },       
+        },
         "genre": {
             name:   "Genre",
             read:   true,
@@ -204,14 +204,14 @@ function ioSBPlayer(server,playerdata) {
             type:   "string",
             role:   "media.genre",
             exist:  false
-        },       
+        },
         "type": {
             name:   "Type",
             read:   true,
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false 
+            exist:  false
         },
         "title": {
             name:   "Title",
@@ -219,23 +219,23 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "string",
             role:   "media.title",
-            exist:  false 
-        },                    
+            exist:  false
+        },
         "artist": {
             name:   "Artist",
             read:   true,
             write:  false,
             type:   "string",
             role:   "media.artist",
-            exist:  false 
-        },                    
+            exist:  false
+        },
         "url": {
             name:   "Url",
             read:   true,
             write:  false,
             type:   "string",
             role:   "media.url",
-            exist:  false 
+            exist:  false
         },
         "remote_title": {
             name:   "RadioName",
@@ -243,8 +243,8 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false                               
-    }};        
+            exist:  false
+    }};
     this.sbPlayerButtons = {
         "cmdPlayFavorite": {
             name:   "cmdPlayFavorite",
@@ -326,7 +326,7 @@ function ioSBPlayer(server,playerdata) {
             role:   "button.reverse",
             exist:  false,
             def:    false
-    }};        
+    }};
     this.sbPlayerStatusPlaylist = {
         "playlist index": {
             name:   "index",
@@ -334,34 +334,99 @@ function ioSBPlayer(server,playerdata) {
             write:  false,
             type:   "number",
             role:   "value",
-            exist:  false 
-        },                                
+            exist:  false
+        },
         "id": {
             name:   "id",
             read:   true,
             write:  false,
             type:   "number",
             role:   "value",
-            exist:  false 
-        },                                
+            exist:  false
+        },
         "url": {
             name:   "url",
             read:   true,
             write:  false,
             type:   "string",
             role:   "value",
-            exist:  false 
-        },                                
+            exist:  false
+        },
         "title": {
             name:   "title",
             read:   true,
             write:  false,
             type:   "string",
             role:   "value",
+            exist:  false,
+        },
+        "artwork_url": {
+            name:   "ArtworkUrl",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "media.cover",
             exist:  false
-    }};        
-    
-    
+        },
+        "coverid": {
+            name:   "ArtworkUrl",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  true
+        },
+        "type": {
+            name:   "Type",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  false
+        },
+        "bitrate": {
+            name:   "Bitrate",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "media.bitrate",
+            exist:  false
+        },
+        "duration": {
+            name:   "Duration",
+            read:   true,
+            write:  false,
+            type:   "number",
+            role:   "media.duration",
+            exist:  false
+        },
+        "artist": {
+            name:   "Artist",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "media.artist",
+            exist:  false
+        },
+        "album": {
+            name:   "Album",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "media.album",
+            exist:  false
+        },
+        "remote_title": {
+            name:   "RadioName",
+            read:   true,
+            write:  false,
+            type:   "string",
+            role:   "value",
+            exist:  false
+
+    }};
+
+
 
     this.init = function(playerdata){
         this.doPlayerStatus(playerdata);
@@ -377,7 +442,7 @@ function ioSBPlayer(server,playerdata) {
     this.getPlayerUpdateStatus = function() {
         this.log.silly("getPlayerUpdate");
         if (this.statuscounter == 0) {
-            this.request(this.playerid,["status", "-", "999", this.fullStatus], this.doPlayerUpdateStatus.bind(this));            
+            this.request(this.playerid,["status", "-", "999", this.fullStatus], this.doPlayerUpdateStatus.bind(this));
         } else {
             this.request(this.playerid,["status", "-", "1", this.smallStatus], this.doPlayerUpdateStatus.bind(this));
         }
@@ -388,14 +453,14 @@ function ioSBPlayer(server,playerdata) {
         this.log.silly("doPlayerUpdateStatus");
         var fullStatus = result.params[1][3] == this.fullStatus;
         var playerdata = result.result;
-        
+
         for (var key in this.sbPlayerStatusMain) {
             var value = null;
             if (key == 'state') continue;
-            if (key == 'playlist')      continue;                  
+            if (key == 'playlist')      continue;
             if (playerdata.hasOwnProperty(key)) {
                 var value = playerdata[key];
-                if (key == 'name')          this.playername = value;  
+                if (key == 'name')          this.playername = value;
                 if (key == 'playerindex')   this.playerindex = value;
                 if (key == 'remote')        this.remote = value;
                 if (key == 'mode') {
@@ -413,7 +478,7 @@ function ioSBPlayer(server,playerdata) {
                 if (key == 'remote')        value = 0;
                 if (key == 'remote')        this.remote = 0;
             }
-            
+
             this.setState(this.sbPlayerStatusMain[key].name,value,this.statePath,this.playername);
         }
 
@@ -447,9 +512,22 @@ function ioSBPlayer(server,playerdata) {
             for (var playlistkey in playlist) {
                 var playlistitem = playlist[playlistkey];
                 var pli = {};
-                for (var key in this.sbPlayerStatusPlaylist) {        
+                for (var key in this.sbPlayerStatusPlaylist) {
                     if (playlistitem.hasOwnProperty(key)) {
-                        pli[this.sbPlayerStatusPlaylist[key].name] = playlistitem[key];
+
+                        var value = playlistitem[key];
+                        if (key == 'coverid') {
+                            if (value[0] != "-") {
+                                value = this.createArtworkUrl(value);
+                            } else {
+                                continue;
+                            }
+                        }
+                        if (key == 'artwork_url' && playlistitem['coverid'] && playlistitem['coverid'][0] != "-") {
+                            continue;
+                        }
+
+                        pli[this.sbPlayerStatusPlaylist[key].name] = value;
                     }
                 }
                 pla.push(pli);
@@ -468,9 +546,9 @@ function ioSBPlayer(server,playerdata) {
         if (playerdata.playerid)    this.playerid = playerdata.playerid;
         if (playerdata.name)        this.playername = playerdata.name;
         if (playerdata.playerindex) this.playerindex = playerdata.playerindex;
-        if (playerdata.connected)   this.connected = playerdata.connected;        
+        if (playerdata.connected)   this.connected = playerdata.connected;
         this.checkPlayerdataStates(playerdata);
-    }    
+    }
     this.checkPlayerdataStates = function(playerdata) {
         this.log.silly("checkPlayerdataStates");
         if (!playerdata) return;
@@ -545,7 +623,7 @@ function ioSBPlayer(server,playerdata) {
                 this.setState(idParts[0],false,this.statePath,this.playername,false);
             }
         }
-        
+
     }
     this.createArtworkUrl = function(artworkid){
         return "http://" + this.adapter.config.server+ ":"+this.adapter.config.port+"/music/" + artworkid + "/cover.jpg"
@@ -577,11 +655,11 @@ function ioSBPlayer(server,playerdata) {
             this.currentStates[name] = value;
             if (!name.includes("Time")) this.log.silly("setState name: " + name + " value: " + value);
             this.adapter.setState(name, value, true);
-        } 
+        }
         if (!check) {
             this.currentStates[name] = value;
             this.log.silly("setState name: " + name + " value: " + value);
-            this.adapter.setState(name, value, true);                        
+            this.adapter.setState(name, value, true);
         }
     }
     this.log.silly = function(s) {

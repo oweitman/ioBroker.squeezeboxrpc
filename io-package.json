@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": { 
+            "0.0.8": {
+                "en": "More playlist attributes + remove trailing and leading spaces from source"
+            },
             "0.0.7": {
                 "en": "Add the playlist to each player as json"
             },
