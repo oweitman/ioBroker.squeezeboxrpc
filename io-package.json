@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.0",
+        "version": "0.8.1",
         "news": { 
             "0.8.1": {
                 "en": "set compact mode flag"
