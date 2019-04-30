@@ -78,7 +78,7 @@
         "loglevel": "debug",
         "mode": "daemon",
         "type": "multimedia",
-        "compact": false,
+        "compact": true,
         "materialize": true,
         "dependencies": [
             {
