@@ -3,6 +3,9 @@
         "name": "squeezeboxrpc",
         "version": "0.8.0",
         "news": { 
+            "0.8.1": {
+                "en": "set compact mode flag"
+            },
             "0.8.0": {
                 "en": "implementation of compact mode, change version to represent a realistic feature completness"
             },
