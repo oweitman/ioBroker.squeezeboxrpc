@@ -25,8 +25,8 @@ function ioSBPlayer(server,playerdata) {
 
     this.log = {};
 
-    this.logsilly = false;
-    this.logdebug = false;
+    this.logsilly = this.adapter.config.outputplayersilly;
+    this.logdebug = this.adapter.config.outputplayerdebug;
 
     this.sbPlayerStatusMain = {
         "player_name": {

@@ -43,11 +43,11 @@
             // reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
             if (M) M.updateTextFields();
             socket.emit('getObjects', function (err, obj) {
-            
+
                 var ds = Object.entries(obj).filter(function(entry) {
                     return entry[0].startsWith([adapter,instance,"Server","otherServer"].join("."));
                 });
-                
+
                 var $dropdown = $(".discover");
                 $.each(ds, function() {
                     var srv = JSON.parse(this[1].common.def);
@@ -64,7 +64,7 @@
                 var elems = document.querySelectorAll('select');
                 var instances = M.FormSelect.init(elems, {});
 
-            });           
+            });
         }
 
         // This will be called by the admin adapter when the user presses the save button
@@ -87,77 +87,113 @@
 
 <body>
 
-    <div class="m adapter-container s6">
-        <div class="row valign-wrapper">
-            <div class="col">
-                <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+    <div class="m adapter-container">
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s2"><a href="#tab-main"  class="translate active">Main settings</a></li>
+                    <li class="tab col s2 le-settings"><a href="#tab-debug"    class="translate">Debug settings</a></li>
+                </ul>
             </div>
-            <div class="col">
-                <h3 class="translate">Logitech Squeezebox adapter settings</h3>
+            <div id="tab-main" class="col s12 page">
+
+                <div class="row valign-wrapper">
+                    <div class="col">
+                        <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+                    </div>
+                    <div class="col">
+                        <h3 class="translate">Logitech Squeezebox adapter settings</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="server" type="text" />
+                        <label class="translate" for="server">Logitech Media Server Address:</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <select name="discover" class="discover" size="1">
+                            <option value=""></option>
+                        </select>
+                        <label class="translate" for="discover">Autodiscovered Servers (select entry to fill data automaticly):</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="port" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="port">Logitech Media Server Port:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="username" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="username">Username (optional):</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="password" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="password">Password (optional):</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="serverrefresh" size="5" maxlength="7" type="number"/>
+                        <label class="translate" for="serverrefresh">Serverrefresh (sec) default: 30:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="playerrefresh" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="playerrefresh">Player refresh (ms) default: 950:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="favoriterefresh" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="favoriterefresh">Favorite refresh (min) default: 720:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="discoveryrefresh" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="discoveryrefresh">Discovery refresh (sec) default: 30:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="useplaylist" type="checkbox"/>
+                        <label class="translate" for="useplaylist">Playlistinfos as datapoint:</label>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="server" type="text" />
-                <label class="translate" for="server">Logitech Media Server Address:</label>
+            <div id="tab-debug" class="col s12 page">
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input class="value" id="outputserverdebug" type="checkbox"/>
+                        <label class="translate" for="outputserverdebug">Create debug output for server</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input class="value" id="outputserversilly" type="checkbox"/>
+                        <label class="translate" for="outputserversilly">Create silly output for server</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input class="value" id="outputplayerdebug" type="checkbox"/>
+                        <label class="translate" for="outputplayerdebug">Create debug output for player</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input class="value" id="outputplayersilly" type="checkbox"/>
+                        <label class="translate" for="outputplayersilly">Create silly output for player</label>
+                    </div>
+                </div>
             </div>
-            <div class="input-field col s3">
-                <select name="discover" class="discover" size="1">
-                    <option value=""></option>
-                </select>
-                <label class="translate" for="discover">Autodiscovered Servers (select entry to fill data automaticly):</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="port" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="port">Logitech Media Server Port:</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="username" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="username">Username (optional):</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="password" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="password">Password (optional):</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="serverrefresh" size="5" maxlength="7" type="number"/>
-                <label class="translate" for="serverrefresh">Serverrefresh (sec) default: 30:</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="playerrefresh" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="playerrefresh">Player refresh (ms) default: 950:</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="favoriterefresh" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="favoriterefresh">Favorite refresh (min) default: 720:</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="discoveryrefresh" size="5" maxlength="5" type="number"/>
-                <label class="translate" for="discoveryrefresh">Discovery refresh (sec) default: 30:</label>
-            </div>        
-        </div>
-        <div class="row">
-            <div class="input-field col s2">
-                <input class="value" id="useplaylist" type="checkbox"/>
-                <label class="translate" for="useplaylist">Playlistinfos as datapoint:</label>
-            </div>        
         </div>
     </div>
-
 </body>
 
 </html>

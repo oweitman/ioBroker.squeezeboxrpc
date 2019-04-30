@@ -134,6 +134,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.0.9
+* (oweitman) debug options are now configurable
 ### 0.0.8
 * (oweitman) More playlist attributes + remove trailing and leading spaces from source
 ### 0.0.7

@@ -205,8 +205,8 @@ function IoSbServer(adapter) {
     this.sbServer = new SqueezeServer('http://'+ this.adapter.config.server, Number.parseInt(this.adapter.config.port));
 
     this.log = {};
-    this.logsilly = false;
-    this.logdebug = true;
+    this.logsilly = this.adapter.config.outputserversilly;
+    this.logdebug = this.adapter.config.outputserverdebug;
     this.errmax = 5;
     this.errcnt = -1;
     this.connected=0;
