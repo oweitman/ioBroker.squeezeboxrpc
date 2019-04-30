@@ -134,6 +134,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.8.0
+* (oweitman) implementation of compact mode, change version to represent a realistic feature completness
 ### 0.0.9
 * (oweitman) debug options are now configurable
 ### 0.0.8
