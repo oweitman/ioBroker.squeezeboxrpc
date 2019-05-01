@@ -12,7 +12,7 @@ const utils = require('@iobroker/adapter-core');
 // const fs = require("fs");
 
 const SqueezeServer = require('squeezenode-pssc');
-const IoSbServer = require(__dirname +'/iosbserver');
+const IoSbServer = require(__dirname +'/lib/iosbserver');
 
 /**
  * The adapter instance
