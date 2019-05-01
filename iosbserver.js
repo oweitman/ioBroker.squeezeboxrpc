@@ -306,9 +306,11 @@ function IoSbServer(adapter) {
         }.bind(this), this.adapter.config.discoveryrefresh*1000);
     }
     this.doDiscoverServerClose = function() {
+        this.log.silly("doDiscoverServerClose");
         this.server.close()
     }
     this.getServerstatus = function() {
+
         this.log.silly("getServerstatus");
         this.request("",["serverstatus", "0", "888"], this.doServerstatus.bind(this));
     }

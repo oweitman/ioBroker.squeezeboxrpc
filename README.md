@@ -134,6 +134,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.8.3
+* (oweitman) close port for discovery on unload
 ### 0.8.2
 * (oweitman) sync version with npm
 ### 0.8.1

@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.2",
+        "version": "0.8.3",
         "news": { 
+            "0.8.3": {
+                "en": "close port for discovery on unload"
+            },
             "0.8.2": {
                 "en": "sync version with npm"
             },
