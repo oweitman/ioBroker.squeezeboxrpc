@@ -211,6 +211,7 @@ function IoSbServer(adapter) {
     this.errcnt = -1;
     this.connected=0;
     this.firstStart = true;
+    var server;
 
     this.init = function() {
         this.setState('connection', true, "info");
@@ -247,14 +248,14 @@ function IoSbServer(adapter) {
     }
     this.getDiscoverServers = function() {
         this.log.silly("getDiscoverServers");
-        var socket = dgram.createSocket('udp4');
+        var server = dgram.createSocket('udp4');
         const msg = Buffer.from('eIPAD\0NAME\0JSON\0UUID\0VERS');
         var broadcastAddress = '255.255.255.255';
         var broadcastPort = 3483;
-        socket.bind(broadcastPort, '0.0.0.0', function() {
-            socket.setBroadcast(true);
+        server.bind(broadcastPort, '0.0.0.0', function() {
+            server.setBroadcast(true);
         });
-        socket.on("message", function ( data, rinfo ) {
+        server.on("message", function ( data, rinfo ) {
             this.log.silly("getDiscoverServers: Message resceived");
             if (data.toString().charAt()=="E") {
                 var msg = data.toString();
@@ -293,7 +294,7 @@ function IoSbServer(adapter) {
                     }
                 }
             }.bind(this));
-            socket.send(new Buffer(msg),
+            server.send(new Buffer(msg),
                     0,
                     msg.length,
                     broadcastPort,
@@ -304,7 +305,9 @@ function IoSbServer(adapter) {
             );
         }.bind(this), this.adapter.config.discoveryrefresh*1000);
     }
-
+    this.doDiscoverServerClose = function() {
+        this.server.close()
+    }
     this.getServerstatus = function() {
         this.log.silly("getServerstatus");
         this.request("",["serverstatus", "0", "888"], this.doServerstatus.bind(this));
