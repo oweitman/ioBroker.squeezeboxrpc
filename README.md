@@ -134,6 +134,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 0.8.4
+* (oweitman) move some files to lib directory
 ### 0.8.3
 * (oweitman) close port for discovery on unload
 ### 0.8.2
