@@ -248,14 +248,14 @@ function IoSbServer(adapter) {
     }
     this.getDiscoverServers = function() {
         this.log.silly("getDiscoverServers");
-        var server = dgram.createSocket('udp4');
+        this.server = dgram.createSocket('udp4');
         const msg = Buffer.from('eIPAD\0NAME\0JSON\0UUID\0VERS');
         var broadcastAddress = '255.255.255.255';
         var broadcastPort = 3483;
-        server.bind(broadcastPort, '0.0.0.0', function() {
-            server.setBroadcast(true);
-        });
-        server.on("message", function ( data, rinfo ) {
+        this.server.bind(broadcastPort, '0.0.0.0', function() {
+            this.server.setBroadcast(true);
+        }.bind(this));
+        this.server.on("message", function ( data, rinfo ) {
             this.log.silly("getDiscoverServers: Message resceived");
             if (data.toString().charAt()=="E") {
                 var msg = data.toString();
@@ -294,7 +294,7 @@ function IoSbServer(adapter) {
                     }
                 }
             }.bind(this));
-            server.send(new Buffer(msg),
+            this.server.send(new Buffer(msg),
                     0,
                     msg.length,
                     broadcastPort,
