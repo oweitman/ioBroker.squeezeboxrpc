@@ -54,6 +54,7 @@ for each favorite
  Name              | Name of the favorite
  hasitems          | indicates if this is a dir
  id                | id of the favorite
+ image             | image/icon for favorite if available
  isaudio           | isaudio
  type              | Example types: link, text, audio, playlist
  url               | url of the track
