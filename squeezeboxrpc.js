@@ -11,7 +11,6 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
-const SqueezeServer = require('squeezenode-pssc');
 const IoSbServer = require(__dirname +'/lib/iosbserver');
 
 /**
@@ -20,7 +19,7 @@ const IoSbServer = require(__dirname +'/lib/iosbserver');
  */
 let adapter;
 
-var squeezeboxServer;
+let squeezeboxServer;
 
 /**
  * Starts the adapter instance
@@ -39,7 +38,7 @@ function startAdapter(options) {
         unload: (callback) => {
             try {
                 squeezeboxServer.doDiscoverServerClose();
-                adapter.log.info("squeezeboxrpc unloaded");
+                adapter.log.info('squeezeboxrpc unloaded');
                 callback();
             } catch (e) {
                 callback();
@@ -51,8 +50,7 @@ function startAdapter(options) {
             if (state) {
                 // The state was changed
                 if (squeezeboxServer) squeezeboxServer.stateChange(id,state);
-            } else {
-            }
+            } 
         },
 
     }));
