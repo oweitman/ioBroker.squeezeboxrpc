@@ -2,7 +2,7 @@
     "common": {
         "name": "squeezeboxrpc",
         "version": "0.8.4",
-        "news": { 
+        "news": {
             "0.8.4": {
                 "en": "move some files to lib directory"
             },
