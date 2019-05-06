@@ -4,6 +4,7 @@ node_modules
 nbproject
 package-lock.json
 debug.info
+gulpfile.js
 
 # npm package files
 iobroker.*.tgz

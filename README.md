@@ -134,7 +134,6 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
-
 ### 0.8.4
 * (oweitman) move some files to lib directory
 ### 0.8.3
