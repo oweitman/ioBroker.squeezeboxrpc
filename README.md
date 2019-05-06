@@ -29,13 +29,13 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 
 | state             | Description                    |
 | ----------------- | ------------------------------ |
-| LastScan          | timestamp of last music scan         |
+| LastScan          | timestamp of last music scan   |
 | PlayerCount       | Number of known players        |
 | PlayerCountOther  | Number of known other Players  |
 | PlayerCountSN     | Number of known SN Players     |
 | TotalAlbums       | Number of all known Albums     |
 | TotalArtists      | Number of all known Artists    |
-| TotalDuration     | Sum  playtime of all songs      |
+| TotalDuration     | Sum  playtime of all songs     |
 | TotalGenres       | Number of all known Genres     |
 | TotalSongs        | Number of all known songs      |
 | Version           | Version of LMS                 |
