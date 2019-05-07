@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.4",
+        "version": "0.8.5",
         "news": {
+            "0.8.5": {
+                "en": "change serverdiscovery interval method, remove some double cmd lines, additional minor changes advised from eslint"
+            },
             "0.8.4": {
                 "en": "move some files to lib directory"
             },

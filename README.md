@@ -134,34 +134,36 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.5 (2019-05-08)
+* change serverdiscovery interval method, remove some double cmd lines, additional minor changes advised from eslint
 ### 0.8.4
-* (oweitman) move some files to lib directory
+* move some files to lib directory
 ### 0.8.3
-* (oweitman) close port for discovery on unload
+* close port for discovery on unload
 ### 0.8.2
-* (oweitman) sync version with npm
+* sync version with npm
 ### 0.8.1
-* (oweitman) set compact mode flag
+* set compact mode flag
 ### 0.8.0
-* (oweitman) implementation of compact mode, change version to represent a realistic feature completness
+* implementation of compact mode, change version to represent a realistic feature completness
 ### 0.0.9
-* (oweitman) debug options are now configurable
+* debug options are now configurable
 ### 0.0.8
-* (oweitman) More playlist attributes + remove trailing and leading spaces from source
+* More playlist attributes + remove trailing and leading spaces from source
 ### 0.0.7
-* (oweitman) Add the playlist to each player as json
+* Add the playlist to each player as json
 ### 0.0.6
-* (oweitman) More config options
+* More config options
 ### 0.0.5
-* (oweitman) All levels/subdirectories of favorites are now available in iobroker
+* All levels/subdirectories of favorites are now available in iobroker
 ### 0.0.4
-* (oweitman) added the cmdPlayFavorite for each player
+* added the cmdPlayFavorite for each player
 ### 0.0.3
-* (oweitman) repair the no-data symbols for buttons in vis
+* repair the no-data symbols for buttons in vis
 ### 0.0.2
-* (oweitman) added autodiscovery
+* added autodiscovery
 ### 0.0.1
-* (oweitman) initial release
+* initial release
 
 ## License
 MIT License

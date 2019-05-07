@@ -60,8 +60,6 @@ function main() {
 
     if (!squeezeboxServer) {
         squeezeboxServer = new IoSbServer(adapter);
-        adapter.subscribeStates('*');
-        adapter.setState('info.connection', false, true);
     }
 }
 
