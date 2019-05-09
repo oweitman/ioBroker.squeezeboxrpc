@@ -128,6 +128,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 * more testing/fixing
 * add telnet communication to get push events from the server to optimize the polling
+* implement mor control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)
 * ~~add the playlist to playerdata as json array~~
 * ~~add artwork (station-logo/playlist-cover) for favorites~~
 * ~~implement more levels (subdirectories) of favorites~~
