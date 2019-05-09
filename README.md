@@ -134,6 +134,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.6 (2019-05-10)
+* move some configuration options into seperate tabs
 ### 0.8.5 (2019-05-08)
 * change serverdiscovery interval method, remove some double cmd lines, additional minor changes advised from eslint
 ### 0.8.4

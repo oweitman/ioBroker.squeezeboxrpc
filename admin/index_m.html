@@ -92,17 +92,18 @@
             <div class="col s12">
                 <ul class="tabs">
                     <li class="tab col s2"><a href="#tab-main"  class="translate active">Main settings</a></li>
+                    <li class="tab col s2 le-settings"><a href="#tab-timer"    class="translate">Timer settings</a></li>
+                    <li class="tab col s2 le-settings"><a href="#tab-performance"    class="translate">Performance settings</a></li>
                     <li class="tab col s2 le-settings"><a href="#tab-debug"    class="translate">Debug settings</a></li>
                 </ul>
             </div>
             <div id="tab-main" class="col s12 page">
-
                 <div class="row valign-wrapper">
                     <div class="col">
                         <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
                     </div>
                     <div class="col">
-                        <h3 class="translate">Logitech Squeezebox adapter settings</h3>
+                        <h3 class="translate">Logitech SqueezeboxRPC main settings</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -135,6 +136,16 @@
                         <label class="translate" for="password">Password (optional):</label>
                     </div>
                 </div>
+            </div>
+            <div id="tab-timer" class="col s12 page">
+                <div class="row valign-wrapper">
+                    <div class="col">
+                        <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+                    </div>
+                    <div class="col">
+                        <h3 class="translate">Logitech SqueezeboxRPC timer settings</h3>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s2">
                         <input class="value" id="serverrefresh" size="5" maxlength="7" type="number"/>
@@ -159,6 +170,16 @@
                         <label class="translate" for="discoveryrefresh">Discovery refresh (sec) default: 30:</label>
                     </div>
                 </div>
+            </div>
+            <div id="tab-performance" class="col s12 page">
+                <div class="row valign-wrapper">
+                    <div class="col">
+                        <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+                    </div>
+                    <div class="col">
+                        <h3 class="translate">Logitech SqueezeboxRPC performance settings</h3>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s2">
                         <input class="value" id="useplaylist" type="checkbox"/>
@@ -167,6 +188,14 @@
                 </div>
             </div>
             <div id="tab-debug" class="col s12 page">
+                <div class="row valign-wrapper">
+                    <div class="col">
+                        <img class="responsive-img valign" src="squeezeboxrpc.png" width="64" height="64">
+                    </div>
+                    <div class="col">
+                        <h3 class="translate">Logitech SqueezeboxRPC debug settings</h3>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="input-field col s3">
                         <input class="value" id="outputserverdebug" type="checkbox"/>
