@@ -2,14 +2,19 @@
 
 # ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
 
-![Number of Installations](http://iobroker.live/badges/squeezeboxrpc-installed.svg)
+[![Number of Installations](http://iobroker.live/badges/squeezeboxrpc-installed.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc)
 [![NPM version](http://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Travis](https://img.shields.io/travis/oweitman/ioBroker.squeezeboxrpc.svg)](https://travis-ci.org/oweitman/ioBroker.squeezeboxrpc/)
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/oweitman/iobroker-squeezeboxrpc.svg)](https://ci.appveyor.com/project/oweitman/iobroker-squeezeboxrpc)
 [![GitHub issues](https://img.shields.io/github/issues/oweitman/ioBroker.squeezeboxrpc.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc/issues)
 
-This is an alternative Adapter that uses the RPC-Protokoll to get data and send commands to the Logitech Media Server.
+This is an alternative Adapter that uses the JSON/RPC-Protokoll to get data and send commands to the Logitech Media Server ([LMS(https://de.wikipedia.org/wiki/Logitech_Media_Server)])
+for controlling connected devices like 
+* native [squeezebox(https://de.wikipedia.org/wiki/Squeezebox)], 
+* raspberry pi with additional audio module and small linux based firmwares like [picoreplayer(https://picoreplayer.org/)] or [max2play(https://www.max2play.com)].
+* with plugins chromecast, airplay or UPnP/DLNA-Devices
+The LMS-Server can manage/provide very big music collections on harddrives or NAS, connect to different streaming providers like Spotify, Deezer, Soundcloud, shoutcast, tunein, napster, pandora, tidal and more
 
 Why another squeezebox adapter?
 
@@ -18,7 +23,7 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 
 ## Features
 
-- most of data that the LMS-Servicer provides is availably in the adapter
+- most of data that the LMS-Servicer provides is available in the adapter
 - detailed information about the player status, song title, artist, album, artwork, playlist
 - many control features to play, pause, stop, forward, rewind, repeat, shuffle, play favorite, jump to time (absolute and relative) , jump to playlist index (absolute and relative), power on/off and preset buttons
 - all favorites and all sub levels from server
@@ -146,6 +151,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * add telnet communication to get push events from the server to optimize the polling
 * reduce dependencys to other packages (squeezenode)
 * implement a command state to place user individual commands (via json) for server and player
+* more configuration to optionaly turn features on/off to improve memory and performance 
 * ~~implement more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)~~
 * ~~add the playlist to playerdata as json array~~
 * ~~add artwork (station-logo/playlist-cover) for favorites~~
