@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.6",
+        "version": "0.8.7",
         "news": {
+            "0.8.7": {
+                "en": "more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)"
+            },
             "0.8.6": {
                 "en": "move some configuration options into seperate tabs"
             },

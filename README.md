@@ -16,6 +16,13 @@ Why another squeezebox adapter?
 The existing adapter use telnet to access the LMS. The telnet has some disadvantages.
 The actual main web interface of the LMS also uses the rpc/json-protocol to get all needed informations or send commands to the server/players.
 
+## Features
+
+- most of data that the LMS-Servicer provides is availably in the adapter
+- detailed information about the player status, song title, artist, album, artwork, playlist
+- many control features to play, pause, stop, forward, rewind, repeat, shuffle, play favorite, jump to time (absolute and relative) , jump to playlist index (absolute and relative), power on/off and preset buttons
+- all favorites and all sub levels from server
+
 ## Installation
 
 - Install the package
@@ -43,82 +50,91 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 | uuid              | uuid of the LMS-instance       |
 
 additional a defined button to refresh the favorites
-(at the moment the favorites only refreshs at startup of the adapter or every 12h)
+
+button            | Description
+----------------- | ---------------------------------------------
+getFavorites      | request all favorites from server
+
 
 ### Favorites
 
-for each favorite
+For each favorite
+All attributes are read only
 
- state             | Description
- ----------------- | ------------------------------
- Name              | Name of the favorite
- hasitems          | indicates if this is a dir
- id                | id of the favorite
- image             | image/icon for favorite if available
- isaudio           | isaudio
- type              | Example types: link, text, audio, playlist
- url               | url of the track
+state             | Description
+----------------- | ------------------------------
+Name              | Name of the favorite
+hasitems          | indicates if this is a dir
+id                | id of the favorite
+image             | image/icon for favorite if available
+isaudio           | isaudio
+type              | Example types: link, text, audio, playlist
+url               | url of the track
 
  All sub levels (subdirectories) of favorite are available.
 
 ### Players
 
 for each player
+The mode shows if you can change the value. the taken action is described at the attribute
 
- state             | Description
- ----------------- | -----------------------------------------------------
- Album             | Name of the current album
- Artist            | Name of Artist
- ArtworkUrl        | url to the Artwork
- Bitrate           | Bitrate of the track
- Connected         | connectionstate of player (0/1)
- Duration          | Duration of the track
- Genre             | genre of the track
- IP                | IP of the player
- Mode              | play / pause / stop
- Playername        | Name of the Player
- Playlist          | The actual Playlist as JSON
- PlaylistRepeat    | Repeat song(1)/playlist(2)/dont repeat(0)
- PlaylistShuffle   | shuffle playlist(1)/shuffle album(2)/dont shuffle(0)
- Power             | get/set Powerstate of player off(0)/on(1)
- RadioName         | Name of Radiostation
- Rate              | Rating of the song
- Remote            | If remote stream (1)
- SyncMaster        | ID/MAC of Syncmaster
- SyncSlaves        | ID/Mac of Players in Syncgroup
- Time              | elapsed song time
- Title             | song title
- Type              | type of media (eg MP3 Radio)
- Url               | Url of track / stream
- Volume            | get/set Volume of the player (0-100)
- state             | get/set play state: pause(0),play(1),stop(2)
+state                |mode | Description
+-------------------- |---- | -----------------------------------------------------
+Album                |R/-  | Name of the current album
+Artist               |R/-  | Name of Artist
+ArtworkUrl           |R/-  | url to the Artwork
+Bitrate              |R/-  | Bitrate of the track
+Connected            |R/-  | connectionstate of player (0/1)
+Duration             |R/-  | Duration of the track
+Genre                |R/-  | genre of the track
+IP                   |R/-  | IP of the player
+Mode                 |R/-  | play / pause / stop
+Playername           |R/-  | Name of the Player
+Playlist             |R/-  | The actual Playlist as JSON
+PlaylistCurrentIndex |R/W  | go to a absolut position by specifying the trackindex or go relative with a + or - at the beginning. Example 10,-3,+2
+PlaylistRepeat       |R/W  | Repeat song(1)/playlist(2)/dont repeat(0)
+PlaylistShuffle      |R/W  | shuffle playlist(1)/shuffle album(2)/dont shuffle(0)
+Power                |R/W  | get/set Powerstate of player off(0)/on(1)
+RadioName            |R/-  | Name of Radiostation
+Rate                 |R/-  | Rating of the song
+Remote               |R/-  | If remote stream (1)
+SyncMaster           |R/-  | ID/MAC of Syncmaster
+SyncSlaves           |R/-  | ID/Mac of Players in Syncgroup
+Time                 |R/-  | elapsed song time
+Title                |R/-  | song title
+Type                 |R/-  | type of media (eg MP3 Radio)
+Url                  |R/-  | Url of track / stream
+Volume               |R/W  | get/set Volume of the player (0-100)
+state                |R/W  | get/set play state: pause(0),play(1),stop(2)
 
- The playlist provide actaul the following attributes if available in LMS.
- Somme attributes depends of the type of songs (stream/file/...)
+The playlist provide actual the following attributes if available in LMS.
+Somme attributes depends of the type of songs (stream/file/...)
+All attributes are read only
 
- attribute         | Description
- ----------------- | -----------------------------------------------------
- Album             | Name of the current album
- Artist            | Name of Artist
- ArtworkUrl        | url to the Artwork
- Bitrate           | Bitrate of the track
- Duration          | Duration of the track
- RadioName         | Name of Radiostation
- Rate              | Rating of the song
- title             | song title
- Type              | type of media (eg MP3 Radio)
- url               | Url of track / stream
- index             | index of the song in the playlist
- id                | id of the song
+attribute         | Description
+----------------- | -----------------------------------------------------
+Album             | Name of the current album
+Artist            | Name of Artist
+ArtworkUrl        | url to the Artwork
+Bitrate           | Bitrate of the track
+Duration          | Duration of the track
+RadioName         | Name of Radiostation
+Rate              | Rating of the song
+title             | song title
+Type              | type of media (eg MP3 Radio)
+url               | Url of track / stream
+index             | index of the song in the playlist
+id                | id of the song
 
 additional defined buttons:
 
- button            | Description
- ----------------- | ---------------------------------------------
- btnForward        | Next song
- btnRewind         | Previous song
- btnPreset_*       | 1-6 buttons to define in player or server
- cmdPlayFavorite   | to play a favorite set the id of the favorite
+button            | Description
+----------------- | ---------------------------------------------
+btnForward        | Next song
+btnRewind         | Previous song
+btnPreset_*       | 1-6 buttons to define in player or server
+cmdPlayFavorite   | to play a favorite set the id of the favorite
+cmdGoTime         | jump to a absolut position by specifying a number of seconds or jump relative with a + or - at the beginning of the seconds. Example 100,-50,+50
 
 For more information visit the CLI-documentation:
 
@@ -128,13 +144,17 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 * more testing/fixing
 * add telnet communication to get push events from the server to optimize the polling
-* implement mor control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)
+* reduce dependencys to other packages (squeezenode)
+* implement a command state to place user individual commands (via json) for server and player
+* ~~implement more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)~~
 * ~~add the playlist to playerdata as json array~~
 * ~~add artwork (station-logo/playlist-cover) for favorites~~
 * ~~implement more levels (subdirectories) of favorites~~
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.7 (2019-05-11)
+* more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)
 ### 0.8.6 (2019-05-10)
 * move some configuration options into seperate tabs
 ### 0.8.5 (2019-05-08)
