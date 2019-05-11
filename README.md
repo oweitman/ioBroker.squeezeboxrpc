@@ -12,7 +12,7 @@
 This is an alternative Adapter that uses the JSON/RPC-Protokoll to get data and send commands to the Logitech Media Server ([LMS](https://de.wikipedia.org/wiki/Logitech_Media_Server))
 for controlling connected devices like 
 * native [squeezebox](https://de.wikipedia.org/wiki/Squeezebox), 
-* raspberry pi with additional audio module and small linux based firmwares like [picoreplayer](https://picoreplayer.org/] or [max2play](https://www.max2play.com).
+* raspberry pi with additional audio module and small linux based firmwares like [picoreplayer](https://picoreplayer.org/) or [max2play](https://www.max2play.com).
 * with plugins chromecast, airplay or UPnP/DLNA-Devices
 The LMS-Server can manage/provide very big music collections on harddrives or NAS, connect to different streaming providers like Spotify, Deezer, Soundcloud, shoutcast, tunein, napster, pandora, tidal and more
 
