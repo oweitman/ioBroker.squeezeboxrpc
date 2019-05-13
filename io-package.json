@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.7",
+        "version": "0.8.8",
         "news": {
+            "0.8.8": {
+                "en": "make discover configurable"
+            },
             "0.8.7": {
                 "en": "more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)"
             },
@@ -120,6 +123,7 @@
         "favoriterefresh": 720,
         "discoveryrefresh": 30,
         "useplaylist": true,
+        "usediscovery": true,
         "outputserverdebug": false,
         "outputserversilly": false,
         "outputplayerdebug": false,

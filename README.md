@@ -24,7 +24,7 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 
 ## Features
 
-- most of data that the LMS-Servicer provides is available in the adapter
+- most of data that the LMS-Service provides is available in the adapter
 - detailed information about the player status, song title, artist, album, artwork, playlist
 - many control features to play, pause, stop, forward, rewind, repeat, shuffle, play favorite, jump to time (absolute and relative) , jump to playlist index (absolute and relative), power on/off and preset buttons
 - all favorites and all sub levels from server
@@ -150,6 +150,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 * more testing/fixing
 * add telnet communication to get push events from the server to optimize the polling
+* add id to splayer states
 * reduce dependencys to other packages (squeezenode)
 * implement a command state to place user individual commands (via json) for server and player
 * more configuration to optionaly turn features on/off to improve memory and performance 
@@ -160,6 +161,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.8 (2019-05-14)
+* make discover configurable
 ### 0.8.7 (2019-05-11)
 * more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)
 ### 0.8.6 (2019-05-10)
