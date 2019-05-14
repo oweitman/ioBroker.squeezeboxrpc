@@ -96,6 +96,7 @@ Genre                |R/-  | genre of the track
 IP                   |R/-  | IP of the player
 Mode                 |R/-  | play / pause / stop
 Playername           |R/-  | Name of the Player
+PlayerID             |R/-  | Player ID
 Playlist             |R/-  | The actual Playlist as JSON
 PlaylistCurrentIndex |R/W  | go to a absolut position by specifying the trackindex or go relative with a + or - at the beginning. Example 10,-3,+2
 PlaylistRepeat       |R/W  | Repeat song(1)/playlist(2)/dont repeat(0)
