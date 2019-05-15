@@ -6,6 +6,7 @@ nbproject/
 Thumbs.db
 gulpfile.js
 debug.info
+vis
 
 test/
 travis/

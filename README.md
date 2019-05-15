@@ -162,6 +162,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.10 (2019-05-15)
+* another try to fix the EADDRINUSE error of the server discovery
 ### 0.8.9 (2019-05-15)
 * try to fix the EADDRINUSE error of the server discovery
 ### 0.8.8 (2019-05-14)
