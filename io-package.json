@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.10",
+        "version": "0.8.11",
         "news": {
             "0.8.10": {
                 "en": "another try to fix the EADDRINUSE error of the server discovery"
@@ -110,6 +110,9 @@
         "type": "multimedia",
         "compact": true,
         "materialize": true,
+        "restartAdapters": [
+            "vis"
+        ],        
         "dependencies": [
             {
                 "admin": ">=3.0.0"
