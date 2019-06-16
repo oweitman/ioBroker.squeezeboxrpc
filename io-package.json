@@ -1,8 +1,17 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.11",
+        "version": "0.8.13",
         "news": {
+            "0.8.13": {
+                "en": "rename widgetset from squeezeboxrpcwidgets to squeezeboxrpc"
+            },
+            "0.8.12": {
+                "en": "sync version with npm"
+            },
+            "0.8.11": {
+                "en": "correct versions"
+            },
             "0.8.10": {
                 "en": "another try to fix the EADDRINUSE error of the server discovery"
             },
@@ -26,9 +35,6 @@
             },
             "0.8.3": {
                 "en": "close port for discovery on unload"
-            },
-            "0.8.2": {
-                "en": "sync version with npm"
             },
             "0.8.1": {
                 "en": "set compact mode flag"
@@ -112,7 +118,7 @@
         "materialize": true,
         "restartAdapters": [
             "vis"
-        ],        
+        ],
         "dependencies": [
             {
                 "admin": ">=3.0.0"

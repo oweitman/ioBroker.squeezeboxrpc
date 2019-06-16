@@ -1,5 +1,5 @@
 /*
-    ioBroker.vis squeezeboxrpcwidgets Widget-Set
+    ioBroker.vis squeezeboxrpc Widget-Set
 
     Copyright 2019 oweitman oweitman@gmx.de
     
@@ -54,12 +54,12 @@ if (vis.editMode) {
         });
 }
 
-vis.binds["squeezeboxrpcwidgets"] = {
+vis.binds["squeezeboxrpc"] = {
     version: "0.6.0",
     showVersion: function () {
-        if (vis.binds["squeezeboxrpcwidgets"].version) {
-            console.log('Version squeezeboxrpcwidgets: ' + vis.binds["squeezeboxrpcwidgets"].version);
-            vis.binds["squeezeboxrpcwidgets"].version = null;
+        if (vis.binds["squeezeboxrpc"].version) {
+            console.log('Version squeezeboxrpc: ' + vis.binds["squeezeboxrpc"].version);
+            vis.binds["squeezeboxrpc"].version = null;
         }
     },
     svg : {
@@ -81,7 +81,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             // if nothing found => wait
             if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].favorites.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].favorites.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -252,7 +252,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
                     var fdata = event.data
                     var data = fdata.data;
                     var favorite=this.value;
-                    var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+                    var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
                     var state = ainstance[0]+'.'+ainstance[1]+".Players"+"."+playername+".cmdPlayFavorite";
                     //vis.conn._socket.emit('setState', state, favorite);
                     vis.setValue(state, favorite);
@@ -304,7 +304,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             // if nothing found => wait
             if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].players.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].players.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             socket.emit('getObjects', function (err, obj) {
@@ -463,7 +463,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             // if nothing found => wait
             if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].controller.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].controller.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             var text = '';
@@ -483,7 +483,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             if (!data.widgetPlayer || data.widgetPlayer == '') text += 'Please select a Player widget<br>';
             if (!data.widgetFavorites || data.widgetFavorites == '') text += 'Please select a Favorites widget<br>';
             //todo check
-            var self=vis.binds.squeezeboxrpcwidgets.controller;
+            var self=vis.binds.squeezeboxrpc.controller;
             if (data.widgetPlayer && data.widgetFavorites) {
                 self.addEvent(data);
                 if (vis.editMode) text += "Ready";
@@ -513,7 +513,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);
                         if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].buttonplay.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].buttonplay.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -547,7 +547,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
                 }
                 $div.data('bound', null);
                 $div.data('bindHandler', null);
-                players = vis.binds["squeezeboxrpcwidgets"].getPlayerValues(data.widgetPlayer);
+                players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
                 for (var i=0;i<players.length;i++) {
                     players[i] = ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.state';                   
                 }
@@ -612,7 +612,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var data = event.data.data;
             var self = event.data.self;
             var widgetID = event.data.widgetID;
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".state";
             var state = $("input[name="+widgetID+"]").val();
             state = (state==1) ? 0 : 1;
@@ -624,8 +624,8 @@ vis.binds["squeezeboxrpcwidgets"] = {
         setState: function(fdata) {
             var data = fdata.data;
             var widgetID = fdata.widgetID;
-            var svg = vis.binds["squeezeboxrpcwidgets"].svg;               
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var svg = vis.binds["squeezeboxrpc"].svg;               
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".state";       
             
             var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? parseInt(vis.states[stateid+ '.val']) : 2;
@@ -668,7 +668,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);            
             if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].buttonfwd.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].buttonfwd.createWidget(widgetID, view, data, style);
                 }, 100);
             }
 
@@ -678,7 +678,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var svgstroke = data.strokecolor || '#ffffff';
             var svgstrokeWidth = data.strokewidth || '0.3';
             
-            var svg = vis.binds["squeezeboxrpcwidgets"].svg;            
+            var svg = vis.binds["squeezeboxrpc"].svg;            
             var text = '';
             if (!data.widgetPlayer) {
                 $('#' + widgetID).html("Please select a player widget");
@@ -722,7 +722,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             text += '  <div> \n';
             text += '    <input type="submit" id="'+ widgetID + 'button" name="'+widgetID+'" value="fwd" >';
             text += '    <span> \n';
-            text += '      <img src="widgets/squeezeboxrpcwidgets/img/fwd.png"> \n';
+            text += '      <img src="widgets/squeezeboxrpc/img/fwd.png"> \n';
             text += '    </span> \n';
             text += '  </div> \n';
             text += '</div> \n';
@@ -749,7 +749,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
         onClick: function(event) {
                 var data = event.data.data;
                 var self = event.data.self;
-                var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+                var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
                 var stateid = data.ainstance.join('.')+".Players"+"."+playername+".btnRewind";
                 var state = true
                 vis.setValue(stateid,state);
@@ -760,7 +760,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);            
             if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].buttonrew.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].buttonrew.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -770,7 +770,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var svgstroke = data.strokecolor || '#ffffff';
             var svgstrokeWidth = data.strokewidth || '0.3';
 
-            var svg = vis.binds["squeezeboxrpcwidgets"].svg;
+            var svg = vis.binds["squeezeboxrpc"].svg;
             var text = '';
             if (!data.widgetPlayer) {
                 $('#' + widgetID).html("Please select a player widget");
@@ -815,7 +815,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             text += '  <div> \n';
             text += '    <input type="submit" id="'+ widgetID + 'button" name="'+widgetID+'" value="rew" >';
             text += '    <span> \n';
-            text += '      <img src="widgets/squeezeboxrpcwidgets/img/rew.svg"> \n';
+            text += '      <img src="widgets/squeezeboxrpc/img/rew.svg"> \n';
             text += '    </span> \n';
             text += '  </div> \n';
             text += '</div> \n';
@@ -842,7 +842,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
         onClick: function(event) {
                 var data = event.data.data;
                 var self = event.data.self;
-                var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+                var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
                 var stateid = data.ainstance.join('.')+".Players"+"."+playername+".btnRewind";
                 var state = true
                 vis.setValue(stateid,state);
@@ -853,7 +853,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);
                         if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].buttonrepeat.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].buttonrepeat.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -890,7 +890,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
                 $div.data('bindHandler', null);
 
                 
-                players = vis.binds["squeezeboxrpcwidgets"].getPlayerValues(data.widgetPlayer);
+                players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
                 for (var i=0;i<players.length;i++) {
                     players[i] = ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.PlaylistRepeat';                   
                 }
@@ -956,7 +956,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var data = event.data.data;
             var self = event.data.self;
             var widgetID = event.data.widgetID;
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".PlaylistRepeat";
             var state = $("input[name="+widgetID+"]").val();
             state = (state > 1) ? 0: parseInt(state) + 1;
@@ -968,8 +968,8 @@ vis.binds["squeezeboxrpcwidgets"] = {
         setState: function(fdata) {
             var data = fdata.data;
             var widgetID = fdata.widgetID;
-            var svg = vis.binds["squeezeboxrpcwidgets"].svg;               
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var svg = vis.binds["squeezeboxrpc"].svg;               
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".PlaylistRepeat";       
             
             var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? parseInt(vis.states[stateid+ '.val']) : 0;
@@ -1016,7 +1016,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);
                         if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].buttonshuffle.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].buttonshuffle.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -1052,7 +1052,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
                 $div.data('bound', null);
                 $div.data('bindHandler', null);
 
-                players = vis.binds["squeezeboxrpcwidgets"].getPlayerValues(data.widgetPlayer);
+                players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
                 for (var i=0;i<players.length;i++) {
                     players[i] = ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.PlaylistShuffle';                   
                 }
@@ -1118,7 +1118,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var data = event.data.data;
             var self = event.data.self;
             var widgetID = event.data.widgetID;
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".PlaylistShuffle";
             var state = $("input[name="+widgetID+"]").val();
             state = (state > 1) ? 0: parseInt(state) + 1;
@@ -1130,8 +1130,8 @@ vis.binds["squeezeboxrpcwidgets"] = {
         setState: function(fdata) {
             var data = fdata.data;
             var widgetID = fdata.widgetID;
-            var svg = vis.binds["squeezeboxrpcwidgets"].svg;               
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var svg = vis.binds["squeezeboxrpc"].svg;               
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".PlaylistShuffle";       
             
             var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? parseInt(vis.states[stateid+ '.val']) : 0;
@@ -1179,7 +1179,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var $div = $('#' + widgetID);
                         if (!$div.length) {
                 return setTimeout(function () {
-                    vis.binds["squeezeboxrpcwidgets"].volumebar.createWidget(widgetID, view, data, style);
+                    vis.binds["squeezeboxrpc"].volumebar.createWidget(widgetID, view, data, style);
                 }, 100);
             }
             
@@ -1290,7 +1290,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var data = event.data.data;
             var self = event.data.self;
             var widgetID = event.data.widgetID;
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".Volume";
             var level = $(this).attr('value');
             var state = 100/(data.segments-1)*level;
@@ -1304,7 +1304,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             var data = fdata.data;
             var widgetID = fdata.widgetID;
             var reverse = data.reverse;
-            var playername = vis.binds["squeezeboxrpcwidgets"].getPlayerName(data.widgetPlayer);
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".Volume";       
             var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? parseInt(vis.states[stateid+ '.val']) : 0;
             if (vis.editMode) state = 50;
@@ -1331,7 +1331,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
             $div.data('bound', null);
             $div.data('bindHandler', null);
 
-            players = vis.binds["squeezeboxrpcwidgets"].getPlayerValues(data.widgetPlayer);
+            players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
             for (var i=0;i<players.length;i++) {
                 players[i] = ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.Volume';                   
             }
@@ -1368,7 +1368,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
         var keys = Object.keys(widgets);
         var result = [];
         for (var i=0;i < keys.length;i++) {
-            if (widgets[keys[i]].tpl == "tplSqueezeboxrpcwidgetsPlayer") result.push(keys[i]);
+            if (widgets[keys[i]].tpl == "tplSqueezeboxrpcPlayer") result.push(keys[i]);
         }
         return result;
     },
@@ -1377,7 +1377,7 @@ vis.binds["squeezeboxrpcwidgets"] = {
         var keys = Object.keys(widgets);
         var result = [];
         for (var i=0;i < keys.length;i++) {
-            if (widgets[keys[i]].tpl == "tplSqueezeboxrpcwidgetsFavorites") result.push(keys[i]);
+            if (widgets[keys[i]].tpl == "tplSqueezeboxrpcFavorites") result.push(keys[i]);
         }
         return result;
     },
@@ -1411,4 +1411,4 @@ vis.binds["squeezeboxrpcwidgets"] = {
         }
     }    
 }
-vis.binds["squeezeboxrpcwidgets"].showVersion();
+vis.binds["squeezeboxrpc"].showVersion();
