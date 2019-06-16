@@ -166,8 +166,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * rename widgetset from squeezeboxrpcwidgets to squeezeboxrpc
 ### 0.8.12 (2019-06-16)
 * sync version with npm
-### 0.8.11 (2019-06-16)
-* correct versions
+### 0.8.11 (2019-06-15)
+* try to integrate the widgets into the main adapter
 ### 0.8.10 (2019-05-15)
 * another try to fix the EADDRINUSE error of the server discovery
 ### 0.8.9 (2019-05-15)
