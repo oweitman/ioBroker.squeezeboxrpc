@@ -162,6 +162,10 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.13 (2019-06-16)
+* rename widgetset from squeezeboxrpcwidgets to squeezeboxrpc
+### 0.8.12 (2019-06-16)
+* sync version with npm
 ### 0.8.11 (2019-06-15)
 * try to integrate the widgets into the main adapter
 ### 0.8.10 (2019-05-15)

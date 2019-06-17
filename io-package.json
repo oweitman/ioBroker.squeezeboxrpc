@@ -1,8 +1,14 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.11",
+        "version": "0.8.13",
         "news": {
+            "0.8.13": {
+                "en": "rename widgetset from squeezeboxrpcwidgets to squeezeboxrpc"
+            },
+            "0.8.12": {
+                "en": "sync version with npm"
+            },
             "0.8.11": {
                 "en": "try to integrate the widgets into the main adapter"
             },
@@ -29,9 +35,6 @@
             },
             "0.8.3": {
                 "en": "close port for discovery on unload"
-            },
-            "0.8.2": {
-                "en": "sync version with npm"
             },
             "0.8.1": {
                 "en": "set compact mode flag"
