@@ -1,6 +1,6 @@
 {
     "name": "iobroker.squeezeboxrpc",
-    "version": "0.8.13",
+    "version": "0.8.14",
     "description": "SqueezeboxRPC",
     "author": {
         "name": "oweitman",

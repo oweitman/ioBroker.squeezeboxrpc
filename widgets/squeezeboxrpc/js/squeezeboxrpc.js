@@ -41,7 +41,6 @@ if (vis.editMode) {
         "segments":                 {"en": "Segments",                      "de": "Segmente",                           "ru": "сегменты"},
         "position":                 {"en": "Format",                        "de": "Format",                             "ru": "формат"},
         "group_segmentsettings":    {"en": "Segments",                      "de": "Segmente",                           "ru": "сегменты"},
-        "fillcolor":                {"en": "fillcolor",                     "de": "fillcolor",                          "ru": "fillcolor"},
         "margin":                   {"en": "margin",                        "de": "margin",                             "ru": "margin"},
         "imagerepeat0":             {"en": "Picture without",               "de": "Bild ohne",                          "ru": "Картинка без"},
         "imagerepeat1":             {"en": "Picture Title",                 "de": "Bild Titel",                         "ru": "Название картинки"},
@@ -413,8 +412,7 @@ vis.binds["squeezeboxrpc"] = {
                 }
                 text += '</div>';
                 
-                $('#' + widgetID).html(text);                
-                $('#' + widgetID).trigger('playerschanged');
+                $('#' + widgetID).html(text);
 
                 var spans = $('#' + widgetID + ' span');
                 var font = new Font($('#' + widgetID).css('font'));
@@ -432,6 +430,7 @@ vis.binds["squeezeboxrpc"] = {
                     }
                 }
                 if (vis.editMode && redrawinspectwidgets) vis.inspectWidgets(view, view);
+                $('#' + widgetID).trigger('playerschanged');
             }.bind(this));
         },
         getPlayers: function(datapoints, ainstance) {
@@ -455,59 +454,6 @@ vis.binds["squeezeboxrpc"] = {
             return viewindex;
         }        
     },
-    /*
-    controller : {
-        createWidget: function (widgetID, view, data, style) {
-            var $div = $('#' + widgetID);
-            
-            // if nothing found => wait
-            if (!$div.length) {
-                return setTimeout(function () {
-                    vis.binds["squeezeboxrpc"].controller.createWidget(widgetID, view, data, style);
-                }, 100);
-            }
-            var text = '';
-            
-            if (vis.editMode) {
-                text += "squeezebpxrpc Controller<br>"
-                if (data.ainstance) {
-                    data.ainstance = data.ainstance.split(".").slice(0,2).join(".");
-                    vis.inspectWidgets(view, view);
-                } else {
-                    data.ainstance = "";
-                }
-            }
-            var ainstance = data.ainstance.split(".");
-            
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") text += "Please select an instance<br>";
-            if (!data.widgetPlayer || data.widgetPlayer == '') text += 'Please select a Player widget<br>';
-            if (!data.widgetFavorites || data.widgetFavorites == '') text += 'Please select a Favorites widget<br>';
-            //todo check
-            var self=vis.binds.squeezeboxrpc.controller;
-            if (data.widgetPlayer && data.widgetFavorites) {
-                self.addEvent(data);
-                if (vis.editMode) text += "Ready";
-            }
-            $('#' + widgetID).html(text);            
-        },
-        addEvent: function (data) {
-            var favbtns = $("input[name="+data.widgetFavorites+"]");
-            if (!favbtns.length) {
-                return setTimeout(function () {
-                    this.addEvent(data);
-                }.bind(this), 100);            
-            }
-            favbtns.off('.squeeze').on('change.squeeze',data, function(event){
-                var data = event.data;
-                var favorite=this.value;
-                var playername = $("input[name="+data.widgetPlayer+"]:checked").val();
-                var state = data.ainstance+".Players"+"."+playername+".cmdPlayFavorite";
-                //vis.conn._socket.emit('setState', state, favorite);    
-                vis.setState(state, favorite);
-            });        
-        },
-    },
-    */
     buttonplay : {
         createWidget: function (widgetID, view, data, style) {
             var $div = $('#' + widgetID);
@@ -537,7 +483,7 @@ vis.binds["squeezeboxrpc"] = {
             }
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
-            $('#' + data.widgetPlayer).off('playerschanged.play').on("playerschanged.play", fdata, function(event){
+            $('.vis-view').off('playerschanged.play').on('playerschanged.play', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var players = $div.data('bound');
                 if (players) {
@@ -566,7 +512,7 @@ vis.binds["squeezeboxrpc"] = {
                 }.bind({fdata}));
 
             }.bind(this));           
-            $('#'+widgetPlayer).off('change.play').on('change.play',fdata,function(event){
+            $('.vis-view').off('change.play').on('change.play', '#' + widgetPlayer, fdata, function(event) {
                 var self = fdata.self;
                 self.setState(fdata);
             });
@@ -878,7 +824,7 @@ vis.binds["squeezeboxrpc"] = {
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
             
-            $('#' + data.widgetPlayer).off('playerschanged.repeat').on("playerschanged.repeat", fdata, function(event){
+            $('.vis-view').off('playerschanged.repeat').on('playerschanged.repeat', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var players = $div.data('bound');
                 if (players) {
@@ -909,7 +855,7 @@ vis.binds["squeezeboxrpc"] = {
                 }.bind({fdata}));
 
             });
-            $('#'+widgetPlayer).off('change.repeat').on('change.repeat',fdata,function(event){
+            $('.vis-view').off('change.repeat').on('change.repeat', '#' + widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -1041,7 +987,7 @@ vis.binds["squeezeboxrpc"] = {
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
             
-            $('#' + data.widgetPlayer).off('playerschanged.shuffle').on("playerschanged.shuffle", fdata, function(event){
+            $('.vis-view').off('playerschanged.shuffle').on('playerschanged.shuffle', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var players = $div.data('bound');
                 if (players) {
@@ -1071,7 +1017,7 @@ vis.binds["squeezeboxrpc"] = {
                 }.bind({fdata}));
 
             });
-            $('#'+widgetPlayer).off('change.shuffle').on('change.shuffle',fdata,function(event){
+            $('.vis-view').off('change.shuffle').on('change.shuffle', '#' + widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -1186,7 +1132,6 @@ vis.binds["squeezeboxrpc"] = {
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
 
-            var text = '';
             if (!data.widgetPlayer) {
                 $('#' + widgetID).html("Please select a player widget");
                 return;
@@ -1204,8 +1149,8 @@ vis.binds["squeezeboxrpc"] = {
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style, ainstance:ainstance};
             if ($('#' + data.widgetPlayer).length>0) this.playersChanged({data:fdata});
-            $('#' + data.widgetPlayer).off('playerschanged.volumebar').on("playerschanged.volumebar", fdata, this.playersChanged);
-            $('#'+widgetPlayer).off('change.volumebar').on('change.volumebar',fdata,function(event){
+            $('.vis-view').off('playerschanged.volumebar').on('playerschanged.volumebar', '#' + data.widgetPlayer, fdata, this.playersChanged);
+            $('.vis-view').off('change.volumebar').on('change.volumebar', '#' + widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -1241,6 +1186,7 @@ vis.binds["squeezeboxrpc"] = {
             data.reverse = reverse;
             data.margin = margin;
             
+            var text = '';
             text += '<style> \n';
             text += '    #'+widgetID + ' .volume { \n';
             text += '        box-sizing: border-box; \n';
@@ -1295,7 +1241,7 @@ vis.binds["squeezeboxrpc"] = {
             var level = $(this).attr('value');
             var state = 100/(data.segments-1)*level;
             vis.setValue(stateid,state);
-        },        
+        },
         onChange: function(e, newVal, oldVal) {
             this.self.setState(this);
         },        
@@ -1351,6 +1297,297 @@ vis.binds["squeezeboxrpc"] = {
 
         },        
     },
+
+    syncgroup : {
+        createWidget: function (widgetID, view, data, style) {
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            
+            var $div = $('#' + widgetID);
+            // if nothing found => wait
+            if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            if (!data.widgetPlayer) {
+                $('#' + widgetID).html("Please select a player widget");
+                return;
+            }
+            var widgetPlayer = data.widgetPlayer;
+            
+            if (!vis.widgets[widgetPlayer].data.ainstance) {
+                $('#' + widgetID).html("Please select an instance at the playerwidget");
+                return;
+            }
+            
+            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
+            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
+                $('#' + widgetID).html("Please select an instance at the playerwidget");
+                return;
+            }
+
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            
+            if ($('#' + data.widgetPlayer).length>0) this.playersChanged({data:fdata});
+            $('.vis-view').off('playerschanged.syncgroup').on('playerschanged.syncgroup', '#' + data.widgetPlayer, fdata, function(event) {
+                var fdata = event.data;
+                var widgetID = fdata.widgetID;
+                var view = fdata.view;
+                var data = fdata.data;
+                var style = fdata.style;
+                vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
+            });
+            $('.vis-view').off('change.syncgroup').on('change.syncgroup', '#' + widgetPlayer, fdata, function(event) {
+                var fdata = event.data;
+                var self = fdata.self;
+                self.setState(fdata);
+            });            
+            var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+
+            var dataplayer = vis.views[view].widgets[widgetPlayer].data;
+            
+            var picWidth            = dataplayer.picWidth;
+            var picHeight           = dataplayer.picHeight;
+            var borderwidth         = data.borderwidth;
+            var borderstyle         = data.borderstyle;
+            var bordercolornogroup   = data.bordercolornogroup;
+            var bordercolorowngroup   = data.bordercolorowngroup;
+            var bordercolorothergroup   = data.bordercolorothergroup;
+            var borderradius        = data.borderradius;
+            var buttonbkcolor       = data.buttonbkcolor;            
+
+            
+            var text = '';        
+            
+            text += '<style>\n';
+            text += '#'+widgetID + ' div {\n';
+            text += '     display: inline-block; \n';
+            text += '}\n';
+            text += '#'+widgetID + ' input[type="checkbox"] {\n';
+            text += '    display: none;\n';
+            text += '}\n';
+            text += '#'+widgetID + ' canvas {\n';
+            text += '    opacity: 1;\n';
+            text += '    width: '+picWidth+'px;\n';
+            text += '    height: '+picHeight+'px;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolornogroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '#'+widgetID + ' canvas:active {\n';
+            text += '    transform: scale(0.9, 0.9);\n';
+            text += '    opacity: 1;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolorowngroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '#'+widgetID + ' input[type="checkbox"]:checked + label img {\n';
+            text += '    opacity: 1;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolorowngroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '#'+widgetID + ' input[type="checkbox"]:checked + label canvas {\n';
+            text += '    opacity: 1;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolorowngroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '#'+widgetID + ' input[type="checkbox"][othergroup="true"] + label img {\n';
+            text += '    opacity: 1;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolorothergroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '#'+widgetID + ' input[type="checkbox"][othergroup="true"] + label canvas {\n';
+            text += '    opacity: 1;\n';
+            text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolorothergroup+';\n';
+            text += '    border-radius: '+borderradius+';\n';
+            text += '}\n';
+            text += '</style>\n';
+            
+            text += '<div id="'+widgetID+'container" >';
+            for (var i = 0; i < players.length;i++) {
+                var stateid = data.ainstance.join('.') + ".Players"+"." + players[i] + ".PlayerID";
+                var playerid = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? vis.states[stateid+ '.val'] : "";
+                if (!playerid) return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
+                }, 100);
+                text += '  <div style="position: relative;">';
+                text += '    <input type="checkbox" id="'+ widgetID + players[i] +'" name="'+widgetID+'" playername="'+ players[i] +'" value="' + playerid + '" disabled>';
+                text += '    <label for="'+ widgetID + players[i] + '">';
+                text += '      <span>';
+                text += '      <canvas></canvas>';
+                text += '      </span>';
+                text += '    </label>';
+                text += '  </div>';
+            }
+            text += '</div>';
+            $('#' + widgetID).html(text);                
+
+            for (var i = 0; i< players.length;i++) {
+                var elemp = $('#'+widgetPlayer+' input[value="'+players[i]+'"]  + label span :first-child');
+                var elems = $('#'+widgetID+players[i]+' + label span canvas');
+                elems[0].height=elemp.height();
+                elems[0].width=elemp.width();
+                
+                var destCtx = elems[0].getContext('2d');
+                destCtx.drawImage(elemp[0], 0, 0,elemp.width(),elemp.height());
+            }
+            
+            var syncgroupbtns = $("input[name="+widgetID+"]");
+            syncgroupbtns.off('change.syncgroup').on('change.syncgroup',fdata, function(event){
+                var fdata = event.data
+                var data = fdata.data;
+                var syncplayer=this.value;
+                var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+                var syncplayername = $(this).attr("playername");
+                if (!$(this).prop('checked')) {
+                    var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+syncplayername+".cmdGeneral";
+                    vis.setValue(stateid, '"sync","-"');                    
+                } else {
+                    var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+playername+".cmdGeneral";
+                    vis.setValue(stateid, '"sync","'+syncplayer+'"');
+                }
+            });
+                        
+        },
+
+        onChange: function(e, newVal, oldVal) {
+            console.log(e.type + ": " + newVal + ", " + oldVal);
+            this.self.setState(this);
+        },        
+        setState: function(fdata) {
+
+            var data = fdata.data;        
+            var widgetID = fdata.widgetID;
+            
+            var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);            
+            var syncgroups = [];
+            for (var ip=0;ip<players.length;ip++) {
+                var playername = players[ip];
+                var stateid1 = data.ainstance.join('.')+".Players"+"."+playername+".SyncMaster";
+                var stateid2 = data.ainstance.join('.')+".Players"+"."+playername+".SyncSlaves";
+                var state1 = (vis.states[stateid1+ '.val'] || vis.states[stateid1+ '.val'] === 0) ? vis.states[stateid1+ '.val'] : "";
+                var state2 = (vis.states[stateid2+ '.val'] || vis.states[stateid2+ '.val'] === 0) ? vis.states[stateid2+ '.val'] : "";
+                var state = state1.split(",").concat(state2.split(','));
+                state = state.filter(item => item != "");
+                if (Array.isArray(state)) {
+                    if (!syncgroups.reduce(function(acc,val){
+                        return state[0] == "" || state.length==0 || acc || val.includes(state[0]);
+                    },false)) syncgroups.push(state);
+                }
+            }
+            
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer)
+            var stateid1 = data.ainstance.join('.')+".Players"+"."+playername+".SyncMaster";
+            var stateid2 = data.ainstance.join('.')+".Players"+"."+playername+".SyncSlaves";
+            var stateid3 = data.ainstance.join('.')+".Players"+"."+playername+".PlayerID";
+            var state1 = (vis.states[stateid1+ '.val'] || vis.states[stateid1+ '.val'] === 0) ? vis.states[stateid1+ '.val'] : "";
+            var state2 = (vis.states[stateid2+ '.val'] || vis.states[stateid2+ '.val'] === 0) ? vis.states[stateid2+ '.val'] : "";
+            var state3 = (vis.states[stateid3+ '.val'] || vis.states[stateid3+ '.val'] === 0) ? vis.states[stateid3+ '.val'] : "";
+            var owngroup = null;
+            for (var i=0;i<syncgroups.length;i++) {
+                if (syncgroups[i].includes(state3)) {
+                    owngroup = i;
+                    break;
+                }                    
+            }
+    
+            var state = state1.split(",").concat(state2.split(','));
+            for (var ip=0;ip<players.length;ip++) {
+                var playerbutton = players[ip];
+                var playerstateid = data.ainstance.join('.')+".Players"+"."+playerbutton+".PlayerID";
+                var playerid = (vis.states[playerstateid+ '.val'] || vis.states[playerstateid+ '.val'] === 0) ? vis.states[playerstateid+ '.val'] : "";                    
+                var playergroup = null;
+                for (var is=0;is<syncgroups.length;is++) {
+                    if (syncgroups[is].includes(playerid)) {
+                        playergroup = is;
+                        break;
+                    }                    
+                }                    
+                
+                var $btn = $("input[id="+widgetID+playerbutton+"]");
+                if (state.includes(playerid) && playerid !== state3) {
+                    $btn.prop('checked',true);
+                } else {
+                    $btn.prop('checked',false);                    
+                }
+                if (playerid == state3) {
+                    $btn.prop('disabled',true);
+                } else {
+                    $btn.prop('disabled',false);                    
+                }
+                if (playergroup!= null && playergroup != owngroup ) {
+                    $btn.attr('othergroup',true);
+                } else {
+                    $btn.attr('othergroup',false);                    
+                }                
+            }
+        },
+        playersChanged: function(event){
+            var fdata = event.data;
+            var widgetID = fdata.widgetID;
+            var data = fdata.data;
+            var self = fdata.self;
+            var ainstance = fdata.data.ainstance;
+            
+            var $div = $('#' + widgetID);
+            var players = $div.data('bound');
+            if (players) {
+                for (var i = 0; i < players.length; i++) {
+                    vis.states.unbind(players[i], self.onChange);
+                }
+            }
+            $div.data('bound', null);
+            $div.data('bindHandler', null);
+
+            players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+            var bound = [];
+            for (var i=0;i<players.length;i++) {
+                bound.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.SyncMaster');                   
+                bound.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.SyncSlaves');
+                bound.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.PlayerID');
+            }
+            bound.push(ainstance.join('.')+".Server.SyncGroups");
+            vis.conn.gettingStates =0;
+            vis.conn.getStates(bound, function (error, states) {
+                var fdata = this.fdata;
+                var self = fdata.self;
+                vis.updateStates(states);
+                vis.conn.subscribe(bound);
+                for (var i=0;i<bound.length;i++) {
+                    bound[i]=bound[i]+'.val';
+                    vis.states.bind(bound[i] , self.onChange.bind(fdata));            
+                }
+                $div.data('bound', bound);
+                $div.data('bindHandler', self.onChange);
+            }.bind({fdata}));
+
+        },
+        getPlayers: function(datapoints, ainstance) {
+            const regex = new RegExp("^"+ainstance[0]+"\\."+ainstance[1]+"\\.Players","gm");
+            return Object.keys(datapoints).reduce(function(acc,cur){
+                if (regex.test(cur)) {
+                    var key = cur.split('.')[3]; //getPlayers
+                    if (acc.indexOf(key)===-1) acc.push(key);
+                }
+                return acc;
+            },[]);    
+        },
+        sanitizeViewindex: function(viewindex,players) {    
+            viewindex   = viewindex.split(",").map(function(item) {
+                return parseInt(item.trim());
+            });
+            viewindex = viewindex.map(function (item) {
+                return (item < players.length) ? item:0;
+            });
+            if (viewindex.length > players.length) viewindex = viewindex.slice(0,players.length);
+            return viewindex;
+        }        
+    },    
+    
+    
+
+
+    
     attrSelect: function (wid_attr, options) {
             if (wid_attr === 'widgetPlayer') var options = this.findPlayerWidgets();
             if (wid_attr === 'widgetFavorites') var options = this.findFavoritesWidgets();

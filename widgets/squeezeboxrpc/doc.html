@@ -192,8 +192,7 @@ Der Knopf bring bereits eigene Grafiken (SVG) mit. Alternativ kannst du auch eig
 <h4>Attribute</h4>
 <h5>Player widget - Gruppe Allgemein</h5>
 Auswahl des Player widgets.
-<h5>Bild ohne- Gruppe Allgemein</h5>
-Bild für deaktivierten Zufall
+<h5>Bild ohne- Gruppe Allgemein</h5>Bild für deaktivierten Zufall
 <h5>Bild Titel- Gruppe Allgemein</h5>
 Bild für Zufällige Titelreihenfolge
 <h5>Bild Playlist- Gruppe Allgemein</h5>
@@ -233,8 +232,39 @@ Randfarbe des Segmentes im nicht aktivierten Zustand
 Randfarbe des Segmentes im aktivierten Zustand
 <h5>margin - Gruppe Segmente</h5>
 Abstand um ein Segment herum in Pixel.
-
 <br><br>
+
+
+<h3><a name="tplSqueezeboxrpcPlayer" ></a>SyncGroup Knopfleiste</h3>
+<img src="img/syncgroups.png"/><br>
+Über dieses Widget kann in Verbindung mit dem Playerwidget die Synchonisation der Player untereinander gesteuert werden.<br>
+Die meisten Einstellungen zur Anzahl der Knöpfe, der Beschriftung oder Bildern wird vom Playerwidget übernommen.<br>
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+Nach Auswahl eines Players im Playerwidget ist die aktuelle Synchronisation im SyncGroup widget sichtbar.<br> 
+Der Sync-Status wird über die verschiedenen einstellbaren Farben dargestellt.<br>
+Der im Player widget ausdwählte Player kann im SyncGroup Widget nicht ausgewählt werden.<br>
+Wird im SyncGroup widget ein Player ausgewählt, der sich bereits in einer anderen Gruppe befindet, wird er aus diser Gruppe automatisch entfernt.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Rahmenbreite - Knopfeinstellungen</h5>
+Rahmenbreite/Randbreite in Pixel um den Knopf
+<h5>Randdarstellung - Knopfeinstellungen</h5>
+Art der Randdarstellung bspw durchgezogen, gestrichelt.
+<h5>Randfarbe - Nicht in Gruppe - Knopfeinstellungen</h5>
+Der Knopf erhält einen Rand mit dieser Farbe, wenn der Player sich nicht in einer Gruppe befindet.
+<h5>Randfarbe - In Gruppe - Knopfeinstellungen</h5>
+Der Knopf erhält einen Rand mit dieser Farbe, wenn der Player sich  in einer Gruppe  mit dem ausgewählten Player befindet.
+<h5>Randfarbe - In anderer Gruppe - Knopfeinstellungen</h5>
+Der Knopf erhält einen Rand mit dieser Farbe, wenn der Player sich  in einer anderen Gruppe befindet.
+<h5>border-radius - Knopfeinstellungen</h5>
+Für gebogene Randeckecn, kann hier ein Radius in Pixel eingegeben werden
+<h5>Hintergrundfarbe - Knopfeinstellungen</h5>
+Hintergrundfarbe bei Text
+<br><br>
+
+
+
 
 </body>
 </html>
