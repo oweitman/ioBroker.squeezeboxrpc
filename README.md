@@ -51,6 +51,7 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 | TotalDuration     | Sum  playtime of all songs     |
 | TotalGenres       | Number of all known Genres     |
 | TotalSongs        | Number of all known songs      |
+| SyncGroups        | Existing Syncgroups            |
 | Version           | Version of LMS                 |
 | mac               | MAC-ID of the server           |
 | uuid              | uuid of the LMS-instance       |
@@ -140,6 +141,7 @@ button            | Description
 btnForward        | Next song
 btnRewind         | Previous song
 btnPreset_*       | 1-6 buttons to define in player or server
+cmdGeneral        | a general command field to send commands to the player. every field must enclosed by quotation marks. parameters musst be seperated by comma. Example: "play","1"
 cmdPlayFavorite   | to play a favorite set the id of the favorite
 cmdGoTime         | jump to a absolut position by specifying a number of seconds or jump relative with a + or - at the beginning of the seconds. Example 100,-50,+50
 
