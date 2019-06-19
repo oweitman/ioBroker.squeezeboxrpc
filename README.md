@@ -164,6 +164,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.15 (2019-06-19)
+* minor issue with not ready states
 ### 0.8.14 (2019-06-19)
 * add syncgroups as new server-datapoint,add syncgroup widget, change some jquery event logic
 ### 0.8.13 (2019-06-16)

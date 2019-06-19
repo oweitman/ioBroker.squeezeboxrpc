@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.14",
+        "version": "0.8.15",
         "news": {
+            "0.8.15": {
+                "en": "minor issue with not ready states"
+            },
             "0.8.14": {
                 "en": "add syncgroups as new server-datapoint,add syncgroup widget, change some jquery event logic"
             },
