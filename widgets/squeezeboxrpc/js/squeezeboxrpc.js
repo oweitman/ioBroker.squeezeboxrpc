@@ -1407,9 +1407,9 @@ vis.binds["squeezeboxrpc"] = {
             for (var i = 0; i < players.length;i++) {
                 var stateid = data.ainstance.join('.') + ".Players"+"." + players[i] + ".PlayerID";
                 var playerid = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? vis.states[stateid+ '.val'] : "";
-                if (!playerid) return setTimeout(function () {
-                    vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
-                }, 100);
+                //if (!playerid) return setTimeout(function () {
+                //    vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
+                //}, 100);
                 text += '  <div style="position: relative;">';
                 text += '    <input type="checkbox" id="'+ widgetID + players[i] +'" name="'+widgetID+'" playername="'+ players[i] +'" value="' + playerid + '" disabled>';
                 text += '    <label for="'+ widgetID + players[i] + '">';
