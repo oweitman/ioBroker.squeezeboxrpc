@@ -50,6 +50,10 @@ if (vis.editMode) {
         "imageshuffle1":            {"en": "Picture Title",                 "de": "Bild Titel",                         "ru": "Название картинки"},
         "imageshuffle2":            {"en": "Picture Album",                 "de": "Bild Album",                         "ru": "картинки Альбом"},        
 
+        "bordercolornogroup":       {"en": "Border color - No group",       "de": "Randfarbe - ohne Gruppe",            "ru": "Цвет границы - нет группы"},
+        "bordercolorowngroup":      {"en": "Border color - Own group",      "de": "Randfarbe - Eigene Gruppe",          "ru": "Цвет границы - Собственная группа"},
+        "bordercolorothergroup":    {"en": "Border color - Other group",    "de": "Randfarbe - Andere Gruppe",          "ru": "Цвет бордюра - Другая группа"},        
+        
         });
 }
 
@@ -1436,16 +1440,20 @@ vis.binds["squeezeboxrpc"] = {
             syncgroupbtns.off('change.syncgroup').on('change.syncgroup',fdata, function(event){
                 var fdata = event.data
                 var data = fdata.data;
+                var self = fdata.self;
                 var syncplayer=this.value;
                 var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
                 var syncplayername = $(this).attr("playername");
-                if (!$(this).prop('checked')) {
-                    var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+syncplayername+".cmdGeneral";
-                    vis.setValue(stateid, '"sync","-"');                    
-                } else {
-                    var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+playername+".cmdGeneral";
-                    vis.setValue(stateid, '"sync","'+syncplayer+'"');
+                if (syncplayer) {
+                    if (!$(this).prop('checked')) {
+                        var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+syncplayername+".cmdGeneral";
+                        vis.setValue(stateid, '"sync","-"');                    
+                    } else {
+                        var stateid = ainstance[0]+'.'+ainstance[1]+".Players"+"."+playername+".cmdGeneral";
+                        vis.setValue(stateid, '"sync","'+syncplayer+'"');
+                    }
                 }
+                self.setState(fdata);
             });
                         
         },
@@ -1492,6 +1500,7 @@ vis.binds["squeezeboxrpc"] = {
             }
     
             var state = state1.split(",").concat(state2.split(','));
+            state = state.filter(item => item != "");
             for (var ip=0;ip<players.length;ip++) {
                 var playerbutton = players[ip];
                 var playerstateid = data.ainstance.join('.')+".Players"+"."+playerbutton+".PlayerID";
