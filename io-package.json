@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.15",
+        "version": "0.8.16",
         "news": {
+            "0.8.16": {
+                "en": "resolve a cross browser issue for firefox. the style.font attribute is empty and you have to construct the font string by yourself"
+            },
             "0.8.15": {
                 "en": "minor issue with not ready states"
             },

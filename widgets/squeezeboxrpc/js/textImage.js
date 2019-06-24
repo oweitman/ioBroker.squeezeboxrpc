@@ -113,8 +113,9 @@
     }
 
     class Font {
-        constructor(fontstr) {
+        constructor(elem) {
             this.span = document.createElement("span");
+            let fontstr = this.getFontString(elem[0]);
             this.span.style.font = fontstr;
             this.measure = getTextHeight(this);
             this.measure.width =  getTextWidth("M", this);
@@ -145,6 +146,24 @@
         decFontSize() {
             this.span.style.fontSize = parseInt(this.span.style.fontSize)- 1 + "px"
             return this;
+        }
+        getFontString(elem) {
+            let style = window.getComputedStyle(elem);
+            let elementFont = style.getPropertyValue('font');
+
+            if (elementFont)
+               return elementFont;
+            else {
+              const fontStyle = style.getPropertyValue('font-style');
+              const fontVariant = style.getPropertyValue('font-variant');
+              const fontWeight = style.getPropertyValue('font-weight');
+              const fontSize = style.getPropertyValue('font-size');
+              const fontFamily = style.getPropertyValue('font-family');
+
+              elementFont = (fontStyle + ' ' + fontVariant + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily).replace(/ +/g, ' ').trim();
+              return elementFont;                
+            }
+            return elementFont ? elementFont : 'normal 12px sans-serif';        
         }
     }
     function getGoodFontSize(lines, picWidth, font) {
