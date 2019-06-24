@@ -28,6 +28,7 @@ The actual main web interface of the LMS also uses the rpc/json-protocol to get 
 - detailed information about the player status, song title, artist, album, artwork, playlist
 - many control features to play, pause, stop, forward, rewind, repeat, shuffle, play favorite, jump to time (absolute and relative) , jump to playlist index (absolute and relative), power on/off and preset buttons
 - all favorites and all sub levels from server
+- many widgets for the iobroker-vis component are included to create own control user interfaces (select player,select favorites, manage syncgroups, buttons for play/pause,fwd,rew, repeat mode and shuffle mode selection)
 
 ## Installation
 
