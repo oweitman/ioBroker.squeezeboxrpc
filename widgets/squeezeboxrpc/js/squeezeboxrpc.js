@@ -91,22 +91,10 @@ vis.binds["squeezeboxrpc"] = {
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
             var redrawinspectwidgets = false;
-            
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            
+
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+       
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
             
             var key = ainstance[0] + "."+ ainstance[1] + "." + "Favorites.*";
@@ -469,58 +457,24 @@ vis.binds["squeezeboxrpc"] = {
             
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
-
-            var text = '';
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+            
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
-            $('.vis-view').off('playerschanged.play').on('playerschanged.play', '#' + data.widgetPlayer, fdata, function(event) {
-                var fdata = event.data;
-                var players = $div.data('bound');
-                if (players) {
-                    for (var i = 0; i < players.length; i++) {
-                        vis.states.unbind(players[i], self.onChange);
-                    }
-                }
-                $div.data('bound', null);
-                $div.data('bindHandler', null);
-                players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
-                for (var i=0;i<players.length;i++) {
-                    players[i] = ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.state';                   
-                }
-                vis.conn.gettingStates =0;
-                vis.conn.getStates(players, function (error, states) {
-                    var fdata = this.fdata;
-                    var self = fdata.self;
-                    vis.updateStates(states);
-                    vis.conn.subscribe(players);
-                    for (var i=0;i<players.length;i++) {
-                        players[i]=players[i]+'.val';
-                        vis.states.bind(players[i] , self.onChange.bind(fdata));            
-                    }
-                    $div.data('bound', players);
-                    $div.data('bindHandler', self.onChange);
-                }.bind({fdata}));
+            
 
-            }.bind(this));           
-            $('.vis-view').off('change.play').on('change.play', '#' + widgetPlayer, fdata, function(event) {
-                var self = fdata.self;
-                self.setState(fdata);
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.state');
+                }
+                return boundstates;
             });
- 
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+          
+            var text = '';
             text += '<style> \n';
             text += '#'+widgetID + ' div {\n';
             text += '   display: inline-block; \n';
@@ -630,20 +584,10 @@ vis.binds["squeezeboxrpc"] = {
             
             var svg = vis.binds["squeezeboxrpc"].svg;            
             var text = '';
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
+
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+                       
             text += '<style> \n';
             text += '#'+widgetID + ' div {\n';
             text += '   display: inline-block; \n';
@@ -722,20 +666,9 @@ vis.binds["squeezeboxrpc"] = {
 
             var svg = vis.binds["squeezeboxrpc"].svg;
             var text = '';
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
+
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
 
             text += '<style> \n';
             text += '#'+widgetID + ' div {\n';
@@ -811,20 +744,9 @@ vis.binds["squeezeboxrpc"] = {
             style = vis.views[view].widgets[widgetID].style;
 
             var text = '';
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
             
@@ -859,7 +781,7 @@ vis.binds["squeezeboxrpc"] = {
                 }.bind({fdata}));
 
             });
-            $('.vis-view').off('change.repeat').on('change.repeat', '#' + widgetPlayer, fdata, function(event) {
+            $('.vis-view').off('change.repeat').on('change.repeat', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -974,20 +896,9 @@ vis.binds["squeezeboxrpc"] = {
             style = vis.views[view].widgets[widgetID].style;
 
             var text = '';
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
+
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
             
@@ -1021,7 +932,7 @@ vis.binds["squeezeboxrpc"] = {
                 }.bind({fdata}));
 
             });
-            $('.vis-view').off('change.shuffle').on('change.shuffle', '#' + widgetPlayer, fdata, function(event) {
+            $('.vis-view').off('change.shuffle').on('change.shuffle', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -1136,25 +1047,13 @@ vis.binds["squeezeboxrpc"] = {
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
 
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
 
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style, ainstance:ainstance};
             if ($('#' + data.widgetPlayer).length>0) this.playersChanged({data:fdata});
             $('.vis-view').off('playerschanged.volumebar').on('playerschanged.volumebar', '#' + data.widgetPlayer, fdata, this.playersChanged);
-            $('.vis-view').off('change.volumebar').on('change.volumebar', '#' + widgetPlayer, fdata, function(event) {
+            $('.vis-view').off('change.volumebar').on('change.volumebar', '#' + data.widgetPlayer, fdata, function(event) {
                 var fdata = event.data;
                 var self = fdata.self;
                 self.setState(fdata);
@@ -1263,7 +1162,7 @@ vis.binds["squeezeboxrpc"] = {
             $('#' + widgetID + ' div.volume > div.level').removeClass('active');
             $(selector).addClass('active');
 
-        },
+        },       
         playersChanged: function(event){
             var fdata = event.data;
             var widgetID = fdata.widgetID;
@@ -1299,7 +1198,7 @@ vis.binds["squeezeboxrpc"] = {
                 $div.data('bindHandler', self.onChange);
             }.bind({fdata}));
 
-        },        
+        },
     },
 
     syncgroup : {
@@ -1314,43 +1213,28 @@ vis.binds["squeezeboxrpc"] = {
                     vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
                 }, 100);
             }
-            
-            if (!data.widgetPlayer) {
-                $('#' + widgetID).html("Please select a player widget");
-                return;
-            }
-            var widgetPlayer = data.widgetPlayer;
-            
-            if (!vis.widgets[widgetPlayer].data.ainstance) {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
-            
-            var ainstance = data.ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
-            if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $('#' + widgetID).html("Please select an instance at the playerwidget");
-                return;
-            }
 
-            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
             
-            if ($('#' + data.widgetPlayer).length>0) this.playersChanged({data:fdata});
-            $('.vis-view').off('playerschanged.syncgroup').on('playerschanged.syncgroup', '#' + data.widgetPlayer, fdata, function(event) {
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+
+            if ($('#' + data.widgetPlayer).length>0) this.playersChanged({data:fdata});            
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(fdata){
                 var fdata = event.data;
                 var widgetID = fdata.widgetID;
                 var view = fdata.view;
                 var data = fdata.data;
                 var style = fdata.style;
                 vis.binds["squeezeboxrpc"].syncgroup.createWidget(widgetID, view, data, style);
+                var boundstates = [];
+                return boundstates;
             });
-            $('.vis-view').off('change.syncgroup').on('change.syncgroup', '#' + widgetPlayer, fdata, function(event) {
-                var fdata = event.data;
-                var self = fdata.self;
-                self.setState(fdata);
-            });            
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+            
             var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
 
-            var dataplayer = vis.views[view].widgets[widgetPlayer].data;
+            var dataplayer = vis.views[view].widgets[data.widgetPlayer].data;
             
             var picWidth            = dataplayer.picWidth;
             var picHeight           = dataplayer.picHeight;
@@ -1429,7 +1313,7 @@ vis.binds["squeezeboxrpc"] = {
             $('#' + widgetID).html(text);                
 
             for (var i = 0; i< players.length;i++) {
-                var elemp = $('#'+widgetPlayer+' input[value="'+players[i]+'"]  + label span :first-child');
+                var elemp = $('#'+data.widgetPlayer+' input[value="'+players[i]+'"]  + label span :first-child');
                 var elems = $('#'+widgetID+players[i]+' + label span canvas');
                 elems[0].height=elemp.height();
                 elems[0].width=elemp.width();
@@ -1593,12 +1477,167 @@ vis.binds["squeezeboxrpc"] = {
             if (viewindex.length > players.length) viewindex = viewindex.slice(0,players.length);
             return viewindex;
         }        
-    },    
-    
-    
+    },
+    playtime : {
+        createWidget: function (widgetID, view, data, style) {
+            var $div = $('#' + widgetID);
+                        if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].playtime.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
 
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
 
-    
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.Duration');                   
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.Time');
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.state');
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.cmdGoTime');
+                }
+                return boundstates;
+            });
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+           
+            var mainbarcolor        = data.mainbarcolor;
+            var playtimebarcolor    = data.playtimebarcolor;
+            var borderwidth         = data.borderwidth;
+            var borderstyle         = data.borderstyle;
+            var bordercolor         = data.bordercolor;
+            var borderradius        = data.borderradius;
+            
+            var text = '';
+            text += '<style> \n';
+            text += '#'+widgetID + ' .playtimemain {\n';
+            text += '    width: 100%;\n';
+            text += '    height: 100%;\n';
+            text += '    background-color: ' + mainbarcolor + ';\n';
+            text += '    border: ' + bordercolor + ' ' + borderwidth + ' ' + borderstyle + ';\n';
+            text += '    border-radius: ' + borderradius + ';\n';
+            text += '    overflow: hidden;\n';
+            text += '}';
+
+            text += '#'+widgetID + ' .playtimebar {\n';
+            text += '  height: 100%;\n';
+            text += '  background-color: ' + playtimebarcolor + ';\n';
+            text += '}\n';
+            text += '</style> \n';
+
+            text += '<div class="playtimemain">\n';
+            text += '    <div class="playtimebar"></div>\n';
+            text += '</div>\n';
+                        
+            $('#' + widgetID).html(text);
+            $('#' + widgetID + ' div.playtimemain').on('click.playtime',fdata,this.onClick);
+
+            this.setState(fdata);
+        },
+        onClick: function(event) {
+            var data = event.data.data;
+            var self = event.data.self;
+            var widgetID = event.data.widgetID;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid_duration = data.ainstance.join('.')+".Players"+"."+playername+".Duration";
+            var stateid_playtime = data.ainstance.join('.')+".Players"+"."+playername+".Time";
+            var stateid_gotime   = data.ainstance.join('.')+".Players"+"."+playername+".cmdGoTime";
+            
+            var state_duration = (vis.states[stateid_duration+ '.val'] || vis.states[stateid_duration+ '.val'] === 0) ? parseInt(vis.states[stateid_duration+ '.val']) : 0;
+            var state_playtime = (vis.states[stateid_playtime+ '.val'] || vis.states[stateid_playtime+ '.val'] === 0) ? parseInt(vis.states[stateid_playtime+ '.val']) : 0;
+            var clickx = event.offsetX;
+            var clicky = event.offsetY;
+            var width = $(this).width();
+            var height = $(this).height();
+            var time = clickx/width * state_duration;
+            if (time>state_duration) return;
+            vis.setValue(stateid_gotime,time.toString());
+        },
+        onChange: function(e, newVal, oldVal) {
+            this.self.setState(this);
+        },
+        setState: function(fdata) {
+            var data = fdata.data;
+            var widgetID = fdata.widgetID;
+            var svg = vis.binds["squeezeboxrpc"].svg;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid_duration = data.ainstance.join('.')+".Players"+"."+playername+".Duration";
+            var stateid_playtime = data.ainstance.join('.')+".Players"+"."+playername+".Time";
+            var stateid_state    = data.ainstance.join('.')+".Players"+"."+playername+".state";
+            
+            var state_duration = (vis.states[stateid_duration+ '.val'] || vis.states[stateid_duration+ '.val'] === 0) ? parseInt(vis.states[stateid_duration+ '.val']) : 0;
+            var state_playtime = (vis.states[stateid_playtime+ '.val'] || vis.states[stateid_playtime+ '.val'] === 0) ? parseInt(vis.states[stateid_playtime+ '.val']) : 0;
+            var state_state    = (vis.states[stateid_state   + '.val'] || vis.states[stateid_state   + '.val'] === 0) ? parseInt(vis.states[stateid_state   + '.val']) : 0;
+            var width = state_playtime * 100 / state_duration;
+            var width = state_duration==0 ? 0:width;
+            if (state_state == 2) width=0; //0 if player stop 
+            if (vis.editMode) width=50;
+            $('#' + widgetID + ' div.playtimebar').width(width+"%");            
+        },        
+    },
+
+    checkAttributes: function ($div,widgetPlayer) {
+        if (!widgetPlayer) {
+            $div.html("Please select a player widget");
+            return false;
+        }
+        if (!vis.widgets[widgetPlayer].data.ainstance) {
+            $div.html("Please select an instance at the playerwidget");
+            return false;
+        }
+        var ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
+        if (!ainstance || ainstance[0] != "squeezeboxrpc") {
+            $div.html("Please select an instance at the playerwidget");
+            return false;
+        }
+        return ainstance;
+    },
+    setChanged: function (widgetPlayer,fdata,setState_callback) {
+        $('.vis-view').off('change.' + fdata.widgetID).on('change.' + fdata.widgetID, '#' + widgetPlayer, fdata, function(event) {
+            var self = fdata.self;
+            self.setState(fdata);
+        });
+    },
+    setPlayersChanged: function ($div,widgetPlayer,fdata,onChange_callback,boundstates_callback) {        
+
+        $('.vis-view').off('playerschanged.' + fdata.widgetID).on('playerschanged.' + fdata.widgetID, '#' + widgetPlayer, fdata, function(event) {
+            var fdata = event.data;
+            var boundstates = boundstates_callback.apply(this,[fdata]);
+            if (boundstates) vis.binds["squeezeboxrpc"].bindStates($div, boundstates, onChange_callback, fdata);
+        }.bind(this));
+    },
+    bindStates: function (elem, bound, change_callback, fdata) {        
+        var $div = $(elem);
+        var boundstates = $div.data('bound');
+        if (boundstates) {
+            for (var i = 0; i < boundstates.length; i++) {
+                vis.states.unbind(boundstates[i], change_callback);
+            }
+        }
+        $div.data('bound', null);
+        $div.data('bindHandler', null);
+
+        vis.conn.gettingStates =0;
+        vis.conn.getStates(bound, function (error, states) {
+            var fdata = this.fdata;
+            var self = fdata.self;
+            vis.updateStates(states);
+            vis.conn.subscribe(bound);
+            for (var i=0;i<bound.length;i++) {
+                bound[i]=bound[i]+'.val';
+                vis.states.bind(bound[i] , change_callback);            
+            }
+            $div.data('bound', bound);
+            $div.data('bindHandler', change_callback);
+        }.bind({fdata,change_callback}));                
+    },            
     attrSelect: function (wid_attr, options) {
             if (wid_attr === 'widgetPlayer') var options = this.findPlayerWidgets();
             if (wid_attr === 'widgetFavorites') var options = this.findFavoritesWidgets();
@@ -1657,6 +1696,6 @@ vis.binds["squeezeboxrpc"] = {
                 vis.views[view].widgets[widgetID].data[attr] = newId + 'px';
             }
         }
-    }    
+    },
 }
 vis.binds["squeezeboxrpc"].showVersion();
