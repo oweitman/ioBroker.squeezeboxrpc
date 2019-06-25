@@ -219,6 +219,7 @@
         var charWidth = font.getWidth(); //getTextWidth("M", font);
         var maxChars = picWidth / charWidth;
         var maxLines = (picHeight / lineHeight)-1;
+        maxLines = (maxLines < 0) ? 1 : maxLines;
         var lines;
         if (picHeight >=picWidth) {
             for (var textWidth=1;(lines=wordwrap(text,textWidth,opt).split("\n")) && maxLines+1 < lines.length;textWidth++){}

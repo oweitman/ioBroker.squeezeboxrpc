@@ -5,7 +5,7 @@
     
     
     Todo
-    - 
+    margin/padding bei player und favorites 
     
 */
 "use strict";
@@ -1559,3 +1559,4 @@ vis.binds["squeezeboxrpc"] = {
     },
 }
 vis.binds["squeezeboxrpc"].showVersion();
+     
