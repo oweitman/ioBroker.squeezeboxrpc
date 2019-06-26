@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.17",
+        "version": "0.8.18",
         "news": {
+            "0.8.18": {
+                "en": "last minute changes."
+            },
             "0.8.17": {
                 "en": "add more widges: playtime bar, string, number, datetime, image. add button margin to player and favorite widget, improve editing of viewindex. do some refactoring."
             },
