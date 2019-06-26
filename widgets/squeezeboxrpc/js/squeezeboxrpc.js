@@ -308,6 +308,7 @@ vis.binds["squeezeboxrpc"] = {
                 } else {
                     data.ainstance = "";
                 }
+                
                 var ainstance = data.ainstance.split(".");
                 if (!ainstance || ainstance[0] != "squeezeboxrpc") {
                     $('#' + widgetID).html("Please select an instance");
@@ -337,6 +338,7 @@ vis.binds["squeezeboxrpc"] = {
                     redrawinspectwidgets = true;
                 }
                 
+                var viewindex = data.viewindex.split(', ');  
                 if (data.formattype == 'formatselect') {
 
                     var text='';
@@ -407,8 +409,7 @@ vis.binds["squeezeboxrpc"] = {
                     text += '</style>\n';
                     
                     text += '<div id="'+widgetID+'container" >';
-                    
-                    var viewindex = data.viewindex.split(', ');                    
+                                      
                     for (var i = 0; i < viewindex.length;i++) {
                         text += '  <div >';
                         text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
