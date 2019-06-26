@@ -91,6 +91,8 @@ vis.binds["squeezeboxrpc"] = {
             
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
+            data.functionname = 'favorites';
+
             var redrawinspectwidgets = false;
 
             var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
@@ -103,7 +105,7 @@ vis.binds["squeezeboxrpc"] = {
             vis.conn.getStates(key,function (err, obj) {
 
                 var favorites = this.getFavorites(obj,ainstance);
-                favorites = this.filterFavorites(favorites);
+                favorites = data.viewindexcheck = this.filterFavorites(favorites);
 
                 var editmodehelper = data.editmodehelper;
                 var bCount      = data.bCount;
@@ -117,20 +119,10 @@ vis.binds["squeezeboxrpc"] = {
                 var borderradius = data.borderradius;
                 var buttonbkcolor = data.buttonbkcolor;   
                 var buttonmargin        = data.buttonmargin || '0px';
-
-                if (vis.editMode) {
-                    if (!data.viewindex || data.viewindex.trim() == "") {
-                        data.viewindex = this.getViewindex(favorites).join(", ");
-                        redrawinspectwidgets = true;
-                    }
-                }
-                var viewindex = this.sanitizeViewindex(data.viewindex,favorites);
-
-                if (vis.editMode) {               
-                    data.bCount = Math.min(favorites.length,viewindex.length);
+               
+                if (vis.editMode && data.bCount != Math.min(favorites.length,data.viewindex.split(',').length)) {
+                    data.bCount = Math.min(favorites.length,data.viewindex.split(',').length);
                     redrawinspectwidgets = true;                
-                    //todo ans ende verschieben
-                    if (redrawinspectwidgets) vis.inspectWidgets(view, view);
                 }
                 
                 var text = '';        
@@ -185,6 +177,7 @@ vis.binds["squeezeboxrpc"] = {
                 text += '</style>\n';
                 
                 text += '<div id="'+widgetID+'container">';
+                var viewindex = data.viewindex.split(', ');
                 for (var i = 0; i < viewindex.length;i++) {
                     var favorite = this.findById(favorites,viewindex[i]);
                     text += '  <div>';
@@ -254,7 +247,7 @@ vis.binds["squeezeboxrpc"] = {
                     //vis.conn._socket.emit('setState', state, favorite);
                     vis.setValue(state, favorite);
                 });
-                if (redrawinspectwidgets) vis.inspectWidgets(view, view);                
+                if (vis.editMode && redrawinspectwidgets) vis.binds["squeezeboxrpc"].redrawInspectWidgets(view);                
             }.bind(this));
         },
         getFavorites: function(datapoints, ainstance) {
@@ -283,19 +276,14 @@ vis.binds["squeezeboxrpc"] = {
         getViewindex: function(favorites) {
             return favorites.map(cur => cur.id);
         },
-        sanitizeViewindex: function(viewindex,favorites) {    
-            viewindex   = viewindex.split(",");
-            viewindex = viewindex.map(function (favorites,id) {
-                return (this.findById(favorites,id)) ? id.trim():"-";
-            }.bind(this,favorites));
-            if (viewindex.length > favorites.length) viewindex = viewindex.slice(0,favorites.length);
-            return viewindex;
-        }
+        checkViewindexExist: function(viewindex,favorites) {
+            return viewindex.map(function (item) {
+                return (favorites.find(el => el.id == item)) ? item:"0";
+            });
+        },
     },
-    players : {
+    players: {
         createWidget: function (widgetID, view, data, style) {
-            data = vis.views[view].widgets[widgetID].data;
-            style = vis.views[view].widgets[widgetID].style;
             
             var $div = $('#' + widgetID);
             // if nothing found => wait
@@ -304,11 +292,14 @@ vis.binds["squeezeboxrpc"] = {
                     vis.binds["squeezeboxrpc"].players.createWidget(widgetID, view, data, style);
                 }, 100);
             }
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            data.functionname = 'players';
+
             socket.emit('getObjects', function (err, obj) {
                 var redrawinspectwidgets = false;
                 if (data.ainstance) {
                     data.ainstance = data.ainstance.split(".").slice(0,2).join(".");
-                    redrawinspectwidgets=true;
                 } else {
                     data.ainstance = "";
                 }
@@ -317,7 +308,7 @@ vis.binds["squeezeboxrpc"] = {
                     $('#' + widgetID).html("Please select an instance");
                     return;
                 }
-                var players = this.getPlayers(obj,ainstance);
+                var players = data.viewindexcheck = this.getPlayers(obj,ainstance);
                 
                 var editmodehelper = data.editmodehelper;
                 var bCount              = data.bCount;
@@ -331,17 +322,9 @@ vis.binds["squeezeboxrpc"] = {
                 var borderradius        = data.borderradius;
                 var buttonbkcolor       = data.buttonbkcolor;
                 var buttonmargin        = data.buttonmargin || '0px';
-                
-                if (vis.editMode) {
-                    if (!data.viewindex || data.viewindex.trim() == "") {
-                        data.viewindex = Object.keys(players).join(", ");
-                        redrawinspectwidgets = true;
-                    }
-                }
-                var viewindex = this.sanitizeViewindex(data.viewindex,players);
 
-                if (vis.editMode) {               
-                    data.bCount = Math.min(players.length,viewindex.length);
+                if (vis.editMode && data.bCount != Math.min(players.length,data.viewindex.split(',').length)) {               
+                    data.bCount = Math.min(players.length,data.viewindex.split(',').length);
                     redrawinspectwidgets = true;
                 }
                 
@@ -353,7 +336,8 @@ vis.binds["squeezeboxrpc"] = {
                     for (var i = 0; i < viewindex.length;i++) {
                         var buttonsText  = (data['buttonsText'+(viewindex[i]+1)]) || '';
                         buttonsText = (buttonsText.trim() !='') ? buttonsText : players[viewindex[i]];
-                        
+                        if (vis.editMode && editmodehelper) buttonsText += ' [' + viewindex[i] + ']';
+
                         option += '<option value="' + players[viewindex[i]] + '">'+buttonsText+'</option>';
                     }
                     text += '<select type="text" id="'+ widgetID + 'select">'+option+'</select>';
@@ -414,6 +398,8 @@ vis.binds["squeezeboxrpc"] = {
                     text += '</style>\n';
                     
                     text += '<div id="'+widgetID+'container" >';
+                    
+                    var viewindex = data.viewindex.split(', ');                    
                     for (var i = 0; i < viewindex.length;i++) {
                         text += '  <div >';
                         text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
@@ -450,9 +436,17 @@ vis.binds["squeezeboxrpc"] = {
                         }
                     }
                 }
-                if (vis.editMode && redrawinspectwidgets) vis.inspectWidgets(view, view);
+                if (vis.editMode && redrawinspectwidgets) vis.binds["squeezeboxrpc"].redrawInspectWidgets(view);                
                 $('#' + widgetID).trigger('playerschanged');
             }.bind(this));
+        },
+        getViewindex: function(players) {
+            return Object.keys(players);
+        },         
+        checkViewindexExist: function(viewindex,players) {
+            return viewindex.map(function (item) {
+                return (item < players.length) ? item:0;
+            });            
         },
         getPlayers: function(datapoints, ainstance) {
             const regex = new RegExp("^"+ainstance[0]+"\\."+ainstance[1]+"\\.Players","gm");
@@ -464,16 +458,6 @@ vis.binds["squeezeboxrpc"] = {
                 return acc;
             },[]);    
         },
-        sanitizeViewindex: function(viewindex,players) {    
-            viewindex   = viewindex.split(",").map(function(item) {
-                return parseInt(item.trim());
-            });
-            viewindex = viewindex.map(function (item) {
-                return (item < players.length) ? item:0;
-            });
-            if (viewindex.length > players.length) viewindex = viewindex.slice(0,players.length);
-            return viewindex;
-        }        
     },
     buttonplay : {
         createWidget: function (widgetID, view, data, style) {
@@ -1683,6 +1667,55 @@ vis.binds["squeezeboxrpc"] = {
         },        
     },
     
+    redrawInspectWidgets: function (view) {
+        if (window.Selection) {
+            if (window.getSelection()) var sel = window.getSelection();
+            if (sel.anchorNode) {
+                var $edit = $(sel.anchorNode).find('input, textarea').first();
+                var start = $edit.prop('selectionStart');
+                var end   = $edit.prop('selectionEnd');
+            } 
+        }
+        vis.inspectWidgets(view, view);
+        if ($edit) {
+            $edit.prop({
+                'selectionStart': start,
+                'selectionEnd': end
+            });            
+        }
+        
+    },
+    checkViewIndex: function (widgetID, view, viewindex, attr, isCss) {
+        var data = vis.views[view].widgets[widgetID].data;
+        var viewindexcheck = data.viewindexcheck;
+
+        if (!viewindex || viewindex.trim() == "") {
+            viewindex = vis.binds["squeezeboxrpc"][data.functionname].getViewindex(viewindexcheck).join(", ");
+        }
+        
+        viewindex   = viewindex.split(",").map(function(item) {
+            return item.trim();
+        });
+
+        viewindex = vis.binds["squeezeboxrpc"][data.functionname].checkViewindexExist(viewindex,viewindexcheck);
+
+        if (viewindex.length > viewindexcheck.length) viewindex = viewindex.slice(0,viewindexcheck.length);
+        data.viewindex = viewindex.join(', ');
+        var $attr = $('#inspect_viewindex');
+        
+        var start = $attr.prop('selectionStart');
+        var end   = $attr.prop('selectionEnd');
+        if (start > data.viewindex.length) start = data.viewindex.length;
+        if (end   > data.viewindex.length) end   = data.viewindex.length;
+        $attr.val(data.viewindex);
+
+        $attr.prop({
+            'selectionStart': start,
+            'selectionEnd': end
+        });
+        return false;
+        
+    },
     getPlayerWidgetType: function (view,playerWidgetID) {
         return vis.views[view].widgets[playerWidgetID].data.formattype || '';
     },

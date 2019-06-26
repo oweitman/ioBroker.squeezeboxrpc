@@ -16,13 +16,13 @@
         type="text/ejs"
         class="vis-tpl"
 		data-vis-prev='<img src="widgets/squeezeboxrpc/img/players.png"></img>'
-        data-vis-attrs="ainstance/id;formattype[formatbutton]/select,,formatbutton,formatselect;viewindex;wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
+        data-vis-attrs="ainstance/id;formattype[formatbutton]/select,,formatbutton,formatselect;viewindex//checkViewIndex;wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
 		data-vis-attrs0="group.buttonsettings;picWidth[50]/number;picHeight[50]/number;opacity[0.5]/slider,0,1,0.05;borderwidth[2px]/number/editDimension;borderstyle[solid]/nselect,,none,hidden,dotted,dashed,solid,double,groove,ridge,inset,outset,initial,inherit;bordercolornormal[#2e2e2e]/color;bordercoloractive[#87ceeb]/color;borderradius[5px]/number/editDimension;buttonbkcolor[#000000]/color;buttonmargin[0px]/number/editDimension;"
 		data-vis-attrs1="group.buttons/byindex;buttonsImage(1-bCount)/image;buttonsText(1-bCount);"
         data-vis-set="squeezeboxrpc"
         data-vis-type="val"
         data-vis-beta="true"
-        data-vis-update-style="true"
+        data-vis-update-style="false"
         data-vis-name="Players">        
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
         vis.binds.squeezeboxrpc.players.createWidget(this.data.wid, this.view, this.data, this.style);
@@ -32,7 +32,7 @@
         type="text/ejs"
         class="vis-tpl"
 		data-vis-prev='<img src="widgets/squeezeboxrpc/img/favorites.png"></img>'
-        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;viewindex;bCount/hidden;editmodehelper[true]/checkbox;"
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;viewindex//checkViewIndex;bCount/hidden;editmodehelper[true]/checkbox;"
 		data-vis-attrs0="group.buttonsettings;picWidth[50]/number;picHeight[50]/number;opacity[0.5]/slider,0,1,0.05;borderwidth[2px]/number/editDimension;borderstyle[solid]/nselect,,none,hidden,dotted,dashed,solid,double,groove,ridge,inset,outset,initial,inherit;bordercolornormal[#2e2e2e]/color;bordercoloractive[#87ceeb]/color;borderradius[5px]/number/editDimension;buttonbkcolor[#000000]/color;buttonmargin[0px]/number/editDimension;"
 		data-vis-attrs1="group.buttons/byindex;buttonsImage(1-bCount)/image;buttonsText(1-bCount);"
         data-vis-set="squeezeboxrpc"
@@ -173,7 +173,7 @@
         data-vis-beta="true"
         data-vis-update-style="true"
         data-vis-name="String">        
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 50px; height: 20px" id="<%= this.data.attr('wid') %>"><%
+    <div class="vis-widget <%== this.data.attr('class') %>" style="width: 50px; height: 20px" id="<%= this.data.attr('wid') %>"><%
         vis.binds.squeezeboxrpc.string.createWidget(this.data.wid, this.view, this.data, this.style);
     %></div>
 </script>
@@ -221,4 +221,4 @@
     %>
     </div>
 </script>
-                                
+                                   
