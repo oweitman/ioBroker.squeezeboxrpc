@@ -76,6 +76,7 @@ vis.binds["squeezeboxrpc"] = {
         repeat1:  '<svg version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" stroke="#ffffff" stroke-width=".3"><path transform="scale(.26458)" d="m35.471 20.607c-8.2281 0-14.852 6.6235-14.852 14.852v29.055c0 8.2281 6.6235 14.852 14.852 14.852h15.297c-0.099283-0.23342-0.20508-0.4639-0.28516-0.70898-1.0314-3.157-0.36829-6.37 1.3789-9.084h-11.549c-5.4854 0-9.9004-4.415-9.9004-9.9004v-19.371c0-5.4853 4.415-9.9004 9.9004-9.9004h0.21094c-0.0026-0.04362-0.01758-0.08476-0.01758-0.12891v-9.6641zm25.035 0v9.6641c0 0.05752-0.0189 0.11131-0.02344 0.16797 1.6304 0.12928 3.1454 0.65289 4.4551 1.4707v-4.7422h10.172l-0.17773 3.0039v0.0078c0.0017 0.81652 0.51993 2.0016 1.6992 3.5879 0.75387 1.014 1.7283 2.1484 2.7461 3.3945v-1.7031c0-8.2281-6.6235-14.852-14.852-14.852zm14.426 28.418-0.0078 23.127c0.02228 1.1774-0.15778 2.3265-0.49805 3.4277 3.0352-2.7155 4.9512-6.6543 4.9512-11.066v-4.1504c-0.56305 0.11278-1.2016 0.10116-1.877-0.18359-1.5706-0.66221-1.9257-2.0105-2.0215-2.7676-0.09574-0.75705 3e-3 -1.3469 0.18359-1.9414 0.08357-0.27565 0.31768-3.3953-0.38281-5.7285-0.08795-0.29287-0.24795-0.45038-0.34766-0.7168z" fill="#fff" stroke="#fffffb" stroke-linecap="round"/><path d="m10.111 9.4094v-5.3598c-0.0082 0.01812-0.0021-0.17387 0.24672-0.34879 0.24874-0.17491 0.65793 0 0.65793 0l4.6078 2.7541s0.1702 0.09835 0.16971 0.29612c-5.03e-4 0.20056-0.1784 0.32361-0.1784 0.32361l-4.5991 2.7487s-0.39816 0.13052-0.65793-0.06357c-0.25976-0.19409-0.24672-0.35035-0.24672-0.35035z" /><path d="m19.028 7.9826h-1.0564v9.5915c-0.58411-0.2504-1.34-0.25388-2.0856 0.04816-1.3358 0.54165-2.1316 1.8592-1.7778 2.9424 0.35402 1.0835 1.7238 1.5224 3.0594 0.98077 1.1345-0.45993 1.8767-1.4796 1.8585-2.4399l0.0018-7.8441c1.842 0.32346 1.9681 2.9181 1.7475 3.6457-0.08378 0.27574 0.06375 0.48221 0.34217 0 1.9862-3.4426-2.0896-4.9615-2.0896-6.9244z" /></g></svg>',
         rew:      '<svg version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" stroke="#ffffff" stroke-miterlimit="4.1" stroke-width=".3"><path d="m21.082 18.805c-9.3e-5 -3.7545 1.87e-4 -7.509-1.4e-4 -11.263-0.13349-0.79848-1.117-1.0848-1.7334-0.63234-2.8067 1.9183-5.6203 3.8271-8.4226 5.7514-0.52184 0.44634-0.18084 1.2199 0.36377 1.4624 2.7112 1.8495 5.4224 3.6989 8.1336 5.5484 0.68912 0.2915 1.546-0.09983 1.6587-0.86625z"/><path d="m15.791 18.805c-8.7e-5 -3.7545 1.73e-4 -7.509-1.3e-4 -11.263-0.13345-0.79849-1.1171-1.0848-1.7334-0.63234-2.8067 1.9183-5.6203 3.8271-8.4226 5.7514-0.52184 0.44634-0.18084 1.2199 0.36377 1.4624 2.7112 1.8495 5.4224 3.6989 8.1336 5.5484 0.68912 0.2915 1.546-0.09982 1.6587-0.86625z"/><path d="m7.5828 5.3572c-0.68239 0.014305-1.3705-0.02913-2.0492 0.022654-0.31228 0.23669-0.12538 0.69262-0.1764 1.0359v14.396c0.087332 0.45287 0.63952 0.23962 0.96802 0.28916 0.45618-0.01348 0.91782 0.028 1.3703-0.02265 0.31228-0.23669 0.12538-0.69262 0.1764-1.0359v-14.396c0.00417-0.15504-0.13412-0.29333-0.28916-0.28916z" stroke-linecap="round"/></g></svg>'
     },
+    playerattributes: ['Playername','PlayerID','Connected','IP','Power','Mode','Time','Rate','SyncSlaves','SyncMaster','Volume','PlaylistRepeat','PlaylistShuffle','Remote','Playlist','PlaylistCurrentIndex','state','Duration','Bitrate','Album','ArtworkUrl','Genre','Type','Title','Artist','Url','RadioName'],
     favorites : {
 
         createWidget: function (widgetID, view, data, style) {
@@ -344,91 +345,109 @@ vis.binds["squeezeboxrpc"] = {
                     redrawinspectwidgets = true;
                 }
                 
-                var text = '';        
-                
-                text += '<style>\n';
-                text += '#'+widgetID + ' div {\n';
-                text += '     display: inline-block; \n';
-                text += '}\n';
-                text += '#'+widgetID + ' div div {\n';
-                text += '     position: relative; \n';
-                text += '     margin: 0px '+buttonmargin+' '+buttonmargin+' 0px; \n';
-                text += '}\n';
-                text += '#'+widgetID + ' input[type="radio"] {\n';
-                text += '    display: none;\n';
-                text += '}\n';
-                text += '#'+widgetID + ' img {\n';
-                text += '    opacity: '+opacity+';\n';
-                text += '    width: '+picWidth+'px;\n';
-                text += '    height: '+picHeight+'px;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolornormal+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '#'+widgetID + ' canvas {\n';
-                text += '    opacity: '+opacity+';\n';
-                text += '    width: '+picWidth+'px;\n';
-                text += '    height: '+picHeight+'px;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolornormal+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '#'+widgetID + ' img:active {\n';
-                text += '    transform: scale(0.9, 0.9);\n';
-                text += '    opacity: 1;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '#'+widgetID + ' canvas:active {\n';
-                text += '    transform: scale(0.9, 0.9);\n';
-                text += '    opacity: 1;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '#'+widgetID + ' input[type="radio"]:checked + label img {\n';
-                text += '    opacity: 1;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '#'+widgetID + ' input[type="radio"]:checked + label canvas {\n';
-                text += '    opacity: 1;\n';
-                text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
-                text += '    border-radius: '+borderradius+';\n';
-                text += '}\n';
-                text += '</style>\n';
-                
-                text += '<div id="'+widgetID+'container" >';
-                for (var i = 0; i < viewindex.length;i++) {
-                    text += '  <div >';
-                    text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
-                    text += '    <label for="'+ widgetID + players[viewindex[i]] + '">';
-                    text += '      <span>';
-                    var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
-                    if (buttonsImage.trim() !='') {
-                        text += '        <img src="'+ data['buttonsImage'+(viewindex[i]+1)] +'">';
-                    }
-                    text += '      </span>';
-                    text += '    </label>';
-                    if (vis.editMode && editmodehelper) {
-                        text += '<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;margin:0px;">'+ viewindex[i] + '</div>';
-                    }
-                    text += '  </div>';
-                }
-                text += '</div>';
-                
-                $('#' + widgetID).html(text);
+                if (data.formattype == 'formatselect') {
 
-                var spans = $('#' + widgetID + ' span');
-                var font = new Font($('#' + widgetID).css('font'));
-                var opt = {};
-                opt.wrapCamelCase=data.wrapcamelcase;
-                opt.style = window.getComputedStyle($('#' + widgetID)[0],null);
-                opt.backgroundcolor = data.buttonbkcolor;
-                var i=0;
-                for (var i = 0; i< viewindex.length;i++) {
-                    var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
-                    var buttonsText  = (data['buttonsText'+(viewindex[i]+1)]) || '';
-                    buttonsText = (buttonsText.trim() !='') ? buttonsText : players[viewindex[i]];
-                    if (buttonsImage.trim() =='') {
-                        $(spans[i]).append(createTextImage( buttonsText, font, picWidth, picHeight,opt));
+                    var text='';
+                    var option='';
+                    option += '<option value=""></option>';
+                    for (var i = 0; i < viewindex.length;i++) {
+                        var buttonsText  = (data['buttonsText'+(viewindex[i]+1)]) || '';
+                        buttonsText = (buttonsText.trim() !='') ? buttonsText : players[viewindex[i]];
+                        
+                        option += '<option value="' + players[viewindex[i]] + '">'+buttonsText+'</option>';
+                    }
+                    text += '<select type="text" id="'+ widgetID + 'select">'+option+'</select>';
+                    $('#' + widgetID).html(text);
+                
+                }
+                if (data.formattype == 'formatbutton') {
+                    
+                    var text = '';        
+                    
+                    text += '<style>\n';
+                    text += '#'+widgetID + ' div {\n';
+                    text += '     display: inline-block; \n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' div div {\n';
+                    text += '     position: relative; \n';
+                    text += '     margin: 0px '+buttonmargin+' '+buttonmargin+' 0px; \n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' input[type="radio"] {\n';
+                    text += '    display: none;\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' img {\n';
+                    text += '    opacity: '+opacity+';\n';
+                    text += '    width: '+picWidth+'px;\n';
+                    text += '    height: '+picHeight+'px;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolornormal+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' canvas {\n';
+                    text += '    opacity: '+opacity+';\n';
+                    text += '    width: '+picWidth+'px;\n';
+                    text += '    height: '+picHeight+'px;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercolornormal+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' img:active {\n';
+                    text += '    transform: scale(0.9, 0.9);\n';
+                    text += '    opacity: 1;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' canvas:active {\n';
+                    text += '    transform: scale(0.9, 0.9);\n';
+                    text += '    opacity: 1;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' input[type="radio"]:checked + label img {\n';
+                    text += '    opacity: 1;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '#'+widgetID + ' input[type="radio"]:checked + label canvas {\n';
+                    text += '    opacity: 1;\n';
+                    text += '    border: '+borderwidth+' '+borderstyle+' '+bordercoloractive+';\n';
+                    text += '    border-radius: '+borderradius+';\n';
+                    text += '}\n';
+                    text += '</style>\n';
+                    
+                    text += '<div id="'+widgetID+'container" >';
+                    for (var i = 0; i < viewindex.length;i++) {
+                        text += '  <div >';
+                        text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
+                        text += '    <label for="'+ widgetID + players[viewindex[i]] + '">';
+                        text += '      <span>';
+                        var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
+                        if (buttonsImage.trim() !='') {
+                            text += '        <img src="'+ data['buttonsImage'+(viewindex[i]+1)] +'">';
+                        }
+                        text += '      </span>';
+                        text += '    </label>';
+                        if (vis.editMode && editmodehelper) {
+                            text += '<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;margin:0px;">'+ viewindex[i] + '</div>';
+                        }
+                        text += '  </div>';
+                    }
+                    text += '</div>';
+                    
+                    $('#' + widgetID).html(text);
+
+                    var spans = $('#' + widgetID + ' span');
+                    var font = new Font($('#' + widgetID).css('font'));
+                    var opt = {};
+                    opt.wrapCamelCase=data.wrapcamelcase;
+                    opt.style = window.getComputedStyle($('#' + widgetID)[0],null);
+                    opt.backgroundcolor = data.buttonbkcolor;
+                    var i=0;
+                    for (var i = 0; i< viewindex.length;i++) {
+                        var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
+                        var buttonsText  = (data['buttonsText'+(viewindex[i]+1)]) || '';
+                        buttonsText = (buttonsText.trim() !='') ? buttonsText : players[viewindex[i]];
+                        if (buttonsImage.trim() =='') {
+                            $(spans[i]).append(createTextImage( buttonsText, font, picWidth, picHeight,opt));
+                        }
                     }
                 }
                 if (vis.editMode && redrawinspectwidgets) vis.inspectWidgets(view, view);
@@ -1146,7 +1165,7 @@ vis.binds["squeezeboxrpc"] = {
 
             var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
             if (!ainstance) return;
-            
+                        
             var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
     
             vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(fdata){
@@ -1167,6 +1186,11 @@ vis.binds["squeezeboxrpc"] = {
                 return boundstates;
             });
             vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+
+            if (vis.binds["squeezeboxrpc"].getPlayerWidgetType(view,data.widgetPlayer) == 'formatselect') {
+                $div.html("Only Player formattype button is supported");
+                return false;
+            }            
             
             var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
 
@@ -1457,7 +1481,211 @@ vis.binds["squeezeboxrpc"] = {
             $('#' + widgetID + ' div.playtimebar').width(width+"%");            
         },        
     },
+    string : {
+        createWidget: function (widgetID, view, data, style) {
+            var $div = $('#' + widgetID);
+                        if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].string.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+            
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.' + data.playerattribute);
+                }
+                return boundstates;
+            });
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+          
+            this.setState(fdata);
+        },
+        onChange: function(e, newVal, oldVal) {
+            this.self.setState(this);
+        },
+        setState: function(fdata) {
+            var data = fdata.data;
+            var widgetID = fdata.widgetID;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid = data.ainstance.join('.')+".Players"+"."+playername+'.' + data.playerattribute;       
+            
+            var state = (vis.states[stateid+ '.val']) ? vis.states[stateid+ '.val'] : '';
+            if (vis.editMode) state = data.test_html || '';
+            var html_prepend = data.html_prepend || '';
+            var html_append = data.html_append || '';
+            $('#'+widgetID).html(html_prepend+state+html_append);
+        },        
+    },    
+    number : {
+        createWidget: function (widgetID, view, data, style) {
+            var $div = $('#' + widgetID);
+                        if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].number.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+            
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.' + data.playerattribute);
+                }
+                return boundstates;
+            });
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+          
+            this.setState(fdata);
+        },
+        onChange: function(e, newVal, oldVal) {
+            this.self.setState(this);
+        },
+        setState: function(fdata) {
+            var data = fdata.data;
+            var widgetID = fdata.widgetID;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid = data.ainstance.join('.')+".Players"+"."+playername+'.' + data.playerattribute;       
+            
+            var state = (vis.states[stateid+ '.val']) ? vis.states[stateid+ '.val'] : '';
+            if (vis.editMode) state = data.test_html || '';
+            state = parseFloat(state);
+            if (state === undefined || state === null || isNaN(state) )  state = 0;
+            if (data.digits || data.digits !== '')      state = state.toFixed(parseFloat(data.digits, 10));
+            if (data.is_tdp && data.is_tdp !== '') {
+                state = state.toString().split('.');
+                state[0] = state[0].replace(/\d{1,3}(?=(\d{3})+(?!\d))/g,"$&,");
+                state = state.join('.');
+            }            
+            if (data.is_comma && data.is_comma !== '')  state = state.split('.').map(e => e.replace(/,/g,'.')).join(',');
 
+            var html_prepend = data.html_prepend || '';
+            var html_append = data.html_append || '';
+            $('#'+widgetID).html(html_prepend+state+html_append);
+        },        
+    },
+    datetime : {
+        createWidget: function (widgetID, view, data, style) {
+            var $div = $('#' + widgetID);
+                        if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].datetime.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+            
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.' + data.playerattribute);
+                }
+                return boundstates;
+            });
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+          
+            this.setState(fdata);
+        },
+        onChange: function(e, newVal, oldVal) {
+            this.self.setState(this);
+        },
+        setState: function(fdata) {
+            var data = fdata.data;
+            var widgetID = fdata.widgetID;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid = data.ainstance.join('.')+".Players"+"."+playername+'.' + data.playerattribute;       
+            
+            var state = (vis.states[stateid+ '.val']) ? vis.states[stateid+ '.val'] : '';
+            if (vis.editMode) state = data.test_html || '';
+            if (data.factor && data.factor !== '') state = state * data.factor;
+            var offset = 1000*60*new Date(0).getTimezoneOffset()
+            state = new Date(offset+state);
+            if (isNaN(state)) state = '';
+            if (state instanceof Date) state = state.format(data.format);
+            var html_prepend = data.html_prepend || '';
+            var html_append = data.html_append || '';
+            $('#'+widgetID).html(html_prepend+state+html_append);
+        },        
+    },    
+    image: {
+        createWidget: function (widgetID, view, data, style) {
+            var $div = $('#' + widgetID);
+                        if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds["squeezeboxrpc"].image.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            
+            data = vis.views[view].widgets[widgetID].data;
+            style = vis.views[view].widgets[widgetID].style;
+            
+            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
+            if (!ainstance) return;
+            
+            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
+            
+            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
+                var boundstates = [];
+                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
+                for (var i=0;i<players.length;i++) {
+                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.' + data.playerattribute);
+                }
+                return boundstates;
+            });
+            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
+            var imgstyle = "width:100%;";
+            if (data.stretch) imgstyle += "height:100%;";
+            var text = '';
+            text +=data.html_prepend || '';
+            text += '<img style="'+imgstyle+'"></img> \n';
+            text +=data.html_append || '';
+            $('#' + widgetID).html(text);          
+            this.setState(fdata);
+
+        },
+        onChange: function(e, newVal, oldVal) {
+            this.self.setState(this);
+        },
+        setState: function(fdata) {
+            var data = fdata.data;
+            var widgetID = fdata.widgetID;
+            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            var stateid = data.ainstance.join('.')+".Players"+"."+playername+'.' + data.playerattribute;       
+            
+            var state = (vis.states[stateid+ '.val']) ? vis.states[stateid+ '.val'] : '';
+            if (vis.editMode) state = data.test_html || '';
+
+            $('#'+widgetID + ' img').attr('src',state);
+        },        
+    },
+    
+    getPlayerWidgetType: function (view,playerWidgetID) {
+        return vis.views[view].widgets[playerWidgetID].data.formattype || '';
+    },
     checkAttributes: function ($div,widgetPlayer) {
         if (!widgetPlayer) {
             $div.html("Please select a player widget");
@@ -1524,6 +1752,17 @@ vis.binds["squeezeboxrpc"] = {
                 input: '<select type="text" id="inspect_' + wid_attr + '">'+html+'</select>'
             };
             return line;
+    },
+    playerAttrSelect: function (wid_attr, options) {
+            var html='';
+            var playerattributes = vis.binds["squeezeboxrpc"].playerattributes.sort();
+            for (var i=0;i < playerattributes.length;i++) {
+                html += '<option value="'+playerattributes[i]+'">'+playerattributes[i]+'</option>';
+            }
+            var line = {
+                input: '<select type="text" id="inspect_' + wid_attr + '">'+html+'</select>'
+            };
+            return line;
     },        
     findPlayerWidgets: function() {
         var widgets = vis.views[vis.activeView].widgets;
@@ -1544,13 +1783,13 @@ vis.binds["squeezeboxrpc"] = {
         return result;
     },
     getPlayerValues: function(widgetPlayer) {
-        return $("input[name="+widgetPlayer+"]").toArray().reduce(function(acc,cur){
-             acc.push($(cur).val());
+        return $("input[name="+widgetPlayer+"], #"+widgetPlayer+" option").toArray().reduce(function(acc,cur){
+             if ($(cur).val()) acc.push($(cur).val());
              return acc;
         },[]);
     },
     getPlayerName: function(widgetPlayer) {
-        return $("input[name="+widgetPlayer+"]:checked").val();
+        return $("input[name="+widgetPlayer+"]:checked, #"+widgetPlayer+" option:checked").val();
     },
     onHorizChange: function(widgetID, view, newId, attr, isCss) {
         var a = 0;

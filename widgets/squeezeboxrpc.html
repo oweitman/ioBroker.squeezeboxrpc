@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="widgets/squeezeboxrpc/css/style.css" />
 <!-- here you can include so many js-files as you want -->
 <script type="text/javascript" src="widgets/squeezeboxrpc/js/textImage.js"></script>
+<script type="text/javascript" src="widgets/squeezeboxrpc/js/date.format.js"></script>
 <script type="text/javascript" src="widgets/squeezeboxrpc/js/squeezeboxrpc.js"></script>
 
 <script id="tplSqueezeboxrpcPlayer"
         type="text/ejs"
         class="vis-tpl"
 		data-vis-prev='<img src="widgets/squeezeboxrpc/img/players.png"></img>'
-        data-vis-attrs="ainstance/id;viewindex;wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
+        data-vis-attrs="ainstance/id;formattype[formatbutton]/select,,formatbutton,formatselect;viewindex;wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
 		data-vis-attrs0="group.buttonsettings;picWidth[50]/number;picHeight[50]/number;opacity[0.5]/slider,0,1,0.05;borderwidth[2px]/number/editDimension;borderstyle[solid]/nselect,,none,hidden,dotted,dashed,solid,double,groove,ridge,inset,outset,initial,inherit;bordercolornormal[#2e2e2e]/color;bordercoloractive[#87ceeb]/color;borderradius[5px]/number/editDimension;buttonbkcolor[#000000]/color;buttonmargin[0px]/number/editDimension;"
 		data-vis-attrs1="group.buttons/byindex;buttonsImage(1-bCount)/image;buttonsText(1-bCount);"
         data-vis-set="squeezeboxrpc"
@@ -162,4 +163,62 @@
         vis.binds.squeezeboxrpc.playtime.createWidget(this.data.wid, this.view, this.data, this.style);
     %></div>
 </script>
-      
+<script id="tplSqueezeboxrpcString"
+        type="text/ejs"
+        class="vis-tpl"
+		data-vis-prev='<img src="widgets/squeezeboxrpc/img/string.png"></img>'
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;test_html;"
+        data-vis-set="squeezeboxrpc"
+        data-vis-type="val"
+        data-vis-beta="true"
+        data-vis-update-style="true"
+        data-vis-name="String">        
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 50px; height: 20px" id="<%= this.data.attr('wid') %>"><%
+        vis.binds.squeezeboxrpc.string.createWidget(this.data.wid, this.view, this.data, this.style);
+    %></div>
+</script>
+<script id="tplSqueezeboxrpcNumber"
+        type="text/ejs"
+        class="vis-tpl"
+		data-vis-prev='<img src="widgets/squeezeboxrpc/img/number.png"></img>'
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;html_prepend;html_append;test_html;group.extended;digits;is_comma[true]/checkbox;is_tdp/checkbox;"
+        data-vis-set="squeezeboxrpc"
+        data-vis-type="val"
+        data-vis-beta="true"
+        data-vis-update-style="true"
+        data-vis-name="Number">        
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 50px; height: 20px" id="<%= this.data.attr('wid') %>"><%
+        vis.binds.squeezeboxrpc.number.createWidget(this.data.wid, this.view, this.data, this.style);
+    %></div>
+</script>
+<script id="tplSqueezeboxrpcDateTime"
+        type="text/ejs"
+        class="vis-tpl"
+		data-vis-prev='<img src="widgets/squeezeboxrpc/img/datetime.png"></img>'
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;html_prepend;html_append;test_html;format;factor/number;"
+        data-vis-set="squeezeboxrpc"
+        data-vis-type="val"
+        data-vis-beta="true"
+        data-vis-update-style="false"
+        data-vis-name="DateTime">        
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 50px; height: 20px" id="<%= this.data.attr('wid') %>"><%
+        vis.binds.squeezeboxrpc.datetime.createWidget(this.data.wid, this.view, this.data, this.style);
+    %></div>
+</script>
+<script id="tplSqueezeboxrpcImage"
+        type="text/ejs"
+        class="vis-tpl"
+		data-vis-prev='<img src="widgets/squeezeboxrpc/img/image.png"></img>'
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;stretch/checkbox;html_prepend;html_append;test_html;"
+        data-vis-set="squeezeboxrpc"
+        data-vis-type="val"
+        data-vis-beta="true"
+        data-vis-update-style="true"
+        data-vis-name="Image">        
+    <div class="vis-widget <%== this.data.attr('class') %>" style="width: 100px; height: 100px" id="<%= this.data.attr('wid') %>">
+    <%
+        vis.binds.squeezeboxrpc.image.createWidget(this.data.wid, this.view, this.data, this.style);
+    %>
+    </div>
+</script>
+                                

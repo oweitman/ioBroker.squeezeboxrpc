@@ -235,7 +235,7 @@ Abstand um ein Segment herum in Pixel.
 <br><br>
 
 
-<h3><a name="tplSqueezeboxrpcPlayer" ></a>SyncGroup Knopfleiste</h3>
+<h3><a name="tplSqueezeboxrpcSyncgroup" ></a>SyncGroup Knopfleiste</h3>
 <img src="img/syncgroups.png"/><br>
 Über dieses Widget kann in Verbindung mit dem Playerwidget die Synchonisation der Player untereinander gesteuert werden.<br>
 Die meisten Einstellungen zur Anzahl der Knöpfe, der Beschriftung oder Bildern wird vom Playerwidget übernommen.<br>
@@ -263,7 +263,109 @@ Für gebogene Randeckecn, kann hier ein Radius in Pixel eingegeben werden
 Hintergrundfarbe bei Text
 <br><br>
 
+<h3><a name="tplSqueezeboxrpcPlaytime" ></a>Playtime Balken</h3>
+<img src="img/playtime.png"/><br>
+Der Playtime Balken zeigt den Fortschritt des gerade gespielten Titels visuell an, sofern eine Gesamtlaufzeit (Duration) vom Server
+mitgegeben wird. Bei Online-Streams, ist das meist nicht der Fall. Die Breite des Balkens sind 100% Spielzeit des Titels.
+Über einen Klick auf eine entsprechende Stelle des Balkens, kann an die gewünschte Stelle des Liedes gesprungen werden.
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Balkenhauptfarbe - Gruppe Allgemein</h5>
+Die Hintergrundfarbe des Balkens, für noch nicht gespielte Zeiten
+<h5>Playtimefarbe - Gruppe Allgemein</h5>
+Die Farbe des Balkens, für gespielte Zeiten
+<h5>Rahmenbreite - Gruppe Allgemein</h5>
+Rahmenbreite/Randbreite in Pixel um den Knopf
+<h5>Randdarstellung - Gruppe Allgemein</h5>
+Art der Randdarstellung bspw durchgezogen, gestrichelt.
+<h5>Randfarbe - Gruppe Allgemein</h5>
+Farbe des Randes um den Balken.
+<h5>border-radius - Gruppe Allgemein</h5>
+Für gebogene Randeckecn, kann hier ein Radius in Pixel eingegeben werden
+<br><br>
 
+<h3><a name="tplSqueezeboxrpcString" ></a>String/Zeichenkette</h3>
+<img src="img/string.png"/><br>
+Darstellung von Player-individuellen Zeichenketten
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Player Attribut - Gruppe Allgemein</h5>
+Auswahlliste aller verfügbaren Attribute eines Players
+<h5>Testtext - Gruppe Allgemein</h5>
+Text, der im Editor testweise angezeigt werden soll
+<br><br>
+
+<h3><a name="tplSqueezeboxrpcNumber" ></a>Zahl/Number</h3>
+<img src="img/number.png"/><br>
+Darstellung von Zahlen mit zusätzlichen Formatierungsoptionen
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Player Attribut - Gruppe Allgemein</h5>
+Auswahlliste aller verfügbaren Attribute eines Players
+<h5>HTML Voranstellen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl vorangestellt wird.
+<h5>HTML anhängen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl angehängt wird.
+<h5>Testtext - Gruppe Allgemein</h5>
+Text, der im Editor testweise angezeigt werden soll
+<h5>Zeichen nach Komma - Erweiterte Einstellungen</h5>
+Anzahl der Nachkommastellen
+<h5>Komma als Trennung - Erweiterte Einstellungen</h5>
+Zum trennen der Nachkommastellen wird anders wie im amerikanischen ein Komma verwendet.
+<h5>Tausender Trennzeichen - Erweiterte Einstellungen</h5>
+Bei großen Zahlen, wird alle 3stellen ein Komma oder Punkt eingefügt. Abhängig von der Einstellung "Komma als Trennung"
+<br><br>
+
+<h3><a name="tplSqueezeboxrpcDateTime" ></a>Datum Zeit/Date Time</h3>
+<img src="img/datetime.png"/><br>
+Darstellung von Zeiten/Uhrzeiten/Datum mit Formatierungsoptionen.
+Der Wert muss als Zahl in Millisekunden vorliegen und nicht als bereits formatierte Datumszeichenkette.
+Falls der Wert noch nicht in Millisekunden vorliegt, kann über das Feld ein entpsrechender Faktor erfasst werden.
+bspw. Sekunden = 1000, Minuten = 60000, Stunden = 3600000, Tage= 86400000
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Player Attribut - Gruppe Allgemein</h5>
+Auswahlliste aller verfügbaren Attribute eines Players
+<h5>HTML Voranstellen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl vorangestellt wird.
+<h5>HTML anhängen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl angehängt wird.
+<h5>Testtext - Gruppe Allgemein</h5>
+Text, der im Editor testweise angezeigt werden soll
+<h5>Multiplikation - Erweiterte Einstellungen</h5>
+Multiplikation des zugrundeliegenden Wertes, um auf Millisekunden zu kommen.
+<h5>Format - Erweiterte Einstellungen</h5>
+Zeichenkette um das Ergebnis entsprechend zu formatieren.
+alle Formatangaben vgl. <a href="https://github.com/jacwright/date.format">Github date.format.js</a><br>
+Beispiel: "H:i:s" im format 00:00:00 für Stunden:Minuten:Sekunden mit führender 0 im 24 Stundenformat.
+<br><br>
+
+<h3><a name="tplSqueezeboxrpcImage" ></a>Bild/Image</h3>
+<img src="img/image.png"/><br>
+Darstellung von Bildern auf Basis von Links aus einem Playerattribut.
+Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.<br>
+<h4>Attribute</h4>
+<h5>Player widget - Gruppe Allgemein</h5>
+Auswahl des Player widgets.
+<h5>Player Attribut - Gruppe Allgemein</h5>
+Auswahlliste aller verfügbaren Attribute eines Players
+<h5>Strecken - Gruppe Allgemein</h5>
+Bild wird entsprechend der Größe des Widgets gestreckt.´
+<h5>HTML Voranstellen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl vorangestellt wird.
+<h5>HTML anhängen - Gruppe Allgemein</h5>
+Text oder HTML-Code, der der Zahl angehängt wird.
+<h5>Testtext - Gruppe Allgemein</h5>
+Bilderlink, der im Editor testweise angezeigt werden soll
+<br><br>
 
 
 </body>
