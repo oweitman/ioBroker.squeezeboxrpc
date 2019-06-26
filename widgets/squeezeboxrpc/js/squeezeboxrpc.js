@@ -212,7 +212,7 @@ vis.binds["squeezeboxrpc"] = {
                 $('#' + widgetID).html(text);
 
                 var spans = $('#' + widgetID + ' span');
-                var font = new Font($('#' + widgetID).css('font'));
+                var font = new Font($('#' + widgetID));
                 var opt = {};
 
                 opt.style = window.getComputedStyle($('#' + widgetID)[0],null);
@@ -422,7 +422,7 @@ vis.binds["squeezeboxrpc"] = {
                     $('#' + widgetID).html(text);
 
                     var spans = $('#' + widgetID + ' span');
-                    var font = new Font($('#' + widgetID).css('font'));
+                    var font = new Font($('#' + widgetID));
                     var opt = {};
                     opt.wrapCamelCase=data.wrapcamelcase;
                     opt.style = window.getComputedStyle($('#' + widgetID)[0],null);
@@ -1782,7 +1782,7 @@ vis.binds["squeezeboxrpc"] = {
             $div.data('bound', bound);
             $div.data('bindHandler', change_callback);
         }.bind({fdata,change_callback}));                
-    },            
+    },
     attrSelect: function (wid_attr, options) {
             if (wid_attr === 'widgetPlayer') var options = this.findPlayerWidgets();
             if (wid_attr === 'widgetFavorites') var options = this.findFavoritesWidgets();
