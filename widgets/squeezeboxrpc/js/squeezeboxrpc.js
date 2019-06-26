@@ -57,6 +57,7 @@ if (vis.editMode) {
         });
 }
 
+
 vis.binds["squeezeboxrpc"] = {
     version: "0.6.0",
     showVersion: function () {
@@ -1098,7 +1099,8 @@ vis.binds["squeezeboxrpc"] = {
             text += '</div> \n';
             $('#' + widgetID).html(text);
             $('#' + widgetID + ' div.level').on('click.volume',fdata,this.onClick);
-            if (vis.editMode) this.setState(fdata);            
+            if (vis.editMode) this.setState(fdata);
+            console.warn('volumebar');
             if (vis.editMode) vis.inspectWidgets(view, view);
             
             
@@ -1668,16 +1670,20 @@ vis.binds["squeezeboxrpc"] = {
     },
     
     redrawInspectWidgets: function (view) {
+        console.warn('redrawInspectWidgets');
         if (window.Selection) {
             if (window.getSelection()) var sel = window.getSelection();
             if (sel.anchorNode) {
                 var $edit = $(sel.anchorNode).find('input, textarea').first();
+                var id = $edit.attr('id');
                 var start = $edit.prop('selectionStart');
                 var end   = $edit.prop('selectionEnd');
             } 
         }
         vis.inspectWidgets(view, view);
+        var $edit = $('#'+id);
         if ($edit) {
+            $edit.focus();
             $edit.prop({
                 'selectionStart': start,
                 'selectionEnd': end
@@ -1701,18 +1707,21 @@ vis.binds["squeezeboxrpc"] = {
 
         if (viewindex.length > viewindexcheck.length) viewindex = viewindex.slice(0,viewindexcheck.length);
         data.viewindex = viewindex.join(', ');
-        var $attr = $('#inspect_viewindex');
-        
-        var start = $attr.prop('selectionStart');
-        var end   = $attr.prop('selectionEnd');
+        var $edit = $('#inspect_viewindex');
+        var id = $edit.attr('id');
+        var start = $edit.prop('selectionStart');
+        var end   = $edit.prop('selectionEnd');
         if (start > data.viewindex.length) start = data.viewindex.length;
         if (end   > data.viewindex.length) end   = data.viewindex.length;
-        $attr.val(data.viewindex);
-
-        $attr.prop({
-            'selectionStart': start,
-            'selectionEnd': end
-        });
+        $edit.val(data.viewindex);
+        var $edit = $('#inspect_viewindex');
+        if ($edit) {
+            $edit.focus();
+            $edit.prop({
+                'selectionStart': start,
+                'selectionEnd': end
+            });
+        }
         return false;
         
     },
