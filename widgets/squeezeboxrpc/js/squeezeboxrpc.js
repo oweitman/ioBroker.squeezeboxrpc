@@ -115,6 +115,7 @@ vis.binds["squeezeboxrpc"] = {
                 var bordercoloractive = data.bordercoloractive;
                 var borderradius = data.borderradius;
                 var buttonbkcolor = data.buttonbkcolor;   
+                var buttonmargin        = data.buttonmargin || '0px';
 
                 if (vis.editMode) {
                     if (!data.viewindex || data.viewindex.trim() == "") {
@@ -136,6 +137,10 @@ vis.binds["squeezeboxrpc"] = {
                 text += '<style>\n';
                 text += '#'+widgetID + ' div {\n';
                 text += '     display: inline-block; \n';
+                text += '}\n';
+                text += '#'+widgetID + ' div div {\n';
+                text += '     position: relative; \n';
+                text += '     margin: 0px '+buttonmargin+' '+buttonmargin+' 0px; \n';
                 text += '}\n';
                 text += '#'+widgetID + ' input[type="radio"] {\n';
                 text += '    display: none;\n';
@@ -181,7 +186,7 @@ vis.binds["squeezeboxrpc"] = {
                 text += '<div id="'+widgetID+'container">';
                 for (var i = 0; i < viewindex.length;i++) {
                     var favorite = this.findById(favorites,viewindex[i]);
-                    text += '  <div style="position:relative;">';
+                    text += '  <div>';
                     text += '    <input type="radio" id="'+ widgetID + favorite.id +'" name="'+widgetID+'" value="' + favorite.id + '" >';
                     text += '    <label for="'+ widgetID + favorite.id + '">';
                     text += '      <span>';
@@ -323,7 +328,8 @@ vis.binds["squeezeboxrpc"] = {
                 var bordercolornormal   = data.bordercolornormal;
                 var bordercoloractive   = data.bordercoloractive;
                 var borderradius        = data.borderradius;
-                var buttonbkcolor       = data.buttonbkcolor;            
+                var buttonbkcolor       = data.buttonbkcolor;
+                var buttonmargin        = data.buttonmargin || '0px';
                 
                 if (vis.editMode) {
                     if (!data.viewindex || data.viewindex.trim() == "") {
@@ -343,6 +349,10 @@ vis.binds["squeezeboxrpc"] = {
                 text += '<style>\n';
                 text += '#'+widgetID + ' div {\n';
                 text += '     display: inline-block; \n';
+                text += '}\n';
+                text += '#'+widgetID + ' div div {\n';
+                text += '     position: relative; \n';
+                text += '     margin: 0px '+buttonmargin+' '+buttonmargin+' 0px; \n';
                 text += '}\n';
                 text += '#'+widgetID + ' input[type="radio"] {\n';
                 text += '    display: none;\n';
@@ -387,7 +397,7 @@ vis.binds["squeezeboxrpc"] = {
                 
                 text += '<div id="'+widgetID+'container" >';
                 for (var i = 0; i < viewindex.length;i++) {
-                    text += '  <div style="position: relative;">';
+                    text += '  <div >';
                     text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
                     text += '    <label for="'+ widgetID + players[viewindex[i]] + '">';
                     text += '      <span>';
@@ -398,7 +408,7 @@ vis.binds["squeezeboxrpc"] = {
                     text += '      </span>';
                     text += '    </label>';
                     if (vis.editMode && editmodehelper) {
-                        text += '<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;">'+ viewindex[i] + '</div>';
+                        text += '<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;margin:0px;">'+ viewindex[i] + '</div>';
                     }
                     text += '  </div>';
                 }
@@ -1170,12 +1180,17 @@ vis.binds["squeezeboxrpc"] = {
             var bordercolorowngroup   = data.bordercolorowngroup;
             var bordercolorothergroup   = data.bordercolorothergroup;
             var borderradius        = data.borderradius;
-            var buttonbkcolor       = data.buttonbkcolor;            
-
+            var buttonbkcolor       = data.buttonbkcolor;
+            var buttonmargin        = data.buttonmargin || '0px';
+            
             var text = '';        
             text += '<style>\n';
             text += '#'+widgetID + ' div {\n';
             text += '     display: inline-block; \n';
+            text += '}\n';
+            text += '#'+widgetID + ' div div {\n';
+            text += '     position: relative; \n';
+            text += '     margin: 0px '+buttonmargin+' '+buttonmargin+' 0px; \n';
             text += '}\n';
             text += '#'+widgetID + ' input[type="checkbox"] {\n';
             text += '    display: none;\n';
@@ -1221,7 +1236,7 @@ vis.binds["squeezeboxrpc"] = {
                 var stateid = data.ainstance.join('.') + ".Players"+"." + players[i] + ".PlayerID";
                 var playerid = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? vis.states[stateid+ '.val'] : "";
                 valid = valid || playerid;
-                text += '  <div style="position: relative;">';
+                text += '  <div>';
                 text += '    <input type="checkbox" id="'+ widgetID + players[i] +'" name="'+widgetID+'" playername="'+ players[i] +'" value="' + playerid + '" disabled>';
                 text += '    <label for="'+ widgetID + players[i] + '">';
                 text += '      <span>';
