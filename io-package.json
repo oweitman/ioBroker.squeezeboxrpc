@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.16",
+        "version": "0.8.17",
         "news": {
+            "0.8.17": {
+                "en": "add more widges: playtime bar, string, number, datetime, image. add button margin to player and favorite widget, improve editing of viewindex. do some refactoring."
+            },
             "0.8.16": {
                 "en": "resolve a cross browser issue for firefox. the style.font attribute is empty and you have to construct the font string by yourself"
             },

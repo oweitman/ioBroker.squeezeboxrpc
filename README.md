@@ -165,6 +165,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.17 (2019-06-26)
+* add more widges: playtime bar, string, number, datetime, image. add button margin to player and favorite widget, improve editing of viewindex. do some refactoring.
 ### 0.8.16 (2019-06-24)
 * resolve a cross browser issue for firefox. the style.font attribute is empty and you have to construct the font string by yourself
 ### 0.8.15 (2019-06-19)

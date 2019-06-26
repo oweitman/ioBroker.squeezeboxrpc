@@ -121,7 +121,11 @@ vis.binds["squeezeboxrpc"] = {
                 var buttonbkcolor = data.buttonbkcolor;   
                 var buttonmargin        = data.buttonmargin || '0px';
                
-                if (vis.editMode && data.bCount != Math.min(favorites.length,data.viewindex.split(',').length)) {
+                if (!data.viewindex || data.viewindex.trim() == "") {
+                    data.viewindex = this.getViewindex(favorites).join(", ");
+                }
+
+               if (vis.editMode && data.bCount != Math.min(favorites.length,data.viewindex.split(',').length)) {
                     data.bCount = Math.min(favorites.length,data.viewindex.split(',').length);
                     redrawinspectwidgets = true;                
                 }
@@ -324,6 +328,10 @@ vis.binds["squeezeboxrpc"] = {
                 var buttonbkcolor       = data.buttonbkcolor;
                 var buttonmargin        = data.buttonmargin || '0px';
 
+                if (!data.viewindex || data.viewindex.trim() == "") {
+                    data.viewindex = this.getViewindex(players).join(", ");
+                }
+                
                 if (vis.editMode && data.bCount != Math.min(players.length,data.viewindex.split(',').length)) {               
                     data.bCount = Math.min(players.length,data.viewindex.split(',').length);
                     redrawinspectwidgets = true;
@@ -1100,10 +1108,7 @@ vis.binds["squeezeboxrpc"] = {
             $('#' + widgetID).html(text);
             $('#' + widgetID + ' div.level').on('click.volume',fdata,this.onClick);
             if (vis.editMode) this.setState(fdata);
-            console.warn('volumebar');
             if (vis.editMode) vis.inspectWidgets(view, view);
-            
-            
         },
         onClick: function(event) {
             var data = event.data.data;
@@ -1670,7 +1675,6 @@ vis.binds["squeezeboxrpc"] = {
     },
     
     redrawInspectWidgets: function (view) {
-        console.warn('redrawInspectWidgets');
         if (window.Selection) {
             if (window.getSelection()) var sel = window.getSelection();
             if (sel.anchorNode) {
