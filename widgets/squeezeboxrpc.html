@@ -221,4 +221,61 @@
     %>
     </div>
 </script>
+<script id="tplSqueezeboxrpcPlaylist"
+        type="text/ejs"
+        class="vis-tpl"
+		data-vis-prev='<img src="widgets/squeezeboxrpc/img/playlist.png"></img>'
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;"
+        data-vis-set="squeezeboxrpc"
+        data-vis-type="val"
+        data-vis-beta="true"
+        data-vis-update-style="true"
+        data-vis-name="Playlist">        
+    <div class="vis-widget <%== this.data.attr('class') %>" style="width: 300px; height: 100px" id="<%= this.data.attr('wid') %>">
+    <%
+        vis.binds.squeezeboxrpc.playlist.createWidget(this.data.wid, this.view, this.data, this.style);
+    %>
+    </div>
+</script>
+<script id="tplplaylist"
+        type="text/ejs" >
+        
+    <style>
+        .tt {
+           display: table; 
+        }
+        .tr {
+           display: table-row; 
+        }
+        .tc {
+           display: table-cell;
+           vertical-align: top;
+           border: 1px solid white;
+           padding: 1px;
+        }
+        .th {
+           font-weight: bold; 
+        }
+    </style>
+    <div>
+        <div class="tt">
+        <% for(var abc = 0; abc < this.length; abc++){ %>
+            <div class ="tr">
+                <div class="tc"><image width="50px" src="<%= this[abc].ArtworkUrl %>"></div>
+                <div class="tc">
+                    <div><%= this[abc].title %></div>
+                    <div><%= this[abc].album %></div>
+                    <div><%= this[abc].Artist %></div>
+                    <div><%= this[abc].RadioName %></div>
+                    <div><%= this[abc].Duration %></div>
+                    <div><%= this[abc].Bitrate %></div>
+                    <div><%= this[abc].Type %></div>
+                </div>
+                <div class="tc"></div>
+            </div>
+        <% } %>
+        </div>    
+    </div>
+   
+</script>
     
