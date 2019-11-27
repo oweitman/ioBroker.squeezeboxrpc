@@ -300,8 +300,8 @@ vis.binds["squeezeboxrpc"] = {
             data = vis.views[view].widgets[widgetID].data;
             style = vis.views[view].widgets[widgetID].style;
             data.functionname = 'players';
-
-            socket.emit('getObjects', function (err, obj) {
+            vis.conn._socket.emit('getObjects', function (err, obj) {
+            //socket.emit('getObjects', function (err, obj) {
                 var redrawinspectwidgets = false;
                 if (data.ainstance) {
                     data.ainstance = data.ainstance.split(".").slice(0,2).join(".");
