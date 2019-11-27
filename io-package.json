@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.19",
+        "version": "0.8.20",
         "news": {
+            "0.8.20": {
+                "en": "remove node v6 test setting"
+            },
             "0.8.19": {
                 "en": "shorten news history"
             },
