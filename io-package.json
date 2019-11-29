@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.22",
+        "version": "0.8.23",
         "news": {
+            "0.8.23": {
+                "en": "adjust dependencies to remove vulnerabilities in dependend packages. alos remove travis due of unresolvable build-failures for win+node10/12"
+            },
             "0.8.22": {
                 "en": "due to iobroker.controller 2.0 a command in the api changed (socket to vis.conn._socket)"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.4": {
                 "en": "move some files to lib directory"
-            },
-            "0.8.3": {
-                "en": "close port for discovery on unload"
             }
         },
         "title": "SqueezeboxRPC",
