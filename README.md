@@ -11,6 +11,7 @@
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/oweitman/iobroker-squeezeboxrpc.svg)](https://ci.appveyor.com/project/oweitman/iobroker-squeezeboxrpc)
 [![GitHub issues](https://img.shields.io/github/issues/oweitman/ioBroker.squeezeboxrpc.svg)](https://github.com/oweitman/ioBroker.squeezeboxrpc/issues)
 
+
 This is an alternative Adapter that uses the JSON/RPC-Protokoll to get data and send commands to the Logitech Media Server ([LMS](https://de.wikipedia.org/wiki/Logitech_Media_Server))
 for controlling connected devices like 
 * native [squeezebox](https://de.wikipedia.org/wiki/Squeezebox), 
