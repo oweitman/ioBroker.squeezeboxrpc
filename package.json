@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "@iobroker/adapter-core": "^1.0.3",
-        "squeezenode-pssc": "github:pssc/squeezenode"
+        "squeezenode-oweitman": "github:oweitman/squeezenode"
     },
     "devDependencies": {
         "@iobroker/testing": "^1.3.0",
