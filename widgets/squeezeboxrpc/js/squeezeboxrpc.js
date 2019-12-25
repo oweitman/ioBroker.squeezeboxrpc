@@ -1107,17 +1107,28 @@ vis.binds["squeezeboxrpc"] = {
             }
             text += '</div> \n';
             $('#' + widgetID).html(text);
-            $('#' + widgetID + ' div.level').on('click.volume',fdata,this.onClick);
+            $('#' + widgetID + ' div.volume').on('click.volume',fdata,this.onClick);
             if (vis.editMode) this.setState(fdata);
             if (vis.editMode) vis.inspectWidgets(view, view);
         },
         onClick: function(event) {
+            var offset = $(this).offset();
+            var x = event.pageX - offset.left;
+            var y = event.pageY - offset.top ;
+
             var data = event.data.data;
             var self = event.data.self;
             var widgetID = event.data.widgetID;
             var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".Volume";
-            var level = $(this).attr('value');
+
+            var pos;
+            var high;
+            (data.position=='horizontal') ? pos = x : pos = y;
+            (data.position=='horizontal') ? high = this.scrollWidth : high = this.scrollHeight ;
+            if (data.reverse) pos=high-pos;
+            var level = Math.floor(pos/(high/data.segments));
+
             var state = 100/(data.segments-1)*level;
             vis.setValue(stateid,state);
         },
