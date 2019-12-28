@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.23",
+        "version": "0.8.24",
         "news": {
+            "0.8.24": {
+                "en": "volumebar didnt get events between the segments, change clickevent and calculation"
+            },
             "0.8.23": {
                 "en": "adjust dependencies to remove vulnerabilities in dependend packages. alos remove travis due of unresolvable build-failures for win+node10/12"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.5": {
                 "en": "change serverdiscovery interval method, remove some double cmd lines, additional minor changes advised from eslint"
-            },
-            "0.8.4": {
-                "en": "move some files to lib directory"
             }
         },
         "title": "SqueezeboxRPC",
