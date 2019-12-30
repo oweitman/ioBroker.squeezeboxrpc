@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.24",
+        "version": "0.8.25",
         "news": {
+            "0.8.25": {
+                "en": "fixing css-settings on volumebar"
+            },
             "0.8.24": {
                 "en": "volumebar didnt get events between the segments, change clickevent and calculation"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.6": {
                 "en": "move some configuration options into seperate tabs"
-            },
-            "0.8.5": {
-                "en": "change serverdiscovery interval method, remove some double cmd lines, additional minor changes advised from eslint"
             }
         },
         "title": "SqueezeboxRPC",

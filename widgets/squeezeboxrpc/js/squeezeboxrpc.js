@@ -1083,14 +1083,14 @@ vis.binds["squeezeboxrpc"] = {
             text += '    #'+widgetID + ' .level { \n';
             text += '        box-sizing: border-box; \n';  
             text += '        display: inline-block; \n';
-            text += '        border: '+ borderwidth +' solid '+ bordercolornormal +'; \n';
+            text += '        outline: '+ borderwidth +' solid '+ bordercolornormal +'; \n';
             if (position=='horizontal') {
-                text += '        height: 100%; \n';
-                text += '        width: calc(100% / '+ segments +'); \n';
+                text += '        height: calc(100% - ( 2 * '+ margin +' )); \n';
+                text += '        width: calc((100% / '+ segments +') - ( 2 * ' +  margin +' )); \n'; 
             }
             if (position=='vertical') {
-                text += '        height: calc(100% / '+ segments +'); \n';
-                text += '        width: 100%; \n';
+                text += '        height: calc((100% / '+ segments +') - ( 2 * '+  margin +' )); \n'; 
+                text += '        width: calc(100% - ( 2 * '+ margin +' )); \n';
             }
             text += '        background-color: '+ fillcolornormal +'; \n';
             text += '        margin: '+ margin +';         \n';
