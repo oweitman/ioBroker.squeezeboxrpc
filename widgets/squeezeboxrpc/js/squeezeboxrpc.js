@@ -1703,55 +1703,6 @@ vis.binds["squeezeboxrpc"] = {
             $('#'+widgetID + ' img').attr('src',state);
         },        
     },
-    playlist: {
-        createWidget: function (widgetID, view, data, style) {
-            var $div = $('#' + widgetID);
-                        if (!$div.length) {
-                return setTimeout(function () {
-                    vis.binds["squeezeboxrpc"].playlist.createWidget(widgetID, view, data, style);
-                }, 100);
-            }
-            
-            data = vis.views[view].widgets[widgetID].data;
-            style = vis.views[view].widgets[widgetID].style;
-            
-            var ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div,data.widgetPlayer) 
-            if (!ainstance) return;
-            
-            var fdata = {self:this,widgetID:widgetID, view:view, data:data, style:style};
-            
-            vis.binds["squeezeboxrpc"].setPlayersChanged($div, data.widgetPlayer,fdata,this.onChange.bind(fdata),function(){
-                var boundstates = [];
-                var players = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
-                for (var i=0;i<players.length;i++) {
-                    boundstates.push(ainstance[0]+'.'+ainstance[1]+'.Players.'+players[i]+'.Playlist');
-                }
-                return boundstates;
-            });
-            vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));
-            var text = '';
-            text +='<div></div>';
-            $('#' + widgetID).html(text);          
-            this.setState(fdata);
-
-        },
-        onChange: function(e, newVal, oldVal) {
-            this.self.setState(this);
-        },
-        setState: function(fdata) {
-            var data = fdata.data;
-            var widgetID = fdata.widgetID;
-            var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
-            var stateid = data.ainstance.join('.')+".Players"+"."+playername+'.Playlist';       
-            
-            var state = (vis.states[stateid+ '.val']) ? vis.states[stateid+ '.val'] : '';
-            state = JSON.parse(state); 
-            var fragment = can.view('tplplaylist',state);
-
-            
-            $('#'+widgetID ).empty().append(fragment);
-        },        
-    },
     redrawInspectWidgets: function (view) {
         if (window.Selection) {
             if (window.getSelection()) var sel = window.getSelection();
