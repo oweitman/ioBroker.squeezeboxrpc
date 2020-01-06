@@ -1039,6 +1039,7 @@ vis.binds["squeezeboxrpc"] = {
             });
             vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));            
 
+            var calctype = data.calctype || 'segstep';
             var segments = data.segments || 11;
             var position = data.position || 'vertical';
             if (position=='vertical') {
@@ -1057,6 +1058,7 @@ vis.binds["squeezeboxrpc"] = {
             var margin = data.margin || "1px";
             
             
+            data.calctype = calctype;
             data.segments = segments;
             data.position = position;
 

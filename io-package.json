@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.26",
+        "version": "0.8.27",
         "news": {
+            "0.8.27": {
+                "en": "initialization for the new calctype property if empty in volumebar"
+            },
             "0.8.26": {
                 "en": "more improvement and fixing at volumebar, details see in widget documentation / remove playlist widget from master. not ready yet"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.8": {
                 "en": "make discover configurable"
-            },
-            "0.8.7": {
-                "en": "more control features (select playlist pos to play,ffwd,frew,jump to a time position in song,repeat song,random song)"
             }
         },
         "title": "SqueezeboxRPC",
