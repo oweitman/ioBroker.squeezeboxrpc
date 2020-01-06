@@ -208,7 +208,6 @@ Farbe für den Rand
 Breite des Rands in Pixel
 <br><br>
 
-
 <h3><a name="tplSqueezeboxrpcVolumeBar" ></a>Volume Bar</h3>
 <div style="background-color:#000000;line-height:50px;"><img style="width:120px" vertical-align: middle;" src="img/volume.png"></img></div>
 Dieses Widget zeigt und steuert die Lautstärke eines Players.
@@ -216,6 +215,20 @@ Zur Vorbereitung musst du den Knopf mit dem Player widget verbinden.
 <h4>Attribute</h4>
 <h5>Player widget - Gruppe Allgemein</h5>
 Auswahl des Player widgets.
+<h5>CalcType - Gruppe Allgemein</h5>
+Steuerung der Berechnung der Lautstärke anhand der Position, wo im Volumebar geklickt wird.<br><br>
+<b>Einstellung segstep:</b> Hier wird die Lautstärke auf Basis der Klickposition jeweils auf die Anzahl der Segmente gerundet. <br>
+Beispiel: 11 Segmente ergeben ein Segment für 0 sowie weitere 10 Segmente für die Lautstärke in 10er Schritten. d.h. <br>
+klick auf das erste Segment ergibt 0% Lautstärke, <br>
+klick auf das zweite Segment ergibt 10% Lautstärke, <br>
+klick auf das sechste Segment ergibt 50% Lautstärke<br><br>
+<b>Einstellung exact:</b> Hier wird die Lautstärke auf Basis der Klickposition exakt berechnet. <br>
+Beispiel: 11 Segmente ergeben ein Segment für 0 sowie weitere 10 Segmente für die Lautstärke  <br>
+klick auf das erste Segment ergibt 0% Lautstärke, <br>
+klick auf das 2 Segment im niedrigen Bereich ergibt igendwas zwischen 1% und 4%, <br>
+klick auf das 2 Segment im mittleren Bereich ergibt igendwas zwischen 3% und 7%, <br>
+klick auf das 2 Segment im hohen Bereich ergibt igendwas zwischen 6% und 10%, <br>
+Nachteil: Einen genauen Prozentwert oder beispielsweise die genauen 100% sind nur schwer exakt zu klicken.<br>
 <h5>Segmente - Gruppe Allgemein</h5>
 Die Anzahl der angezeigtne Lautstärkesegmente. 
 Für Lautstärke 0 muss immer ein extra Segment mit einberechnet werden. 

@@ -38,7 +38,10 @@ if (vis.editMode) {
         "imagepause":               {"en": "Picture pause",                 "de": "Bild pause",                         "ru": "Пауза изображения"},
         "imageplay":                {"en": "Picture play",                  "de": "Bild play",                          "ru": "Картинная игра"},
         "imagestop":                {"en": "Picture stop",                  "de": "Bild stop",                          "ru": "Остановка изображения"},
+        "calctype":                 {"en": "CalcType",                      "de": "CalcType",                           "ru": "CalcType"},
         "segments":                 {"en": "Segments",                      "de": "Segmente",                           "ru": "сегменты"},
+        "fillcolornormal":          {"en": "fillcolornormal",               "de": "fillcolornormal",                    "ru": "fillcolornormal"},
+        "fillcoloractive":          {"en": "fillcoloractive",               "de": "fillcoloractive",                    "ru": "fillcoloractive"},
         "position":                 {"en": "Format",                        "de": "Format",                             "ru": "формат"},
         "group_segmentsettings":    {"en": "Segments",                      "de": "Segmente",                           "ru": "сегменты"},
         "margin":                   {"en": "margin",                        "de": "margin",                             "ru": "margin"},
@@ -1036,7 +1039,7 @@ vis.binds["squeezeboxrpc"] = {
             });
             vis.binds["squeezeboxrpc"].setChanged(data.widgetPlayer,fdata,this.setState.bind(fdata));            
 
-            var segments = data.segments || 10;
+            var segments = data.segments || 11;
             var position = data.position || 'vertical';
             if (position=='vertical') {
                 var segheight = data.segheight || '100%';
@@ -1124,12 +1127,21 @@ vis.binds["squeezeboxrpc"] = {
 
             var pos;
             var high;
+            var segstep
             (data.position=='horizontal') ? pos = x : pos = y;
             (data.position=='horizontal') ? high = this.scrollWidth : high = this.scrollHeight ;
             if (data.reverse) pos=high-pos;
-            var level = Math.floor(pos/(high/data.segments));
 
-            var state = 100/(data.segments-1)*level;
+            if (data.calctype=='exact') {
+                segstep = high/data.segments;
+                pos = (pos-segstep < 0) ? 0 : pos-segstep;
+                var state = (pos*100)/(high-segstep);
+            }
+            if (data.calctype=='segstep') {
+                var level = Math.floor(pos/(high/data.segments));
+                var state = Math.floor(100/(data.segments-1)*level);
+            }
+            
             vis.setValue(stateid,state);
         },
         onChange: function(e, newVal, oldVal) {
@@ -1142,9 +1154,15 @@ vis.binds["squeezeboxrpc"] = {
             var reverse = data.reverse;
             var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
             var stateid = data.ainstance.join('.')+".Players"+"."+playername+".Volume";       
-            var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? parseInt(vis.states[stateid+ '.val']) : 0;
+            var state = (vis.states[stateid+ '.val'] || vis.states[stateid+ '.val'] === 0) ? vis.states[stateid+ '.val'] : 0;
             if (vis.editMode) state = 50;
-            var level = Math.floor(state/(100/(data.segments-1))+1);
+            
+            if (data.calctype=='exact') {
+                var level = Math.ceil(state/(100/(data.segments-1)))+1;
+            }
+            if (data.calctype=='segstep') {
+                var level = Math.round(state/(100/(data.segments-1)))+1;
+            }
             var selector = (reverse) ? '#' + widgetID + ' div.volume > div.level:nth-last-child(-n+'+level+')' : '#' + widgetID + ' div.volume > div.level:nth-child(-n+'+level+')';
             $('#' + widgetID + ' div.volume > div.level').removeClass('active');
             $(selector).addClass('active');
@@ -1898,7 +1916,6 @@ vis.binds["squeezeboxrpc"] = {
         return $("input[name="+widgetPlayer+"]:checked, #"+widgetPlayer+" option:checked").val();
     },
     onHorizChange: function(widgetID, view, newId, attr, isCss) {
-        var a = 0;
         var data = vis.views[view].widgets[widgetID].data;
         if (newId=='vertical') {
             data.segheight = '100%';
@@ -1919,4 +1936,4 @@ vis.binds["squeezeboxrpc"] = {
     },
 }
 vis.binds["squeezeboxrpc"].showVersion();
-     
+      
