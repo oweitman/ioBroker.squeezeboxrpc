@@ -172,6 +172,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.26
+ * more improvement and fixing at volumebar / remove playlist widget from master. not ready yet
 ### 0.8.25
  * fixing css-settings on volumebar
 ### 0.8.24
