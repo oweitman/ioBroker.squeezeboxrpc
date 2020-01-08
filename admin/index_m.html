@@ -126,13 +126,19 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s2">
-                        <input class="value" id="username" size="5" maxlength="5" type="number"/>
+                        <input class="value" id="telnetport" size="5" maxlength="5" type="number"/>
+                        <label class="translate" for="telnetport">Logitech Media Server Telnet Port:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="username" type="text"/>
                         <label class="translate" for="username">Username (optional):</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s2">
-                        <input class="value" id="password" size="5" maxlength="5" type="number"/>
+                        <input class="value" id="password" type="text"/>
                         <label class="translate" for="password">Password (optional):</label>
                     </div>
                 </div>
@@ -191,6 +197,12 @@
                     <div class="input-field col s2">
                         <input class="value" id="usediscovery" type="checkbox"/>
                         <label class="translate" for="usediscovery">Search for other LMS-Server:</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input class="value" id="usetelnet" type="checkbox"/>
+                        <label class="translate" for="usetelnet">Use Telnet for advanced signaling (player connect/disconnect):</label>
                     </div>
                 </div>
             </div>

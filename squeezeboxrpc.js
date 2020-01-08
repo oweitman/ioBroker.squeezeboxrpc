@@ -37,7 +37,7 @@ function startAdapter(options) {
         // is called when adapter shuts down - callback has to be called under any circumstances!
         unload: (callback) => {
             try {
-                squeezeboxServer.doDiscoverServerClose();
+                squeezeboxServer.closeConnections();
                 adapter.log.info('squeezeboxrpc unloaded');
                 callback();
             } catch (e) {
