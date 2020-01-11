@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.28",
+        "version": "0.8.29",
         "news": {
+            "0.8.29": {
+                "en": "optimize handling of player state power and connected"
+            },
             "0.8.28": {
                 "en": "add advanced signaling function with telnet and fix some more authorization issues with LMS"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.10": {
                 "en": "another try to fix the EADDRINUSE error of the server discovery"
-            },
-            "0.8.9": {
-                "en": "try to fix the EADDRINUSE error of the server discovery"
             }
         },
         "title": "SqueezeboxRPC",

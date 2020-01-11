@@ -173,6 +173,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 0.8.29
+ * optimize handling of player state power and connected
 ### 0.8.28
  * add advanced signaling function with telnet and fix some more authorization issues with LMS
 ### 0.8.27
