@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.29",
+        "version": "0.8.30",
         "news": {
+            "0.8.30": {
+                "en": "change from the issue of the adapter checker"
+            },
             "0.8.29": {
                 "en": "optimize handling of player state power and connected"
             },

@@ -7,6 +7,7 @@ Thumbs.db
 gulpfile.js
 debug.info
 vis
+tsconfig.json
 
 test/
 travis/
