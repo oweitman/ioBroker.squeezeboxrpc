@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.30",
+        "version": "0.8.31",
         "news": {
+            "0.8.31": {
+                "en": "change behaviour of deleting favorites"
+            },
             "0.8.30": {
                 "en": "change from the issue of the adapter checker"
             },
