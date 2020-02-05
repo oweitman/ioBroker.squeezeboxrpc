@@ -62,9 +62,6 @@
             },
             "0.8.12": {
                 "en": "sync version with npm"
-            },
-            "0.8.11": {
-                "en": "try to integrate the widgets into the main adapter"
             }
         },
         "title": "SqueezeboxRPC",
