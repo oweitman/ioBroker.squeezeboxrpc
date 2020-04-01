@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "0.8.32",
+        "version": "1.0.0",
         "news": {
+            "1.0.0": {
+                "en": "prepare for stable repository"
+            },
             "0.8.32": {
                 "en": "the adapter function iobroker.deleteChannel didnt works as expected. it didnt delete the whole subtree of states. now i implement my own delete function"
             },
@@ -59,9 +62,6 @@
             },
             "0.8.14": {
                 "en": "add syncgroups as new server-datapoint,add syncgroup widget, change some jquery event logic"
-            },
-            "0.8.13": {
-                "en": "rename widgetset from squeezeboxrpcwidgets to squeezeboxrpc"
             }
         },
         "title": "SqueezeboxRPC",
