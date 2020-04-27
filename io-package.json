@@ -64,30 +64,19 @@
                 "en": "add syncgroups as new server-datapoint,add syncgroup widget, change some jquery event logic"
             }
         },
-        "title": "SqueezeboxRPC",
-        "titleLang": {
-            "en": "SqueezeboxRPC",
-            "de": "SqueezeboxRPC",
-            "ru": "SqueezeboxRPC",
-            "pt": "SqueezeboxRPC",
-            "nl": "SqueezeboxRPC",
-            "fr": "SqueezeboxRPC",
-            "it": "SqueezeboxRPC",
-            "es": "SqueezeboxRPC",
-            "pl": "SqueezeboxRPC",
-            "zh-cn": "SqueezeboxRPC"
-        },
+        "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+        "desc":  "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
         "desc": {
-            "en": "SqueezeboxRPC",
-            "de": "SqueezeboxRPC",
-            "ru": "SqueezeboxRPC",
-            "pt": "SqueezeboxRPC",
-            "nl": "SqueezeboxRPC",
-            "fr": "SqueezeboxRPC",
-            "it": "SqueezeboxRPC",
-            "es": "SqueezeboxRPC",
-            "pl": "SqueezeboxRPC",
-            "zh-cn": "SqueezeboxRPC"
+            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "ru": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "pt": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "nl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "fr": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "it": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "es": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "pl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol"
         },
         "authors": [
             "oweitman <oweitman@gmx.de>"
