@@ -85,6 +85,7 @@
         "useplaylist": true,
         "usediscovery": true,
         "usetelnet": false,
+        "usefavorites": true,
         "outputserverdebug": false,
         "outputserversilly": false,
         "outputplayerdebug": false,
