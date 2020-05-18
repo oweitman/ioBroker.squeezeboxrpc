@@ -178,6 +178,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 1.1.0
+* make request of favorites configurable
 ### 1.0.1
  * change setstate/createobject logic
  * fix role and type for Mode-state

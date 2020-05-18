@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "news": {
+            "1.1.0": {
+                "en": "* make request of favorites configurable"
+            },
             "1.0.1": {
                 "en": " * change setstate/createobject logic * fix role and type for Mode-state * update tests * update dependency versions * improve io-package.json"
             },
