@@ -178,6 +178,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 * ~~autodiscover logitech media server~~
 
 ## Changelog
+### 1.2.0
+* improve handling of imageproxy artwork
 ### 1.1.0
 * make request of favorites configurable
 ### 1.0.1
