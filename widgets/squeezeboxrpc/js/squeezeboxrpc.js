@@ -418,9 +418,9 @@ vis.binds["squeezeboxrpc"] = {
                         text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
                         text += '    <label for="'+ widgetID + players[viewindex[i]] + '">';
                         text += '      <span>';
-                        var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
+                        var buttonsImage = (data['buttonsImage'+(parseInt(viewindex[i])+1)]) || '';
                         if (buttonsImage.trim() !='') {
-                            text += '        <img src="'+ data['buttonsImage'+(viewindex[i]+1)] +'">';
+                            text += '        <img src="'+ data['buttonsImage'+(parseInt(viewindex[i])+1)] +'">';
                         }
                         text += '      </span>';
                         text += '    </label>';
@@ -441,8 +441,8 @@ vis.binds["squeezeboxrpc"] = {
                     opt.backgroundcolor = data.buttonbkcolor;
                     var i=0;
                     for (var i = 0; i< viewindex.length;i++) {
-                        var buttonsImage = (data['buttonsImage'+(viewindex[i]+1)]) || '';
-                        var buttonsText  = (data['buttonsText'+(viewindex[i]+1)]) || '';
+                        var buttonsImage = (data['buttonsImage'+(parseInt(viewindex[i])+1)]) || '';
+                        var buttonsText  = (data['buttonsText'+(parseInt(viewindex[i])+1)]) || '';
                         buttonsText = (buttonsText.trim() !='') ? buttonsText : players[viewindex[i]];
                         if (buttonsImage.trim() =='') {
                             $(spans[i]).append(createTextImage( buttonsText, font, picWidth, picHeight,opt));

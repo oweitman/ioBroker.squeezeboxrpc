@@ -23,7 +23,7 @@
         data-vis-type="val"
         data-vis-beta="true"
         data-vis-update-style="false"
-        data-vis-name="Players">        
+        data-vis-name="Players">
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
         vis.binds.squeezeboxrpc.players.createWidget(this.data.wid, this.view, this.data, this.style);
     %></div>
@@ -144,8 +144,8 @@
         data-vis-type="val"
         data-vis-beta="true"
         data-vis-update-style="true"
-        data-vis-name="Syncgroup Widget">        
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 20px; height: 100px" id="<%= this.data.attr('wid') %>"><%
+        data-vis-name="Syncgroup Widget">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 230px; height: 210px" id="<%= this.data.attr('wid') %>"><%
         vis.binds.squeezeboxrpc.syncgroup.createWidget(this.data.wid, this.view, this.data, this.style);
     %></div>
 </script>
@@ -221,3 +221,4 @@
     %>
     </div>
 </script>
+ 
