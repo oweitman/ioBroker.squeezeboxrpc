@@ -11,6 +11,8 @@ vis
 iobroker.*.tgz
 
 Thumbs.db
+#react build files
+admin/build
 
 # i18n intermediate files
 admin/i18n/flat.txt
