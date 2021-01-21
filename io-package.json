@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.3.2",
+        "version": "1.3.3",
         "news": {
+            "1.3.3": {
+                "en": "* repair imageproxy for image datapoints of favorites"
+            },
             "1.3.2": {
                 "en": "* fix for Alarm contains only enabled Alarms"
             },
