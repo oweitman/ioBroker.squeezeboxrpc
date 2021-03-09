@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.3.3",
+        "version": "1.3.4",
         "news": {
+            "1.3.4": {
+                "en": "* fix object creation for favorites / * center widgets in sidebar"
+            },
             "1.3.3": {
                 "en": "* repair imageproxy for image datapoints of favorites"
             },
