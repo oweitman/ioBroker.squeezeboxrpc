@@ -335,6 +335,8 @@ vis.binds["squeezeboxrpc"] = {
                 if (!data.viewindex || data.viewindex.trim() == "") {
                     data.viewindex = this.getViewindex(players).join(", ");
                 }
+
+                data.defaultPlayer = data.defaultPlayer || Object.keys(players)[0] || "0";
                 
                 if (vis.editMode && data.bCount != Math.min(players.length,data.viewindex.split(',').length)) {               
                     data.bCount = Math.min(players.length,data.viewindex.split(',').length);
@@ -415,7 +417,7 @@ vis.binds["squeezeboxrpc"] = {
                                       
                     for (var i = 0; i < viewindex.length;i++) {
                         text += '  <div >';
-                        text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" >';
+                        text += '    <input type="radio" id="'+ widgetID + players[viewindex[i]] +'" name="'+widgetID+'" value="' + players[viewindex[i]] + '" '+ (viewindex[i]==data.defaultPlayer?"checked":"")+'>';
                         text += '    <label for="'+ widgetID + players[viewindex[i]] + '">';
                         text += '      <span>';
                         var buttonsImage = (data['buttonsImage'+(parseInt(viewindex[i])+1)]) || '';
