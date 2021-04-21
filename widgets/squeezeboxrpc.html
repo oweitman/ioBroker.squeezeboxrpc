@@ -16,7 +16,7 @@
         type="text/ejs"
         class="vis-tpl"
 		data-vis-prev='<img style="display: block;margin-left: auto;margin-right: auto;width: 50%;" src="widgets/squeezeboxrpc/img/players.png"></img>'
-        data-vis-attrs="ainstance/id;formattype[formatbutton]/select,,formatbutton,formatselect;viewindex//checkViewIndex;wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
+        data-vis-attrs="ainstance/id;formattype[formatbutton]/select,,formatbutton,formatselect;viewindex//checkViewIndex;defaultPlayer:wrapcamelcase[true]/checkbox;bCount/hidden;editmodehelper[true]/checkbox;"
 		data-vis-attrs0="group.buttonsettings;picWidth[50]/number;picHeight[50]/number;opacity[0.5]/slider,0,1,0.05;borderwidth[2px]/number/editDimension;borderstyle[solid]/nselect,,none,hidden,dotted,dashed,solid,double,groove,ridge,inset,outset,initial,inherit;bordercolornormal[#2e2e2e]/color;bordercoloractive[#87ceeb]/color;borderradius[5px]/number/editDimension;buttonbkcolor[#000000]/color;buttonmargin[0px]/number/editDimension;"
 		data-vis-attrs1="group.buttons/byindex;buttonsImage(1-bCount)/image;buttonsText(1-bCount);"
         data-vis-set="squeezeboxrpc"
@@ -195,7 +195,7 @@
         type="text/ejs"
         class="vis-tpl"
 		data-vis-prev='<img src="widgets/squeezeboxrpc/img/datetime.png"></img>'
-        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;html_prepend;html_append;test_html;format;factor/number;"
+        data-vis-attrs="widgetPlayer/custom,squeezeboxrpc.attrSelect;playerattribute/custom,squeezeboxrpc.playerAttrSelect;html_prepend;html_append;test_html;format;factor[1000]/number;"
         data-vis-set="squeezeboxrpc"
         data-vis-type="val"
         data-vis-beta="false"
@@ -221,4 +221,4 @@
     %>
     </div>
 </script>
- 
+     
