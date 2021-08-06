@@ -183,6 +183,8 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 1.3.7
+* fix object creation of states in player modul
 ### 1.3.6
 * fix object creation of states
 ### 1.3.5

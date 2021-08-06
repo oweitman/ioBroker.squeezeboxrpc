@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.3.6",
+        "version": "1.3.7",
         "news": {
+            "1.3.7": {
+                "en": "* fix object creation of states in player modul"
+            },
             "1.3.6": {
                 "en": "* fix object creation of states"
             },
