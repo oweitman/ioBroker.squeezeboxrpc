@@ -299,7 +299,7 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 ## License
 MIT License
 
-Copyright (c) 2019-2020 oweitman
+Copyright (c) 2019-2021 oweitman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
