@@ -183,6 +183,16 @@ https://github.com/elParaguayo/LMS-CLI-Documentation/blob/master/LMS-CLI.md
 
 ## Changelog
 
+### 1.3.5
+* fix object creation for favorites
+### 1.3.4
+* fix object creation for favorites / * center widgets in sidebar
+### 1.3.3
+* repair imageproxy for image datapoints of favorites
+### 1.3.2
+* fix for Alarm contains only enabled Alarms
+### 1.3.1
+* fix problem with git dependency url
 ### 1.3.0
 * fix problem wit setting own icon in player widget / * add infos about alarms to a player datapoint
 ### 1.2.1
