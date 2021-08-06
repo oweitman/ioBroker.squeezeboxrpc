@@ -90,7 +90,7 @@
         "type": "multimedia",
         "compact": true,
         "materialize": true,
-        "connectionType ":"local",
+        "connectionType":"local",
         "dataSource":"poll",
         "restartAdapters": [
             "vis"
