@@ -56,7 +56,6 @@
             }
         },
         "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-        "desc":  "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
         "desc": {
             "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
             "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
