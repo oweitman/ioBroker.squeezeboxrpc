@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.3.7",
+        "version": "1.3.8",
         "news": {
+            "1.3.8": {
+                "en": "* fix object forward btn widget"
+            },
             "1.3.7": {
                 "en": "* fix object creation of states in player modul"
             },
@@ -26,36 +29,6 @@
             },
             "1.3.0": {
                 "en": "* fix problem wit setting own icon in player widget / * add infos about alarms to a player datapoint"
-            },
-            "1.2.1": {
-                "en": "* fix small issues in last version"
-            },
-            "1.2.0": {
-                "en": "* improve handling of imageproxy artwork"
-            },
-            "1.1.0": {
-                "en": "* make request of favorites configurable"
-            },
-            "1.0.1": {
-                "en": " * change setstate/createobject logic * fix role and type for Mode-state * update tests * update dependency versions * improve io-package.json"
-            },
-            "1.0.0": {
-                "en": "prepare for stable repository"
-            },
-            "0.8.32": {
-                "en": "the adapter function iobroker.deleteChannel didnt works as expected. it didnt delete the whole subtree of states. now i implement my own delete function"
-            },
-            "0.8.31": {
-                "en": "change behaviour of deleting favorites"
-            },
-            "0.8.30": {
-                "en": "change from the issue of the adapter checker"
-            },
-            "0.8.29": {
-                "en": "optimize handling of player state power and connected"
-            },
-            "0.8.28": {
-                "en": "add advanced signaling function with telnet and fix some more authorization issues with LMS"
             }
         },
         "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",

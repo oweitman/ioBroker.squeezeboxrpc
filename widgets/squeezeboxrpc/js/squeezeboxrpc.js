@@ -673,7 +673,7 @@ vis.binds["squeezeboxrpc"] = {
                 var data = event.data.data;
                 var self = event.data.self;
                 var playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
-                var stateid = data.ainstance.join('.')+".Players"+"."+playername+".btnRewind";
+                var stateid = data.ainstance.join('.')+".Players"+"."+playername+".btnForward";
                 var state = true
                 vis.setValue(stateid,state);
         },        
