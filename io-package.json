@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "squeezeboxrpc",
-        "version": "1.3.9",
+        "version": "1.3.10",
         "news": {
+            "1.3.10": {
+                "en": "* getalbumartist as artist if setting of TPE2/TPE3 in LMS are changed"
+            },
             "1.3.9": {
                 "en": "* fix error with deleting favorites * fix wrong type for datapoint"
             },
