@@ -1,0 +1,146 @@
+{
+    "i18n": true,
+    "type": "tabs",
+    "items": {
+        "maintab": {
+            "type": "panel",
+            "label": "sb-maintab",
+            "newLine": true,
+            "items": {
+                "server": {
+                    "type": "text",
+                    "label": "sb-server",
+                    "md": 3
+                },
+                "_discover": {
+                    "type": "selectSendTo",
+                    "label": "sb-discover",
+                    "md": 6,
+                    "command": "discoverlms",
+                    "jsonData": "{}",
+                    "onChange": {
+                        "calculateFunc": "data.server = data._discover ? data._discover : data.server // console.log('meintest') //&& data.discover && data.server=data.discover"
+                    }
+                },
+                "port": {
+                    "type": "text",
+                    "label": "sb-port",
+                    "md": 3,
+                    "newLine": true
+                },
+                "telnetport": {
+                    "type": "text",
+                    "label": "sb-telnetport",
+                    "md": 3,
+                    "newLine": true
+                },
+                "username": {
+                    "type": "text",
+                    "label": "sb-username",
+                    "md": 3,
+                    "newLine": true
+                },
+                "password": {
+                    "type": "password",
+                    "label": "sb-password",
+                    "md": 3,
+                    "newLine": true
+                }
+            }
+        },
+        "timertab": {
+            "type": "panel",
+            "label": "sb-timertab",
+            "items": {
+                "serverrefresh": {
+                    "type": "number",
+                    "label": "sb-serverrefresh",
+                    "md": 3,
+                    "min": 15,
+                    "newLine": true
+                },
+                "playerrefresh": {
+                    "type": "number",
+                    "label": "sb-playerrefresh",
+                    "md": 3,
+                    "min": 200,
+                    "newLine": true
+                },
+                "favoriterefresh": {
+                    "type": "number",
+                    "label": "sb-favoriterefresh",
+                    "md": 3,
+                    "min": 1,
+                    "newLine": true
+                },
+                "discoveryrefresh": {
+                    "type": "number",
+                    "label": "sb-discoveryrefresh",
+                    "md": 3,
+                    "min": 10,
+                    "newLine": true
+                }
+            }
+        },
+        "performancetab": {
+            "type": "panel",
+            "label": "sb-performancetab",
+            "items": {
+                "useplaylist": {
+                    "type": "checkbox",
+                    "label": "sb-useplaylist",
+                    "md": 6,
+                    "newLine": true
+                },
+                "usediscovery": {
+                    "type": "checkbox",
+                    "label": "sb-usediscovery",
+                    "md": 6,
+                    "newLine": true
+                },
+                "usetelnet": {
+                    "type": "checkbox",
+                    "label": "sb-usetelnet",
+                    "md": 6,
+                    "newLine": true
+                },
+                "usefavorites": {
+                    "type": "checkbox",
+                    "label": "sb-usefavorites",
+                    "md": 6,
+                    "newLine": true
+                }
+            }
+        },
+        "debugtab": {
+            "type": "panel",
+            "label": "sb-debugtab",
+            "items": {
+                "outputserverdebug": {
+                    "type": "checkbox",
+                    "label": "sb-outputserverdebug",
+                    "md": 6,
+                    "newLine": true
+                },
+                "outputserversilly": {
+                    "type": "checkbox",
+                    "label": "sb-outputserversilly",
+                    "md": 6,
+                    "newLine": true
+                },
+                "outputplayerdebug": {
+                    "type": "checkbox",
+                    "label": "sb-outputplayerdebug",
+                    "md": 6,
+                    "newLine": true
+                },
+                "outputplayersilly": {
+                    "type": "checkbox",
+                    "label": "sb-outputplayersilly",
+                    "md": 6,
+                    "newLine": true
+                }
+            }
+        }
+    }
+}

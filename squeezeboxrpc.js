@@ -1,73 +1,87 @@
-'use strict';
+"use strict";
 
 /*
- * Created with @iobroker/create-adapter v1.12.0
+ * Created with @iobroker/create-adapter v2.6.3
  */
 
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
-const utils = require('@iobroker/adapter-core');
-
-// Load your modules here, e.g.:
-// const fs = require("fs");
-
-const IoSbServer = require(__dirname +'/lib/iosbserver');
-
-/**
- * The adapter instance
- * @type {ioBroker.Adapter}
- */
-let adapter;
-
+const utils = require("@iobroker/adapter-core");
 let squeezeboxServer;
 
-/**
- * Starts the adapter instance
- * @param {Partial<ioBroker.AdapterOptions>} [options]
- */
-function startAdapter(options) {
-    // Create the adapter and define its methods
-    return adapter = utils.adapter(Object.assign({}, options, {
-        name: 'squeezeboxrpc',
+const IoSbServerRequire = require(__dirname + "/lib/iosbserver");
 
-        // The ready callback is called when databases are connected and adapter received configuration.
-        // start here!
-        ready: main, // Main method defined below for readability
+class Squeezeboxrpc extends utils.Adapter {
+    /**
+     * @param {Partial<utils.AdapterOptions>} [options={}]
+     */
+    constructor(options) {
+        super({
+            ...options,
+            name: "squeezeboxrpc",
+        });
+        this.on("ready", this.onReady.bind(this));
+        this.on("stateChange", this.onStateChange.bind(this));
+        this.on("unload", this.onUnload.bind(this));
+        this.on("message", this.onMessage.bind(this));
+    }
 
-        // is called when adapter shuts down - callback has to be called under any circumstances!
-        unload: (callback) => {
-            try {
-                squeezeboxServer.closeConnections();
-                adapter.log.info('squeezeboxrpc unloaded');
-                callback();
-            } catch (e) {
-                callback();
-            }
-        },
+    /**
+     * Is called when databases are connected and adapter received configuration.
+     */
+    async onReady() {
+        // Initialize your adapter here
 
-        // is called if a subscribed state changes
-        stateChange: (id, state) => {
-            if (state) {
-                // The state was changed
-                if (squeezeboxServer) squeezeboxServer.stateChange(id,state);
-            } 
-        },
+        // Reset the connection indicator during startup
+        this.setState("info.connection", false, true);
 
-    }));
-}
+        // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
+        this.subscribeStates("*");
+        // Initialize your adapter here
+        if (!squeezeboxServer) {
+            this.log.debug("main onReady open squeezeboxrpc");
+            squeezeboxServer = new IoSbServerRequire(this);
+            this.subscribeStates("*");
+        }
+    }
 
-function main() {
-
-    if (!squeezeboxServer) {
-        squeezeboxServer = new IoSbServer(adapter);
+    /**
+     * Is called when adapter shuts down - callback has to be called under any circumstances!
+     * @param {() => void} callback
+     */
+    onUnload(callback) {
+        try {
+            squeezeboxServer.closeConnections();
+            callback();
+        } catch (e) {
+            callback();
+        }
+    }
+    onMessage(obj) {
+        if (typeof obj === "object" && obj.message) {
+            squeezeboxServer.processMessages(obj);
+        }
+    }
+    /**
+     * Is called if a subscribed state changes
+     * @param {string} id
+     * @param {ioBroker.State | null | undefined} state
+     */
+    onStateChange(id, state) {
+        if (state) {
+            // The state was changed
+            if (squeezeboxServer) squeezeboxServer.stateChange(id, state);
+        }
     }
 }
 
-if (module.parent) {
-    // Export startAdapter in compact mode
-    module.exports = startAdapter;
+if (require.main !== module) {
+    // Export the constructor in compact mode
+    /**
+     * @param {Partial<utils.AdapterOptions>} [options={}]
+     */
+    module.exports = (options) => new Squeezeboxrpc(options);
 } else {
     // otherwise start the instance directly
-    startAdapter();
+    new Squeezeboxrpc();
 }
-

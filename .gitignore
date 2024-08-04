@@ -1,3 +1,9 @@
+# No dot-directories except github/vscode
+.*/
+!.vscode/
+!.github/
+
+*.code-workspace
 .git
 .idea
 node_modules
@@ -16,3 +22,7 @@ admin/build
 # i18n intermediate files
 admin/i18n/flat.txt
 admin/i18n/*/flat.txt
+
+# ioBroker dev-server
+.dev-server/
+.vscode/secrets.txt

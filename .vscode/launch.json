@@ -1,0 +1,51 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch ioBroker Adapter ",
+            "skipFiles": ["<node_internals>/**"],
+            "args": ["--debug", "0"],
+            "program": "node_modules/iobroker.squeezeboxrpc/squeezeboxrpc.js",
+            "cwd": "${workspaceFolder}/.dev-server/default",
+            "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
+            "stopOnEntry": true,
+            "sourceMaps": true,
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis1 runtime",
+            "url": "http://localhost:8082/vis/index.html#test",
+            "trace": true,
+            "skipFiles": ["socket.io.js"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis1 edit",
+            "url": "http://localhost:8082/vis/edit.html#test",
+            "trace": true,
+            "skipFiles": ["socket.io.js"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis2 edit",
+            "url": "http://localhost:8082/vis-2/edit.html#test",
+            "trace": true,
+            "skipFiles": ["socket.io.js"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis2 runtime",
+            "url": "http://localhost:8082/vis-2/?main#default",
+            "trace": true,
+            "skipFiles": ["socket.io.js"]
+        }
+    ]
+}
+//node --inspect-brk=localhost:9229 .\node_modules\iobroker.squeeboxrpc\squeeboxrpc.js
