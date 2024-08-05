@@ -201,6 +201,11 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   improve cmdGoto handling by kairauer, close PR #74
+
 ### 1.3.11 (2024-08-05)
 
 -   update adapter structure and switch to jsonconfig
