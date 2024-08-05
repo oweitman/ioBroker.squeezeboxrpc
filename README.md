@@ -205,6 +205,8 @@ For more information visit the CLI-documentation:
 ### **WORK IN PROGRESS**
 
 -   improve cmdGoto handling by kairauer, close PR #74
+-   fix issues from adapter checker
+-   integrate squeezenode lib
 
 ### 1.3.11 (2024-08-05)
 
