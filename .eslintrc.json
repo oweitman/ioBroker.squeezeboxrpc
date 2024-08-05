@@ -8,13 +8,6 @@
     "extends": ["eslint:recommended"],
     "plugins": [],
     "rules": {
-        "indent": [
-            "error",
-            4,
-            {
-                "SwitchCase": 1
-            }
-        ],
         "no-console": "off",
         "no-unused-vars": [
             "error",

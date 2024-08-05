@@ -148,6 +148,19 @@
             }
         },
         "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+        "titleLang": {
+            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+            "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
+            "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
+            "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
+            "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
+            "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
+            "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
+            "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
+            "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
+            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
+            "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
+        },
         "desc": {
             "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
             "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
@@ -161,8 +174,15 @@
             "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
             "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол"
         },
-        "authors": ["oweitman <oweitman@gmx.de>"],
-        "keywords": ["ioBroker", "template", "Smart Home", "home automation"],
+        "authors": [
+            "oweitman <oweitman@gmx.de>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
         "licenseInformation": {
             "type": "free",
             "license": "MIT"
@@ -175,7 +195,9 @@
         "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
         "loglevel": "info",
         "tier": 3,
-        "restartAdapters": ["vis"],
+        "restartAdapters": [
+            "vis"
+        ],
         "mode": "daemon",
         "type": "multimedia",
         "compact": true,
