@@ -1,82 +1,82 @@
 {
-    "name": "iobroker.squeezeboxrpc",
-    "version": "1.3.10",
-    "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
-    "author": {
-        "name": "oweitman",
-        "email": "oweitman@gmx.de"
-    },
-    "homepage": "https://github.com/oweitman/ioBroker.squeezeboxrpc",
-    "license": "MIT",
-    "keywords": [
-        "ioBroker",
-        "Smart Home",
-        "home automation"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc"
-    },
-    "engines": {
-        "node": ">= 18"
-    },
-    "dependencies": {
-        "@iobroker/adapter-core": "^3.1.6",
-        "squeezenode-oweitman": "https://github.com/oweitman/squeezenode/tarball/master"
-    },
-    "devDependencies": {
-        "@alcalzone/release-script": "^3.8.0",
-        "@alcalzone/release-script-plugin-iobroker": "^3.7.2",
-        "@alcalzone/release-script-plugin-license": "^3.7.0",
-        "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
-        "@iobroker/adapter-dev": "^1.3.0",
-        "@iobroker/dev-server": "^0.7.3",
-        "@iobroker/testing": "^4.1.3",
-        "@tsconfig/node18": "^18.2.4",
-        "@types/chai": "^4.3.16",
-        "@types/chai-as-promised": "^7.1.8",
-        "@types/mocha": "^10.0.7",
-        "@types/node": "^20.14.2",
-        "@types/proxyquire": "^1.3.31",
-        "@types/sinon": "^17.0.3",
-        "@types/sinon-chai": "^3.2.12",
-        "chai": "^4.4.1",
-        "axios": "^0.21.1",
-        "chai-as-promised": "^7.1.2",
-        "eslint": "^8.57.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
-        "mocha": "^10.5.2",
-        "prettier": "^3.3.3",
-        "proxyquire": "^2.1.3",
-        "sinon": "^18.0.0",
-        "sinon-chai": "^3.7.0",
-        "typescript": "~5.4.5"
-    },
-    "main": "squeezeboxrpc.js",
-    "files": [
-        "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
-        "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
-        "lib/",
-        "widgets/**/!(tsconfig|tsconfig.*|.eslintrc).json",
-        "widgets/**/*.{html,css,png,svg,jpg,js}",
-        "www/",
-        "io-package.json",
-        "LICENSE",
-        "main.js"
-    ],
-    "scripts": {
-        "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
-        "test:package": "mocha test/package --exit",
-        "test:integration": "mocha test/integration --exit",
-        "test": "npm run test:js && npm run test:package",
-        "check": "tsc --noEmit -p tsconfig.check.json",
-        "lint": "eslint .",
-        "translate": "translate-adapter",
-        "release": "release-script"
-    },
-    "bugs": {
-        "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc/issues"
-    },
-    "readmeFilename": "README.md"
+  "name": "iobroker.squeezeboxrpc",
+  "version": "1.3.11",
+  "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
+  "author": {
+    "name": "oweitman",
+    "email": "oweitman@gmx.de"
+  },
+  "homepage": "https://github.com/oweitman/ioBroker.squeezeboxrpc",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "dependencies": {
+    "@iobroker/adapter-core": "^3.1.6",
+    "squeezenode-oweitman": "https://github.com/oweitman/squeezenode/tarball/master"
+  },
+  "devDependencies": {
+    "@alcalzone/release-script": "^3.8.0",
+    "@alcalzone/release-script-plugin-iobroker": "^3.7.2",
+    "@alcalzone/release-script-plugin-license": "^3.7.0",
+    "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
+    "@iobroker/adapter-dev": "^1.3.0",
+    "@iobroker/dev-server": "^0.7.3",
+    "@iobroker/testing": "^4.1.3",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/chai": "^4.3.16",
+    "@types/chai-as-promised": "^7.1.8",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^20.14.2",
+    "@types/proxyquire": "^1.3.31",
+    "@types/sinon": "^17.0.3",
+    "@types/sinon-chai": "^3.2.12",
+    "chai": "^4.4.1",
+    "axios": "^0.21.1",
+    "chai-as-promised": "^7.1.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "mocha": "^10.5.2",
+    "prettier": "^3.3.3",
+    "proxyquire": "^2.1.3",
+    "sinon": "^18.0.0",
+    "sinon-chai": "^3.7.0",
+    "typescript": "~5.4.5"
+  },
+  "main": "squeezeboxrpc.js",
+  "files": [
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "lib/",
+    "widgets/**/!(tsconfig|tsconfig.*|.eslintrc).json",
+    "widgets/**/*.{html,css,png,svg,jpg,js}",
+    "www/",
+    "io-package.json",
+    "LICENSE",
+    "main.js"
+  ],
+  "scripts": {
+    "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
+    "test:package": "mocha test/package --exit",
+    "test:integration": "mocha test/integration --exit",
+    "test": "npm run test:js && npm run test:package",
+    "check": "tsc --noEmit -p tsconfig.check.json",
+    "lint": "eslint .",
+    "translate": "translate-adapter",
+    "release": "release-script --all"
+  },
+  "bugs": {
+    "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc/issues"
+  },
+  "readmeFilename": "README.md"
 }

@@ -1,264 +1,212 @@
 {
-    "common": {
-        "name": "squeezeboxrpc",
-        "version": "1.3.10",
-        "news": {
-            "1.3.10": {
-                "en": "* getalbumartist as artist if setting of TPE2/TPE3 in LMS are changed",
-                "de": "* getalbumartist als Künstler, wenn die Einstellungen von TPE2/TPE3 im LMS geändert werden",
-                "ru": "* получить albumartist как исполнителя, если настройки TPE2/TPE3 в LMS изменены",
-                "pt": "* getalbumartist como artista se a configuração de TPE2/TPE3 no LMS for alterada",
-                "nl": "* krijg albumartiest als artiest als de instelling van TPE2/TPE3 in LMS wordt gewijzigd",
-                "fr": "* getalbumartist en tant qu'artiste si les paramètres de TPE2/TPE3 dans LMS sont modifiés",
-                "it": "* ottienialbumartist come artista se vengono modificate le impostazioni di TPE2/TPE3 in LMS",
-                "es": "* getalbumartist como artista si se cambia la configuración de TPE2/TPE3 en LMS",
-                "pl": "* getalbumartist jako artysta, jeśli ustawienia TPE2/TPE3 w LMS zostaną zmienione",
-                "uk": "* getalbumartist як виконавець, якщо налаштування TPE2/TPE3 у LMS змінено",
-                "zh-cn": "* 如果 LMS 中的 TPE2/TPE3 设置发生更改，则将 albumartist 作为艺术家"
-            },
-            "1.3.9": {
-                "en": "* fix error with deleting favorites * fix wrong type for datapoint",
-                "de": "* Fehler beim Löschen von Favoriten behoben * Falscher Typ für Datenpunkt behoben",
-                "ru": "* исправить ошибку при удалении избранного * исправить неправильный тип точки данных",
-                "pt": "* corrigir erro ao excluir favoritos * corrigir tipo errado de ponto de dados",
-                "nl": "* fout repareren bij het verwijderen van favorieten * foutief type voor datapunt repareren",
-                "fr": "* Correction d'une erreur lors de la suppression des favoris * Correction du mauvais type de point de données",
-                "it": "* corretto l'errore con l'eliminazione dei preferiti * corretto il tipo errato di datapoint",
-                "es": "* corregir error al eliminar favoritos * corregir tipo incorrecto para punto de datos",
-                "pl": "* napraw błąd przy usuwaniu ulubionych * napraw błędny typ punktu danych",
-                "uk": "* виправити помилку з видаленням вибраного * виправити неправильний тип точки даних",
-                "zh-cn": "* 修复删除收藏夹时的错误 * 修复数据点的错误类型"
-            },
-            "1.3.8": {
-                "en": "* fix object forward btn widget",
-                "de": "* Objekt-Weiterleitungs-BTN-Widget korrigiert",
-                "ru": "* исправлен виджет кнопки вперед объекта",
-                "pt": "* corrigir widget de btn de encaminhamento de objeto",
-                "nl": "* fix object voorwaartse btn-widget",
-                "fr": "* Correction du widget btn de transfert d'objet",
-                "it": "* corretto il widget oggetto forward btn",
-                "es": "* arreglar el widget btn de reenvío de objetos",
-                "pl": "* napraw widget btn do przesyłania obiektów",
-                "uk": "* виправити віджет btn для пересилання об’єктів",
-                "zh-cn": "* 修复对象转发 btn 小部件"
-            },
-            "1.3.7": {
-                "en": "* fix object creation of states in player modul",
-                "de": "* Objekterstellung von Zuständen im Player-Modul behoben",
-                "ru": "* исправлено создание объектов состояний в модуле плеера",
-                "pt": "* corrigir a criação de objetos de estados no módulo do player",
-                "nl": "* probleem met het maken van statussen in de spelermodule",
-                "fr": "* Correction de la création d'objets d'états dans le module joueur",
-                "it": "* corretta la creazione di oggetti di stati nel modulo del lettore",
-                "es": "* Corregir la creación de objetos de estados en el módulo del reproductor.",
-                "pl": "* naprawiono tworzenie stanów obiektów w module odtwarzacza",
-                "uk": "* виправлено створення об'єктів станів у модулі гравця",
-                "zh-cn": "*修复玩家模块中状态的对象创建"
-            },
-            "1.3.6": {
-                "en": "* fix object creation of states",
-                "de": "* Objekterstellung von Zuständen behoben",
-                "ru": "* исправлено создание объектов состояний",
-                "pt": "* corrigir a criação de estados de objetos",
-                "nl": "* probleem met het maken van statussen voor objecten",
-                "fr": "* Correction de la création d'objets d'états",
-                "it": "* corretta la creazione degli stati da parte degli oggetti",
-                "es": "* arreglar la creación de objetos de estados",
-                "pl": "* naprawiono tworzenie obiektów w stanach",
-                "uk": "* виправити створення об'єктів станів",
-                "zh-cn": "* 修复状态的对象创建"
-            },
-            "1.3.5": {
-                "en": "* fix object creation for favorites",
-                "de": "* Objekterstellung für Favoriten korrigiert",
-                "ru": "* исправлено создание объектов для избранного",
-                "pt": "* corrigir a criação de objetos para favoritos",
-                "nl": "* probleem met het maken van objecten voor favorieten",
-                "fr": "* correction de la création d'objets pour les favoris",
-                "it": "* corretta la creazione di oggetti per i preferiti",
-                "es": "* arreglar la creación de objetos para favoritos",
-                "pl": "* naprawiono tworzenie obiektów dla ulubionych",
-                "uk": "* виправлено створення об'єктів для обраних",
-                "zh-cn": "* 修复收藏夹的对象创建"
-            },
-            "1.3.4": {
-                "en": "* fix object creation for favorites / * center widgets in sidebar",
-                "de": "* Objekterstellung für Favoriten korrigiert / * Widgets in der Seitenleiste zentrieren",
-                "ru": "* исправлено создание объектов для избранного / * центрирование виджетов на боковой панели",
-                "pt": "* corrigir a criação de objetos para favoritos / * centralizar widgets na barra lateral",
-                "nl": "* objectcreatie voor favorieten repareren / * widgets centreren in zijbalk",
-                "fr": "* correction de la création d'objets pour les favoris / * widgets centraux dans la barre latérale",
-                "it": "* corretta la creazione di oggetti per i preferiti / * centra i widget nella barra laterale",
-                "es": "* arreglar la creación de objetos para favoritos / * centrar widgets en la barra lateral",
-                "pl": "* naprawiono tworzenie obiektów dla ulubionych / * wyśrodkowano widżety na pasku bocznym",
-                "uk": "* виправлено створення об’єктів для вибраного / * центральні віджети на бічній панелі",
-                "zh-cn": "* 修复收藏夹的对象创建 / * 在侧边栏中居中小部件"
-            },
-            "1.3.3": {
-                "en": "* repair imageproxy for image datapoints of favorites",
-                "de": "* Imageproxy für Bilddatenpunkte von Favoriten reparieren",
-                "ru": "* восстановление imageproxy для точек данных изображений избранного",
-                "pt": "* reparar imageproxy para pontos de dados de imagem de favoritos",
-                "nl": "* herstel imageproxy voor afbeeldingsdatapunten van favorieten",
-                "fr": "* Réparer le proxy d'image pour les points de données d'image des favoris",
-                "it": "* riparare imageproxy per punti dati immagine dei preferiti",
-                "es": "* reparar imageproxy para puntos de datos de imágenes de favoritos",
-                "pl": "* napraw imageproxy dla punktów danych obrazu ulubionych",
-                "uk": "* відновити imageproxy для точок даних зображень вибраного",
-                "zh-cn": "* 修复收藏夹图像数据点的 imageproxy"
-            },
-            "1.3.2": {
-                "en": "* fix for Alarm contains only enabled Alarms",
-                "de": "* Fix für Alarm enthält nur aktivierte Alarme",
-                "ru": "* исправление для будильника содержит только включенные будильники",
-                "pt": "* correção para alarme contém apenas alarmes habilitados",
-                "nl": "* oplossing voor Alarm bevat alleen ingeschakelde alarmen",
-                "fr": "* Le correctif pour l'alarme contient uniquement les alarmes activées",
-                "it": "* la correzione per l'allarme contiene solo gli allarmi abilitati",
-                "es": "* La solución para Alarma contiene solo alarmas habilitadas",
-                "pl": "* poprawka dla Alarmu zawiera tylko włączone Alarmy",
-                "uk": "* виправлення для Alarm містить лише ввімкнені Alarm",
-                "zh-cn": "* 修复了警报仅包含已启用的警报的问题"
-            },
-            "1.3.1": {
-                "en": "* fix problem with git dependency url",
-                "de": "* Problem mit der Git-Abhängigkeits-URL behoben",
-                "ru": "* исправлена ​​проблема с URL-адресом зависимости git",
-                "pt": "* corrigir problema com URL de dependência do git",
-                "nl": "* probleem met git-afhankelijkheids-URL opgelost",
-                "fr": "* Correction d'un problème avec l'URL de la dépendance git",
-                "it": "* risolto il problema con l'URL della dipendenza git",
-                "es": "* soluciona el problema con la URL de dependencia de git",
-                "pl": "* napraw problem z adresem URL zależności git",
-                "uk": "* вирішено проблему з URL-адресою залежності git",
-                "zh-cn": "* 修复 git 依赖 url 的问题"
-            },
-            "1.3.0": {
-                "en": "* fix problem wit setting own icon in player widget / * add infos about alarms to a player datapoint",
-                "de": "* Problem mit der Einstellung eines eigenen Symbols im Player-Widget behoben / * Informationen über Alarme zu einem Player-Datenpunkt hinzufügen",
-                "ru": "* исправлена ​​проблема с установкой собственного значка в виджете игрока / * добавлена ​​информация о тревогах в точку данных игрока",
-                "pt": "* corrigir problema com a configuração do próprio ícone no widget do player / * adicionar informações sobre alarmes a um ponto de dados do jogador",
-                "nl": "* probleem oplossen met het instellen van een eigen pictogram in spelerwidget / * informatie over alarmen toevoegen aan een spelerdatapunt",
-                "fr": "* Résoudre le problème de définition de sa propre icône dans le widget du lecteur / * Ajouter des informations sur les alarmes à un point de données du joueur",
-                "it": "* risolto il problema relativo all'impostazione della propria icona nel widget del lettore / * aggiunto informazioni sugli allarmi al punto dati del giocatore",
-                "es": "* solucionar el problema al configurar su propio ícono en el widget del reproductor / * agregar información sobre alarmas a un punto de datos del jugador",
-                "pl": "* naprawa problemu z ustawieniem własnej ikony w widgecie odtwarzacza / * dodanie informacji o alarmach do punktu danych gracza",
-                "uk": "* вирішено проблему із встановленням власної піктограми у віджеті гравця / * додано інформацію про тривоги до точки даних гравця",
-                "zh-cn": "* 修复在播放器小部件中设置自己的图标的问题 / * 将有关警报的信息添加到播放器数据点"
-            }
-        },
-        "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-        "titleLang": {
-            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
-            "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
-            "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
-            "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
-            "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
-            "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
-            "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
-            "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
-            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
-            "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
-        },
-        "desc": {
-            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "ru": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "pt": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "nl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "fr": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "it": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "es": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "pl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол"
-        },
-        "authors": [
-            "oweitman <oweitman@gmx.de>"
-        ],
-        "keywords": [
-            "ioBroker",
-            "template",
-            "Smart Home",
-            "home automation"
-        ],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "main": "squeezeboxrpc.js",
-        "icon": "squeezeboxrpc.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
-        "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
-        "loglevel": "info",
-        "tier": 3,
-        "restartAdapters": [
-            "vis"
-        ],
-        "mode": "daemon",
-        "type": "multimedia",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "messagebox": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.13"
-            }
-        ]
+  "common": {
+    "name": "squeezeboxrpc",
+    "version": "1.3.11",
+    "news": {
+      "1.3.11": {
+        "en": "update adapter structure and switch to jsonconfig",
+        "de": "adapterstruktur aktualisieren und auf jsonconfig wechseln",
+        "ru": "обновление структуры адаптера и переход на jsonconfig",
+        "pt": "atualizar a estrutura do adaptador e mudar para jsonconfig",
+        "nl": "adapterstructuur bijwerken en overschakelen naar jsonconfig",
+        "fr": "mettre à jour la structure de l'adaptateur et passer à jsonconfig",
+        "it": "aggiornare la struttura dell'adattatore e passare a jsonconfig",
+        "es": "actualización de la estructura del adaptador y cambiar a jsonconfig",
+        "pl": "aktualizacja struktury adaptera i przełącz na jsonconfig",
+        "uk": "оновлення структури адаптера і перемикання на jsonconfig",
+        "zh-cn": "更新适配器结构并切换到 jsonconfig"
+      },
+      "1.3.10": {
+        "en": "* getalbumartist as artist if setting of TPE2/TPE3 in LMS are changed",
+        "de": "* getalbumartist als Künstler, wenn die Einstellungen von TPE2/TPE3 im LMS geändert werden",
+        "ru": "* получить albumartist как исполнителя, если настройки TPE2/TPE3 в LMS изменены",
+        "pt": "* getalbumartist como artista se a configuração de TPE2/TPE3 no LMS for alterada",
+        "nl": "* krijg albumartiest als artiest als de instelling van TPE2/TPE3 in LMS wordt gewijzigd",
+        "fr": "* getalbumartist en tant qu'artiste si les paramètres de TPE2/TPE3 dans LMS sont modifiés",
+        "it": "* ottienialbumartist come artista se vengono modificate le impostazioni di TPE2/TPE3 in LMS",
+        "es": "* getalbumartist como artista si se cambia la configuración de TPE2/TPE3 en LMS",
+        "pl": "* getalbumartist jako artysta, jeśli ustawienia TPE2/TPE3 w LMS zostaną zmienione",
+        "uk": "* getalbumartist як виконавець, якщо налаштування TPE2/TPE3 у LMS змінено",
+        "zh-cn": "* 如果 LMS 中的 TPE2/TPE3 设置发生更改，则将 albumartist 作为艺术家"
+      },
+      "1.3.9": {
+        "en": "* fix error with deleting favorites * fix wrong type for datapoint",
+        "de": "* Fehler beim Löschen von Favoriten behoben * Falscher Typ für Datenpunkt behoben",
+        "ru": "* исправить ошибку при удалении избранного * исправить неправильный тип точки данных",
+        "pt": "* corrigir erro ao excluir favoritos * corrigir tipo errado de ponto de dados",
+        "nl": "* fout repareren bij het verwijderen van favorieten * foutief type voor datapunt repareren",
+        "fr": "* Correction d'une erreur lors de la suppression des favoris * Correction du mauvais type de point de données",
+        "it": "* corretto l'errore con l'eliminazione dei preferiti * corretto il tipo errato di datapoint",
+        "es": "* corregir error al eliminar favoritos * corregir tipo incorrecto para punto de datos",
+        "pl": "* napraw błąd przy usuwaniu ulubionych * napraw błędny typ punktu danych",
+        "uk": "* виправити помилку з видаленням вибраного * виправити неправильний тип точки даних",
+        "zh-cn": "* 修复删除收藏夹时的错误 * 修复数据点的错误类型"
+      },
+      "1.3.8": {
+        "en": "* fix object forward btn widget",
+        "de": "* Objekt-Weiterleitungs-BTN-Widget korrigiert",
+        "ru": "* исправлен виджет кнопки вперед объекта",
+        "pt": "* corrigir widget de btn de encaminhamento de objeto",
+        "nl": "* fix object voorwaartse btn-widget",
+        "fr": "* Correction du widget btn de transfert d'objet",
+        "it": "* corretto il widget oggetto forward btn",
+        "es": "* arreglar el widget btn de reenvío de objetos",
+        "pl": "* napraw widget btn do przesyłania obiektów",
+        "uk": "* виправити віджет btn для пересилання об’єктів",
+        "zh-cn": "* 修复对象转发 btn 小部件"
+      },
+      "1.3.7": {
+        "en": "* fix object creation of states in player modul",
+        "de": "* Objekterstellung von Zuständen im Player-Modul behoben",
+        "ru": "* исправлено создание объектов состояний в модуле плеера",
+        "pt": "* corrigir a criação de objetos de estados no módulo do player",
+        "nl": "* probleem met het maken van statussen in de spelermodule",
+        "fr": "* Correction de la création d'objets d'états dans le module joueur",
+        "it": "* corretta la creazione di oggetti di stati nel modulo del lettore",
+        "es": "* Corregir la creación de objetos de estados en el módulo del reproductor.",
+        "pl": "* naprawiono tworzenie stanów obiektów w module odtwarzacza",
+        "uk": "* виправлено створення об'єктів станів у модулі гравця",
+        "zh-cn": "*修复玩家模块中状态的对象创建"
+      },
+      "1.3.6": {
+        "en": "* fix object creation of states",
+        "de": "* Objekterstellung von Zuständen behoben",
+        "ru": "* исправлено создание объектов состояний",
+        "pt": "* corrigir a criação de estados de objetos",
+        "nl": "* probleem met het maken van statussen voor objecten",
+        "fr": "* Correction de la création d'objets d'états",
+        "it": "* corretta la creazione degli stati da parte degli oggetti",
+        "es": "* arreglar la creación de objetos de estados",
+        "pl": "* naprawiono tworzenie obiektów w stanach",
+        "uk": "* виправити створення об'єктів станів",
+        "zh-cn": "* 修复状态的对象创建"
+      },
+      "1.3.5": {
+        "en": "* fix object creation for favorites",
+        "de": "* Objekterstellung für Favoriten korrigiert",
+        "ru": "* исправлено создание объектов для избранного",
+        "pt": "* corrigir a criação de objetos para favoritos",
+        "nl": "* probleem met het maken van objecten voor favorieten",
+        "fr": "* correction de la création d'objets pour les favoris",
+        "it": "* corretta la creazione di oggetti per i preferiti",
+        "es": "* arreglar la creación de objetos para favoritos",
+        "pl": "* naprawiono tworzenie obiektów dla ulubionych",
+        "uk": "* виправлено створення об'єктів для обраних",
+        "zh-cn": "* 修复收藏夹的对象创建"
+      }
     },
-    "native": {
-        "server": "0.0.0.0",
-        "port": 9000,
-        "telnetport": 9090,
-        "username": "",
-        "password": "",
-        "serverrefresh": 30,
-        "playerrefresh": 950,
-        "favoriterefresh": 720,
-        "discoveryrefresh": 30,
-        "useplaylist": true,
-        "usediscovery": true,
-        "usetelnet": false,
-        "usefavorites": true,
-        "outputserverdebug": false,
-        "outputserversilly": false,
-        "outputplayerdebug": false,
-        "outputplayersilly": false
+    "title": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+    "titleLang": {
+      "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
+      "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
+      "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
+      "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
+      "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
+      "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
+      "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
+      "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
+      "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
+      "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "ru": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "pt": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "nl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "fr": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "it": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "es": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "pl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол"
+    },
+    "authors": [
+      "oweitman <oweitman@gmx.de>"
+    ],
+    "keywords": [
+      "ioBroker",
+      "template",
+      "Smart Home",
+      "home automation"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "main": "squeezeboxrpc.js",
+    "icon": "squeezeboxrpc.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
+    "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "restartAdapters": [
+      "vis"
+    ],
+    "mode": "daemon",
+    "type": "multimedia",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "messagebox": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.13"
+      }
     ]
+  },
+  "native": {
+    "server": "0.0.0.0",
+    "port": 9000,
+    "telnetport": 9090,
+    "username": "",
+    "password": "",
+    "serverrefresh": 30,
+    "playerrefresh": 950,
+    "favoriterefresh": 720,
+    "discoveryrefresh": 30,
+    "useplaylist": true,
+    "usediscovery": true,
+    "usetelnet": false,
+    "usefavorites": true,
+    "outputserverdebug": false,
+    "outputserversilly": false,
+    "outputplayerdebug": false,
+    "outputplayersilly": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
