@@ -201,8 +201,7 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.3.12 (2024-08-05)
 
 -   improve cmdGoto handling by kairauer, close PR #74
 -   fix issues from adapter checker

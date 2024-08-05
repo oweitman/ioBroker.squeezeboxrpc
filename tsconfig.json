@@ -26,5 +26,5 @@
         "useUnknownInCatchVariables": false
     },
     "include": ["**/*.js", "**/*.d.ts"],
-    "exclude": ["node_modules/**", "widgets/**"]
+    "exclude": ["node_modules/**", "widgets/**", "lib/squeezenode/**"]
 }
