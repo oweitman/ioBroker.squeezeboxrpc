@@ -201,6 +201,10 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+### 1.3.13 (2024-08-05)
+
+-   revert the fix for artist handling due to negative effect of spotify
+
 ### 1.3.12 (2024-08-05)
 
 -   improve cmdGoto handling by kairauer, close PR #74

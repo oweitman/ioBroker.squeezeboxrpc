@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.3.12",
+    "version": "1.3.13",
     "news": {
+      "1.3.13": {
+        "en": "revert the fix for artist handling due to negative effect of spotify",
+        "de": "die fix für die künstlerhandhabung aufgrund negativer wirkung von spotify",
+        "ru": "возвратить фиксацию для работы с художником из-за негативного эффекта спотификации",
+        "pt": "reverter a correção para manipulação de artista devido ao efeito negativo de identificar",
+        "nl": "terugzetten van de fix voor artist handling als gevolg van negatief effect van spotify",
+        "fr": "retourner la correction pour la manipulation de l'artiste en raison de l'effet négatif de spotify",
+        "it": "ripristinare la correzione per la gestione dell'artista a causa dell'effetto negativo di spotify",
+        "es": "revertir la fijación para el manejo del artista debido al efecto negativo de spotify",
+        "pl": "revert fix do obsługi artysty ze względu na negatywny efekt spotify",
+        "uk": "перевернути фіксацію для обробки художника через негативний ефект плямистості",
+        "zh-cn": "恢复对艺术家处理的固定,因为发现有负面影响"
+      },
       "1.3.12": {
         "en": "improve cmdGoto handling by kairauer, close PR #74\nfix issues from adapter checker\nintegrate squeezenode lib",
         "de": "verbessern cmd Goto Handling von kairauer, close PR #74\nprobleme von adapter checker beheben\npressnode lib integrieren",
@@ -80,19 +93,6 @@
         "pl": "* naprawiono tworzenie stanów obiektów w module odtwarzacza",
         "uk": "* виправлено створення об'єктів станів у модулі гравця",
         "zh-cn": "*修复玩家模块中状态的对象创建"
-      },
-      "1.3.6": {
-        "en": "* fix object creation of states",
-        "de": "* Objekterstellung von Zuständen behoben",
-        "ru": "* исправлено создание объектов состояний",
-        "pt": "* corrigir a criação de estados de objetos",
-        "nl": "* probleem met het maken van statussen voor objecten",
-        "fr": "* Correction de la création d'objets d'états",
-        "it": "* corretta la creazione degli stati da parte degli oggetti",
-        "es": "* arreglar la creación de objetos de estados",
-        "pl": "* naprawiono tworzenie obiektów w stanach",
-        "uk": "* виправити створення об'єктів станів",
-        "zh-cn": "* 修复状态的对象创建"
       }
     },
     "titleLang": {
