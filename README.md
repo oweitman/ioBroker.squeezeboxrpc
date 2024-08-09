@@ -201,6 +201,11 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+### 1.3.15 (2024-08-09)
+
+-   due to a adapter checker issue i have to remove the release 1.3.13 from npm.
+    but changes from 1.3.13 are included in 1.3.14
+
 ### 1.3.14 (2024-08-05)
 
 -   fix formatting
