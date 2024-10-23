@@ -201,6 +201,11 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   fixed icons of the favorites widget
+
 ### 1.3.15 (2024-08-09)
 
 -   due to a adapter checker issue i have to remove the release 1.3.13 from npm.
