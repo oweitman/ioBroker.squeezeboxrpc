@@ -201,8 +201,7 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.3.16 (2024-10-23)
 
 -   fixed icons of the favorites widget
 
