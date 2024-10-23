@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.3.16",
+    "version": "1.3.17",
     "news": {
+      "1.3.17": {
+        "en": "add edit button to the vie index field of favorites widget",
+        "de": "fügen sie edit-taste in das vie-index-feld der favoriten widget",
+        "ru": "добавить редактирующую кнопку в поле индекса vie",
+        "pt": "adicionar botão de edição para o campo de índice vie de widget favorito",
+        "nl": "bewerken knop toevoegen aan het vie index veld van favorieten widget",
+        "fr": "ajouter le bouton d'édition au champ d'index de vie des favoris widget",
+        "it": "aggiungere il pulsante di modifica al campo indice vie di widget preferiti",
+        "es": "añadir botón de edición al campo índice vie de favoritos widget",
+        "pl": "dodaj przycisk edycji do pola indeksu vie ulubionych widget",
+        "uk": "додати кнопку редагування в vie index поле улюблених віджетів",
+        "zh-cn": "在最爱部件的vie索引字段中添加编辑按钮"
+      },
       "1.3.16": {
         "en": "fixed icons of the favorites widget",
         "de": "feste symbole der favoriten widget",
@@ -80,19 +93,6 @@
         "pl": "* getalbumartist jako artysta, jeśli ustawienia TPE2/TPE3 w LMS zostaną zmienione",
         "uk": "* getalbumartist як виконавець, якщо налаштування TPE2/TPE3 у LMS змінено",
         "zh-cn": "* 如果 LMS 中的 TPE2/TPE3 设置发生更改，则将 albumartist 作为艺术家"
-      },
-      "1.3.9": {
-        "en": "* fix error with deleting favorites * fix wrong type for datapoint",
-        "de": "* Fehler beim Löschen von Favoriten behoben * Falscher Typ für Datenpunkt behoben",
-        "ru": "* исправить ошибку при удалении избранного * исправить неправильный тип точки данных",
-        "pt": "* corrigir erro ao excluir favoritos * corrigir tipo errado de ponto de dados",
-        "nl": "* fout repareren bij het verwijderen van favorieten * foutief type voor datapunt repareren",
-        "fr": "* Correction d'une erreur lors de la suppression des favoris * Correction du mauvais type de point de données",
-        "it": "* corretto l'errore con l'eliminazione dei preferiti * corretto il tipo errato di datapoint",
-        "es": "* corregir error al eliminar favoritos * corregir tipo incorrecto para punto de datos",
-        "pl": "* napraw błąd przy usuwaniu ulubionych * napraw błędny typ punktu danych",
-        "uk": "* виправити помилку з видаленням вибраного * виправити неправильний тип точки даних",
-        "zh-cn": "* 修复删除收藏夹时的错误 * 修复数据点的错误类型"
       }
     },
     "titleLang": {
