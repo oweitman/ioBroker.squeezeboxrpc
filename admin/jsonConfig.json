@@ -10,12 +10,20 @@
                 "server": {
                     "type": "text",
                     "label": "sb-server",
-                    "md": 3
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
                 },
                 "_discover": {
                     "type": "selectSendTo",
                     "label": "sb-discover",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "command": "discoverlms",
                     "jsonData": "{}",
                     "onChange": {
@@ -25,25 +33,56 @@
                 "port": {
                     "type": "text",
                     "label": "sb-port",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "telnetport": {
                     "type": "text",
                     "label": "sb-telnetport",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "username": {
                     "type": "text",
                     "label": "sb-username",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "password": {
                     "type": "password",
                     "label": "sb-password",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
+                    "newLine": true
+                },
+                "TPE2Handling": {
+                    "type": "select",
+                    "label": "TPE2 Handling",
+                    "options": [
+                        { "label": "TPE2 as Band", "value": "TPE2Band" },
+                        { "label": "TPE2 as Artist of Album", "value": "TPE2Artist" }
+                    ],
+                    "default": "TPE2Artist",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 }
             }
@@ -55,28 +94,44 @@
                 "serverrefresh": {
                     "type": "number",
                     "label": "sb-serverrefresh",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "min": 15,
                     "newLine": true
                 },
                 "playerrefresh": {
                     "type": "number",
                     "label": "sb-playerrefresh",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "min": 200,
                     "newLine": true
                 },
                 "favoriterefresh": {
                     "type": "number",
                     "label": "sb-favoriterefresh",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "min": 1,
                     "newLine": true
                 },
                 "discoveryrefresh": {
                     "type": "number",
                     "label": "sb-discoveryrefresh",
-                    "md": 3,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "min": 10,
                     "newLine": true
                 }
@@ -89,25 +144,41 @@
                 "useplaylist": {
                     "type": "checkbox",
                     "label": "sb-useplaylist",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "usediscovery": {
                     "type": "checkbox",
                     "label": "sb-usediscovery",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "usetelnet": {
                     "type": "checkbox",
                     "label": "sb-usetelnet",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "usefavorites": {
                     "type": "checkbox",
                     "label": "sb-usefavorites",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 }
             }
@@ -119,25 +190,41 @@
                 "outputserverdebug": {
                     "type": "checkbox",
                     "label": "sb-outputserverdebug",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "outputserversilly": {
                     "type": "checkbox",
                     "label": "sb-outputserversilly",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "outputplayerdebug": {
                     "type": "checkbox",
                     "label": "sb-outputplayerdebug",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 },
                 "outputplayersilly": {
                     "type": "checkbox",
                     "label": "sb-outputplayersilly",
+                    "xs": 12,
+                    "sm": 12,
                     "md": 6,
+                    "lg": 4,
+                    "xl": 4,
                     "newLine": true
                 }
             }

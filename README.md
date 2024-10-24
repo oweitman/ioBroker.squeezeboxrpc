@@ -201,6 +201,13 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   jsonConfig add sizing options for differenz screen sizes
+-   test implementation of TPE2 handling. switch in settings
+-   add datapoints album_artist, track_artist, artistOriginal
+
 ### 1.3.17 (2024-10-23)
 
 -   add edit button to the vie index field of favorites widget
