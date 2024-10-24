@@ -201,8 +201,7 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.4.0-alpha.0 (2024-10-24)
 
 -   jsonConfig add sizing options for differenz screen sizes
 -   test implementation of TPE2 handling. switch in settings

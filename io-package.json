@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.3.17",
+    "version": "1.4.0-alpha.0",
     "news": {
+      "1.4.0-alpha.0": {
+        "en": "jsonConfig add sizing options for differenz screen sizes\ntest implementation of TPE2 handling. switch in settings\nadd datapoints album_artist, track_artist, artistOriginal",
+        "de": "jsonConfig Hinzufügen von Größenoptionen für unterschiedliche Bildschirmgrößen\ntestdurchführung des TPE2-Handlings. Schalter in Einstellungen\ndatapoints album_artist, track_artist, artistOriginal",
+        "ru": "jsonConfig добавляет варианты калибровки для различных размеров экрана\nтестовая реализация обработки TPE2. выключение в настройках\nдобавить datapoints album_artist, track_artist, ArtistOriginal",
+        "pt": "jsonConfig adicionar opções de dimensionamento para diferentes tamanhos de tela\nimplementação de teste de manuseio TPE2. alternar em configurações\nadd datapoints album_artist, track_artist, artistOriginal",
+        "nl": "jsonConfig voeg grootte opties toe voor verschillende schermgroottes\ntestimplementatie van TPE2-behandeling. schakelaar in instellingen\ndatapoints album_artist, track_artist, artiestOriginal toevoegen",
+        "fr": "jsonConfig ajouter des options de dimensionnement pour différentes tailles d'écran\ntest de mise en œuvre de la manipulation TPE2. commutateur dans les paramètres\najouter datapoints album_artiste, track_artiste, artisteOriginal",
+        "it": "jsonConfig aggiungere opzioni di dimensionamento per diverseenz dimensioni dello schermo\nimplementazione del test di gestione TPE2. interruttore nelle impostazioni\naggiungere datapoints album_artist, track_artist, artistaOriginal",
+        "es": "jsonConfig añadir opciones de tamaño para diferentes tamaños de pantalla\naplicación de pruebas de manipulación TPE2. conmutar la configuración\nañadir datapoints album_artist, track_artist, artistOriginal",
+        "pl": "jsonConfig dodać opcje rozmiaru dla różnej wielkości ekranu\ntestowa realizacja obsługi TPE2. przełączanie w ustawieniach\nadd datapoints album _ artist, track _ artist, artistOriginal",
+        "uk": "jsonConfig add sizing options для різних розмірів екрана\nтестування впровадження TPE2 обробки. Перемикач в налаштуваннях\nдодавати альбоми/артист, трек_artist, художникOriginal",
+        "zh-cn": "jsonConfig 添加不同屏幕大小的大小选项\n试验实施TPE2处理。 在设置中切换\n添加数据点相册_艺人,音轨_艺人,艺人"
+      },
       "1.3.17": {
         "en": "add edit button to the vie index field of favorites widget",
         "de": "fügen sie edit-taste in das vie-index-feld der favoriten widget",
@@ -80,19 +93,6 @@
         "pl": "aktualizacja struktury adaptera i przełącz na jsonconfig",
         "uk": "оновлення структури адаптера і перемикання на jsonconfig",
         "zh-cn": "更新适配器结构并切换到 jsonconfig"
-      },
-      "1.3.10": {
-        "en": "* getalbumartist as artist if setting of TPE2/TPE3 in LMS are changed",
-        "de": "* getalbumartist als Künstler, wenn die Einstellungen von TPE2/TPE3 im LMS geändert werden",
-        "ru": "* получить albumartist как исполнителя, если настройки TPE2/TPE3 в LMS изменены",
-        "pt": "* getalbumartist como artista se a configuração de TPE2/TPE3 no LMS for alterada",
-        "nl": "* krijg albumartiest als artiest als de instelling van TPE2/TPE3 in LMS wordt gewijzigd",
-        "fr": "* getalbumartist en tant qu'artiste si les paramètres de TPE2/TPE3 dans LMS sont modifiés",
-        "it": "* ottienialbumartist come artista se vengono modificate le impostazioni di TPE2/TPE3 in LMS",
-        "es": "* getalbumartist como artista si se cambia la configuración de TPE2/TPE3 en LMS",
-        "pl": "* getalbumartist jako artysta, jeśli ustawienia TPE2/TPE3 w LMS zostaną zmienione",
-        "uk": "* getalbumartist як виконавець, якщо налаштування TPE2/TPE3 у LMS змінено",
-        "zh-cn": "* 如果 LMS 中的 TPE2/TPE3 设置发生更改，则将 albumartist 作为艺术家"
       }
     },
     "titleLang": {
