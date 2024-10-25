@@ -11,28 +11,28 @@
 
 **Tests:** ![Test and Release](https://github.com/oweitman/ioBroker.squeezeboxrpc/workflows/Test%20and%20Release/badge.svg)
 
-This is an alternative Adapter that uses the JSON/RPC-Protokoll to get data
+This is an alternative Adapter that uses the `JSON/RPC`-protocol to get data
 and send commands to the Logitech Media Server ([LMS](https://de.wikipedia.org/wiki/Logitech_Media_Server))
 for controlling connected devices like
 
 -   native [squeezebox](https://de.wikipedia.org/wiki/Squeezebox),
 -   raspberry pi with additional audio module and small linux based firmwares
     like [picoreplayer](https://picoreplayer.org/) or [max2play](https://www.max2play.com).
--   with plugins chromecast, airplay or UPnP/DLNA-Devices
+-   with plugins chromecast, airplay or `UPnP/DLNA`-Devices
 
-The LMS-Server can manage/provide very big music collections on harddrives
-or NAS, connect to different streaming providers like Spotify, Deezer,
-Soundcloud, shoutcast, tunein, napster, pandora, tidal and more
+The `LMS`-Server can manage/provide very big music collections on harddrives
+or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
+`Soundcloud`, `shoutcast`, `tunein`, `napster`, `pandora`, `tidal` and more
 
-Why another squeezebox adapter?
+Why another `Squeezebox` adapter?
 
-The existing adapter use telnet to access the LMS. The telnet has some disadvantages.
-The actual main web interface of the LMS also uses the rpc/json-protocol to get
+The existing adapter use `telnet` to access the `LMS`. The telnet has some disadvantages.
+The actual main web interface of the `LMS` also uses the rpc/json-protocol to get
 all needed informations or send commands to the server/players.
 
 ## Features
 
--   most of data that the LMS-Service provides is available in the adapter
+-   most of data that the `LMS`-Service provides is available in the adapter
 -   detailed information about the player status, song title, artist,
     album, artwork, playlist
 -   many control features to play, pause, stop, forward, rewind, repeat,
@@ -78,9 +78,9 @@ iobroker upload squeezeboxpc
 | TotalGenres      | Number of all known Genres    |
 | TotalSongs       | Number of all known songs     |
 | SyncGroups       | Existing Syncgroups           |
-| Version          | Version of LMS                |
+| Version          | Version of `LMS`              |
 | mac              | MAC-ID of the server          |
-| uuid             | uuid of the LMS-instance      |
+| uuid             | uuid of the `LMS`-instance    |
 
 additional a defined button to refresh the favorites
 
@@ -142,7 +142,7 @@ described at the attribute
 | Volume               | R/W  | get/set Volume of the player (0-100)                                                                                          |
 | state                | R/W  | get/set play state: pause(0),play(1),stop(2)                                                                                  |
 
-The playlist provide actual the following attributes if available in LMS.
+The playlist provide actual the following attributes if available in `LMS`.
 Somme attributes depends of the type of songs (stream/file/...)
 All attributes are read only
 
@@ -183,7 +183,7 @@ For more information visit the CLI-documentation:
 -   reduce dependencys to other packages (squeezenode)
 -   more configuration to optionaly turn features on/off to improve memory and performance
 -   add playlist widget
--   add browse widget to browse in LMS-Menu
+-   add browse widget to browse in `LMS`-Menu
 -   add player controlled circle knob widget
 -   stop playing if favorite button is pressed again.
 -   cmdGeneral für Server.
@@ -201,6 +201,7 @@ For more information visit the CLI-documentation:
   Placeholder for the next version (at the beginning of the line):
    ### **WORK IN PROGRESS**
 -->
+
 ### 1.4.0-alpha.0 (2024-10-24)
 
 -   jsonConfig add sizing options for differenz screen sizes
@@ -240,7 +241,7 @@ For more information visit the CLI-documentation:
 
 ### 1.3.10
 
--   getalbumartist as artist if setting of TPE2/TPE3 in LMS are changed"
+-   getalbumartist as artist if setting of TPE2/TPE3 in `LMS` are changed"
 
 ### 1.3.9
 
@@ -325,7 +326,7 @@ For more information visit the CLI-documentation:
 
 ### 0.8.28
 
--   add advanced signaling function with telnet and fix some more authorization issues with LMS
+-   add advanced signaling function with telnet and fix some more authorization issues with `LMS`
 
 ### 0.8.27
 
