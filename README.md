@@ -64,7 +64,7 @@ all needed informations or send commands to the server/players.
 
 ### Server
 
-| state              | Description                   |
+| State              | Description                   |
 | ------------------ | ----------------------------- |
 | `LastScan`         | timestamp of last music scan  |
 | `PlayerCount`      | Number of known players       |
@@ -91,7 +91,7 @@ additional a defined button to refresh the favorites
 For each favorite
 All attributes are read only
 
-| state      | Description                                |
+| State      | Description                                |
 | ---------- | ------------------------------------------ |
 | `Name`     | Name of the favorite                       |
 | `hasitems` | indicates if this is a dir                 |
@@ -109,7 +109,7 @@ for each player
 The mode shows if you can change the value. the taken action is
 described at the attribute
 
-| state                  | mode | Description                                                                                                          |
+| State                  | mode | Description                                                                                                          |
 | ---------------------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
 | `Alarms`               | R/-  | All registered Alarms for this player as JSON                                                                        |
 | `Album`                | R/-  | Name of the current album                                                                                            |
@@ -144,7 +144,7 @@ The playlist provide actual the following attributes if available in `LMS`.
 Somme attributes depends of the type of songs (stream/file/...)
 All attributes are read only
 
-| attribute    | Description                       |
+| Attribute    | Description                       |
 | ------------ | --------------------------------- |
 | `Album`      | Name of the current album         |
 | `Artist`     | Name of Artist                    |
@@ -161,7 +161,7 @@ All attributes are read only
 
 additional defined buttons:
 
-| button            | Description                                                                                                                                                       |
+| Button            | Description                                                                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `btnForward`      | Next song                                                                                                                                                         |
 | `btnRewind`       | Previous song                                                                                                                                                     |
@@ -180,6 +180,10 @@ The capitalized names are the names of the mp3 tags
 | ------------------------------ | ----------- | ----------- |  ----------- | ----------- |
 | as a band                      | ARTIST      | empty       |  TRACKARTIST | ALBUMARTIST |
 | as the performers of the album | ALBUMARTIST | ALBUMARTIST |  empty       | empty       |
+
+It should also be noted that after a change in the LMS, the entire library must\
+be searched and indexed again, and a song must be stopped and restarted\
+before the LMS delivers other data.
 
 ### Further API documentation
 
