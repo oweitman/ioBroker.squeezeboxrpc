@@ -1,6 +1,18 @@
 {
     "version": "0.2.0",
     "configurations": [
+    {
+        "name": "Launch Program",
+        "program": "../iobroker.repochecker/index.js",
+        "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc","main","--local"],
+        "request": "launch",
+        "stopOnEntry": true,
+        "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
+        "skipFiles": [
+            "<node_internals>/**"
+        ],
+        "type": "node"
+    },
         {
             "type": "node",
             "request": "launch",

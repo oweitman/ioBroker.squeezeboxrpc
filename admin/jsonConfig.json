@@ -72,21 +72,6 @@
                     "lg": 4,
                     "xl": 4,
                     "newLine": true
-                },
-                "TPE2Handling": {
-                    "type": "select",
-                    "label": "TPE2 Handling",
-                    "options": [
-                        { "label": "TPE2 as Band", "value": "TPE2Band" },
-                        { "label": "TPE2 as Artist of Album (default)", "value": "TPE2Artist" }
-                    ],
-                    "default": "TPE2Artist",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
                 }
             }
         },

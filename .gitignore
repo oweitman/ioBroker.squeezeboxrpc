@@ -26,3 +26,6 @@ admin/i18n/*/flat.txt
 # ioBroker dev-server
 .dev-server/
 .vscode/secrets.txt
+.vscode/info.md
+.vscode/info.xlsx
+.vscode/~$info.xlsx
