@@ -462,10 +462,12 @@ you must connect the button to the player widget.
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 1.4.0-alpha.1 (2024-10-27)
 
 - move widget documentation from html to markdown
+- adjust responsive tab style
+- improve attribute widgets
+- change TPE2 handling once more
 
 ### 1.4.0-alpha.0 (2024-10-24)
 
