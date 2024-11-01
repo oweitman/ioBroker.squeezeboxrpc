@@ -466,8 +466,7 @@ you must connect the button to the player widget.
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 1.4.0-alpha.2 (2024-11-01)
 
 - improve handlying for artwork_url
 

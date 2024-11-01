@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.4.0-alpha.1",
+    "version": "1.4.0-alpha.2",
     "news": {
+      "1.4.0-alpha.2": {
+        "en": "improve handlying for artwork_url",
+        "de": "handlying für artwork_url verbessern",
+        "ru": "улучшение ручной работы для art_url",
+        "pt": "melhorar a mão para artifício_url",
+        "nl": "verbeteren van de handlying voor artwork_url",
+        "fr": "améliorer la main pour artwork_url",
+        "it": "migliorare la handlying per art_url",
+        "es": "mejorar el manual para artwork_url",
+        "pl": "poprawa obsługi dla grafiki _ url",
+        "uk": "покращувати ручне розміщення для artwork_url",
+        "zh-cn": "改进手动艺术工具_url"
+      },
       "1.4.0-alpha.1": {
         "en": "move widget documentation from html to markdown\nadjust responsive tab style\nimprove attribute widgets\nchange TPE2 handling once more",
         "de": "widget-dokumentation von html zu markdown verschieben\npassive tab-stil anpassen\nwidgets des attributs verbessern\ntPE2 Handling erneut ändern",
@@ -80,19 +93,6 @@
         "pl": "naprawić formatowanie",
         "uk": "фіксувати форматування",
         "zh-cn": "固定格式化"
-      },
-      "1.3.12": {
-        "en": "improve cmdGoto handling by kairauer, close PR #74\nfix issues from adapter checker\nintegrate squeezenode lib",
-        "de": "verbessern cmd Goto Handling von kairauer, close PR #74\nprobleme von adapter checker beheben\npressnode lib integrieren",
-        "ru": "улучшить смс Goto handling by kairauer, close PR #74\nпроблемы с адаптером\nинтегрировать сжимнод lib",
-        "pt": "melhorar cm Goto manipulação por kairauer, close PR #74\ncorrigir problemas do verificador do adaptador\nintegrar o espremido lib",
-        "nl": "verbetering cmd Ga naar behandeling door Kairauer, sluit PR #74\nproblemen oplossen van adaptercontrole\nintegreer crownode lib",
-        "fr": "améliorer cmd Goto manipulation par kairauer, fermer PR #74\ncorrection des problèmes de l'adaptateur checker\nintégrer la lib de pressingnode",
-        "it": "migliorare cmd Goto handling by kairauer, close PR #74\nrisolvere problemi da adattatore checker\nintegrare compressione lib",
-        "es": "mejorar cmd Goto manejo por kairauer, cerrar PR #74\nsolucionar problemas desde el control de adaptador\nintegrar el exprimido lib",
-        "pl": "poprawić cmd Goto handling by kairauer, close PR # 74\nnaprawianie problemów z sprawdzaczem adaptera\nzintegrować lib wyciskacza",
-        "uk": "поліпшення cmd Goto обслуговування за допомогою kairauer, Закрити PR #74\nвиправити проблеми з перевіркою адаптера\nінтегрувати squeezenode lib",
-        "zh-cn": "改进 cmd 由Kairauer处理\n从适配器检查器中校正问题\n集成压缩节点 lib"
       }
     },
     "titleLang": {
