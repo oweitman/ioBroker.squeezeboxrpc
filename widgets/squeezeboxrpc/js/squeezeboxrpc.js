@@ -551,6 +551,9 @@ vis.binds["squeezeboxrpc"] = {
             const widgetID = fdata.widgetID;
             const svg = vis.binds["squeezeboxrpc"].svg;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].buttonplay.setState(fdata);
+            }, 100);
             const stateid = data.ainstance.join(".") + ".Players" + "." + playername + ".state";
 
             const state = (vis.states[stateid + ".val"] || vis.states[stateid + ".val"] === 0) ? parseInt(vis.states[stateid + ".val"]) : 2;
@@ -837,6 +840,9 @@ vis.binds["squeezeboxrpc"] = {
             const widgetID = fdata.widgetID;
             const svg = vis.binds["squeezeboxrpc"].svg;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].buttonrepeat.setState(fdata);
+            }, 100);
             const stateid = data.ainstance.join(".") + ".Players" + "." + playername + ".PlaylistRepeat";
 
             const state = (vis.states[stateid + ".val"] || vis.states[stateid + ".val"] === 0) ? parseInt(vis.states[stateid + ".val"]) : 0;
@@ -961,6 +967,9 @@ vis.binds["squeezeboxrpc"] = {
             const widgetID = fdata.widgetID;
             const svg = vis.binds["squeezeboxrpc"].svg;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].buttonshuffle.setState(fdata);
+            }, 100);
             const stateid = data.ainstance.join(".") + ".Players" + "." + playername + ".PlaylistShuffle";
 
             const state = (vis.states[stateid + ".val"] || vis.states[stateid + ".val"] === 0) ? parseInt(vis.states[stateid + ".val"]) : 0;
@@ -1148,6 +1157,9 @@ vis.binds["squeezeboxrpc"] = {
             const reverse = data.reverse;
             let level;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].volumebar.setState(fdata);
+            }, 100);
             const stateid = data.ainstance.join(".") + ".Players" + "." + playername + ".Volume";
             let state = (vis.states[stateid + ".val"] || vis.states[stateid + ".val"] === 0) ? vis.states[stateid + ".val"] : 0;
             if (vis.editMode) state = 50;
@@ -1347,6 +1359,9 @@ vis.binds["squeezeboxrpc"] = {
                 }
             }
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].syncgroup.setState(fdata);
+            }, 100);
             const stateid1 = data.ainstance.join(".") + ".Players" + "." + playername + ".SyncMaster";
             const stateid2 = data.ainstance.join(".") + ".Players" + "." + playername + ".SyncSlaves";
             const stateid3 = data.ainstance.join(".") + ".Players" + "." + playername + ".PlayerID";
@@ -1477,6 +1492,9 @@ vis.binds["squeezeboxrpc"] = {
             const data = fdata.data;
             const widgetID = fdata.widgetID;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].playtime.setState(fdata);
+            }, 100);
             const stateid_duration = data.ainstance.join(".") + ".Players" + "." + playername + ".Duration";
             const stateid_state = data.ainstance.join(".") + ".Players" + "." + playername + ".state";
 
@@ -1690,11 +1708,13 @@ vis.binds["squeezeboxrpc"] = {
             const data = fdata.data;
             const widgetID = fdata.widgetID;
             const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+            if (!playername) return setTimeout(function () {
+                vis.binds["squeezeboxrpc"].image.setState(fdata);
+            }, 100);
             const stateid = data.ainstance.join(".") + ".Players" + "." + playername + "." + data.playerattribute;
 
-            let state = (vis.states[stateid + ".val"]) ? vis.states[stateid + ".val"] : "";
-            if (vis.editMode) state = data.test_html || "";
-
+            const state = (vis.states[stateid + ".val"]) ? vis.states[stateid + ".val"] : "";
+            // if (vis.editMode) state = data.test_html || "";
             $("#" + widgetID + " img").attr("src", state);
         },
     },
