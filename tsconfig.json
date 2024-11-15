@@ -23,7 +23,8 @@
         "noImplicitAny": false,
         // "noUnusedLocals": true,
         // "noUnusedParameters": true,
-        "useUnknownInCatchVariables": false
+        "useUnknownInCatchVariables": false,
+        "sourceMap": true
     },
     "include": ["**/*.js", "**/*.d.ts"],
     "exclude": ["node_modules/**", "widgets/**", "lib/squeezenode/**"]
