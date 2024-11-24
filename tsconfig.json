@@ -26,6 +26,6 @@
         "useUnknownInCatchVariables": false,
         "sourceMap": true
     },
-    "include": ["**/*.js", "**/*.d.ts"],
+    "include": ["lib/**/*.js", "lib/**/*.d.ts", "squeezeboxrpc.js"],
     "exclude": ["node_modules/**", "widgets/**", "lib/squeezenode/**"]
 }
