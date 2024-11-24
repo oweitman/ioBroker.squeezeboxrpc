@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.4.0-alpha.2",
+    "version": "1.4.0-alpha.3",
     "news": {
+      "1.4.0-alpha.3": {
+        "en": "if trackartist is avail then write to artist if empty",
+        "de": "wenn trackartist in anspruch genommen wird, dann schreiben sie an künstler, wenn leer",
+        "ru": "если трекартист воспользуется, тогда напишите художнику, если пустой",
+        "pt": "se trackartist é aproveitado então escreva para artista se vazio",
+        "nl": "als track artist beschikbaar is schrijf dan naar artiest indien leeg",
+        "fr": "si trackartist est disponible alors écrire à l'artiste si vide",
+        "it": "se trackartist è avail poi scrivere all'artista se vuoto",
+        "es": "si el trackartista está disponible entonces escriba al artista si está vacío",
+        "pl": "jeśli trackartist jest użyteczny, napisz do artysty jeśli pusty",
+        "uk": "якщо трактист - аваїл, то напишіть художника, якщо порожня",
+        "zh-cn": "如果 trackartist 有用, 如果空则写给艺人"
+      },
       "1.4.0-alpha.2": {
         "en": "improve handlying for artwork_url",
         "de": "handlying für artwork_url verbessern",
@@ -80,19 +93,6 @@
         "pl": "- ze względu na problem sprawdzania adaptera muszę usunąć zwolnienie 1.3.13 z npm.\nale zmiany z 1.3.13 są zawarte w 1.3.14",
         "uk": "- через проблему перевірки адаптера я повинен видалити реліз 1.3.13 з npm.\nале зміни від 1.3.13 включені в 1.3.14",
         "zh-cn": "- 因为适配器检查器的问题,我不得不从npm中移除1.3.13的发布.\n但从1.3.13到1.3.14的变动已包括在内"
-      },
-      "1.3.14": {
-        "en": "fix formatting",
-        "de": "fixe formatierung",
-        "ru": "форматирование фиксации",
-        "pt": "corrigir formatação",
-        "nl": "formatteren herstellen",
-        "fr": "corriger le formatage",
-        "it": "correzione della formattazione",
-        "es": "arreglar formato",
-        "pl": "naprawić formatowanie",
-        "uk": "фіксувати форматування",
-        "zh-cn": "固定格式化"
       }
     },
     "titleLang": {
