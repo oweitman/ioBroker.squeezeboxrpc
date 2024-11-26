@@ -470,6 +470,7 @@ you must connect the button to the player widget.
 ### **WORK IN PROGRESS**
 
 - sanitize more the playername
+- improve translation
 
 ### 1.4.0-alpha.3 (2024-11-24)
 

@@ -18,9 +18,9 @@
     "sb-usetelnet": "Verwenden von Telnet für erweiterte Signalisierung (Player verbinden/trennen).",
     "sb-usefavorites": "Favoriten vom LMS abfragen",
     "sb-outputserverdebug": "Erstellen Sie eine Debug-Ausgabe für den Server",
-    "sb-outputserversilly": "Erstellen Sie eine alberne Ausgabe für den Server",
+    "sb-outputserversilly": "Erstellen Sie eine erweiterte Debug-Ausgabe für den Server",
     "sb-outputplayerdebug": "Erstellen Sie eine Debug-Ausgabe für den Player",
-    "sb-outputplayersilly": "Erstelle eine alberne Ausgabe für den Spieler",
+    "sb-outputplayersilly": "Erstelle eine erweiterte Debug-Ausgabe für den Player",
     "xxx": "xxx",
     "": ""
 }
