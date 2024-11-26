@@ -466,8 +466,7 @@ you must connect the button to the player widget.
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 1.4.0-alpha.4 (2024-11-26)
 
 - sanitize more the playername
 - improve translation

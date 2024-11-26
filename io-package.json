@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.4.0-alpha.3",
+    "version": "1.4.0-alpha.4",
     "news": {
+      "1.4.0-alpha.4": {
+        "en": "sanitize more the playername\nimprove translation",
+        "de": "sanitize mehr der spielername\nverbesserung der übersetzung",
+        "ru": "обезвредить больше имя игрока\nулучшить перевод",
+        "pt": "higienizar mais o nome do jogador\nmelhorar a tradução",
+        "nl": "de naam van de speler deactiveren\nverbeteren van de vertaling",
+        "fr": "désinfecter plus le nom du joueur\naméliorer la traduction",
+        "it": "sanitizzare più il nome del giocatore\nmigliorare la traduzione",
+        "es": "sanitize más el nombre de jugador\nmejorar la traducción",
+        "pl": "sanitize more the playername\npoprawić tłumaczenie",
+        "uk": "сатизувати більше ім'я гравця\nполіпшення перекладу",
+        "zh-cn": "更多消毒玩家名称\n改进翻译"
+      },
       "1.4.0-alpha.3": {
         "en": "if trackartist is avail then write to artist if empty",
         "de": "wenn trackartist in anspruch genommen wird, dann schreiben sie an künstler, wenn leer",
@@ -80,19 +93,6 @@
         "pl": "stałe ikony ulubionego widgetu",
         "uk": "фіксовані ікони улюбленого віджету",
         "zh-cn": "最爱部件的固定图标"
-      },
-      "1.3.15": {
-        "en": "-   due to a adapter checker issue i have to remove the release 1.3.13 from npm.\n    but changes from 1.3.13 are included in 1.3.14",
-        "de": "- wegen eines adapter-checker-problems muss ich das release 1.3.13 von npm entfernen.\nänderungen von 1.3.13 sind in 1.3.14 enthalten",
-        "ru": "- из-за проблемы с адаптером, я должен удалить выпуск 1.3.13 из npm.\nно изменения от 1.3.13 включены в подраздел 1.3.14",
-        "pt": "- devido a um problema do verificador do adaptador eu tenho que remover a liberação 1.3.13 da npm.\nmas as alterações de 1.3.13 estão incluídas em 1.3.14",
-        "nl": "- vanwege een probleem met de adaptercontrole moet ik de release 1.3.13 van npm verwijderen.\nmaar wijzigingen van 1.3.13 zijn opgenomen in 1.3.14",
-        "fr": "- en raison d'un problème d'adaptateur, je dois supprimer la version 1.3.13 de npm.\nmais les changements par rapport au 1.3.13 sont inclus dans le 1.3.14",
-        "it": "- a causa di un problema dell'adattatore checker devo rimuovere il rilascio 1.3.13 da npm.\nma le modifiche da 1.3.13 sono incluse in 1.3.14",
-        "es": "- debido a un problema de control de adaptador tengo que eliminar la liberación 1.3.13 de npm.\npero los cambios de 1.3.13 se incluyen en 1.3.14",
-        "pl": "- ze względu na problem sprawdzania adaptera muszę usunąć zwolnienie 1.3.13 z npm.\nale zmiany z 1.3.13 są zawarte w 1.3.14",
-        "uk": "- через проблему перевірки адаптера я повинен видалити реліз 1.3.13 з npm.\nале зміни від 1.3.13 включені в 1.3.14",
-        "zh-cn": "- 因为适配器检查器的问题,我不得不从npm中移除1.3.13的发布.\n但从1.3.13到1.3.14的变动已包括在内"
       }
     },
     "titleLang": {
