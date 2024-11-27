@@ -508,35 +508,19 @@ der folgenden CLI-Dokumentation enthalten:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 1.4.0 (2024-11-27)
 
 - fix some missing objects errors
 - sanitize more playernames in syncgroups
 - add sendTo Command "cmdGeneral"
-
-### 1.4.0-alpha.4 (2024-11-26)
-
 - sanitize more the playername
 - improve translation
-
-### 1.4.0-alpha.3 (2024-11-24)
-
 - if trackartist is avail then write to artist if empty
-
-### 1.4.0-alpha.2 (2024-11-01)
-
-- improve handlying for artwork_url
-
-### 1.4.0-alpha.1 (2024-10-27)
-
+- improve handling for artwork_url
 - move widget documentation from html to markdown
 - adjust responsive tab style
 - improve attribute widgets
 - change TPE2 handling once more
-
-### 1.4.0-alpha.0 (2024-10-24)
-
 - jsonConfig add sizing options for differenz screen sizes
 - test implementation of TPE2 handling. switch in settings
 - add datapoints album_artist, track_artist, artistOriginal
