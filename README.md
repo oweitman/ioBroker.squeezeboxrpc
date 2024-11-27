@@ -466,6 +466,12 @@ you must connect the button to the player widget.
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- fix some missing objects errors
+- sanitize more playernames in syncgroups
+
 ### 1.4.0-alpha.4 (2024-11-26)
 
 - sanitize more the playername
