@@ -438,6 +438,48 @@ you must connect the button to the player widget.
 | Comma as separator    | Advanced settings | A comma is used to separate the decimal places.                   |
 | Thousands separator   | Advanced settings | For large numbers, a separator is inserted every 3 places.        |
 
+## SendTo-Befehle
+
+### cmdGeneral
+
+Mit diesem Befehl können beliebige Befehle an den LMS-Server gesendet werden,
+um eine Rückmeldung zu erhalten.
+
+Beispiel:
+
+_Alle Playlists:_
+
+```js
+async function main() {
+  let data = await sendToAsync("squeezeboxrpc.0", "cdmGeneral", {
+    playerid: "",
+    cmdArray: ["playlists", "0", "999", "tags:us"],
+  });
+  console.log(JSON.stringify(data));
+}
+main();
+```
+
+_Alle Favoriten:_
+
+Dieser Befehl wird vom Adapter intern verwendet, um die Favoriten zu laden.
+
+```js
+async function main() {
+  let data = await sendToAsync("squeezeboxrpc.0", "cdmGeneral", {
+    playerid: "",
+    cmdArray: ["favorites", "items", "0", "999", "want_url:1", "item_id:"],
+  });
+  console.log(JSON.stringify(data));
+}
+main();
+```
+
+Weitere Möglichkeiten und Detailbeschreibung über die Parameter sind in
+der folgenden CLI-Dokumentation enthalten:
+
+[CLI-Documentation](#further-api-documentation)
+
 ## Todo
 
 - more testing/fixing
@@ -471,6 +513,7 @@ you must connect the button to the player widget.
 
 - fix some missing objects errors
 - sanitize more playernames in syncgroups
+- add sendTo Command "cmdGeneral"
 
 ### 1.4.0-alpha.4 (2024-11-26)
 
