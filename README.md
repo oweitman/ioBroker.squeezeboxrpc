@@ -452,16 +452,47 @@ The widged dosent refresh automaticly, you have to press the refreshh button.
 | --------------------- | ----------------- | ----------------------------------------------------------------- |
 | Player widget         | General group     | Selection of the player widget.                                   |
 
+The widget itself has very little formatting.
+For self formating there are some predefined css-classes:
+
+| CSS-class  | description                               |
+| ---------- | ----------------------------------------- |
+| plcontainer| Class name assigned to the ul-tag         |
+| plentry    | Class name assigned to the li-tag         |
+| plrefresh  | Class name assigned to the refresh-li tag |
+
+The following CSS for the vis-css tab can serve as an example:
+
+```css
+.plentry {
+    border: 1px #505050 groove;
+    margin:1px 0px;
+    padding:5px;
+    text-overflow: ellipsis;
+    background-color:#202020;
+    overflow-x:clip;
+}
+.plentry:hover {
+        background-color:#404040;
+}
+.plrefresh svg {
+    color:#cccccc;
+}
+.plrefresh svg:hover {
+        color:#ffffff;
+        filter: drop-shadow(0px 0px 1px #87ceeb);
+}
+```
+
 ## SendTo-Befehle
 
 ### cmdGeneral
 
-Mit diesem Befehl können beliebige Befehle an den LMS-Server gesendet werden,
-um eine Rückmeldung zu erhalten.
+This command can be used to send any command to the LMS server to receive a response.
 
-Beispiel:
+Example:
 
-_Alle Playlists:_
+**All Playlists:**
 
 ```js
 async function main() {
@@ -474,9 +505,9 @@ async function main() {
 main();
 ```
 
-_Alle Favoriten:_
+**All Favorites:**
 
-Dieser Befehl wird vom Adapter intern verwendet, um die Favoriten zu laden.
+This command is used internally by the adapter to load the favorites.
 
 ```js
 async function main() {
@@ -489,8 +520,8 @@ async function main() {
 main();
 ```
 
-Weitere Möglichkeiten und Detailbeschreibung über die Parameter sind in
-der folgenden CLI-Dokumentation enthalten:
+Further options and detailed descriptions of the parameters
+are contained in the following CLI documentation:
 
 [CLI-Documentation](#further-api-documentation)
 
@@ -522,10 +553,14 @@ der folgenden CLI-Dokumentation enthalten:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+
+- improve documentation
+
 ### 1.5.0 (2024-11-28)
 
-- Umstellung auf iobroker/eslint
-- Neues Widget playlist
+- Switch to iobroker/eslint
+- New widget playlist
 
 ### 1.4.0 (2024-11-27)
 
