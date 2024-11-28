@@ -438,6 +438,20 @@ you must connect the button to the player widget.
 | Comma as separator    | Advanced settings | A comma is used to separate the decimal places.                   |
 | Thousands separator   | Advanced settings | For large numbers, a separator is inserted every 3 places.        |
 
+### Playlist
+
+![Number](/widgets/squeezeboxrpc/img/playlist.png)
+
+Display the playlist from the server. If you click on an entry the playlist
+is loaded and the player starts.
+The widged dosent refresh automaticly, you have to press the refreshh button.
+
+#### Attributes for Playlist
+
+| Group                 | Attribute         | Description                                                       |
+| --------------------- | ----------------- | ----------------------------------------------------------------- |
+| Player widget         | General group     | Selection of the player widget.                                   |
+
 ## SendTo-Befehle
 
 ### cmdGeneral
@@ -451,7 +465,7 @@ _Alle Playlists:_
 
 ```js
 async function main() {
-  let data = await sendToAsync("squeezeboxrpc.0", "cdmGeneral", {
+  let data = await sendToAsync("squeezeboxrpc.0", "cmdGeneral", {
     playerid: "",
     cmdArray: ["playlists", "0", "999", "tags:us"],
   });
@@ -466,7 +480,7 @@ Dieser Befehl wird vom Adapter intern verwendet, um die Favoriten zu laden.
 
 ```js
 async function main() {
-  let data = await sendToAsync("squeezeboxrpc.0", "cdmGeneral", {
+  let data = await sendToAsync("squeezeboxrpc.0", "cmdGeneral", {
     playerid: "",
     cmdArray: ["favorites", "items", "0", "999", "want_url:1", "item_id:"],
   });
@@ -508,6 +522,11 @@ der folgenden CLI-Dokumentation enthalten:
    ### **WORK IN PROGRESS**
 
 -->
+### 1.5.0 (2024-11-28)
+
+- Umstellung auf iobroker/eslint
+- Neues Widget playlist
+
 ### 1.4.0 (2024-11-27)
 
 - fix some missing objects errors

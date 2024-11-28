@@ -1,0 +1,13 @@
+{
+    "name": "squeezeboxrpc-vis1-widget",
+    "version": "1.0.0",
+    "main": "squeezeboxrpc/js/squeezeboxrpc.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "esbuild squeezeboxrpc/js/bundle.js --bundle --outfile=squeezeboxrpc/js/squeezeboxrpc-dist.js --target=es6 --sourcemap",
+        "buildxx": "esbuild squeezeboxrpc/js/bundle.js --minify --bundle --outfile=squeezeboxrpc/js/squeezeboxrpc-dist.js --target=es6 --sourcemap"
+    },
+    "author": "",
+    "license": "MIT",
+    "description": ""
+}
