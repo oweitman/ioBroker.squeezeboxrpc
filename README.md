@@ -556,6 +556,10 @@ are contained in the following CLI documentation:
 ### **WORK IN PROGRESS**
 
 - improve documentation
+- remove margin from plcontainer
+- improve textoverflow with ellipsis
+- adjust initial widgetsize of playlist widget
+- repair attributes for playlist widget
 
 ### 1.5.0 (2024-11-28)
 

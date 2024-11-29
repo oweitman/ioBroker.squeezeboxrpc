@@ -2005,9 +2005,14 @@
               text += "   list-style-type: none;";
               text += "   padding-left: 0px;";
               text += "   color:white;";
+              text += "   margin:0px;";
               text += "}";
               text += `#${widgetID} li.plentry { `;
               text += "   cursor: pointer;";
+              text += "}";
+              text += `#${widgetID} li.plentry div{ `;
+              text += "   text-overflow: ellipsis;";
+              text += "   overflow: hidden;";
               text += "}";
               text += `#${widgetID} li.plrefresh { `;
               text += "   width: 1em;";
