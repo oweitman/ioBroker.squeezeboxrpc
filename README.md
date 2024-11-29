@@ -460,27 +460,55 @@ For self formating there are some predefined css-classes:
 | plcontainer| Class name assigned to the ul-tag         |
 | plentry    | Class name assigned to the li-tag         |
 | plrefresh  | Class name assigned to the refresh-li tag |
+| pltext     | Class name assigned to the playlist name  |
 
 The following CSS for the vis-css tab can serve as an example:
+
+Dark-mode
 
 ```css
 .plentry {
     border: 1px #505050 groove;
     margin:1px 0px;
     padding:5px;
-    text-overflow: ellipsis;
     background-color:#202020;
-    overflow-x:clip;
+}
+.plrefresh {
+    padding:5px;
 }
 .plentry:hover {
-        background-color:#404040;
+    background-color:#404040;
 }
 .plrefresh svg {
     color:#cccccc;
 }
 .plrefresh svg:hover {
-        color:#ffffff;
-        filter: drop-shadow(0px 0px 1px #87ceeb);
+    color:#ffffff;
+    filter: drop-shadow(0px 0px 1px #87ceeb);
+}
+```
+
+Light-mode
+
+```css
+.plentry {
+    border: 1px #b0b0b0 groove;
+    margin:1px 0px;
+    padding:5px;
+    background-color:#c0c0c0;
+}
+.plrefresh {
+    padding:5px;
+}
+.plentry:hover {
+    background-color:#e0e0e0;
+}
+.plrefresh svg {
+    color:#444444;
+}
+.plrefresh svg:hover {
+    color:#000000;
+    filter: drop-shadow(0px 0px 1px #87ceeb);
 }
 ```
 
@@ -553,13 +581,14 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-### **WORK IN PROGRESS**
+### 1.5.1 (2024-11-29)
 
 - improve documentation
 - remove margin from plcontainer
 - improve textoverflow with ellipsis
 - adjust initial widgetsize of playlist widget
 - repair attributes for playlist widget
+- add light mode css for playlist widget
 
 ### 1.5.0 (2024-11-28)
 

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "news": {
+      "1.5.1": {
+        "en": "improve documentation\nremove margin from plcontainer\nimprove textoverflow with ellipsis\nadjust initial widgetsize of playlist widget\nrepair attributes for playlist widget\nadd light mode css for playlist widget",
+        "de": "verbesserung der dokumentation\nentfernen sie den rand von plcontainer\ntextoverflow mit ellipsis verbessern\neinstellen der ersten widgetsize der wiedergabeliste widget\nreparatur-attribute für playlist widget\nlichtmodus css für playlist widget hinzufügen",
+        "ru": "улучшение документации\nудалить маржу от plcontainer\nулучшить текстовый поток с эллипсисом\nнастроить первоначальный виджет\nатрибуты для воспроизведения виджета\nдобавить режим cs для виджета списка воспроизведения",
+        "pt": "melhorar a documentação\nremover a margem do plcontainer\nmelhorar o fluxo de texto com ellipsis\najustar o widget inicial do widget da lista de reprodução\natributos de reparo para widget de lista de reprodução\nadd light mode css para widget da lista de reprodução",
+        "nl": "de documentatie verbeteren\nde marge uit plcontainer verwijderen\nverbeteren textoverflow met ellipsis\nde initiële widgetgrootte van afspeellijstwidget aanpassen\nreparatie attributen voor afspeellijst widget\nlichtmodus css toevoegen voor afspeellijstwidget",
+        "fr": "améliorer la documentation\nenlever la marge du plcontainer\naméliorer le textoverflow avec ellipse\najustez le widget initial du widget playlist\nattributs de réparation pour widget playlist\najouter le mode lumière css pour le widget playlist",
+        "it": "migliorare la documentazione\nrimuovere il margine da plcontainer\nmigliorare il flusso di testo con ellipsis\nregolare la dimensione iniziale del widget di playlist\nattributi di riparazione per widget di playlist\naggiungere css modalità di luce per widget di playlist",
+        "es": "mejorar la documentación\neliminar el margen de plcontainer\nmejorar el flujo de textover con elipsis\najustar el widgetsize inicial del widget de lista de reproducción\natributos de reparación para el widget de lista\nañadir light mode css para el widget de lista de reproducción",
+        "pl": "poprawić dokumentację\nusunąć margines z plakietki\npoprawić przepływ tekstuwerwiru za pomocą elipsy\ndostosować początkowy rozmiar widgetsize widget listy odtwarzania\nnaprawa atrybutów widgetu listy odtwarzania\ndodaj tryb światła css dla widżetu listy odtwarzania",
+        "uk": "вдосконалення документації\nприбрати запас від plcontainer\nполіпшення текстового потоку з еліпсом\nналаштування початкового віджетурозміри віджету\nвідремонтувати атрибути для відтворення віджету\nadd light режим css для playlist віджет",
+        "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
+      },
       "1.5.0": {
         "en": "Umstellung auf iobroker/eslint\nNeues Widget playlist",
         "de": "Anpassung an iobroker/eslint\nNeues Widget Playlist",

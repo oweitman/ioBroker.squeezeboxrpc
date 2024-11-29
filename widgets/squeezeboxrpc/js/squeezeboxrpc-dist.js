@@ -2000,28 +2000,32 @@
               let result = yield vis.binds["squeezeboxrpc"].getPlaylistData(ainstance.join("."));
               let playlist = result.result.playlists_loop;
               let text = "";
-              text += "<style>";
-              text += `#${widgetID} ul.plcontainer { `;
-              text += "   list-style-type: none;";
-              text += "   padding-left: 0px;";
-              text += "   color:white;";
-              text += "   margin:0px;";
-              text += "}";
-              text += `#${widgetID} li.plentry { `;
-              text += "   cursor: pointer;";
-              text += "}";
-              text += `#${widgetID} li.plentry div{ `;
-              text += "   text-overflow: ellipsis;";
-              text += "   overflow: hidden;";
-              text += "}";
-              text += `#${widgetID} li.plrefresh { `;
-              text += "   width: 1em;";
-              text += "   height: 1em;";
-              text += "   margin: 5px 0px;";
-              text += "}";
-              text += "</style>";
+              text += `
+            <style>
+            #${widgetID} ul.plcontainer {
+                list-style-type: none;
+                padding-left: 0px;
+                margin: 0px;
+            }
+            #${widgetID} li.plentry {
+                cursor: pointer;
+                height: 1em;
+                margin: 5px 0px;
+            }
+            #${widgetID} li.plentry div {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            #${widgetID} li.plrefresh {
+                width: 1em;
+                height: 1em;
+                margin: 5px 0px;
+            }
+            </style>
+            `;
               text += '<ul class="plcontainer">';
-              text += '<li class="plrefresh"><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="RefreshIcon"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"></path></svg></li>';
+              text += '<li class="plrefresh"><div><svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="RefreshIcon"><path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"></path></svg></div></li>';
               for (let i = 0; i < playlist.length; i++) {
                 let pl = playlist[i];
                 text += `<li class="plentry"><div class="pltext" data-plid="${pl.id}" data-pln="${playername}" data-ins="${ainstance.join(".")}" onclick="vis.binds.squeezeboxrpc.playlist.onclickplaylist(this,event)">${pl.playlist}</div></li>`;
