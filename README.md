@@ -58,7 +58,7 @@ all needed informations or send commands to the server/players.
 - After installation or update, it may sometimes be necessary\
    to execute the following command if problems have arisen in vis-1
 
-`iobroker upload squeezeboxpc`
+`iobroker upload squeezeboxrpc`
 
 ## Provided states
 
@@ -581,6 +581,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+
+- fix spelling of iobroker upload squeezeboxrpc in readme
+
 ### 1.5.1 (2024-11-29)
 
 - improve documentation
