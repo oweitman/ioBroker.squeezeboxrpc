@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "news": {
+      "1.5.2": {
+        "en": "fix spelling of iobroker upload squeezeboxrpc in readme\nfix playtime bar",
+        "de": "fix buchstabierung von iobroker laden pressboxrpc in readme\nspielzeitleiste",
+        "ru": "фиксация iobroker загрузки сжатиеboxrpc в считывании\nисправить плей-тайм",
+        "pt": "correção ortografia de iobroker upload espremedorpc em readme\ncorrigir a barra de playtime",
+        "nl": "fix spelling van iobroker upload cleaseboxrpc in readme\nspeelbalk herstellen",
+        "fr": "corriger l'orthographe du téléchargement d'iobroker streetboxrpc dans readme\nfixer la barre de temps de jeu",
+        "it": "correzione ortografia di iobroker upload spreboxrpc in readme\nfix playtime bar",
+        "es": "fijación de la ortografía de iobroker subido apretboxrpc en readme\nbarra de juego",
+        "pl": "naprawić pisownię iobroker wysyłania squeezeboxrpc w readme\nnaprawić pasek czasu odtwarzania",
+        "uk": "фіксувати заклинання iobroker upload squeezeboxrpc в читме\nфіксувати час гри",
+        "zh-cn": "在readme中固定 iobroster 上传压缩盒的拼写\n修复播放时间栏"
+      },
       "1.5.1": {
         "en": "improve documentation\nremove margin from plcontainer\nimprove textoverflow with ellipsis\nadjust initial widgetsize of playlist widget\nrepair attributes for playlist widget\nadd light mode css for playlist widget",
         "de": "verbesserung der dokumentation\nentfernen sie den rand von plcontainer\ntextoverflow mit ellipsis verbessern\neinstellen der ersten widgetsize der wiedergabeliste widget\nreparatur-attribute für playlist widget\nlichtmodus css für playlist widget hinzufügen",
