@@ -53,7 +53,7 @@
   var version;
   var init_package = __esm({
     "../package.json"() {
-      version = "1.5.0";
+      version = "1.5.1";
     }
   });
 
@@ -1900,14 +1900,18 @@
             }
             const stateid_duration = `${data.ainstance.join(".")}.Players.${playername}.Duration`;
             const stateid_state = `${data.ainstance.join(".")}.Players.${playername}.state`;
+            const stateid_time = `${data.ainstance.join(".")}.Players.${playername}.Time`;
             const state_duration = vis.states[`${stateid_duration}.val`] || vis.states[`${stateid_duration}.val`] === 0 ? parseInt(vis.states[`${stateid_duration}.val`]) : 0;
             const state_state = vis.states[`${stateid_state}.val`] || vis.states[`${stateid_state}.val`] === 0 ? parseInt(vis.states[`${stateid_state}.val`]) : 0;
-            let width = state_duration == 0 ? 0 : width;
+            const state_time = vis.states[`${stateid_time}.val`] || vis.states[`${stateid_time}.val`] === 0 ? parseInt(vis.states[`${stateid_time}.val`]) : 0;
+            let width = state_duration == 0 ? 0 : $(`#${widgetID} div.playtimebar`).width();
             if (state_state == 2) {
               width = 0;
             }
             if (vis.editMode) {
               width = 50;
+            } else {
+              width = Math.floor(state_time / state_duration * 100);
             }
             $(`#${widgetID} div.playtimebar`).width(`${width}%`);
           }
