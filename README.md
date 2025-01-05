@@ -1,6 +1,6 @@
 ![Logo](admin/squeezeboxrpc.png)
 
-# ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol
+# ioBroker Logitech/Lyrion Squeezebox Adapter over JSON/RPC-Protocol
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
@@ -44,7 +44,7 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 
 - Install the package
 - Create an instance
-- Configure the Instance with the IP of the logitech media server
+- Configure the Instance with the IP of the logitech/Lyrion media server
   and the port (normaly 9000)
 - start/restart the instance
 
@@ -192,7 +192,7 @@ For more information visit the CLI-documentation:
 
 ![Player button bar](/widgets/squeezeboxrpc/img/players.png)
 
-All players that are integrated into your Logitech Media Server can be selected\
+All players that are integrated into your Logitech/Lyrion Media Server can be selected\
 using this widget. After selecting a `squeezerpc.?` instance, the available\
 players are displayed in the widget.
 
@@ -222,7 +222,7 @@ players are displayed in the widget.
 ![Favorites button bar](/widgets/squeezeboxrpc/img/favorites.png)
 
 You can use this widget to select all of the favorites that have been\
-created in your Logitech Media Server.
+created in your Logitech/Lyrion Media Server.
 After selecting the Player widget, the available favorites are displayed in the widget.
 
 | Group               | Attribute       | Description                                                                                           |
