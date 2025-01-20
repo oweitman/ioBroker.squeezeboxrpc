@@ -26,6 +26,7 @@
     "@iobroker/adapter-core": "^3.2.2",
     "jayson": "^4.1.2",
     "lodash": "^4.17.4",
+    "npm-watch": "^0.13.0",
     "request": "^2.88.0",
     "super": "^0.2.3"
   },
