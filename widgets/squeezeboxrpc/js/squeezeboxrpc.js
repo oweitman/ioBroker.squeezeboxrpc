@@ -1,7 +1,7 @@
 /*
     ioBroker.vis squeezeboxrpc Widget-Set
 
-    Copyright 2024 oweitman oweitman@gmx.de
+    Copyright 2025 oweitman oweitman@gmx.de
 
 */
 /* globals $,vis,window,systemDictionary */
@@ -9,7 +9,8 @@
 
 // add translations for edit mode
 import { version as pkgVersion } from '../../../package.json';
-import { createTextImage, Font } from './textImage.js';
+import { getTextWidth, createTextImage, Font } from './textImage.js';
+import { parseRequestFactory } from './sbClasses.js';
 
 fetch('widgets/squeezeboxrpc/i18n/translations.json').then(async res => {
     const i18n = await res.json();
@@ -19,6 +20,8 @@ fetch('widgets/squeezeboxrpc/i18n/translations.json').then(async res => {
 
 vis.binds['squeezeboxrpc'] = {
     version: pkgVersion,
+    debug: false,
+    fetchResults: false,
     showVersion: function () {
         if (vis.binds['squeezeboxrpc'].version) {
             console.log(`Version squeezeboxrpc: ${vis.binds['squeezeboxrpc'].version}`);
@@ -39,6 +42,10 @@ vis.binds['squeezeboxrpc'] = {
         repeat1:
             '<svg version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" stroke="#ffffff" stroke-width=".3"><path transform="scale(.26458)" d="m35.471 20.607c-8.2281 0-14.852 6.6235-14.852 14.852v29.055c0 8.2281 6.6235 14.852 14.852 14.852h15.297c-0.099283-0.23342-0.20508-0.4639-0.28516-0.70898-1.0314-3.157-0.36829-6.37 1.3789-9.084h-11.549c-5.4854 0-9.9004-4.415-9.9004-9.9004v-19.371c0-5.4853 4.415-9.9004 9.9004-9.9004h0.21094c-0.0026-0.04362-0.01758-0.08476-0.01758-0.12891v-9.6641zm25.035 0v9.6641c0 0.05752-0.0189 0.11131-0.02344 0.16797 1.6304 0.12928 3.1454 0.65289 4.4551 1.4707v-4.7422h10.172l-0.17773 3.0039v0.0078c0.0017 0.81652 0.51993 2.0016 1.6992 3.5879 0.75387 1.014 1.7283 2.1484 2.7461 3.3945v-1.7031c0-8.2281-6.6235-14.852-14.852-14.852zm14.426 28.418-0.0078 23.127c0.02228 1.1774-0.15778 2.3265-0.49805 3.4277 3.0352-2.7155 4.9512-6.6543 4.9512-11.066v-4.1504c-0.56305 0.11278-1.2016 0.10116-1.877-0.18359-1.5706-0.66221-1.9257-2.0105-2.0215-2.7676-0.09574-0.75705 3e-3 -1.3469 0.18359-1.9414 0.08357-0.27565 0.31768-3.3953-0.38281-5.7285-0.08795-0.29287-0.24795-0.45038-0.34766-0.7168z" fill="#fff" stroke="#fffffb" stroke-linecap="round"/><path d="m10.111 9.4094v-5.3598c-0.0082 0.01812-0.0021-0.17387 0.24672-0.34879 0.24874-0.17491 0.65793 0 0.65793 0l4.6078 2.7541s0.1702 0.09835 0.16971 0.29612c-5.03e-4 0.20056-0.1784 0.32361-0.1784 0.32361l-4.5991 2.7487s-0.39816 0.13052-0.65793-0.06357c-0.25976-0.19409-0.24672-0.35035-0.24672-0.35035z" /><path d="m19.028 7.9826h-1.0564v9.5915c-0.58411-0.2504-1.34-0.25388-2.0856 0.04816-1.3358 0.54165-2.1316 1.8592-1.7778 2.9424 0.35402 1.0835 1.7238 1.5224 3.0594 0.98077 1.1345-0.45993 1.8767-1.4796 1.8585-2.4399l0.0018-7.8441c1.842 0.32346 1.9681 2.9181 1.7475 3.6457-0.08378 0.27574 0.06375 0.48221 0.34217 0 1.9862-3.4426-2.0896-4.9615-2.0896-6.9244z" /></g></svg>',
         rew: '<svg version="1.1" viewBox="0 0 26.458 26.458" xmlns="http://www.w3.org/2000/svg"><g fill="#ffffff" stroke="#ffffff" stroke-miterlimit="4.1" stroke-width=".3"><path d="m21.082 18.805c-9.3e-5 -3.7545 1.87e-4 -7.509-1.4e-4 -11.263-0.13349-0.79848-1.117-1.0848-1.7334-0.63234-2.8067 1.9183-5.6203 3.8271-8.4226 5.7514-0.52184 0.44634-0.18084 1.2199 0.36377 1.4624 2.7112 1.8495 5.4224 3.6989 8.1336 5.5484 0.68912 0.2915 1.546-0.09983 1.6587-0.86625z"/><path d="m15.791 18.805c-8.7e-5 -3.7545 1.73e-4 -7.509-1.3e-4 -11.263-0.13345-0.79849-1.1171-1.0848-1.7334-0.63234-2.8067 1.9183-5.6203 3.8271-8.4226 5.7514-0.52184 0.44634-0.18084 1.2199 0.36377 1.4624 2.7112 1.8495 5.4224 3.6989 8.1336 5.5484 0.68912 0.2915 1.546-0.09982 1.6587-0.86625z"/><path d="m7.5828 5.3572c-0.68239 0.014305-1.3705-0.02913-2.0492 0.022654-0.31228 0.23669-0.12538 0.69262-0.1764 1.0359v14.396c0.087332 0.45287 0.63952 0.23962 0.96802 0.28916 0.45618-0.01348 0.91782 0.028 1.3703-0.02265 0.31228-0.23669 0.12538-0.69262 0.1764-1.0359v-14.396c0.00417-0.15504-0.13412-0.29333-0.28916-0.28916z" stroke-linecap="round"/></g></svg>',
+        add: '<svg viewBox="0 0 24 24"><g fill="#ffffff" stroke="#ffffff" stroke-width=".3"><path d="M14 10H3v2h11zm0-4H3v2h11zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2zM3 16h7v-2H3z"></path></g></svg>',
+        menuback:
+            '<svg viewBox="0 0 24 24"><g fill="#ffffff" stroke="#ffffff" stroke-width=".3"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"></path></g></svg>',
+        next: '<svg viewBox="0 0 24 24"><g fill="#ffffff" stroke="#ffffff" stroke-width=".3"><path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"></path></g></svg>',
     },
     playerattributes: [
         'Playername',
@@ -72,6 +79,584 @@ vis.binds['squeezeboxrpc'] = {
         'Url',
         'RadioName',
     ],
+    browser: {
+        topitems: [
+            {
+                title: 'My Music',
+                actions: JSON.stringify({ next: 'mymusic' }),
+                id: 'myMusic',
+            },
+            {
+                title: 'Radio',
+                actions: JSON.stringify({ next: 'radio' }),
+                id: 'radio',
+            },
+            {
+                title: 'Favorites',
+                actions: JSON.stringify({ next: 'favorites' }),
+                id: 'favorites',
+            },
+            {
+                title: 'Apps',
+                actions: JSON.stringify({ next: 'apps' }),
+                id: 'apps',
+            },
+            {
+                title: 'Extra',
+                actions: JSON.stringify({ next: 'extra' }),
+                id: 'extra',
+            },
+        ],
+        specialRangeHandling: [
+            {
+                mode: 'mode:floptracks',
+                range: [0, 200],
+            },
+            {
+                mode: 'mode:toptracks',
+                range: [0, 200],
+            },
+        ],
+        indexParam: [0, 25000],
+        info: {},
+        createWidget: async function (widgetID, view, data, style) {
+            console.log(`createWidget ${widgetID}`);
+            const $div = $(`#${widgetID}`);
+            // if nothing found => wait
+            if (!$div.length) {
+                return setTimeout(function () {
+                    vis.binds['squeezeboxrpc'].browser.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+            if (!this.info[widgetID]) {
+                this.info[widgetID] = {
+                    history: [],
+                    data: data,
+                    style: style,
+                    view: view,
+                };
+            }
+            vis.binds['squeezeboxrpc'].debug = data.debug || false;
+            vis.binds['squeezeboxrpc'].fetchResults = data.debugwithFetchResults || false;
+
+            this.info[widgetID].instance = data.ainstance = vis.binds['squeezeboxrpc'].checkAttributes(
+                $div,
+                data.widgetPlayer,
+            );
+            let ainstance = this.info[widgetID].instance;
+            if (!ainstance) {
+                return;
+            }
+            const playername = await vis.binds['squeezeboxrpc'].getPlayerNameAsync(data.widgetPlayer);
+            const state = `${ainstance[0]}.${ainstance[1]}.Players` + `.${playername}.PlayerID`;
+            this.info[widgetID].playerid = await vis.binds['squeezeboxrpc'].getPlayerID(state);
+            this.goDeeper(widgetID, { id: 'home', title: 'Home', params: null });
+        },
+        async goDeeper(widgetID, data) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`goDeeper ${widgetID}`);
+            let children = await this.fetchChildren(widgetID, data);
+            if (!children) {
+                vis.binds['squeezeboxrpc'].debug && console.log(`End of tree reached ${widgetID}`);
+                return;
+            }
+            this.info[widgetID].history.push(data);
+            this.render(widgetID, children);
+        },
+        async goBack(widgetID) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`goBack ${widgetID}`);
+            if (this.info[widgetID].history.length > 1) {
+                this.info[widgetID].history.pop();
+            }
+            if (this.info[widgetID].history.length == 0) {
+                return;
+            }
+            let data = this.info[widgetID].history[this.info[widgetID].history.length - 1];
+            let children = await this.fetchChildren(widgetID, data);
+            this.render(widgetID, children);
+        },
+        async fetchChildren(widgetID, data) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`fetchChildren ${widgetID}`);
+            let items = {};
+            switch (data.id || '') {
+                case 'home':
+                    items = this.topitems;
+                    // // title = target.title;
+                    break;
+                case 'radio':
+                    items = await vis.binds['squeezeboxrpc'].browser.browseradio(widgetID, data);
+                    break;
+                case 'favorites':
+                    items = await vis.binds['squeezeboxrpc'].browser.browserfavorites(widgetID, data);
+                    break;
+                case 'apps':
+                    items = await vis.binds['squeezeboxrpc'].browser.browseapps(widgetID, data);
+                    break;
+                case 'myMusic':
+                case 'extra':
+                    items = await vis.binds['squeezeboxrpc'].browser.browsemenu(widgetID, data);
+                    break;
+                default:
+                    if (data.actions) {
+                        items = await vis.binds['squeezeboxrpc'].browser.browseparametermenu(widgetID, data);
+                    }
+                    break;
+            }
+            if (!items) {
+                return;
+            }
+            return items.filter(el => el);
+        },
+        browseapps: async function (widgetID) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`browseapps ${widgetID}`);
+            let ainstance = this.info[widgetID].instance;
+            const cmd = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: ['myapps', 'items', 0, '25000', 'menu:1'],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            //let filter = item => item.node === data.id && item.actions?.go;
+            let x = parseRequestFactory(request);
+            return x.getMenuItems();
+            //return this.parseResult(request, null, 'radio');
+        },
+        browseradio: async function (widgetID) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`browseradio ${widgetID}`);
+            let ainstance = this.info[widgetID].instance;
+            const cmd = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: ['radios', 0, '25000', 'menu:radio'],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            //let filter = item => item.node === data.id && item.actions?.go;
+            let x = parseRequestFactory(request);
+            return x.getMenuItems();
+            //return this.parseResult(request, null, 'radio');
+        },
+        browserfavorites: async function (widgetID) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`browserfavorites ${widgetID}`);
+            let ainstance = this.info[widgetID].instance;
+            const cmd = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: ['favorites', 'items', 0, '25000', 'menu:favorites'],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            //let filter = item => item.node === data.id && item.actions?.go;
+            let x = parseRequestFactory(request);
+            return x.getMenuItems();
+            //return this.parseResult(request, null, 'radio');
+        },
+        browsemenu: async function (widgetID, data) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`browsemenu ${widgetID}`);
+            let ainstance = this.info[widgetID].instance;
+            const data1 = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: ['menu', 'items', 0, '25000', 'direct:1'],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', data1);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            let filter = item => item.item.node === data.id;
+            let x = parseRequestFactory(request);
+            return x
+                .getMenuItems()
+                .filter(filter)
+                .sort((a, b) => a.item.weight - b.item.weight);
+            //return this.parseResult(request, filter, data.id);
+        },
+        browseparametermenu: async function (widgetID, data) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`browseparametermenu ${widgetID}`);
+            let parameter = JSON.parse(data.actions)['next'];
+            let ainstance = this.info[widgetID].instance;
+            let range = [...this.indexParam];
+            if (parameter) {
+                this.specialRangeHandling.forEach(item => {
+                    if (parameter.params.includes(item.mode)) {
+                        range = item.range;
+                    }
+                });
+            } else {
+                return;
+            }
+            const cmd = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: [...parameter.command, ...range, ...parameter.params],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            let x = parseRequestFactory(request);
+            return x.getMenuItems();
+            //return this.parseResult(request, null, data.rootmenu);
+        },
+        clickhandler: async function (event, widgetID, func, id) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`clickhandler ${widgetID} ${func} ${id}`);
+            let child;
+
+            event.preventDefault();
+            event.stopPropagation();
+            if (id) {
+                child = this.info[widgetID].currentChildren.find(c => c.id == id);
+            }
+            if (func == 'next') {
+                /*                 if (!child.param) {
+                    return;
+                } */
+                await this.goDeeper(widgetID, child);
+            } else if (func == 'back') {
+                await this.goBack(widgetID);
+                return;
+            } else {
+                await this.doAction(widgetID, child, func, id);
+                return;
+            }
+        },
+        doAction: async function (widgetID, child, func, id) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`doAction`);
+            let actions = JSON.parse(child.actions);
+            let parameter = actions[func];
+            let ainstance = this.info[widgetID].instance;
+            const cmd = {
+                playerid: this.info[widgetID].playerid,
+                cmdArray: [...parameter.command, ...parameter.params],
+            };
+            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+        },
+        render(widgetID, children) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`render ${widgetID}`);
+            let backTitle = '--';
+            backTitle = this.info[widgetID].history.reduce(
+                (acc, val, i) => `${acc} ${i == 0 ? '' : '/'} ${val.title}`,
+                '',
+            );
+            const font = new Font($(`#${widgetID}`));
+            let textwidth = getTextWidth(`...${backTitle}`, font);
+            let widgetwidth = $(`#${widgetID}`).width();
+
+            this.info[widgetID].currentChildren = children;
+            let text = '';
+
+            text += `
+            <style>
+                /* Grundlegendes Layout der Listen-Container */
+                 #${widgetID} .sqbrowser-list-container {
+                    width: 100%;
+                    // max-width: 600px; /* Beispiel: feste max-Breite */
+                    margin: 0 auto; /* zentriert auf der Seite */
+                    box-sizing: border-box;
+                }
+                #${widgetID} .sqbrowser-parent-directory {
+                    position: sticky;          /* "Klebt" an einer definierten Position */
+                    top: 0;                    /* Fixiert oben im Container */
+                    padding: 0rem 0rem;
+                    z-index: 10;               /* Damit sie auch oben bleibt, falls andere Elemente darüberliegen könnten */
+                    border-bottom: 1px solid #ccc;
+                    background-color: black;
+                    cursor: pointer;
+                }
+                #${widgetID} .sqbrowser-ellipsis {
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    direction: rtl;
+                    overflow: hidden;
+                }
+                #${widgetID} .sqbrowser-scrollable-area {
+                    /* Hier legen wir die Höhe fest, ab der gescrollt werden soll */
+                    /* max-height: 300px; */         /* Beispiel: 300px */
+                    overflow-y: auto;          /* Vertikales Scrollen bei Überlauf */
+                    padding: 0 0rem;
+                }
+                /* Einzelne List-Items */
+                #${widgetID} .sqbrowser-list-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0.2rem;
+                    margin: 0.2rem 0;
+                    // background-color: #f8f8f8;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    cursor: pointer; /* signalisiert, dass klickbar ist */
+                    z-index: 1;
+                }
+
+                /* Der Text-Bereich innerhalb eines List-Items */
+                #${widgetID} .sqbrowser-list-item-content {
+                    flex: 1; /* soll den verfügbaren Platz füllen */
+                    margin-right: 1rem; /* Abstand zu den Buttons */
+                    white-space: nowrap; /* verhindert Zeilenumbruch */
+                    overflow: hidden; /* versteckt überfließenden Text */
+                    text-overflow: ellipsis; /* fügt „...“ ein, wenn Text nicht passt */
+                }
+
+                /* Button-Gruppe auf der rechten Seite */
+                 #${widgetID} .sqbrowser-button-group {
+                    display: flex;
+                    align-items: center;
+                }
+
+                /* Die Buttons selbst */
+                 #${widgetID} .sqbrowser-action-btn {
+                    margin-left: 0.2rem;
+                    padding: 0.1rem 0.2rem;
+                    cursor: pointer;
+                    border: 1px solid #666;
+                    background-color: #eee;
+                    border-radius: 3px;
+                    font-size: 1rem;
+                }
+                 #${widgetID} svg:active { 
+                    transform: scale(0.8, 0.8);
+                    transform-origin: 50% 50%;
+                }
+
+                /* Drei-Punkte-Button standardmäßig ausgeblendet, 
+                nur sichtbar werden, wenn nicht genug Platz für Button2 ist */
+                #${widgetID} .sqbrowser-more-btn {
+                    display: none; /* wird per Media Query eingeblendet */
+                }
+
+                #${widgetID} .sqbrowser-btn-svg {
+                    width: 1rem;
+                    height: 1rem;
+                    margin: 0px 1px;
+                }
+                #${widgetID} .sqbrowser-btn-svg-action {
+                    border: 1px solid white;
+                }
+                #${widgetID} .sqbrowser-btn-svg-menu {
+                    display: inline-block;
+                    vertical-align: middle;
+                    height: fit-content;
+                }
+                    </style>
+            `;
+            text += ` 
+            <div class="sqbrowser-list-container">
+                <div class="sqbrowser-parent-directory ${textwidth - 10 > widgetwidth ? 'sqbrowser-ellipsis' : ''}" onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'back')">
+                    <div class="sqbrowser-btn-svg sqbrowser-btn-svg-menu">
+                        ${vis.binds['squeezeboxrpc'].svg.menuback}
+                    </div>
+                    <span>${backTitle}</span>
+                </div>
+                <div class="sqbrowser-scrollable-area">
+            `;
+            for (let i = 0; i < children.length; i++) {
+                let buttons;
+                if (children[i].actions) {
+                    buttons = JSON.parse(children[i].actions);
+                }
+                let click = children[i].actions
+                    ? `onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'next','${children[i].id}')"`
+                    : ``;
+                text += /* html */ `
+                    <div
+                        class="sqbrowser-list-item"
+                        ${click}
+                    >
+                        <div class="sqbrowser-list-item-content">${children[i].title}</div>
+                        <div class="sqbrowser-button-group">
+            `;
+
+                if (buttons) {
+                    let actions = [
+                        { id: 'next', svg: 'next' },
+                        { id: 'play', svg: 'play' },
+                        { id: 'add', svg: 'add' },
+                    ];
+                    for (let action = 0; action < actions.length; action++) {
+                        if (buttons[actions[action].id]) {
+                            text += `
+                            <div class="sqbrowser-btn-svg sqbrowser-btn-svg-action" onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', '${actions[action].id}','${children[i].id}')">
+                                ${vis.binds['squeezeboxrpc'].svg[actions[action].svg]}
+                            </div>
+                            `;
+                        }
+                    }
+                }
+                text += `                         
+                        </div>
+                    </div>
+                `;
+            }
+            text += /* html */ `
+                </div></div>
+            `;
+            $(`#${widgetID}`).html(text);
+        },
+        parseResult: function (request, filter, rootmenu) {
+            vis.binds['squeezeboxrpc'].debug && console.log(`parseResult`);
+            let result = request.result;
+            if (result.years_loop) {
+                let items = result.years_loop;
+                return items.map(item => {
+                    return {
+                        id: item.year,
+                        title: `${item.year}`,
+                        type: 'years',
+                        favorites_url: item.facorites_url,
+                        rootmenu: rootmenu,
+                    };
+                });
+            }
+            if (result.works_loop) {
+                let items = result.works_loop;
+                return items.map(item => {
+                    return {
+                        id: `work_id:${item.work_id}`,
+                        title: `${item.favorites_title}`,
+                        type: 'work',
+                        favorites_url: item.facorites_url,
+                        albumid: item.album_id,
+                        composer: item.composer,
+                        composer_id: item.composer_id,
+                        work: item.work,
+                        rootmenu: rootmenu,
+                    };
+                });
+            }
+            if (result.genres_loop) {
+                let items = result.genres_loop;
+                return items.map(item => {
+                    return {
+                        id: item.id,
+                        title: `${item.genre}`,
+                        type: 'genre',
+                        favorites_url: item.facorites_url,
+                        rootmenu: rootmenu,
+                    };
+                });
+            }
+            if (result.albums_loop) {
+                let items = result.albums_loop;
+                return items.map(item => {
+                    return {
+                        id: item.id,
+                        title: `${item.artist} / ${item.album} (${item.year})`,
+                        image: `/music/${item.artwork_track_id}/cover_300x300_f`,
+                        type: 'album',
+                        favorites_url: item.facorites_url,
+                        rootmenu: rootmenu,
+                    };
+                });
+            }
+            if (result.artists_loop) {
+                let items = result.artists_loop;
+                return items.map(item => {
+                    return {
+                        id: item.id,
+                        title: item.artist,
+                        image: `/imageproxy/mai/artist/${item.id}/image_300x300_f`,
+                        type: 'artist',
+                        favorites_url: item.favorites_url,
+                        rootmenu: rootmenu,
+                    };
+                });
+            }
+            if (result.item_loop) {
+                let items = result.item_loop;
+                const style = result.window?.windowStyle || '';
+                //=='icon_list'){
+                if (filter) {
+                    items = items.filter(filter);
+                }
+                if (rootmenu == 'myMusic' && style == 'icon_list') {
+                    return items.map(item => {
+                        return {
+                            id: item.commonParams.track_id,
+                            type: 'track',
+                            title: item.text.replace('\n', ' - '),
+                            icon: item.icon,
+                            rootmenu: rootmenu,
+                        };
+                    });
+                }
+                if (rootmenu == 'myMusic' && (style == 'text_list' || style == 'home_menu')) {
+                    return items.map(item => {
+                        if (item.type == 'audio') {
+                            return {
+                                id: item.params.item_id,
+                                type: 'track',
+                                title: item.text.replace('\n', ' - '),
+                                icon: null,
+                                rootmenu: rootmenu,
+                            };
+                        }
+                        if (item.type == 'playlist') {
+                            let cmd = {
+                                command: ['browselibrary', 'items'],
+                                params: ['menu:browselibrary', 'mode:bmf', ...this.object2Array(item.params)],
+                            };
+                            return {
+                                id: item.params.item_id,
+                                type: 'playlist',
+                                title: `(D) ${item.text.replace('\n', ' - ')}`,
+                                param: JSON.stringify(cmd),
+                                icon: null,
+                                rootmenu: rootmenu,
+                            };
+                        }
+                    });
+                }
+                if (style == '' && rootmenu == 'myMusic') {
+                    items = items.sort((a, b) => a.weight - b.weight);
+                    return items.map(item => {
+                        return {
+                            id: item.id,
+                            type: 'menu',
+                            title: item.text,
+                            param: JSON.stringify(this.translateMyMusicParameters(item.actions.go)),
+                            icon: item.icon,
+                            rootmenu: rootmenu,
+                        };
+                    });
+                }
+                if (style == '' && rootmenu == 'radio') {
+                    items = items.sort((a, b) => a.weight - b.weight);
+                    return items.map(item => {
+                        return {
+                            id: item.text,
+                            type: 'radio',
+                            title: item.text,
+                            param: JSON.stringify(this.translateMyMusicParameters(item.actions.go)),
+                            icon: item.icon,
+                            rootmenu: rootmenu,
+                        };
+                    });
+                }
+                if (rootmenu == 'radio' && style == 'text_list') {
+                    return items.map(item => {
+                        return {
+                            id: item.text,
+                            type: 'radio',
+                            title: item.text.replace('\n', ' - '),
+                            param: JSON.stringify(this.translateMyMusicParameters(item.actions.go)),
+                            icon: null,
+                            rootmenu: rootmenu,
+                        };
+                    });
+                }
+                if (rootmenu == 'radio' && style == 'icon_list') {
+                    return items.map(item => {
+                        return {
+                            id: item.params.item_id,
+                            type: 'track',
+                            title: item.text.replace('\n', ' - '),
+                            icon: item.icon,
+                            rootmenu: rootmenu,
+                        };
+                    });
+                }
+            }
+        },
+
+        object2Array: function (obj) {
+            return Object.keys(obj).map(function (key) {
+                return `${key}:${obj[key]}`;
+            });
+        },
+    },
     favorites: {
         createWidget: function (widgetID, view, data, style) {
             const $div = $(`#${widgetID}`);
@@ -2252,6 +2837,25 @@ vis.binds['squeezeboxrpc'] = {
     getPlayerName: function (widgetPlayer) {
         return $(`input[name=${widgetPlayer}]:checked, #${widgetPlayer} option:checked`).val();
     },
+    getPlayerNameAsync: async function (widgetPlayer) {
+        return new Promise((resolve, reject) => {
+            (async () => {
+                let i = 0;
+                while (i < 1000) {
+                    let playername = this.getPlayerName(widgetPlayer);
+                    if (!playername) {
+                        await new Promise(r => setTimeout(r, 100));
+                    } else {
+                        resolve(playername);
+                        return;
+                    }
+                    i++;
+                    console.log(i);
+                }
+                reject();
+            })();
+        });
+    },
     onHorizChange: function (widgetID, view, newId) {
         const data = vis.views[view].widgets[widgetID].data;
         if (newId == 'vertical') {
@@ -2272,14 +2876,16 @@ vis.binds['squeezeboxrpc'] = {
         }
     },
     sendToAsync: async function (instance, command, sendData) {
-        console.log(`sendToAsync ${command} ${sendData}`);
-        return new Promise((resolve, reject) => {
+        console.log(`sendToAsync ${command} ${JSON.stringify(sendData)}`);
+        return new Promise((resolve /* , reject */) => {
+            // eslint-disable-next-line no-useless-catch
             try {
                 vis.conn.sendTo(instance, command, sendData, function (receiveData) {
                     resolve(receiveData);
                 });
             } catch (error) {
-                reject(error);
+                throw error;
+                //reject(error);
             }
         });
     },
@@ -2289,8 +2895,22 @@ vis.binds['squeezeboxrpc'] = {
             playerid: '',
             cmdArray: ['playlists', '0', '999', 'tags:us'],
         };
-
         return await this.sendToAsync(instance, 'cmdGeneral', data);
+    },
+    getPlayerID: async function (state) {
+        console.log(`getPlayerID`);
+        return new Promise((resolve, reject) => {
+            try {
+                vis.conn.gettingStates = 0;
+                vis.conn.getStates([state], function (error, states) {
+                    resolve(states[state].val);
+                });
+            } catch (error) {
+                reject(error);
+            }
+        });
     },
 };
 vis.binds['squeezeboxrpc'].showVersion();
+//function css() {} // remove tagged temlate string error message, tagging is needed to format the css code
+// function html() {} // remove tagged temlate string error message, tagging is needed to format the html code
