@@ -213,12 +213,9 @@ vis.binds['squeezeboxrpc'] = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ['myapps', 'items', 0, '25000', 'menu:1'],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
-            //let filter = item => item.node === data.id && item.actions?.go;
-            let x = parseRequestFactory(request);
-            return x.getMenuItems();
-            //return this.parseResult(request, null, 'radio');
+            let request = await vis.binds['squeezeboxrpc'].browsesendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            let menu = parseRequestFactory(request);
+            return menu.getMenuItems();
         },
         browseradio: async function (widgetID) {
             vis.binds['squeezeboxrpc'].debug && console.log(`browseradio ${widgetID}`);
@@ -227,12 +224,9 @@ vis.binds['squeezeboxrpc'] = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ['radios', 0, '25000', 'menu:radio'],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
-            //let filter = item => item.node === data.id && item.actions?.go;
-            let x = parseRequestFactory(request);
-            return x.getMenuItems();
-            //return this.parseResult(request, null, 'radio');
+            let request = await vis.binds['squeezeboxrpc'].browsesendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            let menu = parseRequestFactory(request);
+            return menu.getMenuItems();
         },
         browserfavorites: async function (widgetID) {
             vis.binds['squeezeboxrpc'].debug && console.log(`browserfavorites ${widgetID}`);
@@ -241,12 +235,9 @@ vis.binds['squeezeboxrpc'] = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ['favorites', 'items', 0, '25000', 'menu:favorites'],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
-            //let filter = item => item.node === data.id && item.actions?.go;
-            let x = parseRequestFactory(request);
-            return x.getMenuItems();
-            //return this.parseResult(request, null, 'radio');
+            let request = await vis.binds['squeezeboxrpc'].browsesendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            let menu = parseRequestFactory(request);
+            return menu.getMenuItems();
         },
         browsemenu: async function (widgetID, data) {
             vis.binds['squeezeboxrpc'].debug && console.log(`browsemenu ${widgetID}`);
@@ -255,11 +246,10 @@ vis.binds['squeezeboxrpc'] = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ['menu', 'items', 0, '25000', 'direct:1'],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', data1);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            let request = await vis.binds['squeezeboxrpc'].browsesendToAsync(ainstance.join('.'), 'cmdGeneral', data1);
             let filter = item => item.item.node === data.id;
-            let x = parseRequestFactory(request);
-            return x
+            let menu = parseRequestFactory(request);
+            return menu
                 .getMenuItems()
                 .filter(filter)
                 .sort((a, b) => a.item.weight - b.item.weight);
@@ -270,24 +260,22 @@ vis.binds['squeezeboxrpc'] = {
             let parameter = JSON.parse(data.actions)['next'];
             let ainstance = this.info[widgetID].instance;
             let range = [...this.indexParam];
-            if (parameter) {
+            if (parameter.params) {
                 this.specialRangeHandling.forEach(item => {
                     if (parameter.params.includes(item.mode)) {
                         range = item.range;
                     }
                 });
-            } else {
+            } /* else {
                 return;
-            }
+            } */
             const cmd = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: [...parameter.command, ...range, ...parameter.params],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
-            let x = parseRequestFactory(request);
-            return x.getMenuItems();
-            //return this.parseResult(request, null, data.rootmenu);
+            let request = await vis.binds['squeezeboxrpc'].browsesendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
+            let menu = parseRequestFactory(request);
+            return menu.getMenuItems();
         },
         clickhandler: async function (event, widgetID, func, id) {
             vis.binds['squeezeboxrpc'].debug && console.log(`clickhandler ${widgetID} ${func} ${id}`);
@@ -311,7 +299,7 @@ vis.binds['squeezeboxrpc'] = {
                 return;
             }
         },
-        doAction: async function (widgetID, child, func, id) {
+        doAction: async function (widgetID, child, func /* , id */) {
             vis.binds['squeezeboxrpc'].debug && console.log(`doAction`);
             let actions = JSON.parse(child.actions);
             let parameter = actions[func];
@@ -320,8 +308,11 @@ vis.binds['squeezeboxrpc'] = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: [...parameter.command, ...parameter.params],
             };
-            let request = await vis.binds['squeezeboxrpc'].sendToAsync(ainstance.join('.'), 'cmdGeneral', cmd);
-            vis.binds['squeezeboxrpc'].fetchResults && console.log(`result ${console.dir(request)}`);
+            /* let request =  */ await vis.binds['squeezeboxrpc'].browsesendToAsync(
+                ainstance.join('.'),
+                'cmdGeneral',
+                cmd,
+            );
         },
         render(widgetID, children) {
             vis.binds['squeezeboxrpc'].debug && console.log(`render ${widgetID}`);
@@ -377,8 +368,11 @@ vis.binds['squeezeboxrpc'] = {
                     // background-color: #f8f8f8;
                     border: 1px solid #ccc;
                     border-radius: 4px;
-                    cursor: pointer; /* signalisiert, dass klickbar ist */
                     z-index: 1;
+                }
+
+                #${widgetID} .sqbrowser-list-item[onclick] {
+                    cursor: pointer; /* signalisiert, dass klickbar ist */
                 }
 
                 /* Der Text-Bereich innerhalb eines List-Items */
@@ -416,11 +410,11 @@ vis.binds['squeezeboxrpc'] = {
                 #${widgetID} .sqbrowser-more-btn {
                     display: none; /* wird per Media Query eingeblendet */
                 }
-
                 #${widgetID} .sqbrowser-btn-svg {
                     width: 1rem;
                     height: 1rem;
                     margin: 0px 1px;
+                    cursor: pointer;
                 }
                 #${widgetID} .sqbrowser-btn-svg-action {
                     border: 1px solid white;
@@ -447,9 +441,12 @@ vis.binds['squeezeboxrpc'] = {
                 if (children[i].actions) {
                     buttons = JSON.parse(children[i].actions);
                 }
-                let click = children[i].actions
-                    ? `onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'next','${children[i].id}')"`
-                    : ``;
+                let click = '';
+                if (buttons && buttons.next) {
+                    click = children[i].actions
+                        ? `onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'next','${children[i].id}')"`
+                        : ``;
+                }
                 text += /* html */ `
                     <div
                         class="sqbrowser-list-item"
@@ -2874,6 +2871,19 @@ vis.binds['squeezeboxrpc'] = {
                 vis.views[view].widgets[widgetID].data[attr] = `${newId}px`;
             }
         }
+    },
+    browsesendToAsync: async function (instance, command, sendData) {
+        let result = await vis.binds['squeezeboxrpc'].sendToAsync(instance, command, sendData);
+        if (vis.binds['squeezeboxrpc'].fetchResults) {
+            console.debug('debugbrowsersendtoasync', {
+                debug: 'debug data',
+                instance: instance,
+                command: command,
+                sendData: sendData,
+                result: result,
+            });
+        }
+        return result;
     },
     sendToAsync: async function (instance, command, sendData) {
         console.log(`sendToAsync ${command} ${JSON.stringify(sendData)}`);

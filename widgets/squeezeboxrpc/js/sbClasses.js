@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * This function takes a request and returns an appropriate class that can parse the response.
+ * The class is determined by the content of the response.
+ *
+ * @param request - The request object.
+ * @returns The class that can parse the response.
+ */
 export function parseRequestFactory(request) {
     console.log(`parseRequestFactory`);
     let result = request.result;
@@ -46,7 +53,7 @@ class Albums {
         if (result.albums_loop) {
             let albums = result.albums_loop;
             return albums.map(item => {
-                return new Album(item);
+                return new Album(item, request);
             });
         }
     }
@@ -55,10 +62,10 @@ class Albums {
     }
 }
 class Album {
-    constructor(request_item) {
-        this.parseRequest(request_item);
+    constructor(request_item, request) {
+        this.parseRequest(request_item, request);
     }
-    parseRequest(request_item) {
+    parseRequest(request_item, request) {
         this.id = request_item.id || undefined;
         this.performance = request_item.performance || undefined;
         this.favorites_url = request_item.favorites_url || undefined;
@@ -70,6 +77,7 @@ class Album {
         this.artist_id = request_item.artist_id || undefined;
         this.artist = request_item.artist || undefined;
         this.textkey = request_item.textkey || undefined;
+        let additionalPlayParams = [getParamsFromCommand(request.params[1], 'role_id:')];
         this.actions = {
             next: {
                 command: ['tracks'],
@@ -77,7 +85,7 @@ class Album {
             },
             play: {
                 command: ['playlistcontrol'],
-                params: [`cmd:load`, `album_id:${this.id}`, `performance:`],
+                params: [`cmd:load`, `album_id:${this.id}`, `performance:`, ...additionalPlayParams, `library_id:-1`],
             },
             add: {
                 command: ['playlistcontrol'],
@@ -108,7 +116,7 @@ class Artists {
         if (result.artists_loop) {
             let artists = result.artists_loop;
             return artists.map(item => {
-                return new Artist(item);
+                return new Artist(item, request);
             });
         }
     }
@@ -117,14 +125,15 @@ class Artists {
     }
 }
 class Artist {
-    constructor(request_item) {
-        this.parseRequest(request_item);
+    constructor(request_item, request) {
+        this.parseRequest(request_item, request);
     }
-    parseRequest(request_item) {
+    parseRequest(request_item, request) {
         this.id = request_item.id || undefined;
         this.artist = request_item.artist || undefined;
         this.textkey = request_item.textkey || undefined;
         this.favorites_url = request_item.favorites_url || undefined;
+        let additionalPlayParams = [getParamsFromCommand(request.params[1], 'role_id:')];
         this.actions = {
             next: {
                 command: ['albums'],
@@ -132,7 +141,14 @@ class Artist {
             },
             play: {
                 command: ['playlistcontrol'],
-                params: [`cmd:load`, `role_id:ALBUMARTIST`, `artist_id:${this.id}`, `sort:yearalbum`],
+                params: [
+                    `cmd:load`,
+                    `role_id:ALBUMARTIST`,
+                    `artist_id:${this.id}`,
+                    `sort:yearalbum`,
+                    ...additionalPlayParams,
+                    `library_id:-1`,
+                ],
             },
             add: {
                 command: ['playlistcontrol'],
@@ -187,7 +203,7 @@ class Genre {
             },
             play: {
                 command: ['playlistcontrol'],
-                params: [`cmd:load`, `genre_id:${this.id}`, `sort:album`],
+                params: [`cmd:load`, `genre_id:${this.id}`, `sort:album`, `library_id:-1`],
             },
             add: {
                 command: ['playlistcontrol'],
@@ -367,7 +383,7 @@ class Year {
             },
             play: {
                 command: ['playlistcontrol'],
-                params: [`cmd:load`, `year:${this.id}`],
+                params: [`cmd:load`, `year:${this.id}`, `library_id:-1`],
             },
             add: {
                 command: ['playlistcontrol'],
@@ -575,7 +591,7 @@ class Item {
             case 'browselibraryFS_text':
                 return new ItemText(request_item, requestCommand);
             case 'menu_':
-                return new ItemMenu(request_item);
+                return new ItemMenu(request_item, request);
             case 'browselibrary_playlist':
             case 'favorites_playlist':
                 return new ItemPlaylist(request_item, false);
@@ -693,7 +709,6 @@ class ItemMenu extends Item {
         this.text = request_item.text || 'Empty';
         this.node = request_item.node || undefined;
         this.weight = request_item.weight || undefined;
-        let cmd;
         if (request_item.actions) {
             if (request_item.actions['go']) {
                 this.actions = {
@@ -713,16 +728,54 @@ class ItemMenu extends Item {
                     ...{ add: translateMyMusicParameters(request_item.actions.add) },
                 };
             }
-        } else {
-            let goAction = request_item.goAction || undefined;
-            cmd = {
-                ...{ cmd: request.result.base.actions[goAction].cmd },
-                ...{ param: request.result.base.actions[goAction].param },
-            };
-            this.actions = {
-                next: cmd,
-            };
+            if (request_item.actions['do']) {
+                this.actions = {
+                    ...this.actions,
+                    ...{ add: translateMyMusicParameters(request_item.actions.do) },
+                };
+            }
         }
+        if (request_item.goAction) {
+            if (request_item.goAction == 'play') {
+                const filteredParams = Object.keys(request_item.params)
+                    .filter(key => !key.includes('touchToPlay'))
+                    .reduce((obj, key) => {
+                        obj[key] = request_item.params[key];
+                        return obj;
+                    }, {});
+                this.actions = {
+                    play: {
+                        command: request.result.base.actions[request_item.goAction].cmd,
+                        params: [
+                            ...object2Array({
+                                ...request.result.base.actions[request_item.goAction].params,
+                                ...filteredParams,
+                            }),
+                        ],
+                    },
+                };
+            }
+        }
+        // if (request_item.actions) {
+        //     const priorityKeys = ['go', 'do'];
+        //     const goAction = priorityKeys.find(key => Object.prototype.hasOwnProperty.call(request_item.actions, key));
+        //     if (goAction) {
+        //         cmd = {
+        //             ...{ cmd: request_item.actions[goAction].cmd },
+        //             ...{ param: request_item.actions[goAction].param },
+        //         };
+        //     } else {
+        //         console.log('Please check: no valid action');
+        //     }
+
+        //     // cmd = {
+        //     //     ...{ cmd: request.result.base.actions[goAction].cmd },
+        //     //     ...{ param: request.result.base.actions[goAction].param },
+        //     // };
+        //     this.actions = {
+        //         next: cmd,
+        //     };
+        // }
     }
     getMenu() {
         return {
@@ -952,7 +1005,14 @@ function object2Array(obj) {
         return `${key}:${obj[key]}`;
     });
 }
-function translateMyMusicParameters(command) {
+function getParamsFromCommand(params, key) {
+    return params.find(item => item.toString().startsWith(key));
+}
+function translateMyMusicParameters(command /* , request */) {
+    console.log(command);
+    if (command.cmd == undefined) {
+        return undefined;
+    }
     var cmd = { command: [...command.cmd], params: [] };
     for (var key in command.params) {
         let p = command.params[key];
@@ -998,7 +1058,8 @@ function translateMyMusicParameters(command) {
                 break;
             }
             c.push(mode);
-        } else if (!params[i].startsWith('menu:')) {
+        }
+        if (!params[i].startsWith('menu:')) {
             if (params[i].startsWith('tags:')) {
                 if (params[i].split(':')[1].indexOf('s') < 0) {
                     i += 's';
@@ -1067,5 +1128,6 @@ function translateMyMusicParameters(command) {
         }
     }
     cmd.params.push('menu:1');
-    return cmd;
+    cmd.params.push('library_id:-1');
+    return { ...cmd };
 }

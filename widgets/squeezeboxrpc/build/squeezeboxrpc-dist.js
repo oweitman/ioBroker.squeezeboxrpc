@@ -104,7 +104,14 @@
       return `${key}:${obj[key]}`;
     });
   }
+  function getParamsFromCommand(params, key) {
+    return params.find((item) => item.toString().startsWith(key));
+  }
   function translateMyMusicParameters(command) {
+    console.log(command);
+    if (command.cmd == void 0) {
+      return void 0;
+    }
     var cmd = { command: [...command.cmd], params: [] };
     for (var key in command.params) {
       let p2 = command.params[key];
@@ -137,7 +144,8 @@
           break;
         }
         c.push(mode);
-      } else if (!params[i2].startsWith("menu:")) {
+      }
+      if (!params[i2].startsWith("menu:")) {
         if (params[i2].startsWith("tags:")) {
           if (params[i2].split(":")[1].indexOf("s") < 0) {
             i2 += "s";
@@ -198,7 +206,8 @@
       }
     }
     cmd.params.push("menu:1");
-    return cmd;
+    cmd.params.push("library_id:-1");
+    return __spreadValues({}, cmd);
   }
   var Albums, Album, Artists, Artist, Genres, Genre, Playlists, Playlist, Works, Work, Years, Year, Tracks, Track, PlaylistTracks, PlaylistTrack, Items, Item, ItemApplication, ItemRadio, ItemMenu, ItemFilesystem, ItemPlaylist, ItemText, ItemAudio, ItemVirtualLibrary, ItemVirtualLibraryAnswer;
   var init_sbClasses = __esm({
@@ -214,7 +223,7 @@
           if (result.albums_loop) {
             let albums = result.albums_loop;
             return albums.map((item) => {
-              return new Album(item);
+              return new Album(item, request);
             });
           }
         }
@@ -223,10 +232,10 @@
         }
       };
       Album = class {
-        constructor(request_item) {
-          this.parseRequest(request_item);
+        constructor(request_item, request) {
+          this.parseRequest(request_item, request);
         }
-        parseRequest(request_item) {
+        parseRequest(request_item, request) {
           this.id = request_item.id || void 0;
           this.performance = request_item.performance || void 0;
           this.favorites_url = request_item.favorites_url || void 0;
@@ -238,6 +247,7 @@
           this.artist_id = request_item.artist_id || void 0;
           this.artist = request_item.artist || void 0;
           this.textkey = request_item.textkey || void 0;
+          let additionalPlayParams = [getParamsFromCommand(request.params[1], "role_id:")];
           this.actions = {
             next: {
               command: ["tracks"],
@@ -245,7 +255,7 @@
             },
             play: {
               command: ["playlistcontrol"],
-              params: [`cmd:load`, `album_id:${this.id}`, `performance:`]
+              params: [`cmd:load`, `album_id:${this.id}`, `performance:`, ...additionalPlayParams, `library_id:-1`]
             },
             add: {
               command: ["playlistcontrol"],
@@ -275,7 +285,7 @@
           if (result.artists_loop) {
             let artists = result.artists_loop;
             return artists.map((item) => {
-              return new Artist(item);
+              return new Artist(item, request);
             });
           }
         }
@@ -284,14 +294,15 @@
         }
       };
       Artist = class {
-        constructor(request_item) {
-          this.parseRequest(request_item);
+        constructor(request_item, request) {
+          this.parseRequest(request_item, request);
         }
-        parseRequest(request_item) {
+        parseRequest(request_item, request) {
           this.id = request_item.id || void 0;
           this.artist = request_item.artist || void 0;
           this.textkey = request_item.textkey || void 0;
           this.favorites_url = request_item.favorites_url || void 0;
+          let additionalPlayParams = [getParamsFromCommand(request.params[1], "role_id:")];
           this.actions = {
             next: {
               command: ["albums"],
@@ -299,7 +310,14 @@
             },
             play: {
               command: ["playlistcontrol"],
-              params: [`cmd:load`, `role_id:ALBUMARTIST`, `artist_id:${this.id}`, `sort:yearalbum`]
+              params: [
+                `cmd:load`,
+                `role_id:ALBUMARTIST`,
+                `artist_id:${this.id}`,
+                `sort:yearalbum`,
+                ...additionalPlayParams,
+                `library_id:-1`
+              ]
             },
             add: {
               command: ["playlistcontrol"],
@@ -353,7 +371,7 @@
             },
             play: {
               command: ["playlistcontrol"],
-              params: [`cmd:load`, `genre_id:${this.id}`, `sort:album`]
+              params: [`cmd:load`, `genre_id:${this.id}`, `sort:album`, `library_id:-1`]
             },
             add: {
               command: ["playlistcontrol"],
@@ -532,7 +550,7 @@
             },
             play: {
               command: ["playlistcontrol"],
-              params: [`cmd:load`, `year:${this.id}`]
+              params: [`cmd:load`, `year:${this.id}`, `library_id:-1`]
             },
             add: {
               command: ["playlistcontrol"],
@@ -740,7 +758,7 @@
             case "browselibraryFS_text":
               return new ItemText(request_item, requestCommand);
             case "menu_":
-              return new ItemMenu(request_item);
+              return new ItemMenu(request_item, request);
             case "browselibrary_playlist":
             case "favorites_playlist":
               return new ItemPlaylist(request_item, false);
@@ -848,7 +866,6 @@
           this.text = request_item.text || "Empty";
           this.node = request_item.node || void 0;
           this.weight = request_item.weight || void 0;
-          let cmd;
           if (request_item.actions) {
             if (request_item.actions["go"]) {
               this.actions = __spreadValues(__spreadValues({}, this.actions), { next: translateMyMusicParameters(request_item.actions.go) });
@@ -859,12 +876,25 @@
             if (request_item.actions["add"]) {
               this.actions = __spreadValues(__spreadValues({}, this.actions), { add: translateMyMusicParameters(request_item.actions.add) });
             }
-          } else {
-            let goAction = request_item.goAction || void 0;
-            cmd = __spreadValues(__spreadValues({}, { cmd: request.result.base.actions[goAction].cmd }), { param: request.result.base.actions[goAction].param });
-            this.actions = {
-              next: cmd
-            };
+            if (request_item.actions["do"]) {
+              this.actions = __spreadValues(__spreadValues({}, this.actions), { add: translateMyMusicParameters(request_item.actions.do) });
+            }
+          }
+          if (request_item.goAction) {
+            if (request_item.goAction == "play") {
+              const filteredParams = Object.keys(request_item.params).filter((key) => !key.includes("touchToPlay")).reduce((obj, key) => {
+                obj[key] = request_item.params[key];
+                return obj;
+              }, {});
+              this.actions = {
+                play: {
+                  command: request.result.base.actions[request_item.goAction].cmd,
+                  params: [
+                    ...object2Array(__spreadValues(__spreadValues({}, request.result.base.actions[request_item.goAction].params), filteredParams))
+                  ]
+                }
+              };
+            }
           }
         }
         getMenu() {
@@ -1552,10 +1582,9 @@
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ["myapps", "items", 0, "25000", "menu:1"]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", cmd);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
-              let x = parseRequestFactory(request);
-              return x.getMenuItems();
+              let request = yield vis.binds["squeezeboxrpc"].browsesendToAsync(ainstance.join("."), "cmdGeneral", cmd);
+              let menu = parseRequestFactory(request);
+              return menu.getMenuItems();
             });
           },
           browseradio: function(widgetID) {
@@ -1566,10 +1595,9 @@
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ["radios", 0, "25000", "menu:radio"]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", cmd);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
-              let x = parseRequestFactory(request);
-              return x.getMenuItems();
+              let request = yield vis.binds["squeezeboxrpc"].browsesendToAsync(ainstance.join("."), "cmdGeneral", cmd);
+              let menu = parseRequestFactory(request);
+              return menu.getMenuItems();
             });
           },
           browserfavorites: function(widgetID) {
@@ -1580,10 +1608,9 @@
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ["favorites", "items", 0, "25000", "menu:favorites"]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", cmd);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
-              let x = parseRequestFactory(request);
-              return x.getMenuItems();
+              let request = yield vis.binds["squeezeboxrpc"].browsesendToAsync(ainstance.join("."), "cmdGeneral", cmd);
+              let menu = parseRequestFactory(request);
+              return menu.getMenuItems();
             });
           },
           browsemenu: function(widgetID, data) {
@@ -1594,11 +1621,10 @@
                 playerid: this.info[widgetID].playerid,
                 cmdArray: ["menu", "items", 0, "25000", "direct:1"]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", data1);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
+              let request = yield vis.binds["squeezeboxrpc"].browsesendToAsync(ainstance.join("."), "cmdGeneral", data1);
               let filter = (item) => item.item.node === data.id;
-              let x = parseRequestFactory(request);
-              return x.getMenuItems().filter(filter).sort((a, b) => a.item.weight - b.item.weight);
+              let menu = parseRequestFactory(request);
+              return menu.getMenuItems().filter(filter).sort((a, b) => a.item.weight - b.item.weight);
             });
           },
           browseparametermenu: function(widgetID, data) {
@@ -1607,23 +1633,20 @@
               let parameter = JSON.parse(data.actions)["next"];
               let ainstance = this.info[widgetID].instance;
               let range = [...this.indexParam];
-              if (parameter) {
+              if (parameter.params) {
                 this.specialRangeHandling.forEach((item) => {
                   if (parameter.params.includes(item.mode)) {
                     range = item.range;
                   }
                 });
-              } else {
-                return;
               }
               const cmd = {
                 playerid: this.info[widgetID].playerid,
                 cmdArray: [...parameter.command, ...range, ...parameter.params]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", cmd);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
-              let x = parseRequestFactory(request);
-              return x.getMenuItems();
+              let request = yield vis.binds["squeezeboxrpc"].browsesendToAsync(ainstance.join("."), "cmdGeneral", cmd);
+              let menu = parseRequestFactory(request);
+              return menu.getMenuItems();
             });
           },
           clickhandler: function(event, widgetID, func, id) {
@@ -1646,7 +1669,7 @@
               }
             });
           },
-          doAction: function(widgetID, child, func, id) {
+          doAction: function(widgetID, child, func) {
             return __async(this, null, function* () {
               vis.binds["squeezeboxrpc"].debug && console.log(`doAction`);
               let actions = JSON.parse(child.actions);
@@ -1656,8 +1679,11 @@
                 playerid: this.info[widgetID].playerid,
                 cmdArray: [...parameter.command, ...parameter.params]
               };
-              let request = yield vis.binds["squeezeboxrpc"].sendToAsync(ainstance.join("."), "cmdGeneral", cmd);
-              vis.binds["squeezeboxrpc"].fetchResults && console.log(`result ${console.dir(request)}`);
+              yield vis.binds["squeezeboxrpc"].browsesendToAsync(
+                ainstance.join("."),
+                "cmdGeneral",
+                cmd
+              );
             });
           },
           render(widgetID, children) {
@@ -1712,8 +1738,11 @@
                     // background-color: #f8f8f8;
                     border: 1px solid #ccc;
                     border-radius: 4px;
-                    cursor: pointer; /* signalisiert, dass klickbar ist */
                     z-index: 1;
+                }
+
+                #${widgetID} .sqbrowser-list-item[onclick] {
+                    cursor: pointer; /* signalisiert, dass klickbar ist */
                 }
 
                 /* Der Text-Bereich innerhalb eines List-Items */
@@ -1751,11 +1780,11 @@
                 #${widgetID} .sqbrowser-more-btn {
                     display: none; /* wird per Media Query eingeblendet */
                 }
-
                 #${widgetID} .sqbrowser-btn-svg {
                     width: 1rem;
                     height: 1rem;
                     margin: 0px 1px;
+                    cursor: pointer;
                 }
                 #${widgetID} .sqbrowser-btn-svg-action {
                     border: 1px solid white;
@@ -1782,7 +1811,10 @@
               if (children[i].actions) {
                 buttons = JSON.parse(children[i].actions);
               }
-              let click = children[i].actions ? `onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'next','${children[i].id}')"` : ``;
+              let click = "";
+              if (buttons && buttons.next) {
+                click = children[i].actions ? `onclick="vis.binds.squeezeboxrpc.browser.clickhandler(event, '${widgetID}', 'next','${children[i].id}')"` : ``;
+              }
               text += /* html */
               `
                     <div
@@ -4082,6 +4114,21 @@
               vis.views[view].widgets[widgetID].data[attr] = `${newId}px`;
             }
           }
+        },
+        browsesendToAsync: function(instance, command, sendData) {
+          return __async(this, null, function* () {
+            let result = yield vis.binds["squeezeboxrpc"].sendToAsync(instance, command, sendData);
+            if (vis.binds["squeezeboxrpc"].fetchResults) {
+              console.debug("debugbrowsersendtoasync", {
+                debug: "debug data",
+                instance,
+                command,
+                sendData,
+                result
+              });
+            }
+            return result;
+          });
         },
         sendToAsync: function(instance, command, sendData) {
           return __async(this, null, function* () {
