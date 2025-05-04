@@ -141,7 +141,7 @@ const getTextHeight = function (font) {
  * @param font - The font to use when measuring the text.
  * @returns The width of the text.
  */
-function getTextWidth(text, font) {
+export function getTextWidth(text, font) {
     const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement('canvas'));
     const context = canvas.getContext('2d');
     context.font = font.getfont();
