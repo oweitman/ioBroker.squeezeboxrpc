@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "news": {
+      "1.6.1": {
+        "en": "Fix eslint",
+        "de": "Eslint reparieren",
+        "ru": "Исправить Эслинт",
+        "pt": "Fix eslint",
+        "nl": "Eslint herstellen",
+        "fr": "Corriger l'essence",
+        "it": "Fissare eslint",
+        "es": "Fix eslint",
+        "pl": "Napraw eslint",
+        "uk": "Фіксація еслінта",
+        "zh-cn": "修复丝绸"
+      },
       "1.6.0": {
         "en": "upgrade dependency js-controller\nnew widget, but only alpha version for testing and improvement\nfix issues of adapter checker",
         "de": "upgrade abhängigkeit js-controller\nneue widget, aber nur alpha-version für tests und verbesserung\nprobleme des adapter-checkers beheben",

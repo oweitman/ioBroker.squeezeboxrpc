@@ -1,6 +1,6 @@
 {
   "name": "iobroker.squeezeboxrpc",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
   "author": {
     "name": "oweitman",
@@ -72,7 +72,7 @@
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
     "check": "tsc --noEmit -p tsconfig.check.json",
-    "lint": "eslint -c eslint.config.mjs .",
+    "lint": "eslint -c eslint.config.mjs . ",
     "build": "cd widgets/squeezeboxrpc && npm run build && cd ../..",
     "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local",
     "translate": "translate-adapter",

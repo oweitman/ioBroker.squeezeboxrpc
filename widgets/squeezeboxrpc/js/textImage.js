@@ -149,6 +149,7 @@ export function getTextWidth(text, font) {
     return metrics.width;
 }
 
+/** Class representing a Font. */
 export class Font {
     /**
      * Creates a Font object for the given element.
@@ -162,15 +163,35 @@ export class Font {
         this.measure = getTextHeight(this);
         this.measure.width = getTextWidth('M', this);
     }
+    /**
+     * Retrieves the ascent value of the font.
+     *
+     * @returns {number} The ascent value of the font.
+     */
     getAscent() {
         return this.measure.ascent;
     }
+    /**
+     * Retrieves the descent value of the font.
+     *
+     * @returns {number} The descent value of the font.
+     */
     getDescent() {
         return this.measure.descent;
     }
+    /**
+     * Retrieves the width of the font.
+     *
+     * @returns {number} The width of the font.
+     */
     getWidth() {
         return this.measure.width;
     }
+    /**
+     * Retrieves the height value of the font.
+     *
+     * @returns {number} The height value of the font.
+     */
     getHeight() {
         return this.measure.height;
     }

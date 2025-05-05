@@ -8,7 +8,7 @@ export default [
     {
         // specify files to exclude from linting here
         ignores: [
-            'widgets/squeezeboxrpc/js/squeezeboxrpc-dist.js',
+            'widgets/squeezeboxrpc/build/squeezeboxrpc-dist.js',
             'widgets/squeezeboxrpc/js/date.format.js',
             '.dev-server/**',
             'backup/**',
