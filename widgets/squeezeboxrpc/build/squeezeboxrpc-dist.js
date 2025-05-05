@@ -767,15 +767,25 @@
             case "browselibraryFS_":
               return new ItemFilesystem(request_item);
             case "browselibrary_audio":
+            //ok
             case "browselibraryFS_audio":
+            //ok
             case "local_audio":
+            //ok
             case "music_audio":
+            //ok
             case "sports_audio":
+            //ok
             case "news_audio":
+            //ok
             case "talk_audio":
+            //ok
             case "location_audio":
+            //ok
             case "language_audio":
+            //ok
             case "podcast_audio":
+            //ok
             case "favorites_audio":
               return new ItemAudio(request_item, requestCommand);
             case "selectVirtualLibrary_virtualLibraryAnswer":
@@ -4310,13 +4320,11 @@
             for (let i = 0; i < 12; ++i) {
               const d = new Date(this.getFullYear(), i, 1);
               const offset = d.getTimezoneOffset();
-              if (DST === null)
-                DST = offset;
+              if (DST === null) DST = offset;
               else if (offset < DST) {
                 DST = offset;
                 break;
-              } else if (offset > DST)
-                break;
+              } else if (offset > DST) break;
             }
             return this.getTimezoneOffset() === DST | 0;
           },
