@@ -630,8 +630,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 1.6.0 (2025-05-05)
 
 - upgrade dependency js-controller
 - new widget, but only alpha version for testing and improvement
@@ -975,4 +974,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Copyright (c) 2019-2024 oweitman
+Copyright (c) 2019-2025 oweitman

@@ -1,6 +1,6 @@
 {
   "name": "iobroker.squeezeboxrpc",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
   "author": {
     "name": "oweitman",
@@ -26,7 +26,6 @@
     "@iobroker/adapter-core": "^3.2.3",
     "jayson": "^4.2.0",
     "lodash": "^4.17.4",
-
     "super": "^0.2.3"
   },
   "devDependencies": {

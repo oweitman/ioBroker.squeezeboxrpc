@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.5.2",
+    "version": "1.6.0",
     "news": {
+      "1.6.0": {
+        "en": "upgrade dependency js-controller\nnew widget, but only alpha version for testing and improvement\nfix issues of adapter checker",
+        "de": "upgrade abhängigkeit js-controller\nneue widget, aber nur alpha-version für tests und verbesserung\nprobleme des adapter-checkers beheben",
+        "ru": "обновление зависимостей js-контроллера\nновый виджет, но только альфа-версия для тестирования и улучшения\nустранение проблем с проверкой адаптера",
+        "pt": "upgrade de dependência js-controller\nnovo widget, mas apenas versão alfa para testes e melhoria\ncorrigir problemas do verificador do adaptador",
+        "nl": "upgrade afhankelijkheid js-controller\nnieuw widget, maar alleen alfa versie voor testen en verbetering\nproblemen van adaptercontrole oplossen",
+        "fr": "upgrade dépendance js-controller\nnouveau widget, mais seulement version alpha pour tester et améliorer\nrésoudre les problèmes de vérification de l'adaptateur",
+        "it": "potenziare la dipendenza js-controller\nnuovo widget, ma solo versione alfa per test e miglioramento\nrisolvere problemi di adattatore checker",
+        "es": "actualización dependencia js-controller\nnuevo widget, pero sólo versión alfa para pruebas y mejoras\nsolucionar problemas de control de adaptador",
+        "pl": "upgrade independent js- controller\nnowy widget, ale tylko wersja alfa do testowania i doskonalenia\nnaprawić problemy z sprawdzaniem adaptera",
+        "uk": "оновлення залежності js-controller\nновий віджет, але тільки альфа-версія для тестування та вдосконалення\nвиправити питання перевірки адаптера",
+        "zh-cn": "升级依赖性js控制器\n新部件, 但只用于测试和改进的 alpha 版本\n适配器检查器的固定问题"
+      },
       "1.5.2": {
         "en": "fix spelling of iobroker upload squeezeboxrpc in readme\nfix playtime bar",
         "de": "fix buchstabierung von iobroker laden pressboxrpc in readme\nspielzeitleiste",
