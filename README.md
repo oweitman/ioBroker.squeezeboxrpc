@@ -630,6 +630,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 1.6.2 (2025-05-05)
+
+- fix node version in github workflow
+
 ### 1.6.1 (2025-05-05)
 
 - Fix eslint

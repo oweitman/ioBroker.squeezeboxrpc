@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "1.6.1",
+    "version": "1.6.2",
     "news": {
+      "1.6.2": {
+        "en": "fix node version in github workflow",
+        "de": "fix node version in github workflow",
+        "ru": "версия fix node в рабочем процессе github",
+        "pt": "corrigir a versão do nó no fluxo de trabalho do github",
+        "nl": "fix node versie in github workflow",
+        "fr": "correction de la version noeud dans le flux de travail github",
+        "it": "fix nodo versione in github workflow",
+        "es": "arreglar versión de nodo en github workflow",
+        "pl": "fix wersja węzła w github workflow",
+        "uk": "виправити версію вузла в github workflow",
+        "zh-cn": "在 github 工作流程中固定节点版本"
+      },
       "1.6.1": {
         "en": "Fix eslint",
         "de": "Eslint reparieren",
@@ -80,19 +93,6 @@
         "pl": "naprawić kilka brakujących błędów obiektów\nsanitize więcej nazw graczy w zespołach\ndodaj polecenie sendTo \"cmdGeneral\"\nsanitize more the playername\npoprawić tłumaczenie\njeśli trackartist jest użyteczny, napisz do artysty jeśli pusty\npoprawa obsługi grafiki _ url\nprzenieść dokumentację widget z html do markdown\ndopasowanie odpowiadającego stylu karty\npoprawić widżety atrybutów\nzmienić obsługę TPE2 jeszcze raz\njsonConfig dodać opcje rozmiaru dla różnej wielkości ekranu\ntestowa realizacja obsługi TPE2. przełączanie w ustawieniach\nadd datapoints album _ artist, track _ artist, artistOriginal",
         "uk": "виправити деякі помилки відсутніх об'єктів\nдезінфікувати більше назв гравців у синкгрупах\nдодати команду \"Команда\"\nсатизувати більше ім'я гравця\nполіпшення перекладу\nякщо трактист - аваїл, то напишіть художника, якщо порожня\nпокращити роботу для арт-роботи_url\nперемістити документацію віджету з html для розмітки\nрегулюйте чуйний стиль вкладки\nполіпшення віджетів атрибутів\nзміна обробки TPE2 ще раз\njsonConfig add sizing options для різних розмірів екрана\nтестування впровадження TPE2 обробки. Перемикач в налаштуваннях\nдодавати альбоми/артист, трек_artist, художникOriginal",
         "zh-cn": "修正一些缺失的对象错误\n在同步组中消毒更多玩家名\n添加发送到命令“ cmdGeneral ”\n更多消毒玩家名称\n改进翻译\n如果 trackartist 有用, 如果空则写给艺人\n改进对艺术品的处理_ url\n将部件文档从 html 移动到下标记\n调整响应标签样式\n改进属性部件\n再次更改TPE2处理\njsonConfig 添加不同屏幕大小的大小选项\n试验实施TPE2处理。 在设置中切换\n添加数据点相册_艺人,音轨_艺人,艺人"
-      },
-      "1.3.17": {
-        "en": "add edit button to the vie index field of favorites widget",
-        "de": "fügen sie edit-taste in das vie-index-feld der favoriten widget",
-        "ru": "добавить редактирующую кнопку в поле индекса vie",
-        "pt": "adicionar botão de edição para o campo de índice vie de widget favorito",
-        "nl": "bewerken knop toevoegen aan het vie index veld van favorieten widget",
-        "fr": "ajouter le bouton d'édition au champ d'index de vie des favoris widget",
-        "it": "aggiungere il pulsante di modifica al campo indice vie di widget preferiti",
-        "es": "añadir botón de edición al campo índice vie de favoritos widget",
-        "pl": "dodaj przycisk edycji do pola indeksu vie ulubionych widget",
-        "uk": "додати кнопку редагування в vie index поле улюблених віджетів",
-        "zh-cn": "在最爱部件的vie索引字段中添加编辑按钮"
       }
     },
     "titleLang": {
