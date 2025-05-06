@@ -4,32 +4,6 @@
     "version": "1.6.2",
     "news": {
       "1.6.2": {
-        "en": "fix node version in github workflow",
-        "de": "fix node version in github workflow",
-        "ru": "версия fix node в рабочем процессе github",
-        "pt": "corrigir a versão do nó no fluxo de trabalho do github",
-        "nl": "fix node versie in github workflow",
-        "fr": "correction de la version noeud dans le flux de travail github",
-        "it": "fix nodo versione in github workflow",
-        "es": "arreglar versión de nodo en github workflow",
-        "pl": "fix wersja węzła w github workflow",
-        "uk": "виправити версію вузла в github workflow",
-        "zh-cn": "在 github 工作流程中固定节点版本"
-      },
-      "1.6.1": {
-        "en": "Fix eslint",
-        "de": "Eslint reparieren",
-        "ru": "Исправить Эслинт",
-        "pt": "Fix eslint",
-        "nl": "Eslint herstellen",
-        "fr": "Corriger l'essence",
-        "it": "Fissare eslint",
-        "es": "Fix eslint",
-        "pl": "Napraw eslint",
-        "uk": "Фіксація еслінта",
-        "zh-cn": "修复丝绸"
-      },
-      "1.6.0": {
         "en": "upgrade dependency js-controller\nnew widget, but only alpha version for testing and improvement\nfix issues of adapter checker",
         "de": "upgrade abhängigkeit js-controller\nneue widget, aber nur alpha-version für tests und verbesserung\nprobleme des adapter-checkers beheben",
         "ru": "обновление зависимостей js-контроллера\nновый виджет, но только альфа-версия для тестирования и улучшения\nустранение проблем с проверкой адаптера",

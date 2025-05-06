@@ -1119,7 +1119,7 @@
   var version;
   var init_package = __esm({
     "../package.json"() {
-      version = "1.6.0";
+      version = "1.6.2";
     }
   });
 
@@ -1313,15 +1313,35 @@
           this.measure = getTextHeight(this);
           this.measure.width = getTextWidth("M", this);
         }
+        /**
+         * Retrieves the ascent value of the font.
+         *
+         * @returns {number} The ascent value of the font.
+         */
         getAscent() {
           return this.measure.ascent;
         }
+        /**
+         * Retrieves the descent value of the font.
+         *
+         * @returns {number} The descent value of the font.
+         */
         getDescent() {
           return this.measure.descent;
         }
+        /**
+         * Retrieves the width of the font.
+         *
+         * @returns {number} The width of the font.
+         */
         getWidth() {
           return this.measure.width;
         }
+        /**
+         * Retrieves the height value of the font.
+         *
+         * @returns {number} The height value of the font.
+         */
         getHeight() {
           return this.measure.height;
         }

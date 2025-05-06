@@ -44,7 +44,6 @@
     "@types/proxyquire": "^1.3.31",
     "@types/sinon": "^17.0.3",
     "@types/sinon-chai": "^3.2.12",
-    "axios": "^1.9.0",
     "chai": "^4.4.1",
     "chai-as-promised": "^8.0.0",
     "mocha": "^10.8.2",
@@ -74,7 +73,7 @@
     "check": "tsc --noEmit -p tsconfig.check.json",
     "lint": "eslint -c eslint.config.mjs . ",
     "build": "cd widgets/squeezeboxrpc && npm run build && cd ../..",
-    "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local",
+    "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local --noinfo",
     "translate": "translate-adapter",
     "translate-widgets": "node ./bin/translate.js --source widgets/squeezeboxrpc/i18n/en.json --format single",
     "release": "release-script --all"
