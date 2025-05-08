@@ -630,6 +630,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+
+- revert to node 18
+
 ### 1.6.2 (2025-05-05)
 
 - fix node version in github workflow
