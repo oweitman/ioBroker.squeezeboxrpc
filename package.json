@@ -76,6 +76,7 @@
     "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local --noinfo",
     "translate": "translate-adapter",
     "translate-widgets": "node ./bin/translate.js --source widgets/squeezeboxrpc/i18n/en.json --format single",
+    "translate-lib": "node ./bin/translate.js --source lib/i18n/ --format multi",
     "release": "release-script --all"
   },
   "bugs": {

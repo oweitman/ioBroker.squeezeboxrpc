@@ -7,6 +7,7 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
+const { join } = require('path');
 let squeezeboxServer;
 
 const IoSbServerRequire = require(`${__dirname}/lib/iosbserver`);
@@ -40,7 +41,9 @@ class Squeezeboxrpc extends utils.Adapter {
         // Initialize your adapter here
         if (!squeezeboxServer) {
             this.log.debug('main onReady open squeezeboxrpc');
-            squeezeboxServer = new IoSbServerRequire(this);
+            await utils.I18n.init(join(__dirname, 'lib'), this);
+
+            squeezeboxServer = new IoSbServerRequire(this, utils.I18n);
             this.subscribeStates('*');
         }
     }
