@@ -80,6 +80,7 @@ additional a defined button to refresh the favorites
 | button         | Description                       |
 | -------------- | --------------------------------- |
 | `getFavorites` | request all favorites from server |
+| `cmdGeneral`   | a general command field to send commands to the server. every field must enclosed by quotation marks. parameters musst be seperated by comma. Example: "playerid or empty",["para1","para2"] |
 
 ### Favorites
 
@@ -605,13 +606,13 @@ are contained in the following CLI documentation:
 ## Todo
 
 - more testing/fixing
-- reduce dependencys to other packages (squeezenode)
 - more configuration to optionaly turn features on/off to improve memory and performance
 - add playlist widget
-- add browse widget to browse in `LMS`-Menu
 - add player controlled circle knob widget
 - stop playing if favorite button is pressed again.
-- cmdGeneral für Server.
+- ~~add browse widget to browse in `LMS`-Menu~~
+- ~~reduce dependencys to other packages (squeezenode)~~
+- ~~cmdGeneral für Server.~~
 - ~~add telnet communication to get push events from the server to\
    optimize the polling~~
 - ~~implement a command state to place user individual commands (via json)\
@@ -633,6 +634,9 @@ are contained in the following CLI documentation:
 ### **WORK IN PROGRESS**
 
 - revert to node 18
+- add translated datapoint descriptions
+- minimum iobroker version is now 7.0.6
+- cmdGeneral for server
 
 ### 1.6.2 (2025-05-05)
 

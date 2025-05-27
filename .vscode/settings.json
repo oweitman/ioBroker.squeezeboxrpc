@@ -14,5 +14,9 @@
     ],
     "[markdown]": {
         "editor.wordWrap": "off"
-    }
+    },
+    "outline.icons": true,
+    "outline.problems.badges": true,
+    "notebook.outline.showCodeCells": true,
+    "outline.showClasses": true
 }
