@@ -116,7 +116,8 @@
     "loglevel": "info",
     "tier": 3,
     "restartAdapters": [
-      "vis"
+      "vis",
+      "vis-2"
     ],
     "mode": "daemon",
     "type": "multimedia",
