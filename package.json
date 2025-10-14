@@ -1,75 +1,76 @@
 {
-  "name": "iobroker.squeezeboxrpc",
-  "version": "1.6.2",
-  "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
-  "author": {
-    "name": "oweitman",
-    "email": "oweitman@gmx.de"
-  },
-  "homepage": "https://github.com/oweitman/ioBroker.squeezeboxrpc",
-  "license": "MIT",
-  "keywords": [
-    "ioBroker",
-    "squeezebox",
-    "LMS",
-    "Logitech Media Server",
-    "music server"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc"
-  },
-  "engines": {
-    "node": ">= 20"
-  },
-  "dependencies": {
-    "@iobroker/adapter-core": "^3.3.2",
-    "jayson": "^4.2.0",
-    "lodash": "^4.17.4",
-    "super": "^0.2.3"
-  },
-  "devDependencies": {
-    "@alcalzone/release-script": "^3.8.0",
-    "@alcalzone/release-script-plugin-iobroker": "^3.7.2",
-    "@alcalzone/release-script-plugin-license": "^3.7.0",
-    "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
-    "@iobroker/adapter-dev": "^1.5.0",
-    "@iobroker/eslint-config": "^2.2.0",
-    "@iobroker/testing": "^5.1.1",
-    "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^24.7.2",
-    "@types/proxyquire": "^1.3.31",
-    "npm-watch": "^0.13.0",
-    "proxyquire": "^2.1.3",
-    "typescript": "~5.9.3"
-  },
-  "main": "squeezeboxrpc.js",
-  "files": [
-    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
-    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
-    "lib/",
-    "widgets/**/!(tsconfig|tsconfig.*|.eslintrc).json",
-    "widgets/**/*.{html,css,png,svg,jpg,js}",
-    "www/",
-    "io-package.json",
-    "LICENSE",
-    "main.js"
-  ],
-  "scripts": {
-    "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
-    "test:package": "mocha test/package --exit",
-    "test:integration": "mocha test/integration --exit",
-    "test": "npm run test:integration && npm run test:package",
-    "check": "tsc --noEmit -p tsconfig.check.json",
-    "lint": "eslint -c eslint.config.mjs . ",
-    "build": "cd widgets/squeezeboxrpc && npm run build && cd ../..",
-    "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local --noinfo",
-    "translate": "translate-adapter",
-    "translate-widgets": "node ./bin/translate.js --source widgets/squeezeboxrpc/i18n/en.json --format single",
-    "release": "release-script --all"
-  },
-  "bugs": {
-    "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc/issues"
-  },
-  "readmeFilename": "README.md"
+    "name": "iobroker.squeezeboxrpc",
+    "version": "1.6.2",
+    "description": "ioBroker Logitech Squeezebox Adapter over JSON/RPC-Protocol",
+    "author": {
+        "name": "oweitman",
+        "email": "oweitman@gmx.de"
+    },
+    "homepage": "https://github.com/oweitman/ioBroker.squeezeboxrpc",
+    "license": "MIT",
+    "keywords": [
+        "ioBroker",
+        "squeezebox",
+        "LMS",
+        "Logitech Media Server",
+        "music server"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc"
+    },
+    "engines": {
+        "node": ">= 20"
+    },
+    "dependencies": {
+        "@iobroker/adapter-core": "^3.3.2",
+        "jayson": "^4.2.0",
+        "lodash": "^4.17.4",
+        "super": "^0.2.3"
+    },
+    "devDependencies": {
+        "@alcalzone/release-script": "^4.0.0",
+        "@alcalzone/release-script-plugin-iobroker": "^4.0.0",
+        "@alcalzone/release-script-plugin-license": "^4.0.0",
+        "@alcalzone/release-script-plugin-manual-review": "^4.0.0",
+        "@iobroker/adapter-dev": "^1.5.0",
+        "@iobroker/eslint-config": "^2.2.0",
+        "@iobroker/testing": "^5.1.1",
+        "@tsconfig/node18": "^18.2.4",
+        "@types/node": "^24.7.2",
+        "@types/proxyquire": "^1.3.31",
+        "npm-watch": "^0.13.0",
+        "proxyquire": "^2.1.3",
+        "typescript": "~5.9.3"
+    },
+    "main": "squeezeboxrpc.js",
+    "files": [
+        "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
+        "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+        "lib/",
+        "widgets/**/!(tsconfig|tsconfig.*|.eslintrc).json",
+        "widgets/**/*.{html,css,png,svg,jpg,js}",
+        "www/",
+        "io-package.json",
+        "LICENSE",
+        "main.js"
+    ],
+    "scripts": {
+        "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
+        "test:package": "mocha test/package --exit",
+        "test:integration": "mocha test/integration --exit",
+        "test": "npm run test:integration && npm run test:package",
+        "check": "tsc --noEmit -p tsconfig.check.json",
+        "lint": "eslint -c eslint.config.mjs . ",
+        "npm": "npm i && cd widgets && npm i",
+        "build": "cd widgets/squeezeboxrpc && npm run build && cd ../..",
+        "repochecker": "npx github:oweitman/ioBroker.repochecker https://github.com/oweitman/ioBroker.squeezeboxrpc --local --noinfo",
+        "translate": "translate-adapter",
+        "translate-widgets": "node ./bin/translate.js --source widgets/squeezeboxrpc/i18n/en.json --format single",
+        "release": "release-script --all"
+    },
+    "bugs": {
+        "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc/issues"
+    },
+    "readmeFilename": "README.md"
 }
