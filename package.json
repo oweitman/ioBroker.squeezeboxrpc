@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@iobroker/adapter-core": "^3.3.2",
-        "jayson": "^4.2.0",
+        "jayson": "^4.3.0",
         "lodash": "^4.17.4",
         "super": "^0.2.3"
     },
