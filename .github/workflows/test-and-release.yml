@@ -72,7 +72,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: ioBroker/testing-action-deploy@v1.4.3
+            - uses: ioBroker/testing-action-deploy@v1.5.0
               with:
                   node-version: '24.x'
                   build: true
