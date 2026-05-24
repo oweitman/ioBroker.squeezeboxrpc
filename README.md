@@ -640,6 +640,9 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 1.6.4 (2026-03-25)
 
 - test remove node 18,extend to node 24
