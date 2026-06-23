@@ -975,6 +975,8 @@ are contained in the following CLI documentation:
 
 - initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 
 MIT License
