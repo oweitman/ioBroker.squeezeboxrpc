@@ -23,7 +23,7 @@
     "node": ">= 20"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.3.2",
+    "@iobroker/adapter-core": "^3.4.1",
     "jayson": "^4.3.0",
     "lodash": "^4.18.1",
     "super": "^0.2.3"
