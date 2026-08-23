@@ -59,12 +59,31 @@
             "type": "node"
         },
         {
-            "name": "repochecker",
+            "name": "repochecker local",
             "program": "../iobroker.repochecker/index.js",
-            "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc", "main", "--local"],
+            "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc", "--local"],
             "request": "launch",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
+            "name": "repochecker remote",
+            "program": "../iobroker.repochecker/index.js",
+            "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc"],
+            "request": "launch",
+            "stopOnEntry": false,
+            "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
+        },
+        {
+            "name": "repochecker custom local",
+            "program": "../iobroker.repochecker/index.js",
+            "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc", "--local"],
+            "request": "launch",
+            "stopOnEntry": false,
             "skipFiles": ["<node_internals>/**"],
             "type": "node"
         }

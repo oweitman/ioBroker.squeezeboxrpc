@@ -55,6 +55,16 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 
 `iobroker upload squeezeboxrpc`
 
+## Trouble Shooting
+
+### SLIMP3 players
+
+It has been reported that older SLIMP3 players may be
+unable to connect to the server while the adapter is searching
+for new servers. Disabling the search under
+´Instance Configuration -> Performance Settings -> Search for other LMS servers´
+should allow the player to connect.
+
 ## Provided states
 
 ### Server
@@ -544,21 +554,21 @@ For self formating there are some predefined css-classes:
 
 - Implementing LMS/Lyrion for browsing is hell.
 - The technical model for this widget is the "Material" theme plugin
-in the LMS/Lyrion server.
+  in the LMS/Lyrion server.
 - Not all features are currently implemented.
-  - All input field types are not yet available.
-  - Not all item types may have been implemented.
+    - All input field types are not yet available.
+    - Not all item types may have been implemented.
 - Optional, extensive debug output has been added for analysis (see also attributes).
-  - Output of the function reference: All function names are output in
-  order in the browser console.
-  - Output of the data reference: All data requested and returned
-  by the server is output.
+    - Output of the function reference: All function names are output in
+      order in the browser console.
+    - Output of the data reference: All data requested and returned
+      by the server is output.
 
 If testers encounter errors/problems or missing implementations,
 please provide as detailed a description as possible:
 
 - Where does the data come from in the LMS/Lyrion
-(already built-in service/additionally installed plugin)
+  (already built-in service/additionally installed plugin)
 - What steps/clicks were performed to create the problem
 - What are the function references and data references?
 
@@ -633,10 +643,14 @@ are contained in the following CLI documentation:
 -->
 ### **WORK IN PROGRESS**
 
-- revert to node 18
 - add translated datapoint descriptions
 - minimum iobroker version is now 7.0.6
 - cmdGeneral for server
+
+### 1.6.4 (2026-03-25)
+
+- test remove node 18,extend to node 24
+- update packages
 
 ### 1.6.2 (2025-05-05)
 
@@ -990,4 +1004,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Copyright (c) 2019-2025 oweitman
+Copyright (c) 2019-2026 oweitman
