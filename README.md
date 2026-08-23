@@ -31,12 +31,12 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 - detailed [information](#players) about the player status, song title, artist,
   album, artwork, playlist
 - [many control features](#provided-states) to play, pause, stop, forward,\
-   rewind, repeat, shuffle, play favorite, jump to time\
-   (absolute and relative) , jump to playlist index (absolute and relative),\
-   power on/off and preset buttons
+  rewind, repeat, shuffle, play favorite, jump to time\
+  (absolute and relative) , jump to playlist index (absolute and relative),\
+  power on/off and preset buttons
 - all [favorites](#favorites) and all sub levels from server
 - many [widgets](#widgets) for the iobroker-vis component are included to\
-   create own
+  create own
   control user interfaces (select player,select favorites, manage syncgroups,
   buttons for play/pause,fwd,rew, repeat mode and shuffle mode selection)
 
@@ -51,7 +51,7 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 ## Update
 
 - After installation or update, it may sometimes be necessary\
-   to execute the following command if problems have arisen in vis-1
+  to execute the following command if problems have arisen in vis-1
 
 `iobroker upload squeezeboxrpc`
 
@@ -624,11 +624,11 @@ are contained in the following CLI documentation:
 - ~~reduce dependencys to other packages (squeezenode)~~
 - ~~cmdGeneral für Server.~~
 - ~~add telnet communication to get push events from the server to\
-   optimize the polling~~
+  optimize the polling~~
 - ~~implement a command state to place user individual commands (via json)\
-   for server and player~~
+  for server and player~~
 - ~~implement more control features (select playlist pos to play,ffwd,frew,\
-   jump to a time position in song,repeat song,random song)~~
+  jump to a time position in song,repeat song,random song)~~
 - ~~add the playlist to playerdata as json array~~
 - ~~add artwork (station-logo/playlist-cover) for favorites~~
 - ~~implement more levels (subdirectories) of favorites~~
@@ -645,7 +645,6 @@ are contained in the following CLI documentation:
 ### **WORK IN PROGRESS**
 
 - add translated datapoint descriptions
-- minimum iobroker version is now 7.0.6
 - cmdGeneral for server
 
 ### 1.6.4 (2026-03-25)
@@ -778,7 +777,7 @@ are contained in the following CLI documentation:
 ### 1.3.0
 
 - fix problem wit setting own icon in player widget / \* add infos about\
-   alarms to a player datapoint
+  alarms to a player datapoint
 
 ### 1.2.1
 
@@ -807,7 +806,7 @@ are contained in the following CLI documentation:
 ### 0.8.32
 
 - the adapter function iobroker.deleteChannel didnt works as expected.\
-   It didnt delete the whole subtree of states. now i implement my own delete function
+  It didnt delete the whole subtree of states. now i implement my own delete function
 
 ### 0.8.31
 
@@ -824,7 +823,7 @@ are contained in the following CLI documentation:
 ### 0.8.28
 
 - add advanced signaling function with telnet and fix some more authorization\
-   issues with `LMS`
+  issues with `LMS`
 
 ### 0.8.27
 
@@ -833,7 +832,7 @@ are contained in the following CLI documentation:
 ### 0.8.26
 
 - more improvement and fixing at volumebar / remove playlist widget from\
-   master. not ready yet
+  master. not ready yet
 
 ### 0.8.25
 
@@ -846,7 +845,7 @@ are contained in the following CLI documentation:
 ### 0.8.23
 
 - adjust dependencies to remove vulnerabilities in dependend packages.\
-   also remove travis due of unresolvable build-failures for win+node10/12
+  also remove travis due of unresolvable build-failures for win+node10/12
 
 ### 0.8.22
 
@@ -871,13 +870,13 @@ are contained in the following CLI documentation:
 ### 0.8.17 (2019-06-26)
 
 - add more widges: playtime bar, string, number, datetime, image.\
-   add button margin to player and favorite widget, improve editing of viewindex.\
-   do some refactoring.
+  add button margin to player and favorite widget, improve editing of viewindex.\
+  do some refactoring.
 
 ### 0.8.16 (2019-06-24)
 
 - resolve a cross browser issue for firefox. the style.\
-   font attribute is empty and you have to construct the font string by yourself
+  font attribute is empty and you have to construct the font string by yourself
 
 ### 0.8.15 (2019-06-19)
 
