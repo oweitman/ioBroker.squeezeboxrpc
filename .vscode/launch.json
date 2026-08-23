@@ -77,6 +77,15 @@
             "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
             "skipFiles": ["<node_internals>/**"],
             "type": "node"
+        },
+        {
+            "name": "repochecker custom local",
+            "program": "../iobroker.repochecker/index.js",
+            "args": ["https://github.com/oweitman/ioBroker.squeezeboxrpc", "--local"],
+            "request": "launch",
+            "stopOnEntry": false,
+            "skipFiles": ["<node_internals>/**"],
+            "type": "node"
         }
     ]
 }
