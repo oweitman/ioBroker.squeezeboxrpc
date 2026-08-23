@@ -13,5 +13,8 @@
     },
     "author": "",
     "license": "MIT",
-    "description": ""
+    "description": "",
+    "devDependencies": {
+        "npm-watch": "^0.13.0"
+    }
 }

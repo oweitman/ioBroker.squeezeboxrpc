@@ -56,17 +56,17 @@
                 "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
             },
             "1.5.0": {
-                "en": "Umstellung auf iobroker/eslint\nNeues Widget playlist",
-                "de": "Anpassung an iobroker/eslint\nNeues Widget Playlist",
-                "ru": "Umstellung auf iobroker/eslint\nNeues Widget playlist",
-                "pt": "Umstellung auf iobroker/eslint\nLista de reprodução de Neues Widget",
-                "nl": "Umstellung auf iobroker/eslint\nNeues widget-afspeellijst",
-                "fr": "Umstellung auf iobroker/ester\nListe de lecture Neues Widget",
-                "it": "Impiegazione\nPlaylist di Neues Widget",
-                "es": "Umstellung auf iobroker/eslint\nNeues Widget lista de reproducción",
-                "pl": "Umstellung auf iobroker / eslint\nNeues Widget playlist",
-                "uk": "Umstellung auf iobroker/eslint\nNeues Widget список відтворення",
-                "zh-cn": "Umstellung auf io 经纪人/雇员\nNeues 部件播放列表"
+                "en": "Migration to ioBroker/eslint\nNew Playlist widget",
+                "de": "Umstellung auf ioBroker/eslint\nNeues Widget Playlist",
+                "ru": "Переход на ioBroker/eslint\nНовый виджет «Плейлист»",
+                "pt": "Migração para ioBroker/eslint\nNovo widget de playlist",
+                "nl": "Migratie naar ioBroker/eslint\nNieuwe afspeellijst-widget",
+                "fr": "Migration vers ioBroker/eslint\nNouveau widget de liste de lecture",
+                "it": "Migrazione a ioBroker/eslint\nNuovo widget playlist",
+                "es": "Migración a ioBroker/eslint\nNuevo widget de lista de reproducción",
+                "pl": "Migracja do ioBroker/eslint\nNowy widżet playlisty",
+                "uk": "Перехід на ioBroker/eslint\nНовий віджет списку відтворення",
+                "zh-cn": "迁移到 ioBroker/eslint\n新增播放列表小部件"
             },
             "1.4.0": {
                 "en": "fix some missing objects errors\nsanitize more playernames in syncgroups\nadd sendTo Command \"cmdGeneral\"\nsanitize more the playername\nimprove translation\nif trackartist is avail then write to artist if empty\nimprove handling for artwork_url\nmove widget documentation from html to markdown\nadjust responsive tab style\nimprove attribute widgets\nchange TPE2 handling once more\njsonConfig add sizing options for differenz screen sizes\ntest implementation of TPE2 handling. switch in settings\nadd datapoints album_artist, track_artist, artistOriginal",

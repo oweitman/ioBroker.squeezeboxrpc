@@ -23,6 +23,7 @@
     "ss_syncgroups": "Informatie over de bestaande SyncGroups",
     "ss_otherServers": "Informatie over andere LMS/Lyrion servers in het netwerk",
     "ss_getFavorites": "Opvragen van favorieten forceren",
+    "ss_cmdGeneral": "Algemene opdrachten",
     "psm_player_name": "Naam van het afspeelapparaat",
     "psm_playerid": "ID van het afspeelapparaat",
     "psm_player_connected": "Verbindingsstatus van het afspeelapparaat",

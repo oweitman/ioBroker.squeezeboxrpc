@@ -87,9 +87,9 @@ should allow the player to connect.
 
 additional a defined button to refresh the favorites
 
-| button         | Description                       |
-| -------------- | --------------------------------- |
-| `getFavorites` | request all favorites from server |
+| button         | Description                                                                                                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getFavorites` | request all favorites from server                                                                                                                                                            |
 | `cmdGeneral`   | a general command field to send commands to the server. every field must enclosed by quotation marks. parameters musst be seperated by comma. Example: "playerid or empty",["para1","para2"] |
 
 ### Favorites
@@ -174,7 +174,7 @@ additional defined buttons:
 | `btnPreset\_\*`   | 1-6 buttons to define in player or server                                                                                                                         |
 | `cmdGeneral`      | a general command field to send commands to the player. every field must enclosed by quotation marks. parameters musst be seperated by comma. Example: "play","1" |
 | `cmdPlayFavorite` | to play a favorite set the id of the favorite                                                                                                                     |
-| `cmdPlayUrl`      | to play a url. example "<http://50.7.77.114:8101/>;"                                                                                                               |
+| `cmdPlayUrl`      | to play a url. example "<http://50.7.77.114:8101/>;"                                                                                                              |
 | `cmdGoTime`       | jump to a absolut position by specifying a number of seconds or jump relative with a + or - at the beginning of the seconds. Example 100,-50,+50                  |
 
 #### Remarks on Datapoints depending of the Setting TPE2 in LMS
@@ -641,6 +641,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
 ### **WORK IN PROGRESS**
 
 - add translated datapoint descriptions
@@ -981,6 +982,8 @@ are contained in the following CLI documentation:
 ### 0.0.1
 
 - initial release
+
+Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
 ## License
 

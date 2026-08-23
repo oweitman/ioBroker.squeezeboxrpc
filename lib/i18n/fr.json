@@ -23,6 +23,7 @@
     "ss_syncgroups": "Informations sur les SyncGroups existants",
     "ss_otherServers": "Informations sur les autres serveurs LMS/Lyrion du réseau",
     "ss_getFavorites": "Forcer la récupération des favoris",
+    "ss_cmdGeneral": "Commandes générales",
     "psm_player_name": "Nom de l'appareil de lecture",
     "psm_playerid": "ID de l'appareil de lecture",
     "psm_player_connected": "État de la connexion de l'appareil de lecture",

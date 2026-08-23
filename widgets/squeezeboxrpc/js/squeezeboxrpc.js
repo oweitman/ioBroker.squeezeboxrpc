@@ -12,7 +12,7 @@ import { version as pkgVersion } from '../../../package.json';
 import { getTextWidth, createTextImage, Font } from './textImage.js';
 import { parseRequestFactory } from './sbClasses.js';
 
-fetch('widgets/squeezeboxrpc/i18n/translations.json').then(async res => {
+fetch('widgets/squeezeboxrpc/myi18n/translations.json').then(async res => {
     const i18n = await res.json();
 
     $.extend(true, systemDictionary, i18n);

@@ -1119,7 +1119,7 @@
   var version;
   var init_package = __esm({
     "../package.json"() {
-      version = "1.6.2";
+      version = "1.6.4";
     }
   });
 
@@ -1412,7 +1412,7 @@
       init_package();
       init_textImage();
       init_sbClasses();
-      fetch("widgets/squeezeboxrpc/i18n/translations.json").then((res) => __async(exports, null, function* () {
+      fetch("widgets/squeezeboxrpc/myi18n/translations.json").then((res) => __async(null, null, function* () {
         const i18n = yield res.json();
         $.extend(true, systemDictionary, i18n);
       }));
