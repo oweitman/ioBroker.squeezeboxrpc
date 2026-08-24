@@ -23,6 +23,12 @@ export default {
                 './RewindButtonWidget': './src/RewindButtonWidget',
                 './ShuffleButtonWidget': './src/ShuffleButtonWidget',
                 './RepeatButtonWidget': './src/RepeatButtonWidget',
+                './VolumeWidget': './src/VolumeWidget',
+                './PlaytimeWidget': './src/PlaytimeWidget',
+                './StringWidget': './src/StringWidget',
+                './NumberWidget': './src/NumberWidget',
+                './DateTimeWidget': './src/DateTimeWidget',
+                './ImageWidget': './src/ImageWidget',
                 './translations': './src/translations',
             },
             remotes: {},
@@ -43,6 +49,24 @@ export default {
         },
     },
     base: './',
+    optimizeDeps: {
+        // Federation exposes are loaded after Vite's initial dependency scan. With
+        // multiple widgets, Vite 7.3.2 can otherwise start a second optimizer run
+        // and compare incomplete metadata (missing fileHash/browserHash entries).
+        include: [
+            '@emotion/react',
+            '@emotion/styled',
+            '@iobroker/adapter-react-v5',
+            '@iobroker/vis-2-widgets-react-dev',
+            '@mui/icons-material',
+            '@mui/material',
+            'react',
+            'react-dom',
+            'react-dom/client',
+            'react/jsx-dev-runtime',
+            'react/jsx-runtime',
+        ],
+    },
     build: {
         target: 'chrome89',
         outDir: './build',

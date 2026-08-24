@@ -149,6 +149,52 @@ describe('VIS-2 Players configuration', () => {
         expect(nextModeState(2)).to.equal(0);
     });
 
+    it('builds player attribute IDs and formats value widgets', async () => {
+        const { formatDateTime, formatNumber, playerAttributeStateId } = await loadModule('playerStateUtils.js');
+        const selection = { instance: 'squeezeboxrpc.1', player: 'Kitchen' };
+
+        expect(playerAttributeStateId(selection, 'Title')).to.equal('squeezeboxrpc.1.Players.Kitchen.Title');
+        expect(playerAttributeStateId(selection, 'not-an-attribute')).to.equal('');
+        expect(formatNumber(1234.5, 2, true, false)).to.equal('1,234.50');
+        expect(formatNumber(1234.5, 2, true, true)).to.equal('1.234,50');
+        expect(formatNumber(undefined, '', false, false)).to.equal('0');
+        expect(formatDateTime(0, 1000, 'DD.MM.YYYY hh:mm:ss')).to.equal('01.01.1970 00:00:00');
+    });
+
+    it('keeps the VIS-2 update lifecycle active for player value widgets', () => {
+        const source = require('node:fs').readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'PlayerStateWidget.jsx'),
+            'utf8',
+        );
+
+        expect(source).to.match(/playerAttributeField\s*=\s*{[\s\S]*?noTranslation:\s*true/);
+        expect(source).to.match(
+            /componentDidUpdate\(prevProps, prevState\)\s*{\s*super\.componentDidUpdate\(prevProps, prevState\);/,
+        );
+    });
+
+    it('calculates volume and playtime values within their valid range', async () => {
+        const { activeVolumeSegments, playtimePercent, volumeFromPointer } = await loadModule('playerStateUtils.js');
+
+        expect(volumeFromPointer(50, 100, 11, 'exact', false)).to.equal(50);
+        expect(volumeFromPointer(25, 100, 5, 'segstep', true)).to.equal(75);
+        expect(activeVolumeSegments(50, 11)).to.equal(6);
+        expect(playtimePercent(25, 100, 1)).to.equal(25);
+        expect(playtimePercent(25, 100, 2)).to.equal(0);
+        expect(playtimePercent(120, 100, 1)).to.equal(100);
+    });
+
+    it('builds all playtime state IDs from the selected player', async () => {
+        const { playtimeStateIds } = await loadModule('playerStateUtils.js');
+        expect(playtimeStateIds({ instance: 'squeezeboxrpc.0', player: 'Living' })).to.deep.equal({
+            duration: 'squeezeboxrpc.0.Players.Living.Duration',
+            time: 'squeezeboxrpc.0.Players.Living.Time',
+            playback: 'squeezeboxrpc.0.Players.Living.state',
+            goTime: 'squeezeboxrpc.0.Players.Living.cmdGoTime',
+        });
+        expect(playtimeStateIds({ instance: '', player: 'Living' })).to.equal(null);
+    });
+
     it('delivers the current player selection independent of mount order', async () => {
         const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
         const received = [];
