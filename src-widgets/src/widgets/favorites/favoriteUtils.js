@@ -1,4 +1,4 @@
-import { normalizeImageSource } from './playerConfigUtils';
+import { normalizeImageSource } from '../../shared/playerConfigUtils';
 
 export function parseFavorites(states = {}, instance = '') {
     const prefix = `${instance}.Favorites.`;

@@ -3,15 +3,15 @@ import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import PlayerConfigField from './PlayerConfigField';
 import InstanceConfigField from './InstanceConfigField';
-import TextImage from './TextImage';
+import TextImage from '../../shared/TextImage';
 import {
     cssLength,
     mergePlayerNames,
     normalizeInstance,
     readConfiguredPlayers,
     selectPlayerAfterLoad,
-} from './playerConfigUtils';
-import { clearPlayerSelection, publishPlayerSelection } from './playerSelectionBus';
+} from '../../shared/playerConfigUtils';
+import { clearPlayerSelection, publishPlayerSelection } from '../../shared/playerSelectionBus';
 import './players.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

@@ -2,9 +2,9 @@ import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerCommandStateId } from './playerCommandUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
-import PlayerWidgetReferenceField from './PlayerWidgetReferenceField';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
+import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import './playerCommandButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

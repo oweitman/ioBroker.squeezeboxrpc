@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
-import { playerReferenceField } from './PlayerStateWidget';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
-import { mergePlayerNames, readConfiguredPlayers, cssLength } from './playerConfigUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
+import { playerReferenceField } from '../values/PlayerStateWidget';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { mergePlayerNames, readConfiguredPlayers, cssLength } from '../../shared/playerConfigUtils';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { syncCommand, syncGroupStatus } from './syncGroupUtils';
-import TextImage from './TextImage';
+import TextImage from '../../shared/TextImage';
 import './syncGroupWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

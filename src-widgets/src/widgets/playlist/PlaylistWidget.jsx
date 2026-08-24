@@ -1,9 +1,9 @@
 import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
-import { playerReferenceField } from './PlayerStateWidget';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
+import { playerReferenceField } from '../values/PlayerStateWidget';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { parsePlaylists, playlistLoadCommand } from './playlistUtils';
 import './playlistWidget.css';
 

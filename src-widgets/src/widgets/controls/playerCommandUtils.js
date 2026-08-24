@@ -1,4 +1,4 @@
-import { normalizeInstance } from './playerConfigUtils';
+import { normalizeInstance } from '../../shared/playerConfigUtils';
 
 const COMMAND_STATES = {
     forward: 'btnForward',

@@ -1,8 +1,8 @@
 import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
-import { parseRequestFactory } from '../../widgets/squeezeboxrpc/js/sbClasses';
-import { playerReferenceField } from './PlayerStateWidget';
+import { parseRequestFactory } from '../../../../widgets/squeezeboxrpc/js/sbClasses';
+import { playerReferenceField } from '../values/PlayerStateWidget';
 import {
     browserActionCommand,
     browserBreadcrumb,
@@ -10,8 +10,8 @@ import {
     browserHomeItems,
     parseBrowserActions,
 } from './browserUtils';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import './browserWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

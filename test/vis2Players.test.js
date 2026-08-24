@@ -8,7 +8,7 @@ const { expect } = require('chai');
 
 async function loadPlayerConfigUtils() {
     const result = await esbuild.build({
-        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', 'playerConfigUtils.js')],
+        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', 'shared', 'playerConfigUtils.js')],
         bundle: true,
         format: 'cjs',
         platform: 'node',
@@ -21,8 +21,21 @@ async function loadPlayerConfigUtils() {
 }
 
 async function loadModule(file) {
+    const moduleDirectories = {
+        'browserUtils.js': ['widgets', 'browser'],
+        'favoriteUtils.js': ['widgets', 'favorites'],
+        'playButtonUtils.js': ['widgets', 'controls'],
+        'playerCommandUtils.js': ['widgets', 'controls'],
+        'playerModeUtils.js': ['widgets', 'controls'],
+        'playerSelectionBus.js': ['shared'],
+        'playerStateUtils.js': ['widgets', 'values'],
+        'playerWidgetReferenceUtils.js': ['shared'],
+        'playlistUtils.js': ['widgets', 'playlist'],
+        'syncGroupUtils.js': ['widgets', 'sync'],
+        'TextImage.jsx': ['shared'],
+    };
     const result = await esbuild.build({
-        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', file)],
+        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', ...(moduleDirectories[file] || []), file)],
         bundle: true,
         format: 'cjs',
         platform: 'node',
@@ -47,13 +60,13 @@ describe('VIS-2 Players configuration', () => {
     it('registers the VIS-2 playlist widget federation module', () => {
         const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
-        expect(source).to.include("'./PlaylistWidget': './src/PlaylistWidget'");
+        expect(source).to.include("'./PlaylistWidget': './src/widgets/playlist/PlaylistWidget'");
         expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistWidget');
     });
 
     it('keeps the VIS-1 playlist layout styles in VIS-2', () => {
         const source = fs.readFileSync(
-            path.join(__dirname, '..', 'src-widgets', 'src', 'playlistWidget.css'),
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'playlist', 'playlistWidget.css'),
             'utf8',
         );
         expect(source).to.include('padding-left: 0;');
@@ -83,17 +96,17 @@ describe('VIS-2 Players configuration', () => {
     it('registers the VIS-2 browser widget federation module', () => {
         const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
-        expect(source).to.include("'./BrowserWidget': './src/BrowserWidget'");
+        expect(source).to.include("'./BrowserWidget': './src/widgets/browser/BrowserWidget'");
         expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('BrowserWidget');
     });
 
     it('renders browser icons with the configured foreground color', () => {
         const css = fs.readFileSync(
-            path.join(__dirname, '..', 'src-widgets', 'src', 'browserWidget.css'),
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'browser', 'browserWidget.css'),
             'utf8',
         );
         const widget = fs.readFileSync(
-            path.join(__dirname, '..', 'src-widgets', 'src', 'BrowserWidget.jsx'),
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'browser', 'BrowserWidget.jsx'),
             'utf8',
         );
         expect(css).to.include('fill: currentColor;');
@@ -104,7 +117,7 @@ describe('VIS-2 Players configuration', () => {
 
     it('shows the optional zero-based favorite index helper only in edit mode', () => {
         const source = fs.readFileSync(
-            path.join(__dirname, '..', 'src-widgets', 'src', 'FavoritesWidget.jsx'),
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'favorites', 'FavoritesWidget.jsx'),
             'utf8',
         );
 
@@ -247,7 +260,7 @@ describe('VIS-2 Players configuration', () => {
 
     it('keeps the VIS-2 update lifecycle active for player value widgets', () => {
         const source = require('node:fs').readFileSync(
-            path.join(__dirname, '..', 'src-widgets', 'src', 'PlayerStateWidget.jsx'),
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'values', 'PlayerStateWidget.jsx'),
             'utf8',
         );
 

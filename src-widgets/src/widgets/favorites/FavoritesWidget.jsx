@@ -3,12 +3,12 @@ import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import FavoriteConfigField from './FavoriteConfigField';
-import { playerReferenceField } from './PlayerStateWidget';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
+import { playerReferenceField } from '../values/PlayerStateWidget';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { mergeFavorites, parseFavorites, readConfiguredFavorites } from './favoriteUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
-import { cssLength } from './playerConfigUtils';
-import TextImage from './TextImage';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
+import { cssLength } from '../../shared/playerConfigUtils';
+import TextImage from '../../shared/TextImage';
 import './favoritesWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

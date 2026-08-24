@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { I18n } from '@iobroker/adapter-react-v5';
 
-import { instanceId, normalizeInstance } from './playerConfigUtils';
+import { instanceId, normalizeInstance } from '../../shared/playerConfigUtils';
 
 export default function InstanceConfigField({ data, onDataChange, props }) {
     const [instances, setInstances] = useState(/** @type {string[]} */ ([]));

@@ -1,4 +1,4 @@
-import { normalizeInstance } from './playerConfigUtils';
+import { normalizeInstance } from '../../shared/playerConfigUtils';
 
 export function normalizePlaybackState(value) {
     const state = Number.parseInt(String(value), 10);

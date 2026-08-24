@@ -1,6 +1,6 @@
 import PlayerStateWidget, { playerReferenceField } from './PlayerStateWidget';
 import { activeVolumeSegments, playerAttributeStateId, volumeFromPointer } from './playerStateUtils';
-import { cssLength } from './playerConfigUtils';
+import { cssLength } from '../../shared/playerConfigUtils';
 import './volumeWidget.css';
 
 class VolumeWidget extends PlayerStateWidget {

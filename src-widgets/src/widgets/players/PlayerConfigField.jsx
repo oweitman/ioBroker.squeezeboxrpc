@@ -8,7 +8,7 @@ import {
     normalizeInstance,
     readConfiguredPlayers,
     writeConfiguredPlayers,
-} from './playerConfigUtils';
+} from '../../shared/playerConfigUtils';
 
 export default function PlayerConfigField({ data, onDataChange, props }) {
     const [loading, setLoading] = useState(false);

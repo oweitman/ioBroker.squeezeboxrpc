@@ -1,10 +1,10 @@
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
-import { cssLength } from './playerConfigUtils';
+import { cssLength } from '../../shared/playerConfigUtils';
 import { playtimePercent, playtimeStateIds } from './playerStateUtils';
-import { subscribePlayerSelection } from './playerSelectionBus';
+import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { playerReferenceField } from './PlayerStateWidget';
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import './playtimeWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);

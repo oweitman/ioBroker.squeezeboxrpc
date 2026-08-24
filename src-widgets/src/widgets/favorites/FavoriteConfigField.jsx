@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { I18n } from '@iobroker/adapter-react-v5';
 import { Alert, Button, Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
 
-import { decodePlayerWidgetReference } from './playerWidgetReferenceUtils';
-import { normalizeInstance } from './playerConfigUtils';
+import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { normalizeInstance } from '../../shared/playerConfigUtils';
 import {
     mergeFavorites,
     moveFavorite,
