@@ -95,5 +95,14 @@
     "squeezeboxrpc_playlist_widget": "Playlist",
     "squeezeboxrpc_refresh_playlists": "Refresh playlists",
     "squeezeboxrpc_playlists_load_error": "The playlists could not be loaded.",
-    "squeezeboxrpc_no_playlists": "No playlists available"
+    "squeezeboxrpc_no_playlists": "No playlists available",
+    "squeezeboxrpc_browser_widget": "Browser",
+    "squeezeboxrpc_browser_load_error": "The browser contents could not be loaded.",
+    "squeezeboxrpc_browser_action_error": "The browser action could not be executed.",
+    "squeezeboxrpc_browser_loading": "Loading browser contents...",
+    "squeezeboxrpc_browser_next": "Open",
+    "squeezeboxrpc_browser_play": "Play",
+    "squeezeboxrpc_browser_add": "Add",
+    "squeezeboxrpc_debug": "Debug logging",
+    "squeezeboxrpc_debug_fetch_results": "Include server responses in debug logging"
 }

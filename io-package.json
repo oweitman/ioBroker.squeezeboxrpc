@@ -150,7 +150,8 @@
                     "ImageWidget",
                     "SyncGroupWidget",
                     "FavoritesWidget",
-                    "PlaylistWidget"
+                    "PlaylistWidget",
+                    "BrowserWidget"
                   ]
             }
         },

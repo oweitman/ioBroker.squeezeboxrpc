@@ -95,5 +95,14 @@
     "squeezeboxrpc_playlist_widget": "Wiedergabeliste",
     "squeezeboxrpc_refresh_playlists": "Wiedergabelisten aktualisieren",
     "squeezeboxrpc_playlists_load_error": "Die Wiedergabelisten konnten nicht geladen werden.",
-    "squeezeboxrpc_no_playlists": "Keine Wiedergabelisten vorhanden"
+    "squeezeboxrpc_no_playlists": "Keine Wiedergabelisten vorhanden",
+    "squeezeboxrpc_browser_widget": "Browser",
+    "squeezeboxrpc_browser_load_error": "Die Browser-Inhalte konnten nicht geladen werden.",
+    "squeezeboxrpc_browser_action_error": "Die Browser-Aktion konnte nicht ausgeführt werden.",
+    "squeezeboxrpc_browser_loading": "Browser-Inhalte werden geladen...",
+    "squeezeboxrpc_browser_next": "Öffnen",
+    "squeezeboxrpc_browser_play": "Abspielen",
+    "squeezeboxrpc_browser_add": "Hinzufügen",
+    "squeezeboxrpc_debug": "Debug-Ausgaben",
+    "squeezeboxrpc_debug_fetch_results": "Server-Antworten in Debug-Ausgaben aufnehmen"
 }

@@ -63,6 +63,45 @@ describe('VIS-2 Players configuration', () => {
         expect(source).to.include('white-space: nowrap;');
     });
 
+    it('builds VIS-1 compatible browser commands and breadcrumbs', async () => {
+        const { browserActionCommand, browserBreadcrumb, browserCommand, parseBrowserActions } = await loadModule('browserUtils.js');
+        const actions = parseBrowserActions(JSON.stringify({
+            next: { command: ['tracks'], params: ['mode:toptracks'] },
+            play: { command: ['playlistcontrol'], params: ['cmd:load', 'album_id:4'] },
+        }));
+        expect(browserCommand(actions.next, 'aa:bb')).to.deep.equal({
+            playerid: 'aa:bb',
+            cmdArray: ['tracks', 0, 200, 'mode:toptracks'],
+        });
+        expect(browserActionCommand(actions.play, 'aa:bb')).to.deep.equal({
+            playerid: 'aa:bb',
+            cmdArray: ['playlistcontrol', 'cmd:load', 'album_id:4'],
+        });
+        expect(browserBreadcrumb([{ title: 'Home' }, { title: 'Radio' }])).to.equal('Home / Radio');
+    });
+
+    it('registers the VIS-2 browser widget federation module', () => {
+        const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
+        const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
+        expect(source).to.include("'./BrowserWidget': './src/BrowserWidget'");
+        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('BrowserWidget');
+    });
+
+    it('renders browser icons with the configured foreground color', () => {
+        const css = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'browserWidget.css'),
+            'utf8',
+        );
+        const widget = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'BrowserWidget.jsx'),
+            'utf8',
+        );
+        expect(css).to.include('fill: currentColor;');
+        expect(css).to.include('align-items: center;');
+        expect(widget).to.include('fill="currentColor" stroke="currentColor" strokeWidth=".3"');
+        expect(widget).to.include("viewBox = '0 0 26.458 26.458'");
+    });
+
     it('shows the optional zero-based favorite index helper only in edit mode', () => {
         const source = fs.readFileSync(
             path.join(__dirname, '..', 'src-widgets', 'src', 'FavoritesWidget.jsx'),
