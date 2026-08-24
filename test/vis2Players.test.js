@@ -109,4 +109,48 @@ describe('VIS-2 Players configuration', () => {
         expect(selectPlayerAfterLoad(available, 'Kitchen', 'Living', false)).to.equal('Kitchen');
         expect(selectPlayerAfterLoad(available, 'Kitchen', 'Living', true)).to.equal('Living');
     });
+
+    it('builds and validates the selected player state ID', async () => {
+        const { normalizePlaybackState, playerStateId } = await loadModule('playButtonUtils.js');
+        expect(playerStateId({ version: 1, instance: 'squeezeboxrpc.2', player: 'Living_room' }))
+            .to.equal('squeezeboxrpc.2.Players.Living_room.state');
+        expect(playerStateId({ instance: '', player: 'Living_room' })).to.equal('');
+        expect(normalizePlaybackState(0)).to.equal(0);
+        expect(normalizePlaybackState('1')).to.equal(1);
+        expect(normalizePlaybackState(undefined)).to.equal(2);
+        expect(normalizePlaybackState(99)).to.equal(2);
+    });
+
+    it('delivers the current player selection independent of mount order', async () => {
+        const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
+        const received = [];
+        publishPlayerSelection('w00001', { instance: 'squeezeboxrpc.0', player: 'Kitchen' });
+        const unsubscribe = subscribePlayerSelection('w00001', selection => received.push(selection));
+        publishPlayerSelection('w00001', { instance: 'squeezeboxrpc.0', player: 'Living' });
+        unsubscribe();
+        clearPlayerSelection('w00001');
+
+        expect(received.map(selection => selection?.player)).to.deep.equal(['Kitchen', 'Living']);
+    });
+
+    it('lists Players widgets without creating a VIS-2 widget ownership relation', async () => {
+        const { decodePlayerWidgetReference, encodePlayerWidgetReference, findPlayersWidgets } =
+            await loadModule('playerWidgetReferenceUtils.js');
+        const views = {
+            main: {
+                widgets: {
+                    w2: { tpl: 'tplSqueezeboxrpcPlayers2', data: { name: 'Living players' } },
+                    w1: { tpl: 'tplSqueezeboxrpcPlayers2', data: {} },
+                    w3: { tpl: 'tplSqueezeboxrpcPlay2', data: {} },
+                },
+            },
+        };
+        expect(findPlayersWidgets(views, 'main')).to.deep.equal([
+            { id: 'w2', label: 'Living players' },
+            { id: 'w1', label: 'w1' },
+        ]);
+        expect(encodePlayerWidgetReference('w1')).to.equal('squeezeboxrpc-player:w1');
+        expect(decodePlayerWidgetReference('squeezeboxrpc-player:w1')).to.equal('w1');
+        expect(decodePlayerWidgetReference('w1')).to.equal('w1');
+    });
 });

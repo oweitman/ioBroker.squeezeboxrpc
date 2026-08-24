@@ -18,6 +18,7 @@ export default {
             filename: 'customWidgets.js',
             exposes: {
                 './PlayersWidget': './src/PlayersWidget',
+                './PlayButtonWidget': './src/PlayButtonWidget',
                 './translations': './src/translations',
             },
             remotes: {},

@@ -11,6 +11,7 @@ import {
     readConfiguredPlayers,
     selectPlayerAfterLoad,
 } from './playerConfigUtils';
+import { clearPlayerSelection, publishPlayerSelection } from './playerSelectionBus';
 import './players.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -49,8 +50,8 @@ class PlayersWidget extends WidgetBase {
         return {
             id: 'tplSqueezeboxrpcPlayers2',
             visSet: 'vis2squeezeboxrpc',
-            visSetLabel: 'squeezeboxrpc_widget_set',
-            visName: 'squeezeboxrpc_players_widget',
+            visSetLabel: 'widget_set',
+            visName: 'Squeezebox Players',
             visAttrs: [
                 {
                     name: 'common',
@@ -60,7 +61,11 @@ class PlayersWidget extends WidgetBase {
                             type: 'custom',
                             label: 'squeezeboxrpc_instance',
                             component: (field, data, onDataChange, props) => (
-                                <InstanceConfigField data={data} onDataChange={onDataChange} props={props} />
+                                <InstanceConfigField
+                                    data={data}
+                                    onDataChange={onDataChange}
+                                    props={props}
+                                />
                             ),
                         },
                         {
@@ -78,10 +83,19 @@ class PlayersWidget extends WidgetBase {
                             type: 'custom',
                             label: 'squeezeboxrpc_player_configuration',
                             component: (field, data, onDataChange, props) => (
-                                <PlayerConfigField data={data} onDataChange={onDataChange} props={props} />
+                                <PlayerConfigField
+                                    data={data}
+                                    onDataChange={onDataChange}
+                                    props={props}
+                                />
                             ),
                         },
-                        { name: 'wrapcamelcase', type: 'checkbox', default: true, label: 'squeezeboxrpc_wrap_camel_case' },
+                        {
+                            name: 'wrapcamelcase',
+                            type: 'checkbox',
+                            default: true,
+                            label: 'squeezeboxrpc_wrap_camel_case',
+                        },
                     ],
                 },
                 {
@@ -90,17 +104,46 @@ class PlayersWidget extends WidgetBase {
                     fields: [
                         { name: 'picWidth', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_width' },
                         { name: 'picHeight', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_height' },
-                        { name: 'opacity', type: 'slider', default: 0.5, min: 0, max: 1, step: 0.05, label: 'squeezeboxrpc_opacity' },
+                        {
+                            name: 'opacity',
+                            type: 'slider',
+                            default: 0.5,
+                            min: 0,
+                            max: 1,
+                            step: 0.05,
+                            label: 'squeezeboxrpc_opacity',
+                        },
                         { name: 'borderwidth', type: 'text', default: '2px', label: 'squeezeboxrpc_border_width' },
                         {
                             name: 'borderstyle',
                             type: 'select',
                             default: 'solid',
                             label: 'squeezeboxrpc_border_style',
-                            options: ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'].map(value => ({ value, label: value })),
+                            options: [
+                                'none',
+                                'hidden',
+                                'dotted',
+                                'dashed',
+                                'solid',
+                                'double',
+                                'groove',
+                                'ridge',
+                                'inset',
+                                'outset',
+                            ].map(value => ({ value, label: value })),
                         },
-                        { name: 'bordercolornormal', type: 'color', default: '#2e2e2e', label: 'squeezeboxrpc_border_normal' },
-                        { name: 'bordercoloractive', type: 'color', default: '#87ceeb', label: 'squeezeboxrpc_border_active' },
+                        {
+                            name: 'bordercolornormal',
+                            type: 'color',
+                            default: '#2e2e2e',
+                            label: 'squeezeboxrpc_border_normal',
+                        },
+                        {
+                            name: 'bordercoloractive',
+                            type: 'color',
+                            default: '#87ceeb',
+                            label: 'squeezeboxrpc_border_active',
+                        },
                         { name: 'borderradius', type: 'text', default: '5px', label: 'squeezeboxrpc_border_radius' },
                         { name: 'buttonbkcolor', type: 'color', default: '#000000', label: 'squeezeboxrpc_background' },
                         { name: 'buttonmargin', type: 'text', default: '0px', label: 'squeezeboxrpc_button_margin' },
@@ -132,11 +175,29 @@ class PlayersWidget extends WidgetBase {
 
     componentDidMount() {
         super.componentDidMount();
+        this.publishSelection();
         void this.loadPlayers();
+    }
+
+    componentDidUpdate() {
+        this.publishSelection();
+    }
+
+    componentWillUnmount() {
+        clearPlayerSelection(this.props.id);
+        super.componentWillUnmount();
     }
 
     onRxDataChanged() {
         void this.loadPlayers();
+    }
+
+    publishSelection() {
+        const data = this.widgetState.rxData || this.widgetState.data || {};
+        publishPlayerSelection(this.props.id, {
+            instance: normalizeInstance(data.ainstance),
+            player: this.widgetState.selectedPlayer,
+        });
     }
 
     async loadPlayers() {
@@ -145,7 +206,12 @@ class PlayersWidget extends WidgetBase {
         const instance = normalizeInstance(data.ainstance);
         if (!instance) {
             this.playerInstance = '';
-            this.setState({ playerNames: [], selectedPlayer: '', loadingPlayers: false, playerError: I18n.t('squeezeboxrpc_select_instance') });
+            this.setState({
+                playerNames: [],
+                selectedPlayer: '',
+                loadingPlayers: false,
+                playerError: I18n.t('squeezeboxrpc_select_instance'),
+            });
             return;
         }
 
@@ -204,9 +270,17 @@ class PlayersWidget extends WidgetBase {
         }
         if (data.formattype === 'formatselect') {
             return (
-                <select value={this.widgetState.selectedPlayer} onChange={event => this.setState({ selectedPlayer: event.target.value })}>
+                <select
+                    value={this.widgetState.selectedPlayer}
+                    onChange={event => this.setState({ selectedPlayer: event.target.value })}
+                >
                     {players.map(player => (
-                        <option key={player.name} value={player.name}>{displayName(player, false)}</option>
+                        <option
+                            key={player.name}
+                            value={player.name}
+                        >
+                            {displayName(player, false)}
+                        </option>
                     ))}
                 </select>
             );
@@ -217,7 +291,9 @@ class PlayersWidget extends WidgetBase {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: cssLength(data.buttonmargin, '0px') }}>
                 {players.map(player => {
                     const selected = player.name === this.widgetState.selectedPlayer;
-                    const borderColor = selected ? data.bordercoloractive || '#87ceeb' : data.bordercolornormal || '#2e2e2e';
+                    const borderColor = selected
+                        ? data.bordercoloractive || '#87ceeb'
+                        : data.bordercolornormal || '#2e2e2e';
                     const commonStyle = {
                         boxSizing: /** @type {const} */ ('border-box'),
                         width: Number(data.picWidth || 50),
@@ -233,16 +309,22 @@ class PlayersWidget extends WidgetBase {
                             type="button"
                             title={player.name}
                             onClick={() => this.setState({ selectedPlayer: player.name })}
-                            style={{
-                                padding: 0,
-                                border: 0,
-                                background: 'transparent',
-                                cursor: 'pointer',
-                                '--squeezeboxrpc-active-border-color': data.bordercoloractive || '#87ceeb',
-                            }}
+                            style={
+                                /** @type {any} */ ({
+                                    padding: 0,
+                                    border: 0,
+                                    background: 'transparent',
+                                    cursor: 'pointer',
+                                    '--squeezeboxrpc-active-border-color': data.bordercoloractive || '#87ceeb',
+                                })
+                            }
                         >
                             {player.image ? (
-                                <img src={player.image} alt={displayName(player, false)} style={commonStyle} />
+                                <img
+                                    src={player.image}
+                                    alt={displayName(player, false)}
+                                    style={commonStyle}
+                                />
                             ) : (
                                 <TextImage
                                     text={displayName(player, false)}

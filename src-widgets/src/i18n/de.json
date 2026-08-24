@@ -31,5 +31,17 @@
     "squeezeboxrpc_button_image": "Bild",
     "squeezeboxrpc_button_text": "Text",
     "squeezeboxrpc_no_visible_players": "Keine sichtbaren Player",
-    "squeezeboxrpc_invalid_response": "Ungültige Antwort des Adapters"
+    "squeezeboxrpc_invalid_response": "Ungültige Antwort des Adapters",
+    "squeezeboxrpc_play_widget": "Play-Schaltfläche",
+    "squeezeboxrpc_players_widget_reference": "Players-Widget",
+    "squeezeboxrpc_pause_image": "Pause-Bild",
+    "squeezeboxrpc_play_image": "Play-Bild",
+    "squeezeboxrpc_stop_image": "Stop-Bild",
+    "squeezeboxrpc_svg_settings": "SVG-Einstellungen",
+    "squeezeboxrpc_fill_color": "Füllfarbe",
+    "squeezeboxrpc_stroke_color": "Linienfarbe",
+    "squeezeboxrpc_stroke_width": "Linienbreite",
+    "squeezeboxrpc_pause": "Pause",
+    "squeezeboxrpc_play": "Abspielen",
+    "squeezeboxrpc_none": "Keine"
 }
