@@ -31,6 +31,7 @@ export default {
                 './ImageWidget': './src/ImageWidget',
                 './SyncGroupWidget': './src/SyncGroupWidget',
                 './FavoritesWidget': './src/FavoritesWidget',
+                './PlaylistWidget': './src/PlaylistWidget',
                 './translations': './src/translations',
             },
             remotes: {},

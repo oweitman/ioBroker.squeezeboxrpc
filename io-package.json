@@ -149,7 +149,8 @@
                     "DateTimeWidget",
                     "ImageWidget",
                     "SyncGroupWidget",
-                    "FavoritesWidget"
+                    "FavoritesWidget",
+                    "PlaylistWidget"
                   ]
             }
         },

@@ -36,6 +36,33 @@ async function loadModule(file) {
 }
 
 describe('VIS-2 Players configuration', () => {
+    it('parses playlist responses and keeps the VIS-1 load command contract', async () => {
+        const { parsePlaylists, playlistLoadCommand } = await loadModule('playlistUtils.js');
+        expect(parsePlaylists({ result: { playlists_loop: [{ id: 4, playlist: 'Radio Mantras' }] } })).to.deep.equal([
+            { id: '4', name: 'Radio Mantras' },
+        ]);
+        expect(playlistLoadCommand(4)).to.equal('"playlistcontrol","cmd:load","playlist_id:4"');
+    });
+
+    it('registers the VIS-2 playlist widget federation module', () => {
+        const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
+        const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
+        expect(source).to.include("'./PlaylistWidget': './src/PlaylistWidget'");
+        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistWidget');
+    });
+
+    it('keeps the VIS-1 playlist layout styles in VIS-2', () => {
+        const source = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'playlistWidget.css'),
+            'utf8',
+        );
+        expect(source).to.include('padding-left: 0;');
+        expect(source).to.include('height: 1em;');
+        expect(source).to.include('margin: 5px 0;');
+        expect(source).to.include('text-overflow: ellipsis;');
+        expect(source).to.include('white-space: nowrap;');
+    });
+
     it('shows the optional zero-based favorite index helper only in edit mode', () => {
         const source = fs.readFileSync(
             path.join(__dirname, '..', 'src-widgets', 'src', 'FavoritesWidget.jsx'),

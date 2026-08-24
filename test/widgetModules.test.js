@@ -68,6 +68,7 @@ describe('VIS widget modules', () => {
             'ImageWidget',
             'SyncGroupWidget',
             'FavoritesWidget',
+            'PlaylistWidget',
         ]);
         expect(ioPackage.common.restartAdapters).to.include('vis-2');
     });

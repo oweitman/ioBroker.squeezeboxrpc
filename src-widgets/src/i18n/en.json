@@ -91,5 +91,9 @@
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "Please select a Players widget first.",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
-    "squeezeboxrpc_edit_mode_index_helper": "Show favorite index in edit mode"
+    "squeezeboxrpc_edit_mode_index_helper": "Show favorite index in edit mode",
+    "squeezeboxrpc_playlist_widget": "Playlist",
+    "squeezeboxrpc_refresh_playlists": "Refresh playlists",
+    "squeezeboxrpc_playlists_load_error": "The playlists could not be loaded.",
+    "squeezeboxrpc_no_playlists": "No playlists available"
 }
