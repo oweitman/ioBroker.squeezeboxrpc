@@ -3,6 +3,27 @@ export function normalizeInstance(value) {
     return match ? match[1] : '';
 }
 
+export function instanceId(instance) {
+    return normalizeInstance(instance?._id || instance?.id || '');
+}
+
+export function cssLength(value, fallback) {
+    if (typeof value === 'number' && Number.isFinite(value)) {
+        return `${value}px`;
+    }
+    const normalized = String(value ?? '').trim();
+    if (/^-?(?:\d+|\d*\.\d+)(?:px|em|rem|%|vh|vw|vmin|vmax)?$/i.test(normalized)) {
+        return /[a-z%]$/i.test(normalized) ? normalized : `${normalized}px`;
+    }
+    return fallback;
+}
+
+export function selectPlayerAfterLoad(availablePlayers, previousPlayer, defaultPlayer, instanceChanged) {
+    return !instanceChanged && availablePlayers.some(player => player.name === previousPlayer)
+        ? previousPlayer
+        : defaultPlayer;
+}
+
 export function readConfiguredPlayers(data = {}) {
     const count = Math.max(0, Number.parseInt(data.playerCount, 10) || 0);
     const players = [];

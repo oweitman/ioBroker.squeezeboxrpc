@@ -19,7 +19,30 @@ async function loadPlayerConfigUtils() {
     return module.exports;
 }
 
+async function loadModule(file) {
+    const result = await esbuild.build({
+        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', file)],
+        bundle: true,
+        format: 'cjs',
+        platform: 'node',
+        target: ['node22'],
+        write: false,
+        external: ['react', '@iobroker/adapter-react-v5'],
+    });
+    const module = { exports: {} };
+    vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports, require });
+    return module.exports;
+}
+
 describe('VIS-2 Players configuration', () => {
+    it('exports translations in the VIS-2 language dictionary format', async () => {
+        const translations = (await loadModule('translations.js')).default;
+        expect(translations.prefix).to.equal('squeezeboxrpc_');
+        expect(translations.en).to.have.property('squeezeboxrpc_players_widget', 'Players');
+        expect(translations.de).to.have.property('squeezeboxrpc_players_widget', 'Player');
+        expect(translations.ru).to.equal(translations.en);
+    });
+
     it('normalizes adapter instance object IDs', async () => {
         const { normalizeInstance } = await loadPlayerConfigUtils();
         expect(normalizeInstance('system.adapter.squeezeboxrpc.2')).to.equal('squeezeboxrpc.2');
@@ -57,5 +80,33 @@ describe('VIS-2 Players configuration', () => {
         expect(data.defaultPlayer).to.equal('Living_room');
         expect(data.playerCount).to.equal(2);
         expect(readConfiguredPlayers(data)).to.deep.equal(moved);
+    });
+
+    it('extracts only squeezeboxrpc instance IDs', async () => {
+        const { instanceId } = await loadPlayerConfigUtils();
+        expect(instanceId({ _id: 'system.adapter.squeezeboxrpc.3' })).to.equal('squeezeboxrpc.3');
+        expect(instanceId({ _id: 'system.adapter.other.0' })).to.equal('');
+    });
+
+    it('wraps CamelCase labels for the text canvas', async () => {
+        const { wrapText } = await loadModule('TextImage.jsx');
+        const context = { measureText: text => ({ width: text.length * 10 }) };
+        expect(wrapText(context, 'LivingRoom', 60, true)).to.deep.equal(['Living', 'Room']);
+        expect(wrapText(context, 'LivingRoom', 200, false)).to.deep.equal(['LivingRoom']);
+    });
+
+    it('normalizes numeric and relative CSS lengths', async () => {
+        const { cssLength } = await loadPlayerConfigUtils();
+        expect(cssLength(5, '1px')).to.equal('5px');
+        expect(cssLength('1.5em', '1px')).to.equal('1.5em');
+        expect(cssLength('20%', '1px')).to.equal('20%');
+        expect(cssLength('invalid', '1px')).to.equal('1px');
+    });
+
+    it('selects the default player after an adapter instance change', async () => {
+        const { selectPlayerAfterLoad } = await loadPlayerConfigUtils();
+        const available = [{ name: 'Kitchen' }, { name: 'Living' }];
+        expect(selectPlayerAfterLoad(available, 'Kitchen', 'Living', false)).to.equal('Kitchen');
+        expect(selectPlayerAfterLoad(available, 'Kitchen', 'Living', true)).to.equal('Living');
     });
 });

@@ -2,7 +2,16 @@ import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import PlayerConfigField from './PlayerConfigField';
-import { mergePlayerNames, normalizeInstance, readConfiguredPlayers } from './playerConfigUtils';
+import InstanceConfigField from './InstanceConfigField';
+import TextImage from './TextImage';
+import {
+    cssLength,
+    mergePlayerNames,
+    normalizeInstance,
+    readConfiguredPlayers,
+    selectPlayerAfterLoad,
+} from './playerConfigUtils';
+import './players.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 
@@ -29,6 +38,7 @@ class PlayersWidget extends WidgetBase {
             playerError: '',
         };
         this.playerRequest = 0;
+        this.playerInstance = '';
     }
 
     get widgetState() {
@@ -45,7 +55,14 @@ class PlayersWidget extends WidgetBase {
                 {
                     name: 'common',
                     fields: [
-                        { name: 'ainstance', type: 'id', label: 'squeezeboxrpc_instance' },
+                        {
+                            name: 'ainstance',
+                            type: 'custom',
+                            label: 'squeezeboxrpc_instance',
+                            component: (field, data, onDataChange, props) => (
+                                <InstanceConfigField data={data} onDataChange={onDataChange} props={props} />
+                            ),
+                        },
                         {
                             name: 'formattype',
                             type: 'select',
@@ -65,7 +82,6 @@ class PlayersWidget extends WidgetBase {
                             ),
                         },
                         { name: 'wrapcamelcase', type: 'checkbox', default: true, label: 'squeezeboxrpc_wrap_camel_case' },
-                        { name: 'editmodehelper', type: 'checkbox', default: true, label: 'squeezeboxrpc_edit_mode_helper' },
                     ],
                 },
                 {
@@ -75,7 +91,7 @@ class PlayersWidget extends WidgetBase {
                         { name: 'picWidth', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_width' },
                         { name: 'picHeight', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_height' },
                         { name: 'opacity', type: 'slider', default: 0.5, min: 0, max: 1, step: 0.05, label: 'squeezeboxrpc_opacity' },
-                        { name: 'borderwidth', type: 'number', default: 2, min: 0, label: 'squeezeboxrpc_border_width' },
+                        { name: 'borderwidth', type: 'text', default: '2px', label: 'squeezeboxrpc_border_width' },
                         {
                             name: 'borderstyle',
                             type: 'select',
@@ -85,9 +101,9 @@ class PlayersWidget extends WidgetBase {
                         },
                         { name: 'bordercolornormal', type: 'color', default: '#2e2e2e', label: 'squeezeboxrpc_border_normal' },
                         { name: 'bordercoloractive', type: 'color', default: '#87ceeb', label: 'squeezeboxrpc_border_active' },
-                        { name: 'borderradius', type: 'number', default: 5, min: 0, label: 'squeezeboxrpc_border_radius' },
+                        { name: 'borderradius', type: 'text', default: '5px', label: 'squeezeboxrpc_border_radius' },
                         { name: 'buttonbkcolor', type: 'color', default: '#000000', label: 'squeezeboxrpc_background' },
-                        { name: 'buttonmargin', type: 'number', default: 0, min: 0, label: 'squeezeboxrpc_button_margin' },
+                        { name: 'buttonmargin', type: 'text', default: '0px', label: 'squeezeboxrpc_button_margin' },
                     ],
                 },
                 {
@@ -128,11 +144,18 @@ class PlayersWidget extends WidgetBase {
         const data = this.widgetState.rxData || this.widgetState.data || {};
         const instance = normalizeInstance(data.ainstance);
         if (!instance) {
+            this.playerInstance = '';
             this.setState({ playerNames: [], selectedPlayer: '', loadingPlayers: false, playerError: I18n.t('squeezeboxrpc_select_instance') });
             return;
         }
 
-        this.setState({ loadingPlayers: true, playerError: '' });
+        const instanceChanged = instance !== this.playerInstance;
+        this.playerInstance = instance;
+        this.setState({
+            loadingPlayers: true,
+            playerError: '',
+            ...(instanceChanged ? { playerNames: [], selectedPlayer: '' } : {}),
+        });
         try {
             const playerNames = await this.props.context.socket.sendTo(instance, 'getPlayerNames', {});
             if (request !== this.playerRequest) {
@@ -147,9 +170,12 @@ class PlayersWidget extends WidgetBase {
                 : available[0]?.name || '';
             this.setState(previousState => ({
                 playerNames,
-                selectedPlayer: available.some(player => player.name === previousState.selectedPlayer)
-                    ? previousState.selectedPlayer
-                    : defaultPlayer,
+                selectedPlayer: selectPlayerAfterLoad(
+                    available,
+                    previousState.selectedPlayer,
+                    defaultPlayer,
+                    instanceChanged,
+                ),
                 loadingPlayers: false,
                 playerError: '',
             }));
@@ -186,10 +212,9 @@ class PlayersWidget extends WidgetBase {
             );
         }
 
-        const editMode = Boolean(this.props.editMode);
-        const opacity = editMode && data.editmodehelper ? 1 : Number(data.opacity ?? 0.5);
+        const opacity = Number(data.opacity ?? 0.5);
         return (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: Number(data.buttonmargin || 0) }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: cssLength(data.buttonmargin, '0px') }}>
                 {players.map(player => {
                     const selected = player.name === this.widgetState.selectedPlayer;
                     const borderColor = selected ? data.bordercoloractive || '#87ceeb' : data.bordercolornormal || '#2e2e2e';
@@ -197,37 +222,36 @@ class PlayersWidget extends WidgetBase {
                         boxSizing: /** @type {const} */ ('border-box'),
                         width: Number(data.picWidth || 50),
                         height: Number(data.picHeight || 50),
-                        border: `${Number(data.borderwidth ?? 2)}px ${data.borderstyle || 'solid'} ${borderColor}`,
-                        borderRadius: Number(data.borderradius ?? 5),
+                        border: `${cssLength(data.borderwidth, '2px')} ${data.borderstyle || 'solid'} ${borderColor}`,
+                        borderRadius: cssLength(data.borderradius, '5px'),
                         opacity: selected ? 1 : opacity,
                     };
                     return (
                         <button
                             key={player.name}
+                            className="squeezeboxrpc-player-button"
                             type="button"
                             title={player.name}
                             onClick={() => this.setState({ selectedPlayer: player.name })}
-                            style={{ padding: 0, border: 0, background: 'transparent', cursor: 'pointer' }}
+                            style={{
+                                padding: 0,
+                                border: 0,
+                                background: 'transparent',
+                                cursor: 'pointer',
+                                '--squeezeboxrpc-active-border-color': data.bordercoloractive || '#87ceeb',
+                            }}
                         >
                             {player.image ? (
                                 <img src={player.image} alt={displayName(player, false)} style={commonStyle} />
                             ) : (
-                                <span
-                                    style={{
-                                        ...commonStyle,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        overflow: 'hidden',
-                                        padding: 2,
-                                        color: '#fff',
-                                        background: data.buttonbkcolor || '#000000',
-                                        textAlign: 'center',
-                                        overflowWrap: 'anywhere',
-                                    }}
-                                >
-                                    {displayName(player, data.wrapcamelcase !== false)}
-                                </span>
+                                <TextImage
+                                    text={displayName(player, false)}
+                                    width={commonStyle.width}
+                                    height={commonStyle.height}
+                                    backgroundColor={data.buttonbkcolor || '#000000'}
+                                    wrapCamelCase={data.wrapcamelcase !== false}
+                                    style={{ ...commonStyle, color: '#fff' }}
+                                />
                             )}
                         </button>
                     );
