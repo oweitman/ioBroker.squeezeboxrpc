@@ -80,5 +80,8 @@
     "squeezeboxrpc_segment_margin": "Segmentabstand",
     "squeezeboxrpc_main_bar_color": "Hintergrundfarbe",
     "squeezeboxrpc_playtime_color": "Abspielfarbe",
-    "squeezeboxrpc_border_color": "Rahmenfarbe"
+    "squeezeboxrpc_border_color": "Rahmenfarbe",
+    "squeezeboxrpc_border_no_group": "Rahmenfarbe ohne Gruppe",
+    "squeezeboxrpc_border_own_group": "Rahmenfarbe der eigenen Gruppe",
+    "squeezeboxrpc_border_other_group": "Rahmenfarbe anderer Gruppen"
 }

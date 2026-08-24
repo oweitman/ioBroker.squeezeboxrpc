@@ -147,8 +147,9 @@
                     "StringWidget",
                     "NumberWidget",
                     "DateTimeWidget",
-                    "ImageWidget"
-                ]
+                      "ImageWidget",
+                      "SyncGroupWidget"
+                  ]
             }
         },
         "adminUI": {

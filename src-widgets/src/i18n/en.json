@@ -80,5 +80,8 @@
     "squeezeboxrpc_segment_margin": "Segment margin",
     "squeezeboxrpc_main_bar_color": "Main bar color",
     "squeezeboxrpc_playtime_color": "Playtime color",
-    "squeezeboxrpc_border_color": "Border color"
+    "squeezeboxrpc_border_color": "Border color",
+    "squeezeboxrpc_border_no_group": "Border color without group",
+    "squeezeboxrpc_border_own_group": "Border color for own group",
+    "squeezeboxrpc_border_other_group": "Border color for other groups"
 }

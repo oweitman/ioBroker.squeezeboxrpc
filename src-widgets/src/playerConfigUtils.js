@@ -18,6 +18,16 @@ export function cssLength(value, fallback) {
     return fallback;
 }
 
+export function normalizeImageSource(value) {
+    if (typeof value === 'string') {
+        return value.trim();
+    }
+    if (value && typeof value === 'object') {
+        return String(value.value || value.url || value.src || '').trim();
+    }
+    return '';
+}
+
 export function selectPlayerAfterLoad(availablePlayers, previousPlayer, defaultPlayer, instanceChanged) {
     return !instanceChanged && availablePlayers.some(player => player.name === previousPlayer)
         ? previousPlayer
@@ -37,7 +47,7 @@ export function readConfiguredPlayers(data = {}) {
             name,
             enabled: data[`playerEnabled${index}`] !== false,
             text: String(data[`buttonsText${index}`] || ''),
-            image: String(data[`buttonsImage${index}`] || ''),
+            image: normalizeImageSource(data[`buttonsImage${index}`]),
         });
     }
 

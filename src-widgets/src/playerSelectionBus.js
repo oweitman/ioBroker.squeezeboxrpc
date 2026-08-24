@@ -1,8 +1,20 @@
-const selections = new Map();
-const listeners = new Map();
+const STORE_KEY = '__squeezeboxrpcPlayerSelectionBusV1';
+let store = Reflect.get(globalThis, STORE_KEY);
+if (!store) {
+    store = { selections: new Map(), listeners: new Map() };
+    Reflect.set(globalThis, STORE_KEY, store);
+}
+const selections = store.selections;
+const listeners = store.listeners;
 
 function sameSelection(left, right) {
-    return left?.version === right?.version && left?.instance === right?.instance && left?.player === right?.player;
+    return (
+        left?.version === right?.version &&
+        left?.instance === right?.instance &&
+        left?.player === right?.player &&
+        JSON.stringify(left?.players || []) === JSON.stringify(right?.players || []) &&
+        JSON.stringify(left?.appearance || {}) === JSON.stringify(right?.appearance || {})
+    );
 }
 
 export function publishPlayerSelection(widgetId, selection) {
@@ -12,7 +24,13 @@ export function publishPlayerSelection(widgetId, selection) {
 
     const normalized =
         selection?.instance && selection?.player
-            ? { version: 1, instance: selection.instance, player: selection.player }
+            ? {
+                  version: 1,
+                  instance: selection.instance,
+                  player: selection.player,
+                  ...(Array.isArray(selection.players) ? { players: selection.players } : {}),
+                  ...(selection.appearance ? { appearance: selection.appearance } : {}),
+              }
             : null;
     if (sameSelection(selections.get(widgetId), normalized) || (!selections.has(widgetId) && !normalized)) {
         return;

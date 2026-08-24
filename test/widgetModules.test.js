@@ -66,6 +66,7 @@ describe('VIS widget modules', () => {
             'NumberWidget',
             'DateTimeWidget',
             'ImageWidget',
+            'SyncGroupWidget',
         ]);
         expect(ioPackage.common.restartAdapters).to.include('vis-2');
     });

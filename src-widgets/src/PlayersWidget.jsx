@@ -179,7 +179,8 @@ class PlayersWidget extends WidgetBase {
         void this.loadPlayers();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState) {
+        super.componentDidUpdate(prevProps, prevState);
         this.publishSelection();
     }
 
@@ -197,6 +198,12 @@ class PlayersWidget extends WidgetBase {
         publishPlayerSelection(this.props.id, {
             instance: normalizeInstance(data.ainstance),
             player: this.widgetState.selectedPlayer,
+            players: visiblePlayers(data, this.widgetState.playerNames),
+            appearance: {
+                picWidth: data.picWidth,
+                picHeight: data.picHeight,
+                wrapcamelcase: data.wrapcamelcase,
+            },
         });
     }
 

@@ -96,11 +96,14 @@ describe('VIS-2 Players configuration', () => {
     });
 
     it('normalizes numeric and relative CSS lengths', async () => {
-        const { cssLength } = await loadPlayerConfigUtils();
+        const { cssLength, normalizeImageSource } = await loadPlayerConfigUtils();
         expect(cssLength(5, '1px')).to.equal('5px');
         expect(cssLength('1.5em', '1px')).to.equal('1.5em');
         expect(cssLength('20%', '1px')).to.equal('20%');
         expect(cssLength('invalid', '1px')).to.equal('1px');
+        expect(normalizeImageSource('/vis.0/main/image.png')).to.equal('/vis.0/main/image.png');
+        expect(normalizeImageSource({ value: '/vis.0/main/image.png' })).to.equal('/vis.0/main/image.png');
+        expect(normalizeImageSource({ src: 'data:image/png;base64,abc' })).to.equal('data:image/png;base64,abc');
     });
 
     it('selects the default player after an adapter instance change', async () => {
@@ -195,6 +198,28 @@ describe('VIS-2 Players configuration', () => {
         expect(playtimeStateIds({ instance: '', player: 'Living' })).to.equal(null);
     });
 
+    it('classifies sync groups and builds sync commands', async () => {
+        const { syncCommand, syncGroupStatus } = await loadModule('syncGroupUtils.js');
+        const states = {
+            Living: { PlayerID: 'aa', SyncMaster: 'aa', SyncSlaves: 'bb' },
+            Kitchen: { PlayerID: 'bb', SyncMaster: 'aa', SyncSlaves: '' },
+            Office: { PlayerID: 'cc', SyncMaster: 'cc', SyncSlaves: 'dd' },
+            Bedroom: { PlayerID: 'ee', SyncMaster: '', SyncSlaves: '' },
+        };
+        expect(syncGroupStatus(states, 'Living', 'Living')).to.equal('selected');
+        expect(syncGroupStatus(states, 'Living', 'Kitchen')).to.equal('own');
+        expect(syncGroupStatus(states, 'Living', 'Office')).to.equal('other');
+        expect(syncGroupStatus(states, 'Living', 'Bedroom')).to.equal('none');
+        expect(syncGroupStatus(states, 'Kitchen', 'Living')).to.equal('own');
+        expect(syncGroupStatus(states, 'Bedroom', 'Office')).to.equal('other');
+        expect(syncCommand('squeezeboxrpc.0', 'Living', 'Kitchen', states)).to.deep.equal({
+            stateId: 'squeezeboxrpc.0.Players.Kitchen.cmdGeneral', value: '"sync","-"',
+        });
+        expect(syncCommand('squeezeboxrpc.0', 'Living', 'Bedroom', states)).to.deep.equal({
+            stateId: 'squeezeboxrpc.0.Players.Living.cmdGeneral', value: '"sync","ee"',
+        });
+    });
+
     it('delivers the current player selection independent of mount order', async () => {
         const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
         const received = [];
@@ -205,6 +230,19 @@ describe('VIS-2 Players configuration', () => {
         clearPlayerSelection('w00001');
 
         expect(received.map(selection => selection?.player)).to.deep.equal(['Kitchen', 'Living']);
+    });
+
+    it('publishes player appearance changes even when the selected player stays unchanged', async () => {
+        const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
+        const received = [];
+        const base = { instance: 'squeezeboxrpc.0', player: 'Kitchen' };
+        const unsubscribe = subscribePlayerSelection('w00002', selection => received.push(selection));
+        publishPlayerSelection('w00002', { ...base, players: [{ name: 'Kitchen', text: 'Kitchen' }] });
+        publishPlayerSelection('w00002', { ...base, players: [{ name: 'Kitchen', text: 'Küche' }] });
+        unsubscribe();
+        clearPlayerSelection('w00002');
+
+        expect(received.map(selection => selection?.players?.[0]?.text)).to.deep.equal([undefined, 'Kitchen', 'Küche']);
     });
 
     it('lists Players widgets without creating a VIS-2 widget ownership relation', async () => {

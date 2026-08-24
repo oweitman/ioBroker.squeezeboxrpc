@@ -29,6 +29,7 @@ export default {
                 './NumberWidget': './src/NumberWidget',
                 './DateTimeWidget': './src/DateTimeWidget',
                 './ImageWidget': './src/ImageWidget',
+                './SyncGroupWidget': './src/SyncGroupWidget',
                 './translations': './src/translations',
             },
             remotes: {},
