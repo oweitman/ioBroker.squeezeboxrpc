@@ -19,6 +19,8 @@ export default {
             exposes: {
                 './PlayersWidget': './src/PlayersWidget',
                 './PlayButtonWidget': './src/PlayButtonWidget',
+                './ForwardButtonWidget': './src/ForwardButtonWidget',
+                './RewindButtonWidget': './src/RewindButtonWidget',
                 './translations': './src/translations',
             },
             remotes: {},

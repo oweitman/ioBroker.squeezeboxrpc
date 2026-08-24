@@ -43,5 +43,11 @@
     "squeezeboxrpc_stroke_width": "Stroke width",
     "squeezeboxrpc_pause": "Pause",
     "squeezeboxrpc_play": "Play",
-    "squeezeboxrpc_none": "None"
+    "squeezeboxrpc_none": "None",
+    "squeezeboxrpc_forward_widget": "Forward button",
+    "squeezeboxrpc_rewind_widget": "Rewind button",
+    "squeezeboxrpc_forward_image": "Forward image",
+    "squeezeboxrpc_rewind_image": "Rewind image",
+    "squeezeboxrpc_forward": "Forward",
+    "squeezeboxrpc_rewind": "Rewind"
 }

@@ -43,5 +43,11 @@
     "squeezeboxrpc_stroke_width": "Linienbreite",
     "squeezeboxrpc_pause": "Pause",
     "squeezeboxrpc_play": "Abspielen",
-    "squeezeboxrpc_none": "Keine"
+    "squeezeboxrpc_none": "Keine",
+    "squeezeboxrpc_forward_widget": "Vorwärts-Schaltfläche",
+    "squeezeboxrpc_rewind_widget": "Zurück-Schaltfläche",
+    "squeezeboxrpc_forward_image": "Vorwärts-Bild",
+    "squeezeboxrpc_rewind_image": "Zurück-Bild",
+    "squeezeboxrpc_forward": "Vorwärts",
+    "squeezeboxrpc_rewind": "Zurück"
 }

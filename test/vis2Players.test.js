@@ -121,6 +121,18 @@ describe('VIS-2 Players configuration', () => {
         expect(normalizePlaybackState(99)).to.equal(2);
     });
 
+    it('builds forward and rewind command state IDs', async () => {
+        const { playerCommandStateId } = await loadModule('playerCommandUtils.js');
+        const selection = { version: 1, instance: 'squeezeboxrpc.2', player: 'Living_room' };
+
+        expect(playerCommandStateId(selection, 'forward'))
+            .to.equal('squeezeboxrpc.2.Players.Living_room.btnForward');
+        expect(playerCommandStateId(selection, 'rewind'))
+            .to.equal('squeezeboxrpc.2.Players.Living_room.btnRewind');
+        expect(playerCommandStateId(selection, 'unknown')).to.equal('');
+        expect(playerCommandStateId({ instance: '', player: 'Living_room' }, 'forward')).to.equal('');
+    });
+
     it('delivers the current player selection independent of mount order', async () => {
         const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
         const received = [];

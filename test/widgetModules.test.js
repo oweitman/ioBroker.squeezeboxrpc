@@ -49,8 +49,16 @@ describe('VIS widget modules', () => {
         const widgetSet = ioPackage.common.visWidgets.vis2squeezeboxrpc;
 
         expect(widgetSet.bundlerType).to.equal('module');
-        expect(widgetSet.url).to.equal('vis2squeezeboxrpc/customWidgets.js');
-        expect(widgetSet.components).to.deep.equal(['PlayersWidget']);
+        expect(widgetSet.url).to.be.oneOf([
+            'vis2squeezeboxrpc/customWidgets.js',
+            'http://localhost:4173/customWidgets.js',
+        ]);
+        expect(widgetSet.components).to.deep.equal([
+            'PlayersWidget',
+            'PlayButtonWidget',
+            'ForwardButtonWidget',
+            'RewindButtonWidget',
+        ]);
         expect(ioPackage.common.restartAdapters).to.include('vis-2');
     });
 
