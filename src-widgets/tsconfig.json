@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "noEmit": true,
+        "allowJs": true,
+        "checkJs": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "target": "ES2020",
+        "sourceMap": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+        "types": ["@iobroker/types"]
+    },
+    "include": ["src"],
+    "exclude": ["node_modules/**", "build/**"],
+    "references": [{ "path": "./tsconfig.node.json" }]
+}

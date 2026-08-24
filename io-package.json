@@ -128,6 +128,16 @@
         "connectionType": "local",
         "dataSource": "poll",
         "messagebox": true,
+        "visWidgets": {
+            "vis2squeezeboxrpc": {
+                "i18n": "component",
+                "name": "vis2squeezeboxrpc",
+                "urlxx": "vis2squeezeboxrpc/customWidgets.js",
+                "url": "http://localhost:4173/customWidgets.js",
+                "bundlerType": "module",
+                "components": ["PlayersWidget"]
+            }
+        },
         "adminUI": {
             "config": "json"
         },

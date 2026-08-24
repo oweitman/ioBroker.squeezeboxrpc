@@ -18,6 +18,8 @@ iobroker.*.tgz
 Thumbs.db
 #react build files
 admin/build
+src-widgets/build
+src-widgets/.__mf__temp/
 
 # i18n intermediate files
 admin/i18n/flat.txt
@@ -31,4 +33,3 @@ admin/i18n/*/flat.txt
 .vscode/~$info.xlsx
 .commitinfo 
 documentation/todoalexaskill.md
-

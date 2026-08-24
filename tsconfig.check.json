@@ -3,5 +3,5 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {},
     "include": ["**/*.js", "**/*.d.ts"],
-    "exclude": ["**/build", "node_modules/", "widgets/", "lib/squeezenode/**"]
+    "exclude": ["**/build", "node_modules/", "widgets/", "src-widgets/", "lib/squeezenode/**"]
 }

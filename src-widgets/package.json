@@ -1,0 +1,32 @@
+{
+    "name": "iobroker.vis2-widget-squeezeboxrpc",
+    "private": true,
+    "version": "1.6.4",
+    "type": "module",
+    "dependencies": {
+        "@emotion/react": "^11.14.0",
+        "@emotion/styled": "^11.14.0",
+        "@iobroker/adapter-react-v5": "^8.2.7",
+        "@iobroker/types-vis-2": "^2.14.4",
+        "@module-federation/runtime": "^0.18.3",
+        "@module-federation/vite": "^1.7.2",
+        "@mui/icons-material": "^6.5.0",
+        "@mui/material": "^6.5.0",
+        "@types/ace": "^0.0.52",
+        "@vitejs/plugin-react": "^5.2.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "sass": "^1.91.0",
+        "typescript": "^5.9.3",
+        "vite": "7.3.2",
+        "vite-plugin-commonjs": "^0.10.4",
+        "vite-plugin-top-level-await": "^1.6.0",
+        "vite-tsconfig-paths": "^6.1.1"
+    },
+    "scripts": {
+        "start": "vite --port 4173 --configLoader runner",
+        "build": "tsc && vite build --configLoader runner",
+        "lint": "eslint -c eslint.config.mjs",
+        "npm": "npm i -f"
+    }
+}

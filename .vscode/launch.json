@@ -36,7 +36,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "vis2 edit",
-            "url": "http://localhost:8082/vis-2/edit.html#test",
+            "url": "http://localhost:3000/edit.html#test",
             "trace": true,
             "skipFiles": ["socket.io.js"]
         },

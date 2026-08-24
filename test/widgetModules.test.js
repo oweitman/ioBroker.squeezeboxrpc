@@ -33,8 +33,25 @@ describe('VIS widget modules', () => {
 
         expect(packageJson.files).to.include('widgets/*.html');
         expect(packageJson.files).to.include('widgets/!(node_modules)/**/build/*.{js,map}');
+        expect(packageJson.files).to.include('widgets/vis2squeezeboxrpc/');
         expect(packageJson.files).not.to.include('widgets/!(node_modules)/**/*.{html,css,png,svg,jpg,js}');
         expect(fs.existsSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'))).to.equal(true);
+        expect(fs.existsSync(path.join(projectRoot, 'widgets', 'vis2squeezeboxrpc', 'customWidgets.js'))).to.equal(
+            true,
+        );
+        expect(fs.readdirSync(path.join(projectRoot, 'widgets', 'vis2squeezeboxrpc', 'assets')).length).to.be.greaterThan(
+            0,
+        );
+    });
+
+    it('registers the separate VIS-2 player widget set', () => {
+        const ioPackage = JSON.parse(fs.readFileSync(path.join(projectRoot, 'io-package.json'), 'utf8'));
+        const widgetSet = ioPackage.common.visWidgets.vis2squeezeboxrpc;
+
+        expect(widgetSet.bundlerType).to.equal('module');
+        expect(widgetSet.url).to.equal('vis2squeezeboxrpc/customWidgets.js');
+        expect(widgetSet.components).to.deep.equal(['PlayersWidget']);
+        expect(ioPackage.common.restartAdapters).to.include('vis-2');
     });
 
     it('keeps every widget in its own source module', () => {
