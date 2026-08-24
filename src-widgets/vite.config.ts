@@ -21,6 +21,8 @@ export default {
                 './PlayButtonWidget': './src/PlayButtonWidget',
                 './ForwardButtonWidget': './src/ForwardButtonWidget',
                 './RewindButtonWidget': './src/RewindButtonWidget',
+                './ShuffleButtonWidget': './src/ShuffleButtonWidget',
+                './RepeatButtonWidget': './src/RepeatButtonWidget',
                 './translations': './src/translations',
             },
             remotes: {},

@@ -58,6 +58,8 @@ describe('VIS widget modules', () => {
             'PlayButtonWidget',
             'ForwardButtonWidget',
             'RewindButtonWidget',
+            'ShuffleButtonWidget',
+            'RepeatButtonWidget',
         ]);
         expect(ioPackage.common.restartAdapters).to.include('vis-2');
     });

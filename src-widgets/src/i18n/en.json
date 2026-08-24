@@ -49,5 +49,12 @@
     "squeezeboxrpc_forward_image": "Forward image",
     "squeezeboxrpc_rewind_image": "Rewind image",
     "squeezeboxrpc_forward": "Forward",
-    "squeezeboxrpc_rewind": "Rewind"
+    "squeezeboxrpc_rewind": "Rewind",
+    "squeezeboxrpc_shuffle_widget": "Shuffle button",
+    "squeezeboxrpc_repeat_widget": "Repeat button",
+    "squeezeboxrpc_mode_off_image": "Off image",
+    "squeezeboxrpc_mode_one_image": "Mode 1 image",
+    "squeezeboxrpc_mode_two_image": "Mode 2 image",
+    "squeezeboxrpc_shuffle": "Shuffle",
+    "squeezeboxrpc_repeat": "Repeat"
 }

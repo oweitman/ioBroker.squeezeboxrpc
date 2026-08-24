@@ -49,5 +49,12 @@
     "squeezeboxrpc_forward_image": "Vorwärts-Bild",
     "squeezeboxrpc_rewind_image": "Zurück-Bild",
     "squeezeboxrpc_forward": "Vorwärts",
-    "squeezeboxrpc_rewind": "Zurück"
+    "squeezeboxrpc_rewind": "Zurück",
+    "squeezeboxrpc_shuffle_widget": "Zufallswiedergabe-Schaltfläche",
+    "squeezeboxrpc_repeat_widget": "Wiederholen-Schaltfläche",
+    "squeezeboxrpc_mode_off_image": "Aus-Bild",
+    "squeezeboxrpc_mode_one_image": "Modus-1-Bild",
+    "squeezeboxrpc_mode_two_image": "Modus-2-Bild",
+    "squeezeboxrpc_shuffle": "Zufallswiedergabe",
+    "squeezeboxrpc_repeat": "Wiederholen"
 }

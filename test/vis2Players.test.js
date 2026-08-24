@@ -133,6 +133,22 @@ describe('VIS-2 Players configuration', () => {
         expect(playerCommandStateId({ instance: '', player: 'Living_room' }, 'forward')).to.equal('');
     });
 
+    it('builds and cycles shuffle and repeat mode states', async () => {
+        const { nextModeState, normalizeModeState, playerModeStateId } = await loadModule('playerModeUtils.js');
+        const selection = { version: 1, instance: 'squeezeboxrpc.2', player: 'Living_room' };
+
+        expect(playerModeStateId(selection, 'shuffle'))
+            .to.equal('squeezeboxrpc.2.Players.Living_room.PlaylistShuffle');
+        expect(playerModeStateId(selection, 'repeat'))
+            .to.equal('squeezeboxrpc.2.Players.Living_room.PlaylistRepeat');
+        expect(playerModeStateId(selection, 'unknown')).to.equal('');
+        expect(normalizeModeState(undefined)).to.equal(0);
+        expect(normalizeModeState('2')).to.equal(2);
+        expect(nextModeState(0)).to.equal(1);
+        expect(nextModeState(1)).to.equal(2);
+        expect(nextModeState(2)).to.equal(0);
+    });
+
     it('delivers the current player selection independent of mount order', async () => {
         const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
         const received = [];

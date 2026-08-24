@@ -135,7 +135,7 @@
                 "urlxx": "vis2squeezeboxrpc/customWidgets.js",
                 "url": "http://localhost:4173/customWidgets.js",
                 "bundlerType": "module",
-                "components": ["PlayersWidget", "PlayButtonWidget", "ForwardButtonWidget", "RewindButtonWidget"]
+                "components": ["PlayersWidget", "PlayButtonWidget", "ForwardButtonWidget", "RewindButtonWidget", "ShuffleButtonWidget", "RepeatButtonWidget"]
             }
         },
         "adminUI": {

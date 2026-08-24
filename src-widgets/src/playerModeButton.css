@@ -1,0 +1,30 @@
+.squeezeboxrpc-mode-button {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.squeezeboxrpc-mode-button:disabled {
+    cursor: default;
+}
+
+.squeezeboxrpc-mode-button img,
+.squeezeboxrpc-mode-button svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.squeezeboxrpc-mode-button[data-mode-state='0'] img,
+.squeezeboxrpc-mode-button[data-mode-state='0'] svg {
+    opacity: 0.5;
+}
+
+.squeezeboxrpc-mode-button:not(:disabled):active img,
+.squeezeboxrpc-mode-button:not(:disabled):active svg {
+    transform: scale(0.9);
+    transform-origin: 50% 50%;
+}
