@@ -30,6 +30,7 @@ export default {
                 './DateTimeWidget': './src/DateTimeWidget',
                 './ImageWidget': './src/ImageWidget',
                 './SyncGroupWidget': './src/SyncGroupWidget',
+                './FavoritesWidget': './src/FavoritesWidget',
                 './translations': './src/translations',
             },
             remotes: {},

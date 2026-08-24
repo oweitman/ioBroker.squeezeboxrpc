@@ -83,5 +83,13 @@
     "squeezeboxrpc_border_color": "Border color",
     "squeezeboxrpc_border_no_group": "Border color without group",
     "squeezeboxrpc_border_own_group": "Border color for own group",
-    "squeezeboxrpc_border_other_group": "Border color for other groups"
+    "squeezeboxrpc_border_other_group": "Border color for other groups",
+    "squeezeboxrpc_favorites_widget": "Favorites",
+    "squeezeboxrpc_favorite_configuration": "Favorites",
+    "squeezeboxrpc_refresh_favorites": "Refresh favorites",
+    "squeezeboxrpc_favorites_load_error": "The favorites could not be loaded.",
+    "squeezeboxrpc_no_favorites": "No audio favorites available",
+    "squeezeboxrpc_select_players_widget": "Please select a Players widget first.",
+    "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
+    "squeezeboxrpc_edit_mode_index_helper": "Show favorite index in edit mode"
 }

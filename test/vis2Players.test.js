@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('node:path');
+const fs = require('node:fs');
 const vm = require('node:vm');
 const esbuild = require('esbuild');
 const { expect } = require('chai');
@@ -35,6 +36,20 @@ async function loadModule(file) {
 }
 
 describe('VIS-2 Players configuration', () => {
+    it('shows the optional zero-based favorite index helper only in edit mode', () => {
+        const source = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'FavoritesWidget.jsx'),
+            'utf8',
+        );
+
+        expect(source).to.include("name: 'editmodehelper'");
+        expect(source).to.include('this.props.editMode && data.editmodehelper');
+        expect(source).to.include('favorite.configurationIndex');
+        expect(source).to.include('const showImage = Boolean(favorite.image) && !imageFailed;');
+        expect(source).to.include('{showImage ? (');
+        expect(source).to.include('title={favorite.name || favorite.id}');
+    });
+
     it('exports translations in the VIS-2 language dictionary format', async () => {
         const translations = (await loadModule('translations.js')).default;
         expect(translations.prefix).to.equal('squeezeboxrpc_');
@@ -264,5 +279,58 @@ describe('VIS-2 Players configuration', () => {
         expect(encodePlayerWidgetReference('w1')).to.equal('squeezeboxrpc-player:w1');
         expect(decodePlayerWidgetReference('squeezeboxrpc-player:w1')).to.equal('w1');
         expect(decodePlayerWidgetReference('w1')).to.equal('w1');
+    });
+
+    it('parses, filters, orders and hides favorites by their stable IDs', async () => {
+        const {
+            mergeFavorites,
+            moveFavorite,
+            parseFavorites,
+            readConfiguredFavorites,
+            writeConfiguredFavorites,
+        } = await loadModule('favoriteUtils.js');
+        const states = {
+            'squeezeboxrpc.0.Favorites.0.id': { val: 'Radio Paradise' },
+            'squeezeboxrpc.0.Favorites.0.Name': { val: 'Radio Paradise Main Mix' },
+            'squeezeboxrpc.0.Favorites.0.image': { val: 'radio.png' },
+            'squeezeboxrpc.0.Favorites.0.isaudio': { val: 1 },
+            'squeezeboxrpc.0.Favorites.1.id': { val: 'Folder' },
+            'squeezeboxrpc.0.Favorites.1.isaudio': { val: 0 },
+            'squeezeboxrpc.0.Favorites.2.id': { val: 'News' },
+            'squeezeboxrpc.0.Favorites.2.isaudio': { val: '1' },
+        };
+        const discovered = parseFavorites(states, 'squeezeboxrpc.0');
+        expect(discovered).to.deep.equal([
+            { id: 'Radio Paradise', name: 'Radio Paradise Main Mix', image: 'radio.png' },
+            { id: 'News', name: '', image: '' },
+        ]);
+        const saved = writeConfiguredFavorites({}, [
+            { id: 'News', enabled: false, text: 'Nachrichten', image: 'news.png' },
+            { id: 'Radio Paradise', enabled: true, text: '', image: '' },
+        ]);
+        const configured = readConfiguredFavorites(saved);
+        expect(saved.favoriteId0).to.equal('News');
+        expect(saved.favoriteLastIndex).to.equal(1);
+        expect(saved.buttonsText1).to.equal('');
+        expect(mergeFavorites(configured, discovered).map(favorite => favorite.id)).to.deep.equal([
+            'News',
+            'Radio Paradise',
+        ]);
+        expect(moveFavorite(configured, 0, 1).map(favorite => favorite.id)).to.deep.equal([
+            'Radio Paradise',
+            'News',
+        ]);
+        expect(configured[0].enabled).to.equal(false);
+        const merged = mergeFavorites(configured, discovered);
+        expect(merged[1].name).to.equal('Radio Paradise Main Mix');
+        expect(merged[1].text).to.equal('Radio Paradise Main Mix');
+        expect(merged[1].image).to.equal('radio.png');
+
+        const legacyConfigured = readConfiguredFavorites({
+            favoriteCount: 1,
+            favoriteId1: 'Legacy',
+            buttonsText1: 'Legacy name',
+        });
+        expect(legacyConfigured[0]).to.include({ id: 'Legacy', text: 'Legacy name' });
     });
 });

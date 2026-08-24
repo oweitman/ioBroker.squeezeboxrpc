@@ -83,5 +83,13 @@
     "squeezeboxrpc_border_color": "Rahmenfarbe",
     "squeezeboxrpc_border_no_group": "Rahmenfarbe ohne Gruppe",
     "squeezeboxrpc_border_own_group": "Rahmenfarbe der eigenen Gruppe",
-    "squeezeboxrpc_border_other_group": "Rahmenfarbe anderer Gruppen"
+    "squeezeboxrpc_border_other_group": "Rahmenfarbe anderer Gruppen",
+    "squeezeboxrpc_favorites_widget": "Favoriten",
+    "squeezeboxrpc_favorite_configuration": "Favoriten",
+    "squeezeboxrpc_refresh_favorites": "Favoriten aktualisieren",
+    "squeezeboxrpc_favorites_load_error": "Die Favoriten konnten nicht geladen werden.",
+    "squeezeboxrpc_no_favorites": "Keine Audio-Favoriten vorhanden",
+    "squeezeboxrpc_select_players_widget": "Bitte zuerst ein Players-Widget auswählen.",
+    "squeezeboxrpc_individual_favorites": "Individuelle Favoritendarstellung",
+    "squeezeboxrpc_edit_mode_index_helper": "Favoritenindex im Edit-Modus anzeigen"
 }
