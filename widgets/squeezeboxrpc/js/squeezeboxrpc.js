@@ -36,6 +36,7 @@ vis.binds['squeezeboxrpc'] = {
     version: pkgVersion,
     debug: false,
     fetchResults: false,
+    viewIndexMetadata: {},
     showVersion: function () {
         if (vis.binds['squeezeboxrpc'].version) {
             console.log(`Version squeezeboxrpc: ${vis.binds['squeezeboxrpc'].version}`);
@@ -119,32 +120,38 @@ vis.binds['squeezeboxrpc'] = {
     checkViewIndex: function (widgetID, view, viewindex) {
         let $edit;
         const data = vis.views[view].widgets[widgetID].data;
-        const viewindexcheck = data.viewindexcheck;
+        const metadata = this.viewIndexMetadata[widgetID] || data;
+        const viewindexcheck = metadata.viewindexcheck;
+        const functionname = metadata.functionname;
+
+        if (!viewindexcheck || !functionname) {
+            return false;
+        }
 
         if (!viewindex || viewindex.trim() == '') {
-            viewindex = vis.binds['squeezeboxrpc'][data.functionname].getViewindex(viewindexcheck).join(', ');
+            viewindex = vis.binds['squeezeboxrpc'][functionname].getViewindex(viewindexcheck).join(', ');
         }
 
         viewindex = viewindex.split(',').map(function (item) {
             return item.trim();
         });
 
-        viewindex = vis.binds['squeezeboxrpc'][data.functionname].checkViewindexExist(viewindex, viewindexcheck);
+        viewindex = vis.binds['squeezeboxrpc'][functionname].checkViewindexExist(viewindex, viewindexcheck);
 
         if (viewindex.length > viewindexcheck.length) {
             viewindex = viewindex.slice(0, viewindexcheck.length);
         }
-        data.viewindex = viewindex.join(', ');
+        const normalizedViewindex = viewindex.join(', ');
         $edit = $('#inspect_viewindex');
         let start = $edit.prop('selectionStart');
         let end = $edit.prop('selectionEnd');
-        if (start > data.viewindex.length) {
-            start = data.viewindex.length;
+        if (start > normalizedViewindex.length) {
+            start = normalizedViewindex.length;
         }
-        if (end > data.viewindex.length) {
-            end = data.viewindex.length;
+        if (end > normalizedViewindex.length) {
+            end = normalizedViewindex.length;
         }
-        $edit.val(data.viewindex);
+        $edit.val(normalizedViewindex);
         $edit = $('#inspect_viewindex');
         if ($edit) {
             $edit.focus();

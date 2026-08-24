@@ -574,6 +574,25 @@ please provide as detailed a description as possible:
 
 ## SendTo-Befehle
 
+### getPlayerNames
+
+Returns the names of all players currently registered in the adapter. The returned names are the sanitized names
+used below `squeezeboxrpc.<instance>.Players`.
+
+```js
+async function main() {
+    const playerNames = await sendToAsync('squeezeboxrpc.0', 'getPlayerNames', {});
+    console.log(JSON.stringify(playerNames));
+}
+main();
+```
+
+Example result:
+
+```json
+["Living_room", "Kitchen"]
+```
+
 ### cmdGeneral
 
 This command can be used to send any command to the LMS server to receive a response.

@@ -13,10 +13,10 @@ export const favorites = {
             }, 100);
         }
 
-        data = vis.views[view].widgets[widgetID].data;
+        // VIS 2 may expose the VIS 1 widget configuration as a frozen object.
+        // Keep runtime-only values in a mutable working copy.
+        data = { ...vis.views[view].widgets[widgetID].data };
         style = vis.views[view].widgets[widgetID].style;
-        data.functionname = 'favorites';
-
         let redrawinspectwidgets = false;
 
         const ainstance = (data.ainstance = vis.binds['squeezeboxrpc'].checkAttributes($div, data.widgetPlayer));
@@ -32,7 +32,11 @@ export const favorites = {
             key,
             function (err, obj) {
                 let favorites = this.getFavorites(obj, ainstance);
-                favorites = data.viewindexcheck = this.filterFavorites(favorites);
+                favorites = this.filterFavorites(favorites);
+                vis.binds['squeezeboxrpc'].viewIndexMetadata[widgetID] = {
+                    functionname: 'favorites',
+                    viewindexcheck: favorites,
+                };
 
                 const editmodehelper = data.editmodehelper;
                 const picWidth = data.picWidth;

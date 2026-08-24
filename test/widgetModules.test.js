@@ -102,7 +102,7 @@ describe('VIS widget modules', () => {
                 return element;
             }
             return {
-                length: element === '#volume' ? 1 : 0,
+                length: element === '#volume' || element === '#players' ? 1 : 0,
                 off() {
                     return this;
                 },
@@ -113,6 +113,9 @@ describe('VIS widget modules', () => {
                     return this;
                 },
                 html() {
+                    return this;
+                },
+                trigger() {
                     return this;
                 },
             };
@@ -165,6 +168,37 @@ describe('VIS widget modules', () => {
 
         expect(immediateBindings).to.have.lengthOf(2);
         expect(playerChanges).to.deep.equal(['play-button']);
+
+        const frozenPlayerData = Object.freeze({
+            ainstance: 'squeezeboxrpc.0',
+            viewindex: '0',
+            formattype: '',
+        });
+        vis.editMode = false;
+        vis.views = {
+            main: {
+                widgets: {
+                    players: { data: frozenPlayerData, style: {} },
+                },
+            },
+        };
+        const sendToRequests = [];
+        runtime.sendToAsync = async (instance, command, message) => {
+            sendToRequests.push({ instance, command, message });
+            return ['living-room'];
+        };
+
+        await runtime.players.createWidget('players', 'main', {}, {});
+        expect(sendToRequests).to.deep.equal([
+            {
+                instance: 'squeezeboxrpc.0',
+                command: 'getPlayerNames',
+                message: {},
+            },
+        ]);
+        expect(frozenPlayerData).not.to.have.property('functionname');
+        expect(runtime.viewIndexMetadata.players.functionname).to.equal('players');
+        expect(runtime.viewIndexMetadata.players.viewindexcheck).to.deep.equal(['living-room']);
 
         const volumeUpdates = [];
         vis.editMode = false;

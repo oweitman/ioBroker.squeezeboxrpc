@@ -2002,9 +2002,8 @@
               vis.binds["squeezeboxrpc"].favorites.createWidget(widgetID, view, data, style);
             }, 100);
           }
-          data = vis.views[view].widgets[widgetID].data;
+          data = __spreadValues({}, vis.views[view].widgets[widgetID].data);
           style = vis.views[view].widgets[widgetID].style;
-          data.functionname = "favorites";
           let redrawinspectwidgets = false;
           const ainstance = data.ainstance = vis.binds["squeezeboxrpc"].checkAttributes($div, data.widgetPlayer);
           if (!ainstance) {
@@ -2017,7 +2016,11 @@
             key,
             function(err, obj) {
               let favorites2 = this.getFavorites(obj, ainstance);
-              favorites2 = data.viewindexcheck = this.filterFavorites(favorites2);
+              favorites2 = this.filterFavorites(favorites2);
+              vis.binds["squeezeboxrpc"].viewIndexMetadata[widgetID] = {
+                functionname: "favorites",
+                viewindexcheck: favorites2
+              };
               const editmodehelper = data.editmodehelper;
               const picWidth = data.picWidth;
               const picHeight = data.picHeight;
@@ -2227,30 +2230,28 @@
       init_textImage();
       players = {
         createWidget: function(widgetID, view, data, style) {
-          const $div = $(`#${widgetID}`);
-          if (!$div.length) {
-            return setTimeout(function() {
-              vis.binds["squeezeboxrpc"].players.createWidget(widgetID, view, data, style);
-            }, 100);
-          }
-          data = vis.views[view].widgets[widgetID].data;
-          style = vis.views[view].widgets[widgetID].style;
-          data.functionname = "players";
-          vis.conn._socket.emit(
-            "getObjects",
-            function(err, obj) {
+          return __async(this, null, function* () {
+            const $div = $(`#${widgetID}`);
+            if (!$div.length) {
+              return setTimeout(function() {
+                vis.binds["squeezeboxrpc"].players.createWidget(widgetID, view, data, style);
+              }, 100);
+            }
+            data = __spreadValues({}, vis.views[view].widgets[widgetID].data);
+            style = vis.views[view].widgets[widgetID].style;
+            data.ainstance = data.ainstance ? data.ainstance.split(".").slice(0, 2).join(".") : "";
+            const ainstance = data.ainstance.split(".");
+            if (ainstance[0] != "squeezeboxrpc" || !ainstance[1]) {
+              $div.html("Please select an instance");
+              return;
+            }
+            const renderPlayers = function(playerNames) {
               let redrawinspectwidgets = false;
-              if (data.ainstance) {
-                data.ainstance = data.ainstance.split(".").slice(0, 2).join(".");
-              } else {
-                data.ainstance = "";
-              }
-              const ainstance = data.ainstance.split(".");
-              if (!ainstance || ainstance[0] != "squeezeboxrpc") {
-                $(`#${widgetID}`).html("Please select an instance");
-                return;
-              }
-              const players2 = data.viewindexcheck = this.getPlayers(obj, ainstance);
+              const players2 = playerNames;
+              vis.binds["squeezeboxrpc"].viewIndexMetadata[widgetID] = {
+                functionname: "players",
+                viewindexcheck: players2
+              };
               const editmodehelper = data.editmodehelper;
               const picWidth = data.picWidth;
               const picHeight = data.picHeight;
@@ -2401,8 +2402,18 @@
                 vis.binds["squeezeboxrpc"].redrawInspectWidgets(view);
               }
               $(`#${widgetID}`).trigger("playerschanged");
-            }.bind(this)
-          );
+            }.bind(this);
+            try {
+              const playerNames = yield vis.binds["squeezeboxrpc"].sendToAsync(data.ainstance, "getPlayerNames", {});
+              if (!Array.isArray(playerNames)) {
+                throw new TypeError(`Invalid getPlayerNames response: ${JSON.stringify(playerNames)}`);
+              }
+              renderPlayers(playerNames);
+            } catch (error) {
+              console.error(`Cannot read player names for ${data.ainstance}:`, error);
+              $div.html("Cannot read players");
+            }
+          });
         },
         getViewindex: function(players2) {
           return Object.keys(players2);
@@ -2411,18 +2422,6 @@
           return viewindex.map(function(item) {
             return item < players2.length ? item : 0;
           });
-        },
-        getPlayers: function(datapoints, ainstance) {
-          const regex = new RegExp(`^${ainstance[0]}\\.${ainstance[1]}\\.Players`, "gm");
-          return Object.keys(datapoints).reduce(function(acc, cur) {
-            if (regex.test(cur)) {
-              const key = cur.split(".")[3];
-              if (acc.indexOf(key) === -1) {
-                acc.push(key);
-              }
-            }
-            return acc;
-          }, []);
         }
       };
     }
@@ -4013,6 +4012,7 @@
         version,
         debug: false,
         fetchResults: false,
+        viewIndexMetadata: {},
         showVersion: function() {
           if (vis.binds["squeezeboxrpc"].version) {
             console.log(`Version squeezeboxrpc: ${vis.binds["squeezeboxrpc"].version}`);
@@ -4091,28 +4091,33 @@
         checkViewIndex: function(widgetID, view, viewindex) {
           let $edit;
           const data = vis.views[view].widgets[widgetID].data;
-          const viewindexcheck = data.viewindexcheck;
+          const metadata = this.viewIndexMetadata[widgetID] || data;
+          const viewindexcheck = metadata.viewindexcheck;
+          const functionname = metadata.functionname;
+          if (!viewindexcheck || !functionname) {
+            return false;
+          }
           if (!viewindex || viewindex.trim() == "") {
-            viewindex = vis.binds["squeezeboxrpc"][data.functionname].getViewindex(viewindexcheck).join(", ");
+            viewindex = vis.binds["squeezeboxrpc"][functionname].getViewindex(viewindexcheck).join(", ");
           }
           viewindex = viewindex.split(",").map(function(item) {
             return item.trim();
           });
-          viewindex = vis.binds["squeezeboxrpc"][data.functionname].checkViewindexExist(viewindex, viewindexcheck);
+          viewindex = vis.binds["squeezeboxrpc"][functionname].checkViewindexExist(viewindex, viewindexcheck);
           if (viewindex.length > viewindexcheck.length) {
             viewindex = viewindex.slice(0, viewindexcheck.length);
           }
-          data.viewindex = viewindex.join(", ");
+          const normalizedViewindex = viewindex.join(", ");
           $edit = $("#inspect_viewindex");
           let start = $edit.prop("selectionStart");
           let end = $edit.prop("selectionEnd");
-          if (start > data.viewindex.length) {
-            start = data.viewindex.length;
+          if (start > normalizedViewindex.length) {
+            start = normalizedViewindex.length;
           }
-          if (end > data.viewindex.length) {
-            end = data.viewindex.length;
+          if (end > normalizedViewindex.length) {
+            end = normalizedViewindex.length;
           }
-          $edit.val(data.viewindex);
+          $edit.val(normalizedViewindex);
           $edit = $("#inspect_viewindex");
           if ($edit) {
             $edit.focus();
