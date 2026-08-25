@@ -11,7 +11,7 @@ class DateTimeWidget extends PlayerStateWidget {
                 playerReferenceField, playerAttributeField,
                 { name: 'html_prepend', type: 'text', label: 'squeezeboxrpc_html_prepend' },
                 { name: 'html_append', type: 'text', label: 'squeezeboxrpc_html_append' },
-                { name: 'format', type: 'text', default: 'DD.MM.YYYY hh:mm:ss', label: 'squeezeboxrpc_date_format' },
+                { name: 'format', type: 'text', default: 'hh:mm:ss', label: 'squeezeboxrpc_date_format' },
                 { name: 'factor', type: 'number', default: 1000, label: 'squeezeboxrpc_factor' },
             ] }],
             visDefaultStyle: { width: 150, height: 20 },

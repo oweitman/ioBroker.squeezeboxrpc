@@ -101,7 +101,7 @@ export function formatDateTime(value, factor, format) {
         mm: pad(date.getMinutes()),
         ss: pad(date.getSeconds()),
     };
-    return String(format || 'DD.MM.YYYY hh:mm:ss').replace(/YYYY|YY|MM|DD|hh|mm|ss/g, token => replacements[token]);
+    return String(format || 'hh:mm:ss').replace(/YYYY|YY|MM|DD|hh|mm|ss/g, token => replacements[token]);
 }
 
 export function volumeFromPointer(position, size, segments, calculation, reverse) {

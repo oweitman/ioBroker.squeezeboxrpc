@@ -256,6 +256,7 @@ describe('VIS-2 Players configuration', () => {
         expect(formatNumber(1234.5, 2, true, true)).to.equal('1.234,50');
         expect(formatNumber(undefined, '', false, false)).to.equal('0');
         expect(formatDateTime(0, 1000, 'DD.MM.YYYY hh:mm:ss')).to.equal('01.01.1970 00:00:00');
+        expect(formatDateTime(0, 1000, '')).to.equal('00:00:00');
     });
 
     it('keeps the VIS-2 update lifecycle active for player value widgets', () => {
