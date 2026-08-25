@@ -89,9 +89,22 @@ describe('VIS widget modules', () => {
 
     it('retries DateTime updates through the DateTime widget', () => {
         const datetimeSource = fs.readFileSync(path.join(widgetSource, 'widgets', 'datetime.js'), 'utf8');
+        const html = fs.readFileSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'), 'utf8');
 
         expect(datetimeSource).to.include("vis.binds['squeezeboxrpc'].datetime.setState(fdata)");
         expect(datetimeSource).not.to.include("vis.binds['squeezeboxrpc'].number.setState(fdata)");
+        expect(datetimeSource).to.include('export function formatDateTime(value, factor, format)');
+        expect(datetimeSource).to.include('/YYYY|YY|MM|DD|hh|mm|ss/g');
+        expect(datetimeSource).not.to.include('state.format(');
+        expect(html).to.include('format[hh:mm:ss]');
+    });
+
+    it('keeps the VIS-1 favorites content inside the widget bounds', () => {
+        const favoritesSource = fs.readFileSync(path.join(widgetSource, 'widgets', 'favorites.js'), 'utf8');
+
+        expect(favoritesSource).to.include("text += '    width: 100%;\\n'");
+        expect(favoritesSource).to.include("text += '    height: 100%;\\n'");
+        expect(favoritesSource).to.include("text += '    overflow: auto;\\n'");
     });
 
     it('registers the VIS-1 PlaylistDetail contract', () => {

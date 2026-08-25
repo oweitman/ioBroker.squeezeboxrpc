@@ -68,6 +68,13 @@ export const favorites = {
                 text += '     position: relative; \n';
                 text += `     margin: 0px ${buttonmargin} ${buttonmargin} 0px; \n`;
                 text += '}\n';
+                text += `#${widgetID} #${widgetID}container {\n`;
+                text += '    box-sizing: border-box;\n';
+                text += '    display: block;\n';
+                text += '    width: 100%;\n';
+                text += '    height: 100%;\n';
+                text += '    overflow: auto;\n';
+                text += '}\n';
                 text += `#${widgetID} input[type="radio"] {\n`;
                 text += '    display: none;\n';
                 text += '}\n';
