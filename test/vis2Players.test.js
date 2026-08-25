@@ -279,6 +279,21 @@ describe('VIS-2 Players configuration', () => {
         expect(playtimePercent(25, 100, 1)).to.equal(25);
         expect(playtimePercent(25, 100, 2)).to.equal(0);
         expect(playtimePercent(120, 100, 1)).to.equal(100);
+        expect(playtimePercent(25, 0, 1)).to.equal(0);
+        expect(playtimePercent(25, undefined, 1)).to.equal(0);
+    });
+
+    it('keeps playtime state IDs available while initial values are loaded', () => {
+        const source = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'values', 'PlaytimeWidget.jsx'),
+            'utf8',
+        );
+        expect(source.indexOf('this.playtimeIds = ids;')).to.be.lessThan(source.indexOf('getState(id)'));
+        expect(source).to.include('const ids = this.playtimeIds;');
+        expect(source).to.include('event.preventDefault();');
+        expect(source).to.include('event.stopPropagation();');
+        expect(source).to.include('this.setState({ time });');
+        expect(source).not.to.include('super.componentDidUpdate(prevProps, prevState);');
     });
 
     it('builds all playtime state IDs from the selected player', async () => {

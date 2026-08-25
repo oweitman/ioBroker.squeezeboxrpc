@@ -17,6 +17,7 @@ class PlaytimeWidget extends WidgetBase {
         this.selectionWidget = '';
         this.unsubscribeSelection = null;
         this.subscribedIds = [];
+        this.playtimeIds = null;
         this.stateRequest = 0;
         this.handleState = this.handleState.bind(this);
     }
@@ -74,6 +75,7 @@ class PlaytimeWidget extends WidgetBase {
             this.setState({ duration: 0, time: 0, playback: 0, playtimeIds: null });
             return;
         }
+        this.playtimeIds = ids;
         this.subscribedIds = nextIds;
         nextIds.forEach(id => this.props.context.socket.subscribeState(id, this.handleState));
         this.setState({ duration: 0, time: 0, playback: 0, playtimeIds: ids });
@@ -91,10 +93,11 @@ class PlaytimeWidget extends WidgetBase {
         this.stateRequest++;
         this.subscribedIds.forEach(id => this.props.context.socket.unsubscribeState(id, this.handleState));
         this.subscribedIds = [];
+        this.playtimeIds = null;
     }
 
     handleState(id, state) {
-        const ids = this.widgetState.playtimeIds;
+        const ids = this.playtimeIds;
         if (!state || !ids) return;
         if (id === ids.duration) this.setState({ duration: Number(state.val) || 0 });
         else if (id === ids.time) this.setState({ time: Number(state.val) || 0 });
@@ -102,12 +105,15 @@ class PlaytimeWidget extends WidgetBase {
     }
 
     async seek(event) {
-        const ids = this.widgetState.playtimeIds;
+        event.preventDefault();
+        event.stopPropagation();
+        const ids = this.playtimeIds;
         if (!ids || !(this.widgetState.duration > 0)) return;
         const rect = event.currentTarget.getBoundingClientRect();
         if (!(rect.width > 0)) return;
         const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
         const time = ratio * this.widgetState.duration;
+        this.setState({ time });
         try {
             await this.props.context.socket.setState(ids.goTime, String(time));
         } catch (error) {
@@ -122,6 +128,7 @@ class PlaytimeWidget extends WidgetBase {
         return <div
             className={`squeezeboxrpc-playtime${this.widgetState.playtimeIds ? '' : ' disabled'}`}
             onClick={event => void this.seek(event)}
+            onPointerDown={event => event.stopPropagation()}
             style={{
                 backgroundColor: data.mainbarcolor || '#909090',
                 border: `${cssLength(data.borderwidth, '2px')} ${data.borderstyle || 'solid'} ${data.bordercolor || '#ffffff'}`,
