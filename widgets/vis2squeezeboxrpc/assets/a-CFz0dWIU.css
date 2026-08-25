@@ -1,0 +1,1 @@
+.squeezeboxrpc-player-button>img,.squeezeboxrpc-player-button>canvas{transition:transform 80ms ease-out}.squeezeboxrpc-player-button:active>img,.squeezeboxrpc-player-button:active>canvas{transform:scale(.9);border-color:var(--squeezeboxrpc-active-border-color)!important;opacity:1!important}
