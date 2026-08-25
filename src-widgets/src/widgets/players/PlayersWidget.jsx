@@ -119,6 +119,7 @@ class PlayersWidget extends WidgetBase {
                             type: 'select',
                             default: 'solid',
                             label: 'squeezeboxrpc_border_style',
+                            noTranslation: true,
                             options: [
                                 'none',
                                 'hidden',
@@ -130,7 +131,7 @@ class PlayersWidget extends WidgetBase {
                                 'ridge',
                                 'inset',
                                 'outset',
-                            ].map(value => ({ value, label: value })),
+                            ],
                         },
                         {
                             name: 'bordercolornormal',
