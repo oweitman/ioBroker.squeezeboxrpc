@@ -22,6 +22,7 @@ const widgetNames = [
     'playtime',
     'string',
     'playlist',
+    'playlistdetail',
     'number',
     'datetime',
     'image',
@@ -91,6 +92,20 @@ describe('VIS widget modules', () => {
 
         expect(datetimeSource).to.include("vis.binds['squeezeboxrpc'].datetime.setState(fdata)");
         expect(datetimeSource).not.to.include("vis.binds['squeezeboxrpc'].number.setState(fdata)");
+    });
+
+    it('registers the VIS-1 PlaylistDetail contract', () => {
+        const html = fs.readFileSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'), 'utf8');
+        const source = fs.readFileSync(path.join(widgetSource, 'widgets', 'playlistdetail.js'), 'utf8');
+
+        expect(html).to.include('id="tplSqueezeboxrpcPlaylistDetail"');
+        expect(html).to.include('showThumbnail[true]/checkbox');
+        expect(html).to.include('showIndex[true]/checkbox');
+        expect(source).to.include('.PlaylistCurrentIndex`');
+        expect(source).to.include('.cmdGeneral`');
+        expect(source).to.include('"playlist","delete"');
+        expect(source).to.include('previousScrollTop');
+        expect(source).to.include(".scrollTop(previousScrollTop)");
     });
 
     it('initializes Syncgroup without scheduling a recreate during initial state binding', () => {

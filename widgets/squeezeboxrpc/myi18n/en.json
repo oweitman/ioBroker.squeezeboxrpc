@@ -39,5 +39,14 @@
     "imageshuffle2": "Picture Album",
     "bordercolornogroup": "Border color - No group",
     "bordercolorowngroup": "Border color - Own group",
-    "bordercolorothergroup": "Border color - Other group"
+    "bordercolorothergroup": "Border color - Other group",
+    "group_rowsettings": "Row settings",
+    "rowBackground": "Row background color",
+    "activeRowBackground": "Active row background color",
+    "rowBorderColor": "Border color",
+    "rowBorderWidth": "Border width",
+    "rowBorderStyle": "Border style",
+    "rowSpacing": "Spacing to next track",
+    "showThumbnail": "Show thumbnail",
+    "showIndex": "Show track index"
 }

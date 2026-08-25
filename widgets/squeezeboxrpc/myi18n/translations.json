@@ -297,5 +297,41 @@
         "pl": "ID goalgetters",
         "uk": "Ідентифікувати цілеспрямованість",
         "zh-cn": "ID goalgetters"
+    },
+    "group_rowsettings": {
+        "en": "Row settings",
+        "de": "Zeilenkonfiguration"
+    },
+    "rowBackground": {
+        "en": "Row background color",
+        "de": "Hintergrundfarbe einer Zeile"
+    },
+    "activeRowBackground": {
+        "en": "Active row background color",
+        "de": "Hintergrundfarbe der aktiven Zeile"
+    },
+    "rowBorderColor": {
+        "en": "Border color",
+        "de": "Rahmenfarbe"
+    },
+    "rowBorderWidth": {
+        "en": "Border width",
+        "de": "Rahmenbreite"
+    },
+    "rowBorderStyle": {
+        "en": "Border style",
+        "de": "Rahmenart"
+    },
+    "rowSpacing": {
+        "en": "Spacing to next track",
+        "de": "Abstand zum nächsten Titel"
+    },
+    "showThumbnail": {
+        "en": "Show thumbnail",
+        "de": "Thumbnail anzeigen"
+    },
+    "showIndex": {
+        "en": "Show track index",
+        "de": "Titelindex anzeigen"
     }
 }

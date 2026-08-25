@@ -43,10 +43,12 @@
 
 .squeezeboxrpc-playlist-detail-text {
     justify-content: center;
+    padding-left: 8px;
 }
 
 .squeezeboxrpc-playlist-detail-line {
     overflow: hidden;
+    line-height: 18px;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
@@ -56,8 +58,10 @@
 }
 
 .squeezeboxrpc-playlist-detail-actions {
+    box-sizing: border-box;
     align-items: flex-end;
     justify-content: space-between;
+    padding: 9px 8px 4px 0;
 }
 
 .squeezeboxrpc-playlist-detail-duration {

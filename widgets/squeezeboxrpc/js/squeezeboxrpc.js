@@ -22,6 +22,7 @@ import { syncgroup } from './widgets/syncgroup.js';
 import { playtime } from './widgets/playtime.js';
 import { string } from './widgets/string.js';
 import { playlist } from './widgets/playlist.js';
+import { playlistdetail } from './widgets/playlistdetail.js';
 import { number } from './widgets/number.js';
 import { datetime } from './widgets/datetime.js';
 import { image } from './widgets/image.js';
@@ -400,6 +401,7 @@ vis.binds['squeezeboxrpc'] = {
     playtime,
     string,
     playlist,
+    playlistdetail,
     number,
     datetime,
     image,
