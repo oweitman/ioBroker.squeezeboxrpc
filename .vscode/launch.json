@@ -10,7 +10,7 @@
             "program": "node_modules/iobroker.squeezeboxrpc/squeezeboxrpc.js",
             "cwd": "${workspaceFolder}/.dev-server/default",
             "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
-            "stopOnEntry": true,
+            "stopOnEntry": false,
             "sourceMaps": true,
             "console": "internalConsole",
             "outputCapture": "std",

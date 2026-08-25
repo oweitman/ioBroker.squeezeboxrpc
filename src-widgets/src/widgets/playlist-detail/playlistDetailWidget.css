@@ -1,0 +1,94 @@
+.squeezeboxrpc-playlist-detail {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.squeezeboxrpc-playlist-detail-row {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: 8px;
+    height: 72px;
+    min-width: 0;
+    overflow: hidden;
+    background-color: var(--squeezeboxrpc-row-background);
+    transition: background-color 120ms ease-in-out;
+}
+
+.squeezeboxrpc-playlist-detail-row:hover {
+    background-color: var(--squeezeboxrpc-row-hover-background);
+}
+
+.squeezeboxrpc-playlist-detail-row.no-thumbnail {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.squeezeboxrpc-playlist-detail-thumbnail {
+    width: 64px;
+    height: 100%;
+    min-width: 0;
+    object-fit: cover;
+}
+
+.squeezeboxrpc-playlist-detail-text,
+.squeezeboxrpc-playlist-detail-actions {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+}
+
+.squeezeboxrpc-playlist-detail-text {
+    justify-content: center;
+}
+
+.squeezeboxrpc-playlist-detail-line {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.squeezeboxrpc-playlist-detail-title {
+    font-weight: 600;
+}
+
+.squeezeboxrpc-playlist-detail-actions {
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.squeezeboxrpc-playlist-detail-duration {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.squeezeboxrpc-playlist-detail-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.squeezeboxrpc-playlist-detail-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 3px;
+    border: 0;
+    border-radius: 3px;
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+}
+
+.squeezeboxrpc-playlist-detail-button:hover {
+    background: rgb(127 127 127 / 18%);
+}
+
+.squeezeboxrpc-playlist-detail-button svg {
+    width: 100%;
+    height: 100%;
+}

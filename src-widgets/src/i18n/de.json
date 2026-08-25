@@ -104,5 +104,14 @@
     "squeezeboxrpc_browser_play": "Abspielen",
     "squeezeboxrpc_browser_add": "Hinzufügen",
     "squeezeboxrpc_debug": "Debug-Ausgaben",
-    "squeezeboxrpc_debug_fetch_results": "Server-Antworten in Debug-Ausgaben aufnehmen"
+    "squeezeboxrpc_debug_fetch_results": "Server-Antworten in Debug-Ausgaben aufnehmen",
+    "squeezeboxrpc_playlist_detail_widget": "Wiedergabelistendetails",
+    "squeezeboxrpc_row_settings": "Zeilenkonfiguration",
+    "squeezeboxrpc_row_background": "Hintergrundfarbe einer Zeile",
+    "squeezeboxrpc_active_row_background": "Hintergrundfarbe der aktiven Zeile",
+    "squeezeboxrpc_row_spacing": "Abstand zwischen Titeln",
+    "squeezeboxrpc_show_thumbnail": "Thumbnail anzeigen",
+    "squeezeboxrpc_show_index": "Titelindex anzeigen",
+    "squeezeboxrpc_playlist_detail_empty": "Die aktuelle Wiedergabeliste ist leer",
+    "squeezeboxrpc_playlist_detail_delete": "Titel aus der aktuellen Wiedergabeliste entfernen"
 }

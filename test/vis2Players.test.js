@@ -30,6 +30,7 @@ async function loadModule(file) {
         'playerSelectionBus.js': ['shared'],
         'playerStateUtils.js': ['widgets', 'values'],
         'playerWidgetReferenceUtils.js': ['shared'],
+        'playlistDetailUtils.js': ['widgets', 'playlist-detail'],
         'playlistUtils.js': ['widgets', 'playlist'],
         'syncGroupUtils.js': ['widgets', 'sync'],
         'TextImage.jsx': ['shared'],
@@ -62,6 +63,52 @@ describe('VIS-2 Players configuration', () => {
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
         expect(source).to.include("'./PlaylistWidget': './src/widgets/playlist/PlaylistWidget'");
         expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistWidget');
+    });
+
+    it('parses and formats current playlist details', async () => {
+        const {
+            formatPlaylistDuration,
+            parsePlaylistDetail,
+            playlistDeleteCommand,
+            playlistDetailStateIds,
+        } = await loadModule('playlistDetailUtils.js');
+        const entries = parsePlaylistDetail(JSON.stringify([{
+            index: 2,
+            id: 27945,
+            title: 'Te Amo Corazon',
+            ArtworkUrl: 'http://server/cover.jpg',
+            Artist: 'Prince',
+            Album: '3121',
+            Duration: 215.823,
+        }]));
+        expect(entries).to.have.length(1);
+        expect(entries[0]).to.deep.equal({
+            index: 2,
+            id: '27945',
+            title: 'Te Amo Corazon',
+            artworkUrl: 'http://server/cover.jpg',
+            artist: 'Prince',
+            album: '3121',
+            duration: 215.823,
+        });
+        expect(parsePlaylistDetail('invalid')).to.deep.equal([]);
+        expect(formatPlaylistDuration(215.823)).to.equal('03:35');
+        expect(formatPlaylistDuration(3661)).to.equal('01:01:01');
+        expect(formatPlaylistDuration(360000)).to.equal('>99:59:59');
+        expect(formatPlaylistDuration(undefined)).to.equal('--:--');
+        expect(playlistDetailStateIds({ instance: 'squeezeboxrpc.0', player: 'Living' })).to.deep.equal({
+            playlist: 'squeezeboxrpc.0.Players.Living.Playlist',
+            currentIndex: 'squeezeboxrpc.0.Players.Living.PlaylistCurrentIndex',
+            command: 'squeezeboxrpc.0.Players.Living.cmdGeneral',
+        });
+        expect(playlistDeleteCommand(2)).to.equal('"playlist","delete","2"');
+    });
+
+    it('registers the VIS-2 PlaylistDetail widget', () => {
+        const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
+        const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
+        expect(source).to.include("'./PlaylistDetailWidget': './src/widgets/playlist-detail/PlaylistDetailWidget'");
+        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistDetailWidget');
     });
 
     it('keeps the VIS-1 playlist layout styles in VIS-2', () => {

@@ -32,6 +32,7 @@ export default {
                 './SyncGroupWidget': './src/widgets/sync/SyncGroupWidget',
                 './FavoritesWidget': './src/widgets/favorites/FavoritesWidget',
                 './PlaylistWidget': './src/widgets/playlist/PlaylistWidget',
+                './PlaylistDetailWidget': './src/widgets/playlist-detail/PlaylistDetailWidget',
                 './BrowserWidget': './src/widgets/browser/BrowserWidget',
                 './translations': './src/translations',
             },
