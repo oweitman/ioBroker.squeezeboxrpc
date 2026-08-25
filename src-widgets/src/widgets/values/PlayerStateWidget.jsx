@@ -78,7 +78,7 @@ class PlayerStateWidget extends WidgetBase {
                 this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => {
                     this.currentSelection = selection;
                     void this.usePlayerSelection(selection);
-                });
+                }, this.props.context.views);
             }
             return;
         }

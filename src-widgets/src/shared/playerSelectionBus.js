@@ -1,3 +1,5 @@
+import { configuredPlayerSelection } from './playerWidgetReferenceUtils';
+
 const STORE_KEY = '__squeezeboxrpcPlayerSelectionBusV1';
 let store = Reflect.get(globalThis, STORE_KEY);
 if (!store) {
@@ -45,7 +47,7 @@ export function publishPlayerSelection(widgetId, selection) {
     listeners.get(widgetId)?.forEach(listener => listener(normalized));
 }
 
-export function subscribePlayerSelection(widgetId, listener) {
+export function subscribePlayerSelection(widgetId, listener, views) {
     if (!widgetId || typeof listener !== 'function') {
         return () => {};
     }
@@ -53,7 +55,12 @@ export function subscribePlayerSelection(widgetId, listener) {
     const widgetListeners = listeners.get(widgetId) || new Set();
     widgetListeners.add(listener);
     listeners.set(widgetId, widgetListeners);
-    listener(selections.get(widgetId) || null);
+    const configuredSelection = configuredPlayerSelection(views, widgetId);
+    if (!selections.has(widgetId) && configuredSelection) {
+        publishPlayerSelection(widgetId, configuredSelection);
+    } else {
+        listener(selections.get(widgetId) || null);
+    }
 
     return () => {
         widgetListeners.delete(listener);

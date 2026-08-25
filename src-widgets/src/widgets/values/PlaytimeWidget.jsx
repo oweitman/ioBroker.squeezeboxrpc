@@ -62,7 +62,11 @@ class PlaytimeWidget extends WidgetBase {
         this.unsubscribeSelection = null;
         this.selectionWidget = widgetPlayer;
         this.unsubscribeStates();
-        if (widgetPlayer) this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => void this.usePlayerSelection(selection));
+        if (widgetPlayer) this.unsubscribeSelection = subscribePlayerSelection(
+            widgetPlayer,
+            selection => void this.usePlayerSelection(selection),
+            this.props.context.views,
+        );
     }
 
     async usePlayerSelection(selection) {

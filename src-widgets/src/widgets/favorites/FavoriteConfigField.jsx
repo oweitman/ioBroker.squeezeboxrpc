@@ -2,8 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { I18n } from '@iobroker/adapter-react-v5';
 import { Alert, Button, Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
 
-import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
-import { normalizeInstance } from '../../shared/playerConfigUtils';
+import { configuredPlayerSelection, decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import {
     mergeFavorites,
     moveFavorite,
@@ -19,14 +18,9 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
     const automaticRefreshKey = useRef('');
     const favorites = readConfiguredFavorites(data);
     const widgetId = decodePlayerWidgetReference(data.widgetPlayer);
-    const selectedView = props.selectedView || props.view;
-    const playerData = props.context.views?.[selectedView]?.widgets?.[widgetId]?.data || {};
-    const instance = normalizeInstance(playerData.ainstance);
+    const instance = configuredPlayerSelection(props.context.views, widgetId)?.instance || '';
 
-    const update = useCallback(
-        updated => onDataChange(writeConfiguredFavorites(data, updated)),
-        [data, onDataChange],
-    );
+    const update = useCallback(updated => onDataChange(writeConfiguredFavorites(data, updated)), [data, onDataChange]);
 
     const refresh = useCallback(async () => {
         if (!instance) {
@@ -55,8 +49,14 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
     }, [instance, refresh, widgetId]);
 
     return (
-        <Stack spacing={1} sx={{ width: '100%' }}>
-            <Button disabled={loading || !instance} onClick={() => void refresh()}>
+        <Stack
+            spacing={1}
+            sx={{ width: '100%' }}
+        >
+            <Button
+                disabled={loading || !instance}
+                onClick={() => void refresh()}
+            >
                 {I18n.t('squeezeboxrpc_refresh_favorites')}
             </Button>
             {error ? <Alert severity="warning">{error}</Alert> : null}
@@ -93,15 +93,24 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
                         padding: 0.5,
                     }}
                 >
-                    <span aria-hidden="true" style={{ fontSize: 20, lineHeight: 1 }}>☰</span>
+                    <span
+                        aria-hidden="true"
+                        style={{ fontSize: 20, lineHeight: 1 }}
+                    >
+                        ☰
+                    </span>
                     <FormControlLabel
                         sx={{ flexGrow: 1, marginRight: 0, minWidth: 0 }}
                         control={
                             <Checkbox
                                 checked={favorite.enabled !== false}
-                                onChange={event => update(favorites.map((item, itemIndex) =>
-                                    itemIndex === index ? { ...item, enabled: event.target.checked } : item,
-                                ))}
+                                onChange={event =>
+                                    update(
+                                        favorites.map((item, itemIndex) =>
+                                            itemIndex === index ? { ...item, enabled: event.target.checked } : item,
+                                        ),
+                                    )
+                                }
                             />
                         }
                         label={favorite.name ? `${favorite.id} — ${favorite.name}` : favorite.id}

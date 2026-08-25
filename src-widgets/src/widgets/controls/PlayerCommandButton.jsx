@@ -118,7 +118,7 @@ class PlayerCommandButton extends WidgetBase {
         if (widgetPlayer) {
             this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => {
                 this.setState({ commandStateId: playerCommandStateId(selection, this.commandConfig.command) });
-            });
+            }, this.props.context.views);
         }
     }
 

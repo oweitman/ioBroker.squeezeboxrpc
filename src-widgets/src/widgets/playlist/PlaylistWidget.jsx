@@ -75,7 +75,7 @@ class PlaylistWidget extends WidgetBase {
                 ? subscribePlayerSelection(widgetPlayer, selection => {
                       this.selection = selection;
                       void this.loadPlaylists();
-                  })
+                  }, this.props.context.views)
                 : null;
             if (!widgetPlayer) this.setState({ playlists: [], playlistError: '' });
             return;

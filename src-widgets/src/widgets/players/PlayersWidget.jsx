@@ -11,7 +11,7 @@ import {
     readConfiguredPlayers,
     selectPlayerAfterLoad,
 } from '../../shared/playerConfigUtils';
-import { clearPlayerSelection, publishPlayerSelection } from '../../shared/playerSelectionBus';
+import { publishPlayerSelection } from '../../shared/playerSelectionBus';
 import './players.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -185,7 +185,6 @@ class PlayersWidget extends WidgetBase {
     }
 
     componentWillUnmount() {
-        clearPlayerSelection(this.props.id);
         super.componentWillUnmount();
     }
 

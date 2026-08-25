@@ -127,7 +127,7 @@ class PlayButtonWidget extends WidgetBase {
         if (widgetPlayer) {
             this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => {
                 void this.usePlayerSelection(selection);
-            });
+            }, this.props.context.views);
         }
     }
 

@@ -163,7 +163,7 @@ class FavoritesWidget extends WidgetBase {
                 ? subscribePlayerSelection(widgetPlayer, selection => {
                       this.selection = selection;
                       void this.loadFavorites();
-                  })
+                  }, this.props.context.views)
                 : null;
             if (!widgetPlayer) this.setState({ discoveredFavorites: [], favoritesError: '', activeFavorite: '' });
             return;

@@ -8,11 +8,12 @@ import {
 } from './playerWidgetReferenceUtils';
 
 export default function PlayerWidgetReferenceField({ data, onDataChange, props }) {
-    const playersWidgets = findPlayersWidgets(props.context.views, props.selectedView);
+    const playersWidgets = findPlayersWidgets(props.context.views);
     const selected = decodePlayerWidgetReference(data.widgetPlayer);
-    const options = selected && !playersWidgets.some(widget => widget.id === selected)
-        ? [{ id: selected, label: selected }, ...playersWidgets]
-        : playersWidgets;
+    const options =
+        selected && !playersWidgets.some(widget => widget.id === selected)
+            ? [{ id: selected, instance: '', view: '', name: selected }, ...playersWidgets]
+            : playersWidgets;
 
     useEffect(() => {
         if (selected && data.widgetPlayer === selected) {
@@ -23,16 +24,21 @@ export default function PlayerWidgetReferenceField({ data, onDataChange, props }
     return (
         <select
             value={selected}
-            onChange={event => onDataChange({
-                ...data,
-                widgetPlayer: encodePlayerWidgetReference(event.target.value),
-            })}
+            onChange={event =>
+                onDataChange({
+                    ...data,
+                    widgetPlayer: encodePlayerWidgetReference(event.target.value),
+                })
+            }
             style={{ boxSizing: 'border-box', minHeight: 36, width: '100%' }}
         >
             <option value="">{I18n.t('squeezeboxrpc_none')}</option>
             {options.map(widget => (
-                <option key={widget.id} value={widget.id}>
-                    {widget.label === widget.id ? widget.id : `${widget.label} (${widget.id})`}
+                <option
+                    key={widget.id}
+                    value={widget.id}
+                >
+                    {widget.instance ? `${widget.instance} (${widget.view}: ${widget.name})` : widget.name}
                 </option>
             ))}
         </select>

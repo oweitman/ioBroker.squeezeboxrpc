@@ -342,6 +342,25 @@ describe('VIS-2 Players configuration', () => {
         expect(received.map(selection => selection?.player)).to.deep.equal(['Kitchen', 'Living']);
     });
 
+    it('initializes a cross-view selection from the referenced Players widget', async () => {
+        const { clearPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
+        const received = [];
+        const views = { players: { widgets: { wRemote: {
+            tpl: 'tplSqueezeboxrpcPlayers2',
+            data: {
+                ainstance: 'squeezeboxrpc.2', playerCount: 2, defaultPlayer: 'Kitchen',
+                playerName1: 'Living', playerEnabled1: true,
+                playerName2: 'Kitchen', playerEnabled2: true,
+            },
+        } } } };
+        const unsubscribe = subscribePlayerSelection('wRemote', selection => received.push(selection), views);
+        unsubscribe();
+        clearPlayerSelection('wRemote');
+
+        expect(received).to.have.length(1);
+        expect(received[0]).to.include({ instance: 'squeezeboxrpc.2', player: 'Kitchen' });
+    });
+
     it('publishes player appearance changes even when the selected player stays unchanged', async () => {
         const { clearPlayerSelection, publishPlayerSelection, subscribePlayerSelection } = await loadModule('playerSelectionBus.js');
         const received = [];
@@ -355,22 +374,30 @@ describe('VIS-2 Players configuration', () => {
         expect(received.map(selection => selection?.players?.[0]?.text)).to.deep.equal([undefined, 'Kitchen', 'Küche']);
     });
 
-    it('lists Players widgets without creating a VIS-2 widget ownership relation', async () => {
-        const { decodePlayerWidgetReference, encodePlayerWidgetReference, findPlayersWidgets } =
+    it('lists and resolves Players widgets across VIS-2 views', async () => {
+        const { configuredPlayerSelection, decodePlayerWidgetReference, encodePlayerWidgetReference, findPlayersWidgets } =
             await loadModule('playerWidgetReferenceUtils.js');
         const views = {
             main: {
                 widgets: {
-                    w2: { tpl: 'tplSqueezeboxrpcPlayers2', data: { name: 'Living players' } },
-                    w1: { tpl: 'tplSqueezeboxrpcPlayers2', data: {} },
+                    w2: { tpl: 'tplSqueezeboxrpcPlayers2', data: {
+                        name: 'Living players', ainstance: 'squeezeboxrpc.1', playerCount: 1,
+                        playerName1: 'Living', playerEnabled1: true, defaultPlayer: 'Living',
+                    } },
                     w3: { tpl: 'tplSqueezeboxrpcPlay2', data: {} },
                 },
             },
+            audio: { widgets: {
+                w1: { tpl: 'tplSqueezeboxrpcPlayers2', data: { ainstance: 'squeezeboxrpc.0' } },
+            } },
         };
-        expect(findPlayersWidgets(views, 'main')).to.deep.equal([
-            { id: 'w2', label: 'Living players' },
-            { id: 'w1', label: 'w1' },
+        expect(findPlayersWidgets(views).map(widget => ({
+            id: widget.id, view: widget.view, instance: widget.instance, name: widget.name,
+        }))).to.deep.equal([
+            { id: 'w1', view: 'audio', instance: 'squeezeboxrpc.0', name: 'w1' },
+            { id: 'w2', view: 'main', instance: 'squeezeboxrpc.1', name: 'Living players' },
         ]);
+        expect(configuredPlayerSelection(views, 'w2')).to.include({ instance: 'squeezeboxrpc.1', player: 'Living' });
         expect(encodePlayerWidgetReference('w1')).to.equal('squeezeboxrpc-player:w1');
         expect(decodePlayerWidgetReference('squeezeboxrpc-player:w1')).to.equal('w1');
         expect(decodePlayerWidgetReference('w1')).to.equal('w1');
