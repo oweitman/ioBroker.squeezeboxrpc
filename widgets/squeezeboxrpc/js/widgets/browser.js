@@ -260,7 +260,7 @@ export const browser = {
                     padding: 0rem 0rem;
                     z-index: 10;               /* Damit sie auch oben bleibt, falls andere Elemente darüberliegen könnten */
                     border-bottom: 1px solid #ccc;
-                    background-color: black;
+                    /* background-color: black; */
                     cursor: pointer;
                 }
                 #${widgetID} .sqbrowser-ellipsis {

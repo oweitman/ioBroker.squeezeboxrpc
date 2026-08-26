@@ -255,6 +255,46 @@ export class Font {
         return elementFont ? elementFont : 'normal 12px sans-serif';
     }
 }
+
+/**
+ * Returns the first visible background colour of an element or one of its
+ * ancestors. This lets generated canvas images follow VIS widget styles as
+ * well as user supplied global CSS.
+ *
+ * @param {HTMLElement} element element whose effective background is required
+ * @param {string} fallback fallback colour when all ancestors are transparent
+ * @returns {string} effective CSS background colour
+ */
+export function getEffectiveBackgroundColor(element, fallback = '#000000') {
+    for (let current = element; current; current = current.parentElement) {
+        const backgroundColor = window.getComputedStyle(current).backgroundColor;
+        if (
+            backgroundColor &&
+            backgroundColor != 'transparent' &&
+            backgroundColor != 'rgba(0, 0, 0, 0)' &&
+            backgroundColor != 'rgba(0,0,0,0)'
+        ) {
+            return backgroundColor;
+        }
+    }
+    return fallback;
+}
+
+/**
+ * Keeps an explicitly customised colour, but replaces the legacy default with
+ * the effective colour inherited from VIS/CSS.
+ *
+ * @param {string} configured configured widget colour
+ * @param {string} legacyDefault legacy default value from the VIS template
+ * @param {string} inherited effective colour inherited from the widget
+ * @returns {string} colour to render
+ */
+export function resolveLegacyDefaultColor(configured, legacyDefault, inherited) {
+    if (!configured || configured.toLowerCase() == legacyDefault.toLowerCase()) {
+        return inherited;
+    }
+    return configured;
+}
 /**
  * Adjusts the font size to ensure that the given lines of text fit within the specified width.
  *

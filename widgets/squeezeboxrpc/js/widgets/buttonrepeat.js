@@ -123,10 +123,6 @@ export const buttonrepeat = {
         const imagerepeat1 = data.imagerepeat1 || '';
         const imagerepeat2 = data.imagerepeat2 || '';
 
-        const svgfill = data.fillcolor || '#ffffff';
-        const svgstroke = data.strokecolor || '#ffffff';
-        const svgstrokeWidth = data.strokewidth || '0.3';
-
         // 0 = repeat0 disabled, 1 = repeat1 enabled, 2 = custom repeat2 or repeat0 enabled
         const image =
             state === 1
@@ -141,9 +137,9 @@ export const buttonrepeat = {
             $(`#${widgetID} span`).html(image);
             const $g = $(`#${widgetID} svg > g`);
             if ($g.length) {
-                $g.attr('fill', svgfill);
-                $g.attr('stroke', svgstroke);
-                $g.attr('stroke-width', svgstrokeWidth);
+                data.fillcolor && $g.attr('fill', data.fillcolor);
+                data.strokecolor && $g.attr('stroke', data.strokecolor);
+                data.strokewidth && $g.attr('stroke-width', data.strokewidth);
             }
         } else {
             $(`#${widgetID} span`).html(`<img src="${image}">`);

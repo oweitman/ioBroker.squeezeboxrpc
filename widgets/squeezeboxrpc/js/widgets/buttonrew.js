@@ -18,10 +18,6 @@ export const buttonrew = {
             return;
         }
 
-        const svgfill = data.fillcolor || '#ffffff';
-        const svgstroke = data.strokecolor || '#ffffff';
-        const svgstrokeWidth = data.strokewidth || '0.3';
-
         const svg = vis.binds['squeezeboxrpc'].svg;
 
         let text = '';
@@ -66,9 +62,9 @@ export const buttonrew = {
             $(`#${widgetID} span`).html(image);
             const $g = $(`#${widgetID} svg > g`);
             if ($g.length) {
-                $g.attr('fill', svgfill);
-                $g.attr('stroke', svgstroke);
-                $g.attr('stroke-width', svgstrokeWidth);
+                data.fillcolor && $g.attr('fill', data.fillcolor);
+                data.strokecolor && $g.attr('stroke', data.strokecolor);
+                data.strokewidth && $g.attr('stroke-width', data.strokewidth);
             }
         } else {
             $(`#${widgetID} img`).attr('src', image);

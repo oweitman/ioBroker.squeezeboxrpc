@@ -1,7 +1,7 @@
 /* globals $,vis,window */
 'use strict';
 
-import { createTextImage, Font } from '../textImage.js';
+import { createTextImage, Font, getEffectiveBackgroundColor, resolveLegacyDefaultColor } from '../textImage.js';
 
 export const players = {
     createWidget: async function (widgetID, view, data, style) {
@@ -12,9 +12,10 @@ export const players = {
                 vis.binds['squeezeboxrpc'].players.createWidget(widgetID, view, data, style);
             }, 100);
         }
-        // VIS 2 may expose the VIS 1 widget configuration as a frozen object.
-        // Keep runtime-only values in a mutable working copy.
-        data = { ...vis.views[view].widgets[widgetID].data };
+        // VIS may expose the saved widget configuration as a frozen object, while
+        // the data passed to the renderer contains already resolved bindings.
+        // Keep both in a mutable copy and prefer the resolved runtime values.
+        data = { ...vis.views[view].widgets[widgetID].data, ...(data || {}) };
         style = vis.views[view].widgets[widgetID].style;
         data.ainstance = data.ainstance ? data.ainstance.split('.').slice(0, 2).join('.') : '';
         const ainstance = data.ainstance.split('.');
@@ -37,7 +38,6 @@ export const players = {
             const opacity = vis.editMode && editmodehelper ? 1 : data.opacity;
             const borderwidth = data.borderwidth;
             const borderstyle = data.borderstyle;
-            const bordercolornormal = data.bordercolornormal;
             const bordercoloractive = data.bordercoloractive;
             const borderradius = data.borderradius;
             const buttonmargin = data.buttonmargin || '0px';
@@ -53,7 +53,9 @@ export const players = {
                 redrawinspectwidgets = true;
             }
 
-            const viewindex = data.viewindex.split(', ');
+            const viewindex = data.viewindex
+                .split(', ')
+                .filter(x => x.trim() && !isNaN(Number(x)) && playerNames[Number(x)] !== undefined);
             if (data.formattype == 'formatselect') {
                 let text = '';
                 let option = '';
@@ -71,6 +73,16 @@ export const players = {
                 $(`#${widgetID}`).html(text);
             }
             if (data.formattype == 'formatbutton') {
+                const widgetElement = $div[0];
+                const computedStyle = window.getComputedStyle(widgetElement, null);
+                const foregroundColor = computedStyle.color || '#ffffff';
+                const backgroundColor = resolveLegacyDefaultColor(
+                    data.buttonbkcolor,
+                    '#000000',
+                    getEffectiveBackgroundColor(widgetElement, '#000000'),
+                );
+                const bordercolornormal = data.bordercolornormal;
+
                 let text = '';
 
                 text += '<style>\n';
@@ -84,41 +96,35 @@ export const players = {
                 text += `#${widgetID} input[type="radio"] {\n`;
                 text += '    display: none;\n';
                 text += '}\n';
-                text += `#${widgetID} img {\n`;
-                text += `    opacity: ${opacity};\n`;
+                text += `#${widgetID} label > span {\n`;
+                text += '    display: inline-block;\n';
                 text += `    width: ${picWidth}px;\n`;
                 text += `    height: ${picHeight}px;\n`;
                 text += `    border: ${borderwidth} ${borderstyle} ${bordercolornormal};\n`;
                 text += `    border-radius: ${borderradius};\n`;
+                text += '    overflow: hidden;\n';
+                text += '    vertical-align: top;\n';
                 text += '}\n';
-                text += `#${widgetID} canvas {\n`;
+                text += `#${widgetID} img, #${widgetID} canvas {\n`;
+                text += '    display: block;\n';
                 text += `    opacity: ${opacity};\n`;
                 text += `    width: ${picWidth}px;\n`;
                 text += `    height: ${picHeight}px;\n`;
-                text += `    border: ${borderwidth} ${borderstyle} ${bordercolornormal};\n`;
-                text += `    border-radius: ${borderradius};\n`;
+                text += '    border: 0;\n';
                 text += '}\n';
-                text += `#${widgetID} img:active {\n`;
+                text += `#${widgetID} label > span:active {\n`;
                 text += '    transform: scale(0.9, 0.9);\n';
-                text += '    opacity: 1;\n';
                 text += `    border: ${borderwidth} ${borderstyle} ${bordercoloractive};\n`;
-                text += `    border-radius: ${borderradius};\n`;
                 text += '}\n';
-                text += `#${widgetID} canvas:active {\n`;
-                text += '    transform: scale(0.9, 0.9);\n';
+                text += `#${widgetID} label > span:active img, #${widgetID} label > span:active canvas {\n`;
                 text += '    opacity: 1;\n';
-                text += `    border: ${borderwidth} ${borderstyle} ${bordercoloractive};\n`;
-                text += `    border-radius: ${borderradius};\n`;
                 text += '}\n';
-                text += `#${widgetID} input[type="radio"]:checked + label img {\n`;
-                text += '    opacity: 1;\n';
+                text += `#${widgetID} input[type="radio"]:checked + label > span {\n`;
                 text += `    border: ${borderwidth} ${borderstyle} ${bordercoloractive};\n`;
-                text += `    border-radius: ${borderradius};\n`;
                 text += '}\n';
-                text += `#${widgetID} input[type="radio"]:checked + label canvas {\n`;
+                text += `#${widgetID} input[type="radio"]:checked + label > span img,\n`;
+                text += `#${widgetID} input[type="radio"]:checked + label > span canvas {\n`;
                 text += '    opacity: 1;\n';
-                text += `    border: ${borderwidth} ${borderstyle} ${bordercoloractive};\n`;
-                text += `    border-radius: ${borderradius};\n`;
                 text += '}\n';
                 text += '</style>\n';
 
@@ -152,8 +158,12 @@ export const players = {
                 const font = new Font($(`#${widgetID}`));
                 const opt = {};
                 opt.wrapCamelCase = data.wrapcamelcase;
-                opt.style = window.getComputedStyle($(`#${widgetID}`)[0], null);
-                opt.backgroundcolor = data.buttonbkcolor;
+                opt.style = {
+                    color: foregroundColor,
+                    direction: computedStyle.direction,
+                    textAlign: computedStyle.textAlign || 'center',
+                };
+                opt.backgroundcolor = backgroundColor;
                 for (let i = 0; i < viewindex.length; i++) {
                     const buttonsImage = data[`buttonsImage${parseInt(viewindex[i]) + 1}`] || '';
                     let buttonsText = data[`buttonsText${parseInt(viewindex[i]) + 1}`] || '';

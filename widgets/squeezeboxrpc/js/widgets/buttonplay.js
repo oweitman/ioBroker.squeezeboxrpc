@@ -106,10 +106,6 @@ export const buttonplay = {
         const imageplay = data.imageplay || '';
         const imagestop = data.imagepause || '';
 
-        const svgfill = data.fillcolor || '#ffffff';
-        const svgstroke = data.strokecolor || '#ffffff';
-        const svgstrokeWidth = data.strokewidth || '0.3';
-
         let image = '';
         //0=pause
         //1=play
@@ -130,9 +126,9 @@ export const buttonplay = {
             $(`#${widgetID} span`).html(image);
             const $g = $(`#${widgetID} svg > g`);
             if ($g.length) {
-                $g.attr('fill', svgfill);
-                $g.attr('stroke', svgstroke);
-                $g.attr('stroke-width', svgstrokeWidth);
+                data.fillcolor && $g.attr('fill', data.fillcolor);
+                data.strokecolor && $g.attr('stroke', data.strokecolor);
+                data.strokewidth && $g.attr('stroke-width', data.strokewidth);
             }
         } else {
             $(`#${widgetID} img`).attr('src', image);

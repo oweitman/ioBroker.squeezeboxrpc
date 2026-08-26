@@ -13,9 +13,9 @@ export const favorites = {
             }, 100);
         }
 
-        // VIS 2 may expose the VIS 1 widget configuration as a frozen object.
-        // Keep runtime-only values in a mutable working copy.
-        data = { ...vis.views[view].widgets[widgetID].data };
+        // Keep the saved configuration and already resolved runtime bindings in
+        // a mutable object. Resolved values must win over their raw expressions.
+        data = { ...vis.views[view].widgets[widgetID].data, ...(data || {}) };
         style = vis.views[view].widgets[widgetID].style;
         let redrawinspectwidgets = false;
 
@@ -162,9 +162,14 @@ export const favorites = {
                 const spans = $(`#${widgetID} span`);
                 const font = new Font($(`#${widgetID}`));
                 const opt = {};
+                const computedStyle = window.getComputedStyle($(`#${widgetID}`)[0], null);
 
-                opt.style = window.getComputedStyle($(`#${widgetID}`)[0], null);
-                opt.backgroundcolor = data.buttonbkcolor;
+                opt.style = {
+                    color: style?.color || '#ffffff',
+                    direction: computedStyle.direction,
+                    textAlign: computedStyle.textAlign || 'center',
+                };
+                opt.backgroundcolor = data.buttonbkcolor || '#000000';
                 for (let i = 0; i < viewindex.length; i++) {
                     const favorite = this.findById(favorites, viewindex[i]);
 

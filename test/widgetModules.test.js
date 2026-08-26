@@ -132,6 +132,7 @@ describe('VIS widget modules', () => {
 
     it('initializes Syncgroup without scheduling a recreate during initial state binding', () => {
         const syncgroupSource = fs.readFileSync(path.join(widgetSource, 'widgets', 'syncgroup.js'), 'utf8');
+        const playersSource = fs.readFileSync(path.join(widgetSource, 'widgets', 'players.js'), 'utf8');
         const bindingCallback = syncgroupSource.slice(
             syncgroupSource.indexOf("vis.binds['squeezeboxrpc'].setPlayersChanged("),
             syncgroupSource.indexOf("vis.binds['squeezeboxrpc'].setChanged("),
@@ -140,6 +141,17 @@ describe('VIS widget modules', () => {
         expect(bindingCallback).to.include('return boundstates;');
         expect(bindingCallback.indexOf('return boundstates;')).to.be.lessThan(bindingCallback.indexOf('setTimeout'));
         expect(syncgroupSource).to.match(/syncgroupbtns[\s\S]*this\.setState\(fdata\);\s*\n\s*},\s*\n\s*onChange/);
+        expect(syncgroupSource).not.to.include('e.type');
+        expect(playersSource).to.include('...(data || {})');
+        expect(playersSource).to.include('color: foregroundColor');
+        expect(playersSource).to.include('getEffectiveBackgroundColor(widgetElement');
+        expect(playersSource).to.include('const bordercolornormal = data.bordercolornormal;');
+        expect(syncgroupSource).to.include("one('load.syncgroup', drawPlayerImage)");
+        expect(syncgroupSource).to.include("const width = isCanvas ? source.width");
+        expect(playersSource).to.include('label > span {');
+        expect(playersSource).to.include('img, #${widgetID} canvas {');
+        expect(syncgroupSource).to.include('label > span {');
+        expect(syncgroupSource).to.include('canvas {');
     });
 
     it('cycles VIS-1 repeat states through PlaylistRepeat', async () => {

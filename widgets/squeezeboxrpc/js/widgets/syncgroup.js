@@ -76,38 +76,31 @@ export const syncgroup = {
         text += `#${widgetID} input[type="checkbox"] {\n`;
         text += '    display: none;\n';
         text += '}\n';
-        text += `#${widgetID} canvas {\n`;
-        text += '    opacity: 1;\n';
+        text += `#${widgetID} label > span {\n`;
+        text += '    display: inline-block;\n';
         text += `    width: ${picWidth}px;\n`;
         text += `    height: ${picHeight}px;\n`;
         text += `    border: ${borderwidth} ${borderstyle} ${bordercolornogroup};\n`;
         text += `    border-radius: ${borderradius};\n`;
+        text += '    overflow: hidden;\n';
+        text += '    vertical-align: top;\n';
         text += '}\n';
-        text += `#${widgetID} canvas:active {\n`;
+        text += `#${widgetID} canvas {\n`;
+        text += '    display: block;\n';
+        text += '    opacity: 1;\n';
+        text += `    width: ${picWidth}px;\n`;
+        text += `    height: ${picHeight}px;\n`;
+        text += '    border: 0;\n';
+        text += '}\n';
+        text += `#${widgetID} label > span:active {\n`;
         text += '    transform: scale(0.9, 0.9);\n';
-        text += '    opacity: 1;\n';
         text += `    border: ${borderwidth} ${borderstyle} ${bordercolorowngroup};\n`;
-        text += `    border-radius: ${borderradius};\n`;
         text += '}\n';
-        text += `#${widgetID} input[type="checkbox"]:checked + label img {\n`;
-        text += '    opacity: 1;\n';
+        text += `#${widgetID} input[type="checkbox"]:checked + label > span {\n`;
         text += `    border: ${borderwidth} ${borderstyle} ${bordercolorowngroup};\n`;
-        text += `    border-radius: ${borderradius};\n`;
         text += '}\n';
-        text += `#${widgetID} input[type="checkbox"]:checked + label canvas {\n`;
-        text += '    opacity: 1;\n';
-        text += `    border: ${borderwidth} ${borderstyle} ${bordercolorowngroup};\n`;
-        text += `    border-radius: ${borderradius};\n`;
-        text += '}\n';
-        text += `#${widgetID} input[type="checkbox"][othergroup="true"] + label img {\n`;
-        text += '    opacity: 1;\n';
+        text += `#${widgetID} input[type="checkbox"][othergroup="true"] + label > span {\n`;
         text += `    border: ${borderwidth} ${borderstyle} ${bordercolorothergroup};\n`;
-        text += `    border-radius: ${borderradius};\n`;
-        text += '}\n';
-        text += `#${widgetID} input[type="checkbox"][othergroup="true"] + label canvas {\n`;
-        text += '    opacity: 1;\n';
-        text += `    border: ${borderwidth} ${borderstyle} ${bordercolorothergroup};\n`;
-        text += `    border-radius: ${borderradius};\n`;
         text += '}\n';
         text += '</style>\n';
 
@@ -138,13 +131,34 @@ export const syncgroup = {
         $(`#${widgetID}`).html(text);
 
         for (let i = 0; i < players.length; i++) {
-            const elemp = $(`#${data.widgetPlayer} input[value="${players[i]}"]  + label span :first-child`);
-            const elems = $(`#${widgetID}${players[i]} + label span canvas`);
-            elems[0].height = elemp.height();
-            elems[0].width = elemp.width();
+            const source = $(`#${data.widgetPlayer} input[value="${players[i]}"] + label span :first-child`)[0];
+            const destination = $(`#${widgetID}${players[i]} + label span canvas`)[0];
+            if (!source || !destination) {
+                continue;
+            }
 
-            const destCtx = elems[0].getContext('2d');
-            destCtx.drawImage(elemp[0], 0, 0, elemp.width(), elemp.height());
+            const drawPlayerImage = function () {
+                const isCanvas = source.tagName == 'CANVAS';
+                const width = isCanvas ? source.width : $(source).width() || source.naturalWidth || source.width;
+                const height = isCanvas ? source.height : $(source).height() || source.naturalHeight || source.height;
+                if (!width || !height) {
+                    return;
+                }
+                destination.width = width;
+                destination.height = height;
+                const context = destination.getContext('2d');
+                if (isCanvas) {
+                    context.drawImage(source, 0, 0);
+                } else {
+                    context.drawImage(source, 0, 0, width, height);
+                }
+            };
+
+            if (source.tagName == 'IMG' && !source.complete) {
+                $(source).one('load.syncgroup', drawPlayerImage);
+            } else {
+                drawPlayerImage();
+            }
         }
 
         const syncgroupbtns = $(`input[name=${widgetID}]`);
@@ -169,8 +183,7 @@ export const syncgroup = {
         });
         this.setState(fdata);
     },
-    onChange: function (e, newVal, oldVal) {
-        console.log(`${e.type}: ${newVal}, ${oldVal}`);
+    onChange: function () {
         this.self.setState(this);
     },
     setState: function (fdata) {
