@@ -1454,7 +1454,6 @@
         info: {},
         createWidget: function(widgetID, view, data, style) {
           return __async(this, null, function* () {
-            console.log(`createWidget ${widgetID}`);
             const $div = $(`#${widgetID}`);
             if (!$div.length) {
               return setTimeout(function() {
@@ -2057,6 +2056,12 @@
               text += "    width: 100%;\n";
               text += "    height: 100%;\n";
               text += "    overflow: auto;\n";
+              text += "    scrollbar-width: thin;\n";
+              text += "}\n";
+              text += `#${widgetID} #${widgetID}container::-webkit-scrollbar {
+`;
+              text += "    width: 6px;\n";
+              text += "    height: 6px;\n";
               text += "}\n";
               text += `#${widgetID} input[type="radio"] {
 `;
@@ -2762,6 +2767,13 @@
   });
 
   // squeezeboxrpc/js/widgets/buttonrepeat.js
+  function normalizeRepeatState(value) {
+    const state = Number.parseInt(String(value), 10);
+    return state === 0 || state === 1 || state === 2 ? state : 0;
+  }
+  function nextRepeatState(value) {
+    return (normalizeRepeatState(value) + 1) % 3;
+  }
   var buttonrepeat;
   var init_buttonrepeat = __esm({
     "squeezeboxrpc/js/widgets/buttonrepeat.js"() {
@@ -2838,12 +2850,13 @@
         },
         onClick: function(event) {
           const data = event.data.data;
-          const widgetID = event.data.widgetID;
           const playername = vis.binds["squeezeboxrpc"].getPlayerName(data.widgetPlayer);
+          if (!playername) {
+            return;
+          }
           const stateid = `${data.ainstance.join(".")}.Players.${playername}.PlaylistRepeat`;
-          let state = $(`input[name=${widgetID}]`).val();
-          state = state > 1 ? 0 : parseInt(state) + 1;
-          vis.setValue(stateid, state);
+          const state = vis.states[`${stateid}.val`];
+          vis.setValue(stateid, nextRepeatState(state));
         },
         onChange: function() {
           this.self.setState(this);
@@ -2859,23 +2872,14 @@
             }, 100);
           }
           const stateid = `${data.ainstance.join(".")}.Players.${playername}.PlaylistRepeat`;
-          const state = vis.states[`${stateid}.val`] || vis.states[`${stateid}.val`] === 0 ? parseInt(vis.states[`${stateid}.val`]) : 0;
+          const state = normalizeRepeatState(vis.states[`${stateid}.val`]);
           const imagerepeat0 = data.imagerepeat0 || "";
           const imagerepeat1 = data.imagerepeat1 || "";
           const imagerepeat2 = data.imagerepeat2 || "";
           const svgfill = data.fillcolor || "#ffffff";
           const svgstroke = data.strokecolor || "#ffffff";
           const svgstrokeWidth = data.strokewidth || "0.3";
-          let image2 = "";
-          if (state == 0) {
-            image2 = imagerepeat0 || svg.repeat0;
-          }
-          if (state == 1) {
-            image2 = imagerepeat1 || svg.repeat1;
-          }
-          if (state == 2) {
-            image2 = imagerepeat2 || svg.repeat0;
-          }
+          const image2 = state === 1 ? imagerepeat1 || svg.repeat1 : state === 2 ? imagerepeat2 || imagerepeat0 || svg.repeat0 : imagerepeat0 || svg.repeat0;
           $(`#${widgetID} input`).val(state);
           $(`#${widgetID} img`).off("click.repeat", this.onClick);
           $(`#${widgetID} svg`).off("click.repeat", this.onClick);
@@ -2886,15 +2890,11 @@
               $g.attr("fill", svgfill);
               $g.attr("stroke", svgstroke);
               $g.attr("stroke-width", svgstrokeWidth);
-              if (state === 0) {
-                $g.attr("opacity", ".5");
-              } else {
-                $g.attr("opacity", "1");
-              }
             }
           } else {
-            $(`#${widgetID} img`).attr("src", image2);
+            $(`#${widgetID} span`).html(`<img src="${image2}">`);
           }
+          $(`#${widgetID} img, #${widgetID} svg`).css("opacity", state === 0 ? "0.5" : "1");
           $(`#${widgetID} img`).on("click.repeat", fdata, this.onClick);
           $(`#${widgetID} svg`).on("click.repeat", fdata, this.onClick);
         }
@@ -4341,7 +4341,10 @@
           vis.conn.getStates(
             bound,
             function(error, states) {
-              vis.updateStates(states);
+              if (error) {
+                console.error("Cannot read initial widget states:", error);
+              }
+              vis.updateStates(states || {});
               vis.conn.subscribe(bound);
               for (let i = 0; i < bound.length; i++) {
                 bound[i] = `${bound[i]}.val`;
@@ -4349,6 +4352,7 @@
               }
               $div.data("bound", bound);
               $div.data("bindHandler", change_callback);
+              change_callback.call(fdata);
             }.bind({ fdata, change_callback })
           );
         },

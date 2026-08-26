@@ -74,6 +74,11 @@ export const favorites = {
                 text += '    width: 100%;\n';
                 text += '    height: 100%;\n';
                 text += '    overflow: auto;\n';
+                text += '    scrollbar-width: thin;\n';
+                text += '}\n';
+                text += `#${widgetID} #${widgetID}container::-webkit-scrollbar {\n`;
+                text += '    width: 6px;\n';
+                text += '    height: 6px;\n';
                 text += '}\n';
                 text += `#${widgetID} input[type="radio"] {\n`;
                 text += '    display: none;\n';

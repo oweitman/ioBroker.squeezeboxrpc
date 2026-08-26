@@ -1,6 +1,25 @@
 /* globals $,vis */
 'use strict';
 
+/**
+ * Normalize PlaylistRepeat to one of the three supported states.
+ *
+ * @param {string|number|undefined|null} value State value.
+ */
+export function normalizeRepeatState(value) {
+    const state = Number.parseInt(String(value), 10);
+    return state === 0 || state === 1 || state === 2 ? state : 0;
+}
+
+/**
+ * Return the next PlaylistRepeat state.
+ *
+ * @param {string|number|undefined|null} value Current state value.
+ */
+export function nextRepeatState(value) {
+    return (normalizeRepeatState(value) + 1) % 3;
+}
+
 export const buttonrepeat = {
     createWidget: function (widgetID, view, data, style) {
         const $div = $(`#${widgetID}`);
@@ -76,12 +95,13 @@ export const buttonrepeat = {
     },
     onClick: function (event) {
         const data = event.data.data;
-        const widgetID = event.data.widgetID;
         const playername = vis.binds['squeezeboxrpc'].getPlayerName(data.widgetPlayer);
+        if (!playername) {
+            return;
+        }
         const stateid = `${data.ainstance.join('.')}.Players` + `.${playername}.PlaylistRepeat`;
-        let state = $(`input[name=${widgetID}]`).val();
-        state = state > 1 ? 0 : parseInt(state) + 1;
-        vis.setValue(stateid, state);
+        const state = vis.states[`${stateid}.val`];
+        vis.setValue(stateid, nextRepeatState(state));
     },
     onChange: function () {
         this.self.setState(this);
@@ -98,10 +118,7 @@ export const buttonrepeat = {
         }
         const stateid = `${data.ainstance.join('.')}.Players` + `.${playername}.PlaylistRepeat`;
 
-        const state =
-            vis.states[`${stateid}.val`] || vis.states[`${stateid}.val`] === 0
-                ? parseInt(vis.states[`${stateid}.val`])
-                : 0;
+        const state = normalizeRepeatState(vis.states[`${stateid}.val`]);
         const imagerepeat0 = data.imagerepeat0 || '';
         const imagerepeat1 = data.imagerepeat1 || '';
         const imagerepeat2 = data.imagerepeat2 || '';
@@ -110,19 +127,13 @@ export const buttonrepeat = {
         const svgstroke = data.strokecolor || '#ffffff';
         const svgstrokeWidth = data.strokewidth || '0.3';
 
-        let image = '';
-        //0=pause
-        //1=play
-        //2=stop
-        if (state == 0) {
-            image = imagerepeat0 || svg.repeat0;
-        }
-        if (state == 1) {
-            image = imagerepeat1 || svg.repeat1;
-        }
-        if (state == 2) {
-            image = imagerepeat2 || svg.repeat0;
-        }
+        // 0 = repeat0 disabled, 1 = repeat1 enabled, 2 = custom repeat2 or repeat0 enabled
+        const image =
+            state === 1
+                ? imagerepeat1 || svg.repeat1
+                : state === 2
+                  ? imagerepeat2 || imagerepeat0 || svg.repeat0
+                  : imagerepeat0 || svg.repeat0;
         $(`#${widgetID} input`).val(state);
         $(`#${widgetID} img`).off('click.repeat', this.onClick);
         $(`#${widgetID} svg`).off('click.repeat', this.onClick);
@@ -133,15 +144,11 @@ export const buttonrepeat = {
                 $g.attr('fill', svgfill);
                 $g.attr('stroke', svgstroke);
                 $g.attr('stroke-width', svgstrokeWidth);
-                if (state === 0) {
-                    $g.attr('opacity', '.5');
-                } else {
-                    $g.attr('opacity', '1');
-                }
             }
         } else {
-            $(`#${widgetID} img`).attr('src', image);
+            $(`#${widgetID} span`).html(`<img src="${image}">`);
         }
+        $(`#${widgetID} img, #${widgetID} svg`).css('opacity', state === 0 ? '0.5' : '1');
         $(`#${widgetID} img`).on('click.repeat', fdata, this.onClick);
         $(`#${widgetID} svg`).on('click.repeat', fdata, this.onClick);
     },

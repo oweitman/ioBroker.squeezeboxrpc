@@ -176,6 +176,18 @@ describe('VIS-2 Players configuration', () => {
         expect(source).to.include('title={favorite.name || favorite.id}');
     });
 
+    it('keeps VIS-2 favorites scrollable with a narrow scrollbar', () => {
+        const css = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'favorites', 'favoritesWidget.css'),
+            'utf8',
+        );
+
+        expect(css).to.include('overflow: auto;');
+        expect(css).to.include('scrollbar-width: thin;');
+        expect(css).to.include('.squeezeboxrpc-favorites::-webkit-scrollbar');
+        expect(css).to.include('width: 6px;');
+    });
+
     it('exports translations in the VIS-2 language dictionary format', async () => {
         const translations = (await loadModule('translations.js')).default;
         expect(translations.prefix).to.equal('squeezeboxrpc_');

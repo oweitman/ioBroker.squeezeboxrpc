@@ -45,7 +45,6 @@ export const browser = {
     indexParam: [0, 25000],
     info: {},
     createWidget: async function (widgetID, view, data, style) {
-        console.log(`createWidget ${widgetID}`);
         const $div = $(`#${widgetID}`);
         // if nothing found => wait
         if (!$div.length) {

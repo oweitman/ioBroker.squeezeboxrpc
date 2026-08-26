@@ -229,7 +229,10 @@ vis.binds['squeezeboxrpc'] = {
         vis.conn.getStates(
             bound,
             function (error, states) {
-                vis.updateStates(states);
+                if (error) {
+                    console.error('Cannot read initial widget states:', error);
+                }
+                vis.updateStates(states || {});
                 vis.conn.subscribe(bound);
                 for (let i = 0; i < bound.length; i++) {
                     bound[i] = `${bound[i]}.val`;
@@ -237,6 +240,7 @@ vis.binds['squeezeboxrpc'] = {
                 }
                 $div.data('bound', bound);
                 $div.data('bindHandler', change_callback);
+                change_callback.call(fdata);
             }.bind({ fdata, change_callback }),
         );
     },

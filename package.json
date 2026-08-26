@@ -53,7 +53,7 @@
         "widgets/!(node_modules)/**/build/*.{js,map}",
         "widgets/!(node_modules)/**/css/*.css",
         "widgets/!(node_modules)/**/img/*.{png,svg,jpg}",
-        "widgets/!(node_modules)/**/myi18n/*.json",
+        "widgets/!(node_modules)/**/myi18n/translations.json",
         "widgets/vis2squeezeboxrpc/",
         "www/",
         "io-package.json",

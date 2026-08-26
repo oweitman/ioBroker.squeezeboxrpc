@@ -87,6 +87,13 @@ describe('VIS widget modules', () => {
         }
     });
 
+    it('exposes wrapcamelcase as a VIS-1 Players setting', () => {
+        const html = fs.readFileSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'), 'utf8');
+
+        expect(html).to.include('wrapcamelcase[true]/checkbox');
+        expect(html).not.to.include('defaultPlayer:wrapcamelcase');
+    });
+
     it('retries DateTime updates through the DateTime widget', () => {
         const datetimeSource = fs.readFileSync(path.join(widgetSource, 'widgets', 'datetime.js'), 'utf8');
         const html = fs.readFileSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'), 'utf8');
@@ -105,6 +112,8 @@ describe('VIS widget modules', () => {
         expect(favoritesSource).to.include("text += '    width: 100%;\\n'");
         expect(favoritesSource).to.include("text += '    height: 100%;\\n'");
         expect(favoritesSource).to.include("text += '    overflow: auto;\\n'");
+        expect(favoritesSource).to.include("text += '    scrollbar-width: thin;\\n'");
+        expect(favoritesSource).to.include("text += '    width: 6px;\\n'");
     });
 
     it('registers the VIS-1 PlaylistDetail contract', () => {
@@ -131,6 +140,25 @@ describe('VIS widget modules', () => {
         expect(bindingCallback).to.include('return boundstates;');
         expect(bindingCallback.indexOf('return boundstates;')).to.be.lessThan(bindingCallback.indexOf('setTimeout'));
         expect(syncgroupSource).to.match(/syncgroupbtns[\s\S]*this\.setState\(fdata\);\s*\n\s*},\s*\n\s*onChange/);
+    });
+
+    it('cycles VIS-1 repeat states through PlaylistRepeat', async () => {
+        const result = await esbuild.build({
+            entryPoints: [path.join(widgetSource, 'widgets', 'buttonrepeat.js')],
+            bundle: true,
+            format: 'cjs',
+            target: ['node22'],
+            write: false,
+        });
+        const module = { exports: {} };
+        vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports });
+        const { nextRepeatState, normalizeRepeatState } = module.exports;
+
+        expect(normalizeRepeatState('2')).to.equal(2);
+        expect(normalizeRepeatState(undefined)).to.equal(0);
+        expect(nextRepeatState(0)).to.equal(1);
+        expect(nextRepeatState(1)).to.equal(2);
+        expect(nextRepeatState(2)).to.equal(0);
     });
 
     it('maps Volume Bar clicks predictably to values between 0 and 100', async () => {
@@ -364,7 +392,8 @@ describe('VIS widget modules', () => {
         vm.runInNewContext(result.outputFiles[0].text, context);
         await Promise.resolve();
 
-        const callback = () => undefined;
+        let initialUpdates = 0;
+        const callback = () => initialUpdates++;
         vis.binds.squeezeboxrpc.bindStates(widgetElement, ['squeezeboxrpc.0.Players.living-room.state'], callback, {});
 
         expect(subscribed).to.deep.equal(['squeezeboxrpc.0.Players.living-room.state']);
@@ -374,5 +403,6 @@ describe('VIS widget modules', () => {
                 callback,
             },
         ]);
+        expect(initialUpdates).to.equal(1);
     });
 });
