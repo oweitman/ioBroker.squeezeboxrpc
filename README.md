@@ -25,6 +25,24 @@ The `LMS`-Server can manage/provide very big music collections on harddrives
 or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 `Soundcloud`, `shoutcast`, `tunein`, `napster`, `pandora`, `tidal` and more
 
+## Table of contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Update](#update)
+- [Troubleshooting](#trouble-shooting)
+- [Provided states](#provided-states)
+  - [Server](#server)
+  - [Favorites](#favorites)
+  - [Players](#players)
+- [Widgets](#widgets)
+  - [VIS 1 widget documentation](docs/vis1-widgets.md)
+  - [VIS 2 widget documentation](docs/vis2-widgets.md)
+- [SendTo commands](#sendto-commands)
+- [Todo](#todo)
+- [Changelog](#changelog)
+- [License](#license)
+
 ## Features
 
 - most of [data](#server) that the `LMS`-Service provides is available in the adapter
@@ -198,6 +216,17 @@ For more information visit the CLI-documentation:
 <https://github.com/oweitman/LMS-CLI-Documentation/blob/master/LMS-CLI.md>
 
 ## Widgets
+
+The adapter includes matching widget sets for both visualization generations. Each widget reference contains its purpose, a preview image, all code-backed configuration options and relevant runtime notes:
+
+- [Complete VIS 1 widget documentation](docs/vis1-widgets.md)
+- [Complete VIS 2 widget documentation](docs/vis2-widgets.md)
+
+Both widget sets use a **Players** widget as their central selection source. Configure that widget first, then select it in controls, value displays, Favorites, Playlist, PlaylistDetail, Browser and SyncGroup. VIS 2 references can work across different views.
+
+<details>
+<summary>Legacy widget overview retained for existing links</summary>
+
 
 ### Player button bar
 
@@ -572,7 +601,9 @@ please provide as detailed a description as possible:
 - What steps/clicks were performed to create the problem
 - What are the function references and data references?
 
-## SendTo-Befehle
+</details>
+
+## SendTo commands
 
 ### getPlayerNames
 
