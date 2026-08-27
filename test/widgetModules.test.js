@@ -89,8 +89,19 @@ describe('VIS widget modules', () => {
 
     it('exposes wrapcamelcase as a VIS-1 Players setting', () => {
         const html = fs.readFileSync(path.join(projectRoot, 'widgets', 'squeezeboxrpc.html'), 'utf8');
+        const playerTemplate = html.slice(
+            html.indexOf('id="tplSqueezeboxrpcPlayer"'),
+            html.indexOf('id="tplSqueezeboxrpcFavorites"'),
+        );
+        const configurationEditorSource = fs.readFileSync(path.join(widgetSource, 'configurationEditor.js'), 'utf8');
 
         expect(html).to.include('wrapcamelcase[true]/checkbox');
+        expect(html).to.include('playerConfiguration/custom,squeezeboxrpc.playerConfigurationEditor');
+        expect(html).to.include('favoriteConfiguration/custom,squeezeboxrpc.favoriteConfigurationEditor');
+        expect(html).not.to.include('viewindex/text/checkViewIndex');
+        expect(html).not.to.include('buttonsImage(1-bCount)');
+        expect(playerTemplate).not.to.include('editmodehelper');
+        expect(configurationEditorSource).to.include('placeholder="Optional button text"');
         expect(html).not.to.include('defaultPlayer:wrapcamelcase');
     });
 
@@ -303,8 +314,7 @@ describe('VIS widget modules', () => {
             },
         ]);
         expect(frozenPlayerData).not.to.have.property('functionname');
-        expect(runtime.viewIndexMetadata.players.functionname).to.equal('players');
-        expect(runtime.viewIndexMetadata.players.viewindexcheck).to.deep.equal(['living-room']);
+        expect(runtime).not.to.have.property('viewIndexMetadata');
 
         const volumeUpdates = [];
         vis.editMode = false;
@@ -354,6 +364,58 @@ describe('VIS widget modules', () => {
 
         expect(renderedVolumes).to.deep.equal([{ fdata: clickData, state: 50 }]);
         expect(writtenVolumes).to.deep.equal([{ stateId: 'squeezeboxrpc.0.Players.living-room.Volume', state: 50 }]);
+    });
+
+    it('stores VIS-1 Players and Favorites order by stable IDs', async () => {
+        const result = await esbuild.build({
+            entryPoints: [path.join(widgetSource, 'itemConfiguration.js')],
+            bundle: true,
+            format: 'cjs',
+            target: ['node22'],
+            write: false,
+        });
+        const module = { exports: {} };
+        vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports });
+        const {
+            legacyFavoriteConfiguration,
+            legacyPlayerConfiguration,
+            mergeConfiguredItems,
+            parseItemConfiguration,
+            serializeItemConfiguration,
+            visibleConfiguredItems,
+        } = module.exports;
+        const configuration = {
+            version: 1,
+            defaultId: 'living-room',
+            items: [
+                { id: 'living-room', enabled: true, text: 'Living', image: '' },
+                { id: 'kitchen', enabled: false, text: '', image: '' },
+            ],
+        };
+        const parsed = parseItemConfiguration(serializeItemConfiguration(configuration));
+        expect(parsed.defaultId).to.equal('living-room');
+        expect(Array.from(visibleConfiguredItems(parsed, ['kitchen', 'living-room']), item => item.id)).to.deep.equal([
+            'living-room',
+        ]);
+        expect(
+            Array.from(mergeConfiguredItems(parsed, ['kitchen', 'living-room', 'office']), item => item.id),
+        ).to.deep.equal(['living-room', 'kitchen', 'office']);
+        expect(mergeConfiguredItems(parsed, [{ id: 'living-room', name: 'Living Room' }])[0].name).to.equal(
+            'Living Room',
+        );
+        expect(
+            Array.from(
+                legacyPlayerConfiguration({ viewindex: '1, 0', buttonsText2: 'Kitchen' }, ['living', 'kitchen'])
+                    .items,
+                item => item.id,
+            ),
+        ).to.deep.equal(['kitchen', 'living']);
+        expect(
+            Array.from(
+                legacyFavoriteConfiguration({ viewindex: 'radio, album' }, [{ id: 'album' }, { id: 'radio' }]).items,
+                item => item.id,
+            ),
+        ).to.deep.equal(['radio', 'album']);
     });
 
     it('subscribes even when the initial state does not exist yet', async () => {

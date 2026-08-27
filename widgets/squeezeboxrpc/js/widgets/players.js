@@ -2,6 +2,7 @@
 'use strict';
 
 import { createTextImage, Font, getEffectiveBackgroundColor, resolveLegacyDefaultColor } from '../textImage.js';
+import { legacyPlayerConfiguration, parseItemConfiguration, visibleConfiguredItems } from '../itemConfiguration.js';
 
 export const players = {
     createWidget: async function (widgetID, view, data, style) {
@@ -25,49 +26,29 @@ export const players = {
         }
 
         const renderPlayers = function (playerNames) {
-            let redrawinspectwidgets = false;
-            const players = playerNames;
-            vis.binds['squeezeboxrpc'].viewIndexMetadata[widgetID] = {
-                functionname: 'players',
-                viewindexcheck: players,
-            };
+            const configuration =
+                parseItemConfiguration(data.playerConfiguration) || legacyPlayerConfiguration(data, playerNames);
+            const configuredPlayers = visibleConfiguredItems(configuration, playerNames);
 
-            const editmodehelper = data.editmodehelper;
             const picWidth = data.picWidth;
             const picHeight = data.picHeight;
-            const opacity = vis.editMode && editmodehelper ? 1 : data.opacity;
+            const opacity = data.opacity;
             const borderwidth = data.borderwidth;
             const borderstyle = data.borderstyle;
             const bordercoloractive = data.bordercoloractive;
             const borderradius = data.borderradius;
             const buttonmargin = data.buttonmargin || '0px';
 
-            if (!data.viewindex || data.viewindex.trim() == '') {
-                data.viewindex = this.getViewindex(players).join(', ');
-            }
-
-            data.defaultPlayer = data.defaultPlayer || Object.keys(players)[0] || '0';
-
-            if (vis.editMode && data.bCount != Math.min(players.length, data.viewindex.split(',').length)) {
-                data.bCount = Math.min(players.length, data.viewindex.split(',').length);
-                redrawinspectwidgets = true;
-            }
-
-            const viewindex = data.viewindex
-                .split(', ')
-                .filter(x => x.trim() && !isNaN(Number(x)) && playerNames[Number(x)] !== undefined);
+            const defaultPlayer = configuredPlayers.some(player => player.id == configuration.defaultId)
+                ? configuration.defaultId
+                : configuredPlayers[0]?.id || '';
             if (data.formattype == 'formatselect') {
                 let text = '';
                 let option = '';
                 option += '<option value=""></option>';
-                for (let i = 0; i < viewindex.length; i++) {
-                    let buttonsText = data[`buttonsText${viewindex[i] + 1}`] || '';
-                    buttonsText = buttonsText.trim() != '' ? buttonsText : players[viewindex[i]];
-                    if (vis.editMode && editmodehelper) {
-                        buttonsText += ` [${viewindex[i]}]`;
-                    }
-
-                    option += `<option value="${players[viewindex[i]]}">${buttonsText}</option>`;
+                for (let i = 0; i < configuredPlayers.length; i++) {
+                    const buttonsText = configuredPlayers[i].text || configuredPlayers[i].id;
+                    option += `<option value="${configuredPlayers[i].id}">${buttonsText}</option>`;
                 }
                 text += `<select type="text" id="${widgetID}select">${option}</select>`;
                 $(`#${widgetID}`).html(text);
@@ -130,24 +111,20 @@ export const players = {
 
                 text += `<div id="${widgetID}container" >`;
 
-                for (let i = 0; i < viewindex.length; i++) {
+                for (let i = 0; i < configuredPlayers.length; i++) {
+                    const player = configuredPlayers[i];
                     text += '  <div >';
-                    text += `    <input type="radio" id="${widgetID}${players[viewindex[i]]}" name="${
-                        widgetID
-                    }" value="${players[viewindex[i]]}" ${viewindex[i] == data.defaultPlayer ? 'checked' : ''}>`;
-                    text += `    <label for="${widgetID}${players[viewindex[i]]}">`;
+                    text += `    <input type="radio" id="${widgetID}${player.id}" name="${widgetID}" value="${player.id}" ${
+                        player.id == defaultPlayer ? 'checked' : ''
+                    }>`;
+                    text += `    <label for="${widgetID}${player.id}">`;
                     text += '      <span>';
-                    const buttonsImage = data[`buttonsImage${parseInt(viewindex[i]) + 1}`] || '';
+                    const buttonsImage = player.image || '';
                     if (buttonsImage.trim() != '') {
-                        text += `        <img src="${data[`buttonsImage${parseInt(viewindex[i]) + 1}`]}">`;
+                        text += `        <img src="${buttonsImage}">`;
                     }
                     text += '      </span>';
                     text += '    </label>';
-                    if (vis.editMode && editmodehelper) {
-                        text += `<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;margin:0px;">${
-                            viewindex[i]
-                        }</div>`;
-                    }
                     text += '  </div>';
                 }
                 text += '</div>';
@@ -164,17 +141,13 @@ export const players = {
                     textAlign: computedStyle.textAlign || 'center',
                 };
                 opt.backgroundcolor = backgroundColor;
-                for (let i = 0; i < viewindex.length; i++) {
-                    const buttonsImage = data[`buttonsImage${parseInt(viewindex[i]) + 1}`] || '';
-                    let buttonsText = data[`buttonsText${parseInt(viewindex[i]) + 1}`] || '';
-                    buttonsText = buttonsText.trim() != '' ? buttonsText : players[viewindex[i]];
+                for (let i = 0; i < configuredPlayers.length; i++) {
+                    const buttonsImage = configuredPlayers[i].image || '';
+                    const buttonsText = configuredPlayers[i].text || configuredPlayers[i].id;
                     if (buttonsImage.trim() == '') {
                         $(spans[i]).append(createTextImage(buttonsText, font, picWidth, picHeight, opt));
                     }
                 }
-            }
-            if (vis.editMode && redrawinspectwidgets) {
-                vis.binds['squeezeboxrpc'].redrawInspectWidgets(view);
             }
             $(`#${widgetID}`).trigger('playerschanged');
         }.bind(this);
@@ -189,13 +162,5 @@ export const players = {
             console.error(`Cannot read player names for ${data.ainstance}:`, error);
             $div.html('Cannot read players');
         }
-    },
-    getViewindex: function (players) {
-        return Object.keys(players);
-    },
-    checkViewindexExist: function (viewindex, players) {
-        return viewindex.map(function (item) {
-            return item < players.length ? item : 0;
-        });
     },
 };

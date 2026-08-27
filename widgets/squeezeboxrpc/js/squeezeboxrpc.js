@@ -4,7 +4,7 @@
     Copyright 2025 oweitman oweitman@gmx.de
 
 */
-/* globals $,vis,window,systemDictionary */
+/* globals $,vis,systemDictionary */
 'use strict';
 
 // add translations for edit mode
@@ -26,18 +26,21 @@ import { playlistdetail } from './widgets/playlistdetail.js';
 import { number } from './widgets/number.js';
 import { datetime } from './widgets/datetime.js';
 import { image } from './widgets/image.js';
+import { configurationEditor } from './configurationEditor.js';
 
-fetch('widgets/squeezeboxrpc/myi18n/translations.json').then(async res => {
+var translations = require('../myi18n/translations.json');
+$.extend(true, systemDictionary, translations);
+
+/* fetch('widgets/squeezeboxrpc/myi18n/translations.json').then(async res => {
     const i18n = await res.json();
 
     $.extend(true, systemDictionary, i18n);
-});
+}); */
 
 vis.binds['squeezeboxrpc'] = {
     version: pkgVersion,
     debug: false,
     fetchResults: false,
-    viewIndexMetadata: {},
     showVersion: function () {
         if (vis.binds['squeezeboxrpc'].version) {
             console.log(`Version squeezeboxrpc: ${vis.binds['squeezeboxrpc'].version}`);
@@ -95,73 +98,11 @@ vis.binds['squeezeboxrpc'] = {
         'Url',
         'RadioName',
     ],
-    redrawInspectWidgets: function (view) {
-        let $edit, id, start, end, sel;
-        if (window.Selection) {
-            if (window.getSelection()) {
-                sel = window.getSelection();
-            }
-            if (sel.anchorNode) {
-                $edit = $(sel.anchorNode).find('input, textarea').first();
-                id = $edit.attr('id');
-                start = $edit.prop('selectionStart');
-                end = $edit.prop('selectionEnd');
-            }
-        }
-        vis.inspectWidgets(view, view);
-        $edit = $(`#${id}`);
-        if ($edit) {
-            $edit.focus();
-            $edit.prop({
-                selectionStart: start,
-                selectionEnd: end,
-            });
-        }
+    playerConfigurationEditor: function (widAttr) {
+        return configurationEditor('players', widAttr);
     },
-    checkViewIndex: function (widgetID, view, viewindex) {
-        let $edit;
-        const data = vis.views[view].widgets[widgetID].data;
-        const metadata = this.viewIndexMetadata[widgetID] || data;
-        const viewindexcheck = metadata.viewindexcheck;
-        const functionname = metadata.functionname;
-
-        if (!viewindexcheck || !functionname) {
-            return false;
-        }
-
-        if (!viewindex || viewindex.trim() == '') {
-            viewindex = vis.binds['squeezeboxrpc'][functionname].getViewindex(viewindexcheck).join(', ');
-        }
-
-        viewindex = viewindex.split(',').map(function (item) {
-            return item.trim();
-        });
-
-        viewindex = vis.binds['squeezeboxrpc'][functionname].checkViewindexExist(viewindex, viewindexcheck);
-
-        if (viewindex.length > viewindexcheck.length) {
-            viewindex = viewindex.slice(0, viewindexcheck.length);
-        }
-        const normalizedViewindex = viewindex.join(', ');
-        $edit = $('#inspect_viewindex');
-        let start = $edit.prop('selectionStart');
-        let end = $edit.prop('selectionEnd');
-        if (start > normalizedViewindex.length) {
-            start = normalizedViewindex.length;
-        }
-        if (end > normalizedViewindex.length) {
-            end = normalizedViewindex.length;
-        }
-        $edit.val(normalizedViewindex);
-        $edit = $('#inspect_viewindex');
-        if ($edit) {
-            $edit.focus();
-            $edit.prop({
-                selectionStart: start,
-                selectionEnd: end,
-            });
-        }
-        return false;
+    favoriteConfigurationEditor: function (widAttr) {
+        return configurationEditor('favorites', widAttr);
     },
     getPlayerWidgetType: function (view, playerWidgetID) {
         return vis.views[view].widgets[playerWidgetID].data.formattype || '';

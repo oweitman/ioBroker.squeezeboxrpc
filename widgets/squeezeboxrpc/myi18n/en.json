@@ -48,5 +48,18 @@
     "rowBorderStyle": "Border style",
     "rowSpacing": "Spacing to next track",
     "showThumbnail": "Show thumbnail",
-    "showIndex": "Show track index"
+    "showIndex": "Show track index",
+    "buttonmargin": "Button spacing",
+    "favoriteConfiguration": "Favorite configuration",
+    "formatbutton": "Buttons",
+    "formatselect": "Selection list",
+    "formattype": "Display format",
+    "playerConfiguration": "Player configuration",
+    "mainbarcolor": "Main bar color",
+    "playtimebarcolor": "Elapsed time bar color",
+    "bordercolor": "Border color",
+    "playerattribute": "Player attribute",
+    "format": "Format",
+    "debug": "Debug",
+    "debugwithFetchResults": "Debug with fetched results"
 }

@@ -2,6 +2,7 @@
 'use strict';
 
 import { createTextImage, Font } from '../textImage.js';
+import { legacyFavoriteConfiguration, parseItemConfiguration, visibleConfiguredItems } from '../itemConfiguration.js';
 
 export const favorites = {
     createWidget: function (widgetID, view, data, style) {
@@ -17,8 +18,6 @@ export const favorites = {
         // a mutable object. Resolved values must win over their raw expressions.
         data = { ...vis.views[view].widgets[widgetID].data, ...(data || {}) };
         style = vis.views[view].widgets[widgetID].style;
-        let redrawinspectwidgets = false;
-
         const ainstance = (data.ainstance = vis.binds['squeezeboxrpc'].checkAttributes($div, data.widgetPlayer));
         if (!ainstance) {
             return;
@@ -33,10 +32,9 @@ export const favorites = {
             function (err, obj) {
                 let favorites = this.getFavorites(obj, ainstance);
                 favorites = this.filterFavorites(favorites);
-                vis.binds['squeezeboxrpc'].viewIndexMetadata[widgetID] = {
-                    functionname: 'favorites',
-                    viewindexcheck: favorites,
-                };
+                const configuration =
+                    parseItemConfiguration(data.favoriteConfiguration) || legacyFavoriteConfiguration(data, favorites);
+                const configuredFavorites = visibleConfiguredItems(configuration, favorites);
 
                 const editmodehelper = data.editmodehelper;
                 const picWidth = data.picWidth;
@@ -48,15 +46,6 @@ export const favorites = {
                 const bordercoloractive = data.bordercoloractive;
                 const borderradius = data.borderradius;
                 const buttonmargin = data.buttonmargin || '0px';
-
-                if (!data.viewindex || data.viewindex.trim() == '') {
-                    data.viewindex = this.getViewindex(favorites).join(', ');
-                }
-
-                if (vis.editMode && data.bCount != Math.min(favorites.length, data.viewindex.split(',').length)) {
-                    data.bCount = Math.min(favorites.length, data.viewindex.split(',').length);
-                    redrawinspectwidgets = true;
-                }
 
                 let text = '';
 
@@ -122,19 +111,18 @@ export const favorites = {
                 text += '</style>\n';
 
                 text += `<div id="${widgetID}container">`;
-                const viewindex = data.viewindex.split(', ');
-                for (let i = 0; i < viewindex.length; i++) {
-                    const favorite = this.findById(favorites, viewindex[i]);
+                for (let i = 0; i < configuredFavorites.length; i++) {
+                    const favorite = configuredFavorites[i];
                     text += '  <div>';
                     text += `    <input type="radio" id="${widgetID}${favorite.id}" name="${widgetID}" value="${
                         favorite.id
                     }" >`;
                     text += `    <label for="${widgetID}${favorite.id}">`;
                     text += '      <span>';
-                    let favimage = favorite.image || '';
+                    let favimage = favorite.image || favorite.discoveredImage || '';
                     let favtext = favorite.id || '';
-                    let attrimage = data[`buttonsImage${i + 1}`] || '';
-                    let attrtext = data[`buttonsText${i + 1}`] || '';
+                    let attrimage = favorite.image || '';
+                    let attrtext = favorite.text || '';
 
                     favimage = favimage.trim();
                     favtext = favtext.trim();
@@ -150,7 +138,7 @@ export const favorites = {
                     text += '    </label>';
                     if (vis.editMode && editmodehelper) {
                         text += `<div style="position: absolute;top: 0;right: 0;background-color: black;color: white;border-width: 1px;border-color: white;border-style: solid;font-size: xx-small;padding: 1px;">${
-                            viewindex[i]
+                            favorite.id
                         }</div>`;
                     }
                     text += '  </div>';
@@ -170,13 +158,13 @@ export const favorites = {
                     textAlign: computedStyle.textAlign || 'center',
                 };
                 opt.backgroundcolor = data.buttonbkcolor || '#000000';
-                for (let i = 0; i < viewindex.length; i++) {
-                    const favorite = this.findById(favorites, viewindex[i]);
+                for (let i = 0; i < configuredFavorites.length; i++) {
+                    const favorite = configuredFavorites[i];
 
-                    let favimage = favorite.image || '';
+                    let favimage = favorite.image || favorite.discoveredImage || '';
                     let favtext = `${favorite.id || ''}(${i})`;
-                    let attrimage = data[`buttonsImage${i + 1}`] || '';
-                    let attrtext = data[`buttonsText${i + 1}`] || '';
+                    let attrimage = favorite.image || '';
+                    let attrtext = favorite.text || favorite.name || '';
 
                     favimage = favimage.trim();
                     favtext = favtext.trim();
@@ -200,9 +188,6 @@ export const favorites = {
                     //vis.conn._socket.emit('setState', state, favorite);
                     vis.setValue(state, favorite);
                 });
-                if (vis.editMode && redrawinspectwidgets) {
-                    vis.binds['squeezeboxrpc'].redrawInspectWidgets(view);
-                }
             }.bind(this),
         );
     },
@@ -227,21 +212,6 @@ export const favorites = {
         favorites = Object.values(favorites);
         return favorites.filter(function (cur) {
             return cur.isaudio === 1;
-        });
-    },
-    findById: function (favorites, id) {
-        return favorites.find(
-            function (cur) {
-                return cur.id.trim() == this.trim();
-            }.bind(id),
-        );
-    },
-    getViewindex: function (favorites) {
-        return favorites.map(cur => cur.id);
-    },
-    checkViewindexExist: function (viewindex, favorites) {
-        return viewindex.map(function (item) {
-            return favorites.find(el => el.id == item) ? item : '0';
         });
     },
 };
