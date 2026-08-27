@@ -32,12 +32,12 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 - [Update](#update)
 - [Troubleshooting](#trouble-shooting)
 - [Provided states](#provided-states)
-  - [Server](#server)
-  - [Favorites](#favorites)
-  - [Players](#players)
+    - [Server](#server)
+    - [Favorites](#favorites)
+    - [Players](#players)
 - [Widgets](#widgets)
-  - [VIS 1 widget documentation](docs/vis1-widgets.md)
-  - [VIS 2 widget documentation](docs/vis2-widgets.md)
+    - [VIS 1 widget documentation](docs/vis1-widgets.md)
+    - [VIS 2 widget documentation](docs/vis2-widgets.md)
 - [SendTo commands](#sendto-commands)
 - [Todo](#todo)
 - [Changelog](#changelog)
@@ -217,16 +217,20 @@ For more information visit the CLI-documentation:
 
 ## Widgets
 
-The adapter includes matching widget sets for both visualization generations. Each widget reference contains its purpose, a preview image, all code-backed configuration options and relevant runtime notes:
+The adapter includes matching widget sets for both visualization generations.
+Each widget reference contains its purpose, a preview image,
+all code-backed configuration options and relevant runtime notes:
 
 - [Complete VIS 1 widget documentation](docs/vis1-widgets.md)
 - [Complete VIS 2 widget documentation](docs/vis2-widgets.md)
 
-Both widget sets use a **Players** widget as their central selection source. Configure that widget first, then select it in controls, value displays, Favorites, Playlist, PlaylistDetail, Browser and SyncGroup. VIS 2 references can work across different views.
+Both widget sets use a **Players** widget as their central selection source.
+Configure that widget first, then select it in controls, value displays,
+Favorites, Playlist, PlaylistDetail, Browser and SyncGroup.
+VIS 2 references can work across different views.
 
 <details>
 <summary>Legacy widget overview retained for existing links</summary>
-
 
 ### Player button bar
 
@@ -263,7 +267,8 @@ players are displayed in the widget.
 
 You can use this widget to select all of the favorites that have been\
 created in your Logitech/Lyrion Media Server.
-After selecting the Player widget, the available favorites are displayed in the widget.
+After selecting the Player widget, the available favorites
+are displayed in the widget.
 
 | Group               | Attribute       | Description                                                                                           |
 | ------------------- | --------------- | ----------------------------------------------------------------------------------------------------- |
@@ -607,7 +612,8 @@ please provide as detailed a description as possible:
 
 ### getPlayerNames
 
-Returns the names of all players currently registered in the adapter. The returned names are the sanitized names
+Returns the names of all players currently registered in the adapter.
+The returned names are the sanitized names
 used below `squeezeboxrpc.<instance>.Players`.
 
 ```js
@@ -694,6 +700,32 @@ are contained in the following CLI documentation:
 
 ### **WORK IN PROGRESS**
 
+- **BREAKING CHANGE**
+- Due to the extensive revision of the vis-1 widgets—including adjustments to
+  their configuration attributes—they are no longer directly compatible with
+  those from version 1. Recreating the vis-1 widgets is recommended.
+- Importing or transferring them from vis-1 to vis-2 is not a viable option.
+- Several fundamental concepts regarding the vis-1 widgets have been improved.
+- add a complete VIS 2 widget set for player selection and control, favorites,
+  playlists, browsing, synchronization, volume and player information
+- add PlaylistDetail widgets for VIS 1 and VIS 2 with artwork, track metadata,
+  duration, current-track highlighting, scrolling, playback and removal actions
+- make player selection available across views and show the related
+  SqueezeboxRPC instance in player-widget selectors
+- improve the Players and Favorites configuration with reliable show/hide,
+  ordering, default-player, custom-label and custom-image options
+- improve the Playtime bar with accurate progress updates, an empty state for
+  streams without a duration and click-to-seek support
+- correct Play, Repeat, Shuffle, Forward and Rewind behavior and provide
+  state-aware icons with support for custom button images
+- improve widget styling for light and dark designs, including inherited
+  colors, reliable borders, spacing, alignment, hover effects and thin scrollbars
+- align VIS 1 and VIS 2 DateTime formatting and provide configurable,
+  predictable date and time output
+- prevent unchanged player and server values from being rewritten and keep
+  artwork, artist and other player information stable during status updates
+- add comprehensive English user documentation for every VIS 1 and VIS 2
+  widget, including previews, configuration tables and usage notes
 - add translated datapoint descriptions
 - cmdGeneral for server
 

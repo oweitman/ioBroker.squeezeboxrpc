@@ -126,6 +126,8 @@ export const playtime = {
         } //0 if player stop
         if (vis.editMode) {
             width = 50;
+        } else if (state_duration <= 0) {
+            width = 0;
         } else {
             width = Math.floor((state_time / state_duration) * 100);
         }

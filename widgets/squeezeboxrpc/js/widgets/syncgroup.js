@@ -52,7 +52,7 @@ export const syncgroup = {
 
         const players = vis.binds['squeezeboxrpc'].getPlayerValues(data.widgetPlayer);
 
-        const dataplayer = vis.views[view].widgets[data.widgetPlayer].data;
+        const dataplayer = vis.binds.squeezeboxrpc.getPlayerWidgetData(data.widgetPlayer);
 
         const picWidth = dataplayer.picWidth;
         const picHeight = dataplayer.picHeight;

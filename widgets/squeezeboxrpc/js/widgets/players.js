@@ -48,7 +48,9 @@ export const players = {
                 option += '<option value=""></option>';
                 for (let i = 0; i < configuredPlayers.length; i++) {
                     const buttonsText = configuredPlayers[i].text || configuredPlayers[i].id;
-                    option += `<option value="${configuredPlayers[i].id}">${buttonsText}</option>`;
+                    option += `<option value="${configuredPlayers[i].id}" ${
+                        configuredPlayers[i].id == defaultPlayer ? 'selected' : ''
+                    }>${buttonsText}</option>`;
                 }
                 text += `<select type="text" id="${widgetID}select">${option}</select>`;
                 $(`#${widgetID}`).html(text);
@@ -149,7 +151,11 @@ export const players = {
                     }
                 }
             }
-            $(`#${widgetID}`).trigger('playerschanged');
+            $(`#${widgetID}`)
+                .off('change.playerselection')
+                .on('change.playerselection', () => vis.binds.squeezeboxrpc.publishPlayerSelection(widgetID));
+            vis.binds.squeezeboxrpc.publishPlayerSelection(widgetID);
+            $('body').trigger('squeezeboxrpcplayerschanged', [widgetID]);
         }.bind(this);
 
         try {

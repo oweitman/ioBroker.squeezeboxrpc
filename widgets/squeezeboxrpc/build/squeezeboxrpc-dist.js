@@ -2616,7 +2616,7 @@
             option += '<option value=""></option>';
             for (let i = 0; i < configuredPlayers.length; i++) {
               const buttonsText = configuredPlayers[i].text || configuredPlayers[i].id;
-              option += `<option value="${configuredPlayers[i].id}">${buttonsText}</option>`;
+              option += `<option value="${configuredPlayers[i].id}" ${configuredPlayers[i].id == defaultPlayer ? "selected" : ""}>${buttonsText}</option>`;
             }
             text += `<select type="text" id="${widgetID}select">${option}</select>`;
             $(`#${widgetID}`).html(text);
@@ -2729,7 +2729,9 @@
               }
             }
           }
-          $(`#${widgetID}`).trigger("playerschanged");
+          $(`#${widgetID}`).off("change.playerselection").on("change.playerselection", () => vis.binds.squeezeboxrpc.publishPlayerSelection(widgetID));
+          vis.binds.squeezeboxrpc.publishPlayerSelection(widgetID);
+          $("body").trigger("squeezeboxrpcplayerschanged", [widgetID]);
         }.bind(this);
         try {
           const playerNames = yield vis.binds["squeezeboxrpc"].sendToAsync(data.ainstance, "getPlayerNames", {});
@@ -3538,7 +3540,7 @@
         return false;
       }
       const players2 = vis.binds["squeezeboxrpc"].getPlayerValues(data.widgetPlayer);
-      const dataplayer = vis.views[view].widgets[data.widgetPlayer].data;
+      const dataplayer = vis.binds.squeezeboxrpc.getPlayerWidgetData(data.widgetPlayer);
       const picWidth = dataplayer.picWidth;
       const picHeight = dataplayer.picHeight;
       const borderwidth = data.borderwidth;
@@ -3859,6 +3861,8 @@
       }
       if (vis.editMode) {
         width = 50;
+      } else if (state_duration <= 0) {
+        width = 0;
       } else {
         width = Math.floor(state_time / state_duration * 100);
       }
@@ -4572,6 +4576,21 @@
     };
   }
 
+  // squeezeboxrpc/js/instanceSelection.js
+  function normalizeSqueezeboxInstance(value) {
+    const id = String((value == null ? void 0 : value._id) || (value == null ? void 0 : value.id) || value || "").replace(/^system\.adapter\./, "");
+    return /^squeezeboxrpc\.\d+$/.test(id) ? id : "";
+  }
+  function collectSqueezeboxInstances(source) {
+    const values = Array.isArray(source) ? source : Array.isArray(source == null ? void 0 : source.rows) ? source.rows.map((row) => {
+      var _a;
+      return ((_a = row.value) == null ? void 0 : _a._id) || row.id;
+    }) : Object.entries(source || {}).map(([id, value]) => (value == null ? void 0 : value._id) || id);
+    return [...new Set(values.map(normalizeSqueezeboxInstance).filter(Boolean))].sort(
+      (left, right) => left.localeCompare(right, void 0, { numeric: true })
+    );
+  }
+
   // squeezeboxrpc/js/squeezeboxrpc.js
   var translations = require_translations();
   $.extend(true, systemDictionary, translations);
@@ -4579,6 +4598,7 @@
     version,
     debug: false,
     fetchResults: false,
+    playerSelections: {},
     showVersion: function() {
       if (vis.binds["squeezeboxrpc"].version) {
         console.log(`Version squeezeboxrpc: ${vis.binds["squeezeboxrpc"].version}`);
@@ -4637,19 +4657,68 @@
     favoriteConfigurationEditor: function(widAttr) {
       return configurationEditor("favorites", widAttr);
     },
-    getPlayerWidgetType: function(view, playerWidgetID) {
-      return vis.views[view].widgets[playerWidgetID].data.formattype || "";
+    instanceSelect: function(widAttr) {
+      const inputID = `inspect_${widAttr}`;
+      const optionHtml = (instances) => [""].concat(instances).map((instance) => `<option value="${instance}">${instance}</option>`).join("");
+      const knownInstances = collectSqueezeboxInstances(vis.objects || {});
+      setTimeout(() => {
+        if (typeof vis.conn.getObjectView != "function") {
+          return;
+        }
+        vis.conn.getObjectView(
+          "system",
+          "instance",
+          {
+            startkey: "system.adapter.squeezeboxrpc.",
+            endkey: "system.adapter.squeezeboxrpc.\u9999"
+          },
+          (error, result) => {
+            if (error) {
+              console.error("Cannot read SqueezeboxRPC instances:", error);
+              return;
+            }
+            const $select = $(`#${inputID}`);
+            if (!$select.length) {
+              return;
+            }
+            const selected = $select.val();
+            const instances = collectSqueezeboxInstances(result);
+            if (selected && !instances.includes(selected)) {
+              instances.unshift(selected);
+            }
+            $select.html(optionHtml(instances)).val(selected);
+          }
+        );
+      }, 0);
+      return { input: `<select type="text" id="${inputID}">${optionHtml(knownInstances)}</select>` };
+    },
+    getPlayerWidgetData: function(playerWidgetID) {
+      var _a, _b, _c, _d;
+      if ((_b = (_a = vis.widgets) == null ? void 0 : _a[playerWidgetID]) == null ? void 0 : _b.data) {
+        return vis.widgets[playerWidgetID].data;
+      }
+      for (const view of Object.values(vis.views || {})) {
+        if ((_d = (_c = view.widgets) == null ? void 0 : _c[playerWidgetID]) == null ? void 0 : _d.data) {
+          return view.widgets[playerWidgetID].data;
+        }
+      }
+      return null;
+    },
+    getPlayerWidgetType: function(_view, playerWidgetID) {
+      var _a;
+      return ((_a = this.getPlayerWidgetData(playerWidgetID)) == null ? void 0 : _a.formattype) || "";
     },
     checkAttributes: function($div, widgetPlayer) {
       if (!widgetPlayer) {
         $div.html("Please select a player widget");
         return false;
       }
-      if (!vis.widgets[widgetPlayer].data.ainstance) {
+      const playerData = this.getPlayerWidgetData(widgetPlayer);
+      if (!(playerData == null ? void 0 : playerData.ainstance)) {
         $div.html("Please select an instance at the playerwidget");
         return false;
       }
-      const ainstance = vis.widgets[widgetPlayer].data.ainstance.split(".");
+      const ainstance = playerData.ainstance.split(".");
       if (!ainstance || ainstance[0] != "squeezeboxrpc") {
         $div.html("Please select an instance at the playerwidget");
         return false;
@@ -4657,7 +4726,10 @@
       return ainstance;
     },
     setChanged: function(widgetPlayer, fdata) {
-      $(".vis-view").off(`change.${fdata.widgetID}`).on(`change.${fdata.widgetID}`, `#${widgetPlayer}`, fdata, function() {
+      $("body").off(`squeezeboxrpcplayerchange.${fdata.widgetID}`).on(`squeezeboxrpcplayerchange.${fdata.widgetID}`, fdata, function(_event, changedWidget) {
+        if (changedWidget != widgetPlayer) {
+          return;
+        }
         const self = fdata.self;
         self.setState(fdata);
       });
@@ -4669,7 +4741,10 @@
           vis.binds["squeezeboxrpc"].bindStates($div, boundstates, onChange_callback, fdata);
         }
       };
-      $(".vis-view").off(`playerschanged.${fdata.widgetID}`).on(`playerschanged.${fdata.widgetID}`, `#${widgetPlayer}`, fdata, () => {
+      $("body").off(`squeezeboxrpcplayerschanged.${fdata.widgetID}`).on(`squeezeboxrpcplayerschanged.${fdata.widgetID}`, (_event, changedWidget) => {
+        if (changedWidget != widgetPlayer) {
+          return;
+        }
         bindPlayerStates();
         playerChanged_callback == null ? void 0 : playerChanged_callback(fdata);
       });
@@ -4713,7 +4788,9 @@
       }
       let html = "";
       for (let i = 0; i < options.length; i++) {
-        html += `<option value="${options[i]}">${options[i]}</option>`;
+        const value = typeof options[i] == "string" ? options[i] : options[i].value;
+        const label = typeof options[i] == "string" ? options[i] : options[i].label;
+        html += `<option value="${value}">${label}</option>`;
       }
       const line = {
         input: `<select type="text" id="inspect_${wid_attr}">${html}</select>`
@@ -4732,15 +4809,21 @@
       return line;
     },
     findPlayerWidgets: function() {
-      const widgets = vis.views[vis.activeView].widgets;
-      const keys = Object.keys(widgets);
+      var _a, _b;
       const result = [];
-      for (let i = 0; i < keys.length; i++) {
-        if (widgets[keys[i]].tpl == "tplSqueezeboxrpcPlayer") {
-          result.push(keys[i]);
+      for (const [viewName, view] of Object.entries(vis.views || {})) {
+        for (const [widgetID, widget] of Object.entries(view.widgets || {})) {
+          if (widget.tpl == "tplSqueezeboxrpcPlayer") {
+            const instance = String(((_a = widget.data) == null ? void 0 : _a.ainstance) || "").replace(/^system\.adapter\./, "");
+            const name = String(((_b = widget.data) == null ? void 0 : _b.name) || widgetID);
+            result.push({
+              value: widgetID,
+              label: instance ? `${instance} (${viewName}: ${name})` : `${viewName}: ${name}`
+            });
+          }
         }
       }
-      return result;
+      return result.sort((left, right) => left.label.localeCompare(right.label, void 0, { numeric: true }));
     },
     findFavoritesWidgets: function() {
       const widgets = vis.views[vis.activeView].widgets;
@@ -4754,15 +4837,50 @@
       return result;
     },
     getPlayerValues: function(widgetPlayer) {
-      return $(`input[name=${widgetPlayer}], #${widgetPlayer} option`).toArray().reduce(function(acc, cur) {
+      var _a, _b;
+      const domValues = $(`input[name=${widgetPlayer}], #${widgetPlayer} option`).toArray().reduce(function(acc, cur) {
         if ($(cur).val()) {
           acc.push($(cur).val());
         }
         return acc;
       }, []);
+      if (domValues.length) {
+        return domValues;
+      }
+      const published = (_a = this.playerSelections[widgetPlayer]) == null ? void 0 : _a.players;
+      if (published == null ? void 0 : published.length) {
+        return published.slice();
+      }
+      const configuration = parseItemConfiguration((_b = this.getPlayerWidgetData(widgetPlayer)) == null ? void 0 : _b.playerConfiguration);
+      return configuration ? configuration.items.filter((item) => item.enabled !== false).map((item) => item.id) : [];
     },
     getPlayerName: function(widgetPlayer) {
-      return $(`input[name=${widgetPlayer}]:checked, #${widgetPlayer} option:checked`).val();
+      var _a, _b, _c;
+      const domValue = $(`input[name=${widgetPlayer}]:checked, #${widgetPlayer} option:checked`).val();
+      if (domValue) {
+        return domValue;
+      }
+      const published = (_a = this.playerSelections[widgetPlayer]) == null ? void 0 : _a.player;
+      if (published) {
+        return published;
+      }
+      const configuration = parseItemConfiguration((_b = this.getPlayerWidgetData(widgetPlayer)) == null ? void 0 : _b.playerConfiguration);
+      const players2 = (configuration == null ? void 0 : configuration.items.filter((item) => item.enabled !== false)) || [];
+      return players2.some((item) => item.id == (configuration == null ? void 0 : configuration.defaultId)) ? configuration.defaultId : (_c = players2[0]) == null ? void 0 : _c.id;
+    },
+    publishPlayerSelection: function(widgetPlayer) {
+      const playerData = this.getPlayerWidgetData(widgetPlayer);
+      const player = $(`input[name=${widgetPlayer}]:checked, #${widgetPlayer} option:checked`).val();
+      const players2 = $(`input[name=${widgetPlayer}], #${widgetPlayer} option`).toArray().map((element) => $(element).val()).filter(Boolean);
+      if (!(playerData == null ? void 0 : playerData.ainstance) || !player) {
+        return;
+      }
+      this.playerSelections[widgetPlayer] = {
+        instance: String(playerData.ainstance).replace(/^system\.adapter\./, ""),
+        player,
+        players: players2
+      };
+      $("body").trigger("squeezeboxrpcplayerchange", [widgetPlayer]);
     },
     getPlayerNameAsync: function(widgetPlayer) {
       return __async(this, null, function* () {

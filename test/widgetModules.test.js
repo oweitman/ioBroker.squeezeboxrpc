@@ -96,6 +96,7 @@ describe('VIS widget modules', () => {
         const configurationEditorSource = fs.readFileSync(path.join(widgetSource, 'configurationEditor.js'), 'utf8');
 
         expect(html).to.include('wrapcamelcase[true]/checkbox');
+        expect(html).to.include('ainstance/custom,squeezeboxrpc.instanceSelect');
         expect(html).to.include('playerConfiguration/custom,squeezeboxrpc.playerConfigurationEditor');
         expect(html).to.include('favoriteConfiguration/custom,squeezeboxrpc.favoriteConfigurationEditor');
         expect(html).not.to.include('viewindex/text/checkViewIndex');
@@ -103,6 +104,31 @@ describe('VIS widget modules', () => {
         expect(playerTemplate).not.to.include('editmodehelper');
         expect(configurationEditorSource).to.include('placeholder="Optional button text"');
         expect(html).not.to.include('defaultPlayer:wrapcamelcase');
+    });
+
+    it('normalizes and sorts available VIS-1 SqueezeboxRPC instances', async () => {
+        const result = await esbuild.build({
+            entryPoints: [path.join(widgetSource, 'instanceSelection.js')],
+            bundle: true,
+            format: 'cjs',
+            target: ['node22'],
+            write: false,
+        });
+        const module = { exports: {} };
+        vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports });
+
+        expect(
+            module.exports.collectSqueezeboxInstances({
+                'system.adapter.squeezeboxrpc.10': { _id: 'system.adapter.squeezeboxrpc.10' },
+                'system.adapter.other.0': { _id: 'system.adapter.other.0' },
+                'system.adapter.squeezeboxrpc.2': { _id: 'system.adapter.squeezeboxrpc.2' },
+            }),
+        ).to.deep.equal(['squeezeboxrpc.2', 'squeezeboxrpc.10']);
+        expect(
+            module.exports.collectSqueezeboxInstances({
+                rows: [{ id: 'system.adapter.squeezeboxrpc.1' }, { id: 'system.adapter.squeezeboxrpc.0' }],
+            }),
+        ).to.deep.equal(['squeezeboxrpc.0', 'squeezeboxrpc.1']);
     });
 
     it('retries DateTime updates through the DateTime widget', () => {
@@ -205,6 +231,13 @@ describe('VIS widget modules', () => {
         expect(calculateActiveLevels(50, 11)).to.equal(6);
     });
 
+    it('keeps the VIS-1 Playtime bar empty when Duration is zero', () => {
+        const source = fs.readFileSync(path.join(widgetSource, 'widgets', 'playtime.js'), 'utf8');
+
+        expect(source).to.include('else if (state_duration <= 0)');
+        expect(source).to.include('width = 0;');
+    });
+
     it('exposes the same widget runtime contract from the real bundle', async () => {
         const result = await esbuild.build({
             entryPoints: [path.join(widgetSource, 'bundle.js')],
@@ -224,13 +257,19 @@ describe('VIS widget modules', () => {
                     return this;
                 },
                 on(...args) {
-                    if (element === '.vis-view') {
+                    if (element === '.vis-view' || element === 'body') {
                         eventHandlers.push(args.at(-1));
                     }
                     return this;
                 },
                 html() {
                     return this;
+                },
+                toArray() {
+                    return [];
+                },
+                val() {
+                    return undefined;
                 },
                 trigger() {
                     return this;
@@ -281,7 +320,7 @@ describe('VIS widget modules', () => {
         ]);
         expect(playerChanges).to.deep.equal([]);
 
-        eventHandlers.at(-1)();
+        eventHandlers.at(-1)(null, 'player-widget');
 
         expect(immediateBindings).to.have.lengthOf(2);
         expect(playerChanges).to.deep.equal(['play-button']);
@@ -315,6 +354,31 @@ describe('VIS widget modules', () => {
         ]);
         expect(frozenPlayerData).not.to.have.property('functionname');
         expect(runtime).not.to.have.property('viewIndexMetadata');
+
+        vis.views.secondary = {
+            widgets: {
+                remotePlayers: {
+                    tpl: 'tplSqueezeboxrpcPlayer',
+                    data: {
+                        ainstance: 'squeezeboxrpc.1',
+                        playerConfiguration: JSON.stringify({
+                            version: 1,
+                            defaultId: 'kitchen',
+                            items: [
+                                { id: 'living-room', enabled: false },
+                                { id: 'kitchen', enabled: true },
+                            ],
+                        }),
+                    },
+                },
+            },
+        };
+        expect(runtime.findPlayerWidgets()).to.deep.include({
+            value: 'remotePlayers',
+            label: 'squeezeboxrpc.1 (secondary: remotePlayers)',
+        });
+        expect(runtime.getPlayerValues('remotePlayers')).to.deep.equal(['kitchen']);
+        expect(runtime.getPlayerName('remotePlayers')).to.equal('kitchen');
 
         const volumeUpdates = [];
         vis.editMode = false;
