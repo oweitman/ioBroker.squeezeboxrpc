@@ -82,7 +82,8 @@
         "translate": "translate-adapter",
         "translate-widgets": "node ./bin/translate.js --source widgets/squeezeboxrpc/myi18n/en.json --format single",
         "translate-lib": "node ./bin/translate.js --source lib/i18n/ --format multi",
-        "release": "release-script --all"
+        "release": "release-script --all",
+        "release:2x": "release-script --all --branch-pattern release2x"
     },
     "bugs": {
         "url": "https://github.com/oweitman/ioBroker.squeezeboxrpc/issues"
