@@ -1,230 +1,244 @@
 {
-    "common": {
-        "name": "squeezeboxrpc",
-        "version": "1.6.4",
-        "news": {
-            "2.0.0-alpha.0": {
-                "en": "fix empty rewrite artwork and other data points\nbreaking changes from vis-1 to vis-2\nnew widget set for vis-2\nsee README for details",
-                "de": "Fehler bei leerem Rewrite-Artwork und weiteren Datenpunkten behoben\nBreaking Changes beim Wechsel von vis-1 auf vis-2\nneues Widget-Set für vis-2\nDetails siehe README",
-                "ru": "исправлена ошибка с пустым rewrite artwork и другими точками данных\nкритические изменения при переходе с vis-1 на vis-2\nновый набор виджетов для vis-2\nподробности см. в README",
-                "pt": "corrigido o problema de rewrite artwork vazio e outros pontos de dados\nalterações incompatíveis na migração do vis-1 para o vis-2\nnovo conjunto de widgets para o vis-2\nconsulte o README para mais detalhes",
-                "nl": "probleem met lege rewrite artwork en andere datapunten opgelost\nbreaking changes bij de overstap van vis-1 naar vis-2\nnieuwe widgetset voor vis-2\nzie README voor details",
-                "fr": "correction du problème de rewrite artwork vide et d'autres points de données\nchangements incompatibles lors du passage de vis-1 à vis-2\nnouvel ensemble de widgets pour vis-2\nvoir le README pour plus de détails",
-                "it": "risolto il problema di rewrite artwork vuoto e di altri punti dati\nmodifiche incompatibili nel passaggio da vis-1 a vis-2\nnuovo set di widget per vis-2\nvedere il README per i dettagli",
-                "es": "corregido el problema de rewrite artwork vacío y otros puntos de datos\ncambios incompatibles al pasar de vis-1 a vis-2\nnuevo conjunto de widgets para vis-2\nconsulta el README para más detalles",
-                "pl": "naprawiono problem z pustym rewrite artwork i innymi punktami danych\nniekompatybilne zmiany przy przejściu z vis-1 na vis-2\nnowy zestaw widżetów dla vis-2\nszczegóły w README",
-                "uk": "виправлено проблему з порожнім rewrite artwork та іншими точками даних\nнесумісні зміни під час переходу з vis-1 на vis-2\nновий набір віджетів для vis-2\nдетальніше див. у README",
-                "zh-cn": "修复空 rewrite artwork 和其他数据点的问题\n从 vis-1 升级到 vis-2 时包含不兼容变更\nvis-2 的新组件集\n详情请参阅 README"
-            },
-            "1.6.4": {
-                "en": "test remove node 18,extend to node 24\nupdate packages",
-                "de": "test entfernen node 18,extend to node 24\nupdate-pakete",
-                "ru": "тест удалить узел 18, расширить узел 24\nобновление пакетов",
-                "pt": "teste remover o nó 18, extend ao nó 24\natualizar pacotes",
-                "nl": "test verwijder node 18, extend naar node 24\npakketten bijwerken",
-                "fr": "test enlever le noeud 18,extendre au noeud 24\nmettre à jour les paquets",
-                "it": "prova rimuovere nodo 18, estend to node 24\npacchetti di aggiornamento",
-                "es": "prueba eliminar nodo 18,extender a nodo 24\nactualizar paquetes",
-                "pl": "test usunąć węzeł 18, rozszerzyć na węzeł 24\naktualizacja pakietów",
-                "uk": "test remove node 18,потенд в вузол 24\nоновлення пакетів",
-                "zh-cn": "测试去除节点 18, 延伸至节点 24\n更新软件包"
-            },
-            "1.6.2": {
-                "en": "upgrade dependency js-controller\nnew widget, but only alpha version for testing and improvement\nfix issues of adapter checker",
-                "de": "upgrade abhängigkeit js-controller\nneue widget, aber nur alpha-version für tests und verbesserung\nprobleme des adapter-checkers beheben",
-                "ru": "обновление зависимостей js-контроллера\nновый виджет, но только альфа-версия для тестирования и улучшения\nустранение проблем с проверкой адаптера",
-                "pt": "upgrade de dependência js-controller\nnovo widget, mas apenas versão alfa para testes e melhoria\ncorrigir problemas do verificador do adaptador",
-                "nl": "upgrade afhankelijkheid js-controller\nnieuw widget, maar alleen alfa versie voor testen en verbetering\nproblemen van adaptercontrole oplossen",
-                "fr": "upgrade dépendance js-controller\nnouveau widget, mais seulement version alpha pour tester et améliorer\nrésoudre les problèmes de vérification de l'adaptateur",
-                "it": "potenziare la dipendenza js-controller\nnuovo widget, ma solo versione alfa per test e miglioramento\nrisolvere problemi di adattatore checker",
-                "es": "actualización dependencia js-controller\nnuevo widget, pero sólo versión alfa para pruebas y mejoras\nsolucionar problemas de control de adaptador",
-                "pl": "upgrade independent js- controller\nnowy widget, ale tylko wersja alfa do testowania i doskonalenia\nnaprawić problemy z sprawdzaniem adaptera",
-                "uk": "оновлення залежності js-controller\nновий віджет, але тільки альфа-версія для тестування та вдосконалення\nвиправити питання перевірки адаптера",
-                "zh-cn": "升级依赖性js控制器\n新部件, 但只用于测试和改进的 alpha 版本\n适配器检查器的固定问题"
-            },
-            "1.5.2": {
-                "en": "fix spelling of iobroker upload squeezeboxrpc in readme\nfix playtime bar",
-                "de": "fix buchstabierung von iobroker laden pressboxrpc in readme\nspielzeitleiste",
-                "ru": "фиксация iobroker загрузки сжатиеboxrpc в считывании\nисправить плей-тайм",
-                "pt": "correção ortografia de iobroker upload espremedorpc em readme\ncorrigir a barra de playtime",
-                "nl": "fix spelling van iobroker upload cleaseboxrpc in readme\nspeelbalk herstellen",
-                "fr": "corriger l'orthographe du téléchargement d'iobroker streetboxrpc dans readme\nfixer la barre de temps de jeu",
-                "it": "correzione ortografia di iobroker upload spreboxrpc in readme\nfix playtime bar",
-                "es": "fijación de la ortografía de iobroker subido apretboxrpc en readme\nbarra de juego",
-                "pl": "naprawić pisownię iobroker wysyłania squeezeboxrpc w readme\nnaprawić pasek czasu odtwarzania",
-                "uk": "фіксувати заклинання iobroker upload squeezeboxrpc в читме\nфіксувати час гри",
-                "zh-cn": "在readme中固定 iobroster 上传压缩盒的拼写\n修复播放时间栏"
-            },
-            "1.5.1": {
-                "en": "improve documentation\nremove margin from plcontainer\nimprove textoverflow with ellipsis\nadjust initial widgetsize of playlist widget\nrepair attributes for playlist widget\nadd light mode css for playlist widget",
-                "de": "verbesserung der dokumentation\nentfernen sie den rand von plcontainer\ntextoverflow mit ellipsis verbessern\neinstellen der ersten widgetsize der wiedergabeliste widget\nreparatur-attribute für playlist widget\nlichtmodus css für playlist widget hinzufügen",
-                "ru": "улучшение документации\nудалить маржу от plcontainer\nулучшить текстовый поток с эллипсисом\nнастроить первоначальный виджет\nатрибуты для воспроизведения виджета\nдобавить режим cs для виджета списка воспроизведения",
-                "pt": "melhorar a documentação\nremover a margem do plcontainer\nmelhorar o fluxo de texto com ellipsis\najustar o widget inicial do widget da lista de reprodução\natributos de reparo para widget de lista de reprodução\nadd light mode css para widget da lista de reprodução",
-                "nl": "de documentatie verbeteren\nde marge uit plcontainer verwijderen\nverbeteren textoverflow met ellipsis\nde initiële widgetgrootte van afspeellijstwidget aanpassen\nreparatie attributen voor afspeellijst widget\nlichtmodus css toevoegen voor afspeellijstwidget",
-                "fr": "améliorer la documentation\nenlever la marge du plcontainer\naméliorer le textoverflow avec ellipse\najustez le widget initial du widget playlist\nattributs de réparation pour widget playlist\najouter le mode lumière css pour le widget playlist",
-                "it": "migliorare la documentazione\nrimuovere il margine da plcontainer\nmigliorare il flusso di testo con ellipsis\nregolare la dimensione iniziale del widget di playlist\nattributi di riparazione per widget di playlist\naggiungere css modalità di luce per widget di playlist",
-                "es": "mejorar la documentación\neliminar el margen de plcontainer\nmejorar el flujo de textover con elipsis\najustar el widgetsize inicial del widget de lista de reproducción\natributos de reparación para el widget de lista\nañadir light mode css para el widget de lista de reproducción",
-                "pl": "poprawić dokumentację\nusunąć margines z plakietki\npoprawić przepływ tekstuwerwiru za pomocą elipsy\ndostosować początkowy rozmiar widgetsize widget listy odtwarzania\nnaprawa atrybutów widgetu listy odtwarzania\ndodaj tryb światła css dla widżetu listy odtwarzania",
-                "uk": "вдосконалення документації\nприбрати запас від plcontainer\nполіпшення текстового потоку з еліпсом\nналаштування початкового віджетурозміри віджету\nвідремонтувати атрибути для відтворення віджету\nadd light режим css для playlist віджет",
-                "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
-            },
-            "1.5.0": {
-                "en": "Migration to ioBroker/eslint\nNew Playlist widget",
-                "de": "Umstellung auf ioBroker/eslint\nNeues Widget Playlist",
-                "ru": "Переход на ioBroker/eslint\nНовый виджет «Плейлист»",
-                "pt": "Migração para ioBroker/eslint\nNovo widget de playlist",
-                "nl": "Migratie naar ioBroker/eslint\nNieuwe afspeellijst-widget",
-                "fr": "Migration vers ioBroker/eslint\nNouveau widget de liste de lecture",
-                "it": "Migrazione a ioBroker/eslint\nNuovo widget playlist",
-                "es": "Migración a ioBroker/eslint\nNuevo widget de lista de reproducción",
-                "pl": "Migracja do ioBroker/eslint\nNowy widżet playlisty",
-                "uk": "Перехід на ioBroker/eslint\nНовий віджет списку відтворення",
-                "zh-cn": "迁移到 ioBroker/eslint\n新增播放列表小部件"
-            },
-            "1.4.0": {
-                "en": "fix some missing objects errors\nsanitize more playernames in syncgroups\nadd sendTo Command \"cmdGeneral\"\nsanitize more the playername\nimprove translation\nif trackartist is avail then write to artist if empty\nimprove handling for artwork_url\nmove widget documentation from html to markdown\nadjust responsive tab style\nimprove attribute widgets\nchange TPE2 handling once more\njsonConfig add sizing options for differenz screen sizes\ntest implementation of TPE2 handling. switch in settings\nadd datapoints album_artist, track_artist, artistOriginal",
-                "de": "einige fehlende objektfehler beheben\nsanitize mehr spielernamen in syncgroups\nsendTo Command \"cmdGeneral\" hinzufügen\nsanitize mehr der spielername\nverbesserung der übersetzung\nwenn trackartist in anspruch genommen wird, dann schreiben sie an künstler, wenn leer\nverbesserung der handhabung für artwork_url\nwidget-dokumentation von html zu markdown verschieben\npassive tab-stil anpassen\nwidgets des attributs verbessern\ntPE2 Handling erneut ändern\njsonConfig Hinzufügen von Größenoptionen für unterschiedliche Bildschirmgrößen\ntestdurchführung des TPE2-Handlings. Schalter in Einstellungen\ndatapoints album_artist, track_artist, artistOriginal",
-                "ru": "исправить ошибки отсутствующих объектов\nсанитизировать больше имен игроков в синхгруппах\nдобавить команду sendTo \"cmd General\"\nобезвредить больше имя игрока\nулучшить перевод\nесли трекартист воспользуется, тогда напишите художнику, если пустой\nулучшить обработку для art_url\nпереместить документацию виджета из html в отметку\nнастроить адаптивный стиль вкладки\nулучшить виджеты атрибутов\nизменение TPE2 снова\njsonConfig добавляет варианты калибровки для различных размеров экрана\nтестовая реализация обработки TPE2. выключение в настройках\nдобавить datapoints album_artist, track_artist, ArtistOriginal",
-                "pt": "corrigir alguns erros de objetos ausentes\nhigienizar mais nomes de jogadores em grupos de sincronização\nadicionar sendTo Comando \"cmdGeneral\"\nhigienizar mais o nome do jogador\nmelhorar a tradução\nse trackartist é aproveitado então escreva para artista se vazio\nmelhorar o manuseio para artifício_url\nmover documentação do widget de html para marcação\najustar o estilo de guia responsivo\nmelhorar os widgets de atributos\nmudar o manuseio TPE2 mais uma vez\njsonConfig adicionar opções de dimensionamento para diferentes tamanhos de tela\nimplementação de teste de manuseio TPE2. alternar em configurações\nadd datapoints album_artist, track_artist, artistOriginal",
-                "nl": "enkele ontbrekende objecten fouten herstellen\nmeer spelernamen in syncgroepen verwijderen\nsendTo Command \"cmdGeneral\" toevoegen\nde naam van de speler deactiveren\nverbeteren van de vertaling\nals track artist beschikbaar is schrijf dan naar artiest indien leeg\nverbeteren van de behandeling voor artwork_url\nwidget-documentatie verplaatsen van html naar markdown\nresponsieve tabstijl aanpassen\nattribuutwidgets verbeteren\ntPE2-behandeling opnieuw wijzigen\njsonConfig voeg grootte opties toe voor verschillende schermgroottes\ntestimplementatie van TPE2-behandeling. schakelaar in instellingen\ndatapoints album_artist, track_artist, artiestOriginal toevoegen",
-                "fr": "correction d'erreurs d'objets manquants\ndésinfecter plus de noms de lecteur dans les groupes de synchronisation\najouter sendTo Command \"cmdGeneral\"\ndésinfecter plus le nom du joueur\naméliorer la traduction\nsi trackartist est disponible alors écrire à l'artiste si vide\naméliorer la manipulation pour artwork_url\ndéplacer la documentation de widget de html à balisage\najuster le style de l'onglet responsive\naméliorer les widgets d'attribut\nchanger la manipulation TPE2 une fois de plus\njsonConfig ajouter des options de dimensionnement pour différentes tailles d'écran\ntest de mise en œuvre de la manipulation TPE2. commutateur dans les paramètres\najouter datapoints album_artiste, track_artiste, artisteOriginal",
-                "it": "correggere alcuni errori di oggetti mancanti\nsanitizzare più nomi dei giocatori in gruppi di sincronizzazione\naggiungere sendTo Command \"cmdGeneral\"\nsanitizzare più il nome del giocatore\nmigliorare la traduzione\nse trackartist è avail poi scrivere all'artista se vuoto\nmigliorare la gestione per art_url\nspostare la documentazione del widget da html a markdown\nregolare stile di scheda reattiva\nmigliorare widget attributo\ncambiare la gestione di TPE2 ancora una volta\njsonConfig aggiungere opzioni di dimensionamento per diverseenz dimensioni dello schermo\nimplementazione del test di gestione TPE2. interruttore nelle impostazioni\naggiungere datapoints album_artist, track_artist, artistaOriginal",
-                "es": "solucionar algunos errores de objetos perdidos\nsanitize more playernames in syncgroups\nañadir sendTo Command \"cmdGeneral\"\nsanitize más el nombre de jugador\nmejorar la traducción\nsi el trackartista está disponible entonces escriba al artista si está vacío\nmejorar el manejo de artwork_url\nmover la documentación del widget de html a marcadown\najuste estilo de pestaña sensible\nmejorar widgets de atributo\ncambio de manejo TPE2 una vez más\njsonConfig añadir opciones de tamaño para diferentes tamaños de pantalla\naplicación de pruebas de manipulación TPE2. conmutar la configuración\nañadir datapoints album_artist, track_artist, artistOriginal",
-                "pl": "naprawić kilka brakujących błędów obiektów\nsanitize więcej nazw graczy w zespołach\ndodaj polecenie sendTo \"cmdGeneral\"\nsanitize more the playername\npoprawić tłumaczenie\njeśli trackartist jest użyteczny, napisz do artysty jeśli pusty\npoprawa obsługi grafiki _ url\nprzenieść dokumentację widget z html do markdown\ndopasowanie odpowiadającego stylu karty\npoprawić widżety atrybutów\nzmienić obsługę TPE2 jeszcze raz\njsonConfig dodać opcje rozmiaru dla różnej wielkości ekranu\ntestowa realizacja obsługi TPE2. przełączanie w ustawieniach\nadd datapoints album _ artist, track _ artist, artistOriginal",
-                "uk": "виправити деякі помилки відсутніх об'єктів\nдезінфікувати більше назв гравців у синкгрупах\nдодати команду \"Команда\"\nсатизувати більше ім'я гравця\nполіпшення перекладу\nякщо трактист - аваїл, то напишіть художника, якщо порожня\nпокращити роботу для арт-роботи_url\nперемістити документацію віджету з html для розмітки\nрегулюйте чуйний стиль вкладки\nполіпшення віджетів атрибутів\nзміна обробки TPE2 ще раз\njsonConfig add sizing options для різних розмірів екрана\nтестування впровадження TPE2 обробки. Перемикач в налаштуваннях\nдодавати альбоми/артист, трек_artist, художникOriginal",
-                "zh-cn": "修正一些缺失的对象错误\n在同步组中消毒更多玩家名\n添加发送到命令“ cmdGeneral ”\n更多消毒玩家名称\n改进翻译\n如果 trackartist 有用, 如果空则写给艺人\n改进对艺术品的处理_ url\n将部件文档从 html 移动到下标记\n调整响应标签样式\n改进属性部件\n再次更改TPE2处理\njsonConfig 添加不同屏幕大小的大小选项\n试验实施TPE2处理。 在设置中切换\n添加数据点相册_艺人,音轨_艺人,艺人"
-            }
-        },
-        "titleLang": {
-            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
-            "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
-            "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
-            "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
-            "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
-            "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
-            "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
-            "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
-            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
-            "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
-        },
-        "desc": {
-            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "ru": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "pt": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "nl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "fr": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "it": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "es": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "pl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол"
-        },
-        "authors": ["oweitman <oweitman@gmx.de>"],
-        "keywords": ["squeezebox", "LMS", "Logitech Media Server", "music server"],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "icon": "squeezeboxrpc.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
-        "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
-        "loglevel": "info",
-        "tier": 3,
-        "restartAdapters": ["vis", "vis-2"],
-        "mode": "daemon",
-        "type": "multimedia",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "messagebox": true,
-        "visWidgets": {
-            "vis2vis-squeezeboxrpc": {
-                "i18n": "component",
-                "name": "vis2vis-squeezeboxrpc",
-                "url": "vis2squeezeboxrpc/customWidgets.js",
-                "bundlerType": "module",
-                "components": [
-                    "PlayersWidget",
-                    "PlayButtonWidget",
-                    "ForwardButtonWidget",
-                    "RewindButtonWidget",
-                    "ShuffleButtonWidget",
-                    "RepeatButtonWidget",
-                    "VolumeWidget",
-                    "PlaytimeWidget",
-                    "StringWidget",
-                    "NumberWidget",
-                    "DateTimeWidget",
-                    "ImageWidget",
-                    "SyncGroupWidget",
-                    "FavoritesWidget",
-                    "PlaylistWidget",
-                    "PlaylistDetailWidget",
-                    "BrowserWidget"
-                ]
-            }
-        },
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.12"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=7.6.17"
-            }
+  "common": {
+    "name": "squeezeboxrpc",
+    "version": "2.0.0-alpha.0",
+    "news": {
+      "2.0.0-alpha.0": {
+        "en": "fix empty rewrite artwork and other data points\nbreaking changes from vis-1 to vis-2\nnew widget set for vis-2\nsee README for details",
+        "de": "Fehler bei leerem Rewrite-Artwork und weiteren Datenpunkten behoben\nBreaking Changes beim Wechsel von vis-1 auf vis-2\nneues Widget-Set für vis-2\nDetails siehe README",
+        "ru": "исправлена ошибка с пустым rewrite artwork и другими точками данных\nкритические изменения при переходе с vis-1 на vis-2\nновый набор виджетов для vis-2\nподробности см. в README",
+        "pt": "corrigido o problema de rewrite artwork vazio e outros pontos de dados\nalterações incompatíveis na migração do vis-1 para o vis-2\nnovo conjunto de widgets para o vis-2\nconsulte o README para mais detalhes",
+        "nl": "probleem met lege rewrite artwork en andere datapunten opgelost\nbreaking changes bij de overstap van vis-1 naar vis-2\nnieuwe widgetset voor vis-2\nzie README voor details",
+        "fr": "correction du problème de rewrite artwork vide et d'autres points de données\nchangements incompatibles lors du passage de vis-1 à vis-2\nnouvel ensemble de widgets pour vis-2\nvoir le README pour plus de détails",
+        "it": "risolto il problema di rewrite artwork vuoto e di altri punti dati\nmodifiche incompatibili nel passaggio da vis-1 a vis-2\nnuovo set di widget per vis-2\nvedere il README per i dettagli",
+        "es": "corregido el problema de rewrite artwork vacío y otros puntos de datos\ncambios incompatibles al pasar de vis-1 a vis-2\nnuevo conjunto de widgets para vis-2\nconsulta el README para más detalles",
+        "pl": "naprawiono problem z pustym rewrite artwork i innymi punktami danych\nniekompatybilne zmiany przy przejściu z vis-1 na vis-2\nnowy zestaw widżetów dla vis-2\nszczegóły w README",
+        "uk": "виправлено проблему з порожнім rewrite artwork та іншими точками даних\nнесумісні зміни під час переходу з vis-1 на vis-2\nновий набір віджетів для vis-2\nдетальніше див. у README",
+        "zh-cn": "修复空 rewrite artwork 和其他数据点的问题\n从 vis-1 升级到 vis-2 时包含不兼容变更\nvis-2 的新组件集\n详情请参阅 README"
+      },
+      "1.6.4": {
+        "en": "test remove node 18,extend to node 24\nupdate packages",
+        "de": "test entfernen node 18,extend to node 24\nupdate-pakete",
+        "ru": "тест удалить узел 18, расширить узел 24\nобновление пакетов",
+        "pt": "teste remover o nó 18, extend ao nó 24\natualizar pacotes",
+        "nl": "test verwijder node 18, extend naar node 24\npakketten bijwerken",
+        "fr": "test enlever le noeud 18,extendre au noeud 24\nmettre à jour les paquets",
+        "it": "prova rimuovere nodo 18, estend to node 24\npacchetti di aggiornamento",
+        "es": "prueba eliminar nodo 18,extender a nodo 24\nactualizar paquetes",
+        "pl": "test usunąć węzeł 18, rozszerzyć na węzeł 24\naktualizacja pakietów",
+        "uk": "test remove node 18,потенд в вузол 24\nоновлення пакетів",
+        "zh-cn": "测试去除节点 18, 延伸至节点 24\n更新软件包"
+      },
+      "1.6.2": {
+        "en": "upgrade dependency js-controller\nnew widget, but only alpha version for testing and improvement\nfix issues of adapter checker",
+        "de": "upgrade abhängigkeit js-controller\nneue widget, aber nur alpha-version für tests und verbesserung\nprobleme des adapter-checkers beheben",
+        "ru": "обновление зависимостей js-контроллера\nновый виджет, но только альфа-версия для тестирования и улучшения\nустранение проблем с проверкой адаптера",
+        "pt": "upgrade de dependência js-controller\nnovo widget, mas apenas versão alfa para testes e melhoria\ncorrigir problemas do verificador do adaptador",
+        "nl": "upgrade afhankelijkheid js-controller\nnieuw widget, maar alleen alfa versie voor testen en verbetering\nproblemen van adaptercontrole oplossen",
+        "fr": "upgrade dépendance js-controller\nnouveau widget, mais seulement version alpha pour tester et améliorer\nrésoudre les problèmes de vérification de l'adaptateur",
+        "it": "potenziare la dipendenza js-controller\nnuovo widget, ma solo versione alfa per test e miglioramento\nrisolvere problemi di adattatore checker",
+        "es": "actualización dependencia js-controller\nnuevo widget, pero sólo versión alfa para pruebas y mejoras\nsolucionar problemas de control de adaptador",
+        "pl": "upgrade independent js- controller\nnowy widget, ale tylko wersja alfa do testowania i doskonalenia\nnaprawić problemy z sprawdzaniem adaptera",
+        "uk": "оновлення залежності js-controller\nновий віджет, але тільки альфа-версія для тестування та вдосконалення\nвиправити питання перевірки адаптера",
+        "zh-cn": "升级依赖性js控制器\n新部件, 但只用于测试和改进的 alpha 版本\n适配器检查器的固定问题"
+      },
+      "1.5.2": {
+        "en": "fix spelling of iobroker upload squeezeboxrpc in readme\nfix playtime bar",
+        "de": "fix buchstabierung von iobroker laden pressboxrpc in readme\nspielzeitleiste",
+        "ru": "фиксация iobroker загрузки сжатиеboxrpc в считывании\nисправить плей-тайм",
+        "pt": "correção ortografia de iobroker upload espremedorpc em readme\ncorrigir a barra de playtime",
+        "nl": "fix spelling van iobroker upload cleaseboxrpc in readme\nspeelbalk herstellen",
+        "fr": "corriger l'orthographe du téléchargement d'iobroker streetboxrpc dans readme\nfixer la barre de temps de jeu",
+        "it": "correzione ortografia di iobroker upload spreboxrpc in readme\nfix playtime bar",
+        "es": "fijación de la ortografía de iobroker subido apretboxrpc en readme\nbarra de juego",
+        "pl": "naprawić pisownię iobroker wysyłania squeezeboxrpc w readme\nnaprawić pasek czasu odtwarzania",
+        "uk": "фіксувати заклинання iobroker upload squeezeboxrpc в читме\nфіксувати час гри",
+        "zh-cn": "在readme中固定 iobroster 上传压缩盒的拼写\n修复播放时间栏"
+      },
+      "1.5.1": {
+        "en": "improve documentation\nremove margin from plcontainer\nimprove textoverflow with ellipsis\nadjust initial widgetsize of playlist widget\nrepair attributes for playlist widget\nadd light mode css for playlist widget",
+        "de": "verbesserung der dokumentation\nentfernen sie den rand von plcontainer\ntextoverflow mit ellipsis verbessern\neinstellen der ersten widgetsize der wiedergabeliste widget\nreparatur-attribute für playlist widget\nlichtmodus css für playlist widget hinzufügen",
+        "ru": "улучшение документации\nудалить маржу от plcontainer\nулучшить текстовый поток с эллипсисом\nнастроить первоначальный виджет\nатрибуты для воспроизведения виджета\nдобавить режим cs для виджета списка воспроизведения",
+        "pt": "melhorar a documentação\nremover a margem do plcontainer\nmelhorar o fluxo de texto com ellipsis\najustar o widget inicial do widget da lista de reprodução\natributos de reparo para widget de lista de reprodução\nadd light mode css para widget da lista de reprodução",
+        "nl": "de documentatie verbeteren\nde marge uit plcontainer verwijderen\nverbeteren textoverflow met ellipsis\nde initiële widgetgrootte van afspeellijstwidget aanpassen\nreparatie attributen voor afspeellijst widget\nlichtmodus css toevoegen voor afspeellijstwidget",
+        "fr": "améliorer la documentation\nenlever la marge du plcontainer\naméliorer le textoverflow avec ellipse\najustez le widget initial du widget playlist\nattributs de réparation pour widget playlist\najouter le mode lumière css pour le widget playlist",
+        "it": "migliorare la documentazione\nrimuovere il margine da plcontainer\nmigliorare il flusso di testo con ellipsis\nregolare la dimensione iniziale del widget di playlist\nattributi di riparazione per widget di playlist\naggiungere css modalità di luce per widget di playlist",
+        "es": "mejorar la documentación\neliminar el margen de plcontainer\nmejorar el flujo de textover con elipsis\najustar el widgetsize inicial del widget de lista de reproducción\natributos de reparación para el widget de lista\nañadir light mode css para el widget de lista de reproducción",
+        "pl": "poprawić dokumentację\nusunąć margines z plakietki\npoprawić przepływ tekstuwerwiru za pomocą elipsy\ndostosować początkowy rozmiar widgetsize widget listy odtwarzania\nnaprawa atrybutów widgetu listy odtwarzania\ndodaj tryb światła css dla widżetu listy odtwarzania",
+        "uk": "вдосконалення документації\nприбрати запас від plcontainer\nполіпшення текстового потоку з еліпсом\nналаштування початкового віджетурозміри віджету\nвідремонтувати атрибути для відтворення віджету\nadd light режим css для playlist віджет",
+        "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
+      },
+      "1.5.0": {
+        "en": "Migration to ioBroker/eslint\nNew Playlist widget",
+        "de": "Umstellung auf ioBroker/eslint\nNeues Widget Playlist",
+        "ru": "Переход на ioBroker/eslint\nНовый виджет «Плейлист»",
+        "pt": "Migração para ioBroker/eslint\nNovo widget de playlist",
+        "nl": "Migratie naar ioBroker/eslint\nNieuwe afspeellijst-widget",
+        "fr": "Migration vers ioBroker/eslint\nNouveau widget de liste de lecture",
+        "it": "Migrazione a ioBroker/eslint\nNuovo widget playlist",
+        "es": "Migración a ioBroker/eslint\nNuevo widget de lista de reproducción",
+        "pl": "Migracja do ioBroker/eslint\nNowy widżet playlisty",
+        "uk": "Перехід на ioBroker/eslint\nНовий віджет списку відтворення",
+        "zh-cn": "迁移到 ioBroker/eslint\n新增播放列表小部件"
+      },
+      "1.4.0": {
+        "en": "fix some missing objects errors\nsanitize more playernames in syncgroups\nadd sendTo Command \"cmdGeneral\"\nsanitize more the playername\nimprove translation\nif trackartist is avail then write to artist if empty\nimprove handling for artwork_url\nmove widget documentation from html to markdown\nadjust responsive tab style\nimprove attribute widgets\nchange TPE2 handling once more\njsonConfig add sizing options for differenz screen sizes\ntest implementation of TPE2 handling. switch in settings\nadd datapoints album_artist, track_artist, artistOriginal",
+        "de": "einige fehlende objektfehler beheben\nsanitize mehr spielernamen in syncgroups\nsendTo Command \"cmdGeneral\" hinzufügen\nsanitize mehr der spielername\nverbesserung der übersetzung\nwenn trackartist in anspruch genommen wird, dann schreiben sie an künstler, wenn leer\nverbesserung der handhabung für artwork_url\nwidget-dokumentation von html zu markdown verschieben\npassive tab-stil anpassen\nwidgets des attributs verbessern\ntPE2 Handling erneut ändern\njsonConfig Hinzufügen von Größenoptionen für unterschiedliche Bildschirmgrößen\ntestdurchführung des TPE2-Handlings. Schalter in Einstellungen\ndatapoints album_artist, track_artist, artistOriginal",
+        "ru": "исправить ошибки отсутствующих объектов\nсанитизировать больше имен игроков в синхгруппах\nдобавить команду sendTo \"cmd General\"\nобезвредить больше имя игрока\nулучшить перевод\nесли трекартист воспользуется, тогда напишите художнику, если пустой\nулучшить обработку для art_url\nпереместить документацию виджета из html в отметку\nнастроить адаптивный стиль вкладки\nулучшить виджеты атрибутов\nизменение TPE2 снова\njsonConfig добавляет варианты калибровки для различных размеров экрана\nтестовая реализация обработки TPE2. выключение в настройках\nдобавить datapoints album_artist, track_artist, ArtistOriginal",
+        "pt": "corrigir alguns erros de objetos ausentes\nhigienizar mais nomes de jogadores em grupos de sincronização\nadicionar sendTo Comando \"cmdGeneral\"\nhigienizar mais o nome do jogador\nmelhorar a tradução\nse trackartist é aproveitado então escreva para artista se vazio\nmelhorar o manuseio para artifício_url\nmover documentação do widget de html para marcação\najustar o estilo de guia responsivo\nmelhorar os widgets de atributos\nmudar o manuseio TPE2 mais uma vez\njsonConfig adicionar opções de dimensionamento para diferentes tamanhos de tela\nimplementação de teste de manuseio TPE2. alternar em configurações\nadd datapoints album_artist, track_artist, artistOriginal",
+        "nl": "enkele ontbrekende objecten fouten herstellen\nmeer spelernamen in syncgroepen verwijderen\nsendTo Command \"cmdGeneral\" toevoegen\nde naam van de speler deactiveren\nverbeteren van de vertaling\nals track artist beschikbaar is schrijf dan naar artiest indien leeg\nverbeteren van de behandeling voor artwork_url\nwidget-documentatie verplaatsen van html naar markdown\nresponsieve tabstijl aanpassen\nattribuutwidgets verbeteren\ntPE2-behandeling opnieuw wijzigen\njsonConfig voeg grootte opties toe voor verschillende schermgroottes\ntestimplementatie van TPE2-behandeling. schakelaar in instellingen\ndatapoints album_artist, track_artist, artiestOriginal toevoegen",
+        "fr": "correction d'erreurs d'objets manquants\ndésinfecter plus de noms de lecteur dans les groupes de synchronisation\najouter sendTo Command \"cmdGeneral\"\ndésinfecter plus le nom du joueur\naméliorer la traduction\nsi trackartist est disponible alors écrire à l'artiste si vide\naméliorer la manipulation pour artwork_url\ndéplacer la documentation de widget de html à balisage\najuster le style de l'onglet responsive\naméliorer les widgets d'attribut\nchanger la manipulation TPE2 une fois de plus\njsonConfig ajouter des options de dimensionnement pour différentes tailles d'écran\ntest de mise en œuvre de la manipulation TPE2. commutateur dans les paramètres\najouter datapoints album_artiste, track_artiste, artisteOriginal",
+        "it": "correggere alcuni errori di oggetti mancanti\nsanitizzare più nomi dei giocatori in gruppi di sincronizzazione\naggiungere sendTo Command \"cmdGeneral\"\nsanitizzare più il nome del giocatore\nmigliorare la traduzione\nse trackartist è avail poi scrivere all'artista se vuoto\nmigliorare la gestione per art_url\nspostare la documentazione del widget da html a markdown\nregolare stile di scheda reattiva\nmigliorare widget attributo\ncambiare la gestione di TPE2 ancora una volta\njsonConfig aggiungere opzioni di dimensionamento per diverseenz dimensioni dello schermo\nimplementazione del test di gestione TPE2. interruttore nelle impostazioni\naggiungere datapoints album_artist, track_artist, artistaOriginal",
+        "es": "solucionar algunos errores de objetos perdidos\nsanitize more playernames in syncgroups\nañadir sendTo Command \"cmdGeneral\"\nsanitize más el nombre de jugador\nmejorar la traducción\nsi el trackartista está disponible entonces escriba al artista si está vacío\nmejorar el manejo de artwork_url\nmover la documentación del widget de html a marcadown\najuste estilo de pestaña sensible\nmejorar widgets de atributo\ncambio de manejo TPE2 una vez más\njsonConfig añadir opciones de tamaño para diferentes tamaños de pantalla\naplicación de pruebas de manipulación TPE2. conmutar la configuración\nañadir datapoints album_artist, track_artist, artistOriginal",
+        "pl": "naprawić kilka brakujących błędów obiektów\nsanitize więcej nazw graczy w zespołach\ndodaj polecenie sendTo \"cmdGeneral\"\nsanitize more the playername\npoprawić tłumaczenie\njeśli trackartist jest użyteczny, napisz do artysty jeśli pusty\npoprawa obsługi grafiki _ url\nprzenieść dokumentację widget z html do markdown\ndopasowanie odpowiadającego stylu karty\npoprawić widżety atrybutów\nzmienić obsługę TPE2 jeszcze raz\njsonConfig dodać opcje rozmiaru dla różnej wielkości ekranu\ntestowa realizacja obsługi TPE2. przełączanie w ustawieniach\nadd datapoints album _ artist, track _ artist, artistOriginal",
+        "uk": "виправити деякі помилки відсутніх об'єктів\nдезінфікувати більше назв гравців у синкгрупах\nдодати команду \"Команда\"\nсатизувати більше ім'я гравця\nполіпшення перекладу\nякщо трактист - аваїл, то напишіть художника, якщо порожня\nпокращити роботу для арт-роботи_url\nперемістити документацію віджету з html для розмітки\nрегулюйте чуйний стиль вкладки\nполіпшення віджетів атрибутів\nзміна обробки TPE2 ще раз\njsonConfig add sizing options для різних розмірів екрана\nтестування впровадження TPE2 обробки. Перемикач в налаштуваннях\nдодавати альбоми/артист, трек_artist, художникOriginal",
+        "zh-cn": "修正一些缺失的对象错误\n在同步组中消毒更多玩家名\n添加发送到命令“ cmdGeneral ”\n更多消毒玩家名称\n改进翻译\n如果 trackartist 有用, 如果空则写给艺人\n改进对艺术品的处理_ url\n将部件文档从 html 移动到下标记\n调整响应标签样式\n改进属性部件\n再次更改TPE2处理\njsonConfig 添加不同屏幕大小的大小选项\n试验实施TPE2处理。 在设置中切换\n添加数据点相册_艺人,音轨_艺人,艺人"
+      }
+    },
+    "titleLang": {
+      "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
+      "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
+      "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
+      "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
+      "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
+      "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
+      "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
+      "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
+      "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
+      "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
+    },
+    "desc": {
+      "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "de": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "ru": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "pt": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "nl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "fr": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "it": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "es": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "pl": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "zh-cn": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол"
+    },
+    "authors": [
+      "oweitman <oweitman@gmx.de>"
+    ],
+    "keywords": [
+      "squeezebox",
+      "LMS",
+      "Logitech Media Server",
+      "music server"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "squeezeboxrpc.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
+    "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "restartAdapters": [
+      "vis",
+      "vis-2"
+    ],
+    "mode": "daemon",
+    "type": "multimedia",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "messagebox": true,
+    "visWidgets": {
+      "vis2vis-squeezeboxrpc": {
+        "i18n": "component",
+        "name": "vis2vis-squeezeboxrpc",
+        "url": "vis2squeezeboxrpc/customWidgets.js",
+        "bundlerType": "module",
+        "components": [
+          "PlayersWidget",
+          "PlayButtonWidget",
+          "ForwardButtonWidget",
+          "RewindButtonWidget",
+          "ShuffleButtonWidget",
+          "RepeatButtonWidget",
+          "VolumeWidget",
+          "PlaytimeWidget",
+          "StringWidget",
+          "NumberWidget",
+          "DateTimeWidget",
+          "ImageWidget",
+          "SyncGroupWidget",
+          "FavoritesWidget",
+          "PlaylistWidget",
+          "PlaylistDetailWidget",
+          "BrowserWidget"
         ]
+      }
     },
-    "encryptedNative": ["password"],
-    "protectedNative": ["password"],
-    "native": {
-        "server": "0.0.0.0",
-        "port": 9000,
-        "telnetport": 9090,
-        "username": "",
-        "password": "",
-        "serverrefresh": 30,
-        "playerrefresh": 950,
-        "favoriterefresh": 720,
-        "discoveryrefresh": 30,
-        "useplaylist": true,
-        "usediscovery": true,
-        "usetelnet": false,
-        "usefavorites": true,
-        "outputserverdebug": false,
-        "outputserversilly": false,
-        "outputplayerdebug": false,
-        "outputplayersilly": false
+    "adminUI": {
+      "config": "json"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.12"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
     ]
+  },
+  "encryptedNative": [
+    "password"
+  ],
+  "protectedNative": [
+    "password"
+  ],
+  "native": {
+    "server": "0.0.0.0",
+    "port": 9000,
+    "telnetport": 9090,
+    "username": "",
+    "password": "",
+    "serverrefresh": 30,
+    "playerrefresh": 950,
+    "favoriterefresh": 720,
+    "discoveryrefresh": 30,
+    "useplaylist": true,
+    "usediscovery": true,
+    "usetelnet": false,
+    "usefavorites": true,
+    "outputserverdebug": false,
+    "outputserversilly": false,
+    "outputplayerdebug": false,
+    "outputplayersilly": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
