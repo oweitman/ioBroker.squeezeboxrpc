@@ -1,4 +1,8 @@
 # Older changes
+## 1.6.1 (2025-05-05)
+
+- Fix eslint
+
 ## 1.6.0 (2025-05-05)
 
 - upgrade dependency js-controller

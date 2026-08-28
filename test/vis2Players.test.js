@@ -80,7 +80,7 @@ describe('VIS-2 Players configuration', () => {
         const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
         expect(source).to.include("'./PlaylistWidget': './src/widgets/playlist/PlaylistWidget'");
-        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistWidget');
+        expect(ioPackage.common.visWidgets['vis2vis-squeezeboxrpc'].components).to.include('PlaylistWidget');
     });
 
     it('parses and formats current playlist details', async () => {
@@ -126,7 +126,7 @@ describe('VIS-2 Players configuration', () => {
         const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
         expect(source).to.include("'./PlaylistDetailWidget': './src/widgets/playlist-detail/PlaylistDetailWidget'");
-        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('PlaylistDetailWidget');
+        expect(ioPackage.common.visWidgets['vis2vis-squeezeboxrpc'].components).to.include('PlaylistDetailWidget');
     });
 
     it('keeps the VIS-1 playlist layout styles in VIS-2', () => {
@@ -162,7 +162,7 @@ describe('VIS-2 Players configuration', () => {
         const source = fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'vite.config.ts'), 'utf8');
         const ioPackage = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'io-package.json'), 'utf8'));
         expect(source).to.include("'./BrowserWidget': './src/widgets/browser/BrowserWidget'");
-        expect(ioPackage.common.visWidgets.vis2squeezeboxrpc.components).to.include('BrowserWidget');
+        expect(ioPackage.common.visWidgets['vis2vis-squeezeboxrpc'].components).to.include('BrowserWidget');
     });
 
     it('renders browser icons with the configured foreground color', () => {
@@ -176,7 +176,9 @@ describe('VIS-2 Players configuration', () => {
         );
         expect(css).to.include('fill: currentColor;');
         expect(css).to.include('align-items: center;');
-        expect(widget).to.include('fill="currentColor" stroke="currentColor" strokeWidth=".3"');
+        expect(widget).to.include('fill="currentColor"');
+        expect(widget).to.include('stroke="currentColor"');
+        expect(widget).to.include('strokeWidth=".3"');
         expect(widget).to.include("viewBox = '0 0 26.458 26.458'");
     });
 

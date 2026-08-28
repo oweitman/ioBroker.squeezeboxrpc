@@ -47,7 +47,7 @@ describe('VIS widget modules', () => {
 
     it('registers the separate VIS-2 player widget set', () => {
         const ioPackage = JSON.parse(fs.readFileSync(path.join(projectRoot, 'io-package.json'), 'utf8'));
-        const widgetSet = ioPackage.common.visWidgets.vis2squeezeboxrpc;
+        const widgetSet = ioPackage.common.visWidgets['vis2vis-squeezeboxrpc'];
 
         expect(widgetSet.bundlerType).to.equal('module');
         expect(widgetSet.url).to.be.oneOf([

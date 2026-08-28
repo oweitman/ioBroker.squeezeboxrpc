@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "2.0.0-alpha.1",
+    "version": "2.0.0-alpha.2",
     "news": {
+      "2.0.0-alpha.2": {
+        "en": "fix tests",
+        "de": "Fixtests",
+        "ru": "исправить тесты",
+        "pt": "corrigir testes",
+        "nl": "fix tests",
+        "fr": "tests de correction",
+        "it": "test di correzione",
+        "es": "pruebas de corrección",
+        "pl": "naprawić testy",
+        "uk": "виправити тести",
+        "zh-cn": "修复测试"
+      },
       "2.0.0-alpha.1": {
         "en": "fix lint error",
         "de": "Lint-Fehler beheben",
@@ -80,19 +93,6 @@
         "pl": "poprawić dokumentację\nusunąć margines z plakietki\npoprawić przepływ tekstuwerwiru za pomocą elipsy\ndostosować początkowy rozmiar widgetsize widget listy odtwarzania\nnaprawa atrybutów widgetu listy odtwarzania\ndodaj tryb światła css dla widżetu listy odtwarzania",
         "uk": "вдосконалення документації\nприбрати запас від plcontainer\nполіпшення текстового потоку з еліпсом\nналаштування початкового віджетурозміри віджету\nвідремонтувати атрибути для відтворення віджету\nadd light режим css для playlist віджет",
         "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
-      },
-      "1.5.0": {
-        "en": "Migration to ioBroker/eslint\nNew Playlist widget",
-        "de": "Umstellung auf ioBroker/eslint\nNeues Widget Playlist",
-        "ru": "Переход на ioBroker/eslint\nНовый виджет «Плейлист»",
-        "pt": "Migração para ioBroker/eslint\nNovo widget de playlist",
-        "nl": "Migratie naar ioBroker/eslint\nNieuwe afspeellijst-widget",
-        "fr": "Migration vers ioBroker/eslint\nNouveau widget de liste de lecture",
-        "it": "Migrazione a ioBroker/eslint\nNuovo widget playlist",
-        "es": "Migración a ioBroker/eslint\nNuevo widget de lista de reproducción",
-        "pl": "Migracja do ioBroker/eslint\nNowy widżet playlisty",
-        "uk": "Перехід на ioBroker/eslint\nНовий віджет списку відтворення",
-        "zh-cn": "迁移到 ioBroker/eslint\n新增播放列表小部件"
       }
     },
     "titleLang": {

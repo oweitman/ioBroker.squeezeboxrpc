@@ -697,6 +697,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 2.0.0-alpha.2 (2026-08-28)
+
+- fix tests
+
 ### 2.0.0-alpha.1 (2026-08-28)
 
 - fix lint error
@@ -716,10 +720,6 @@ are contained in the following CLI documentation:
 ### 1.6.2 (2025-05-05)
 
 - fix node version in github workflow
-
-### 1.6.1 (2025-05-05)
-
-- Fix eslint
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
