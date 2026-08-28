@@ -5,7 +5,9 @@
  * @param request - The request object.
  * @returns The class that can parse the response.
  */
-export function parseRequestFactory(request: any): Albums | Artists | Genres | Works | Years | Items | Tracks | PlaylistTracks | Playlists | undefined;
+export function parseRequestFactory(
+    request: any,
+): Albums | Artists | Genres | Works | Years | Items | Tracks | PlaylistTracks | Playlists | undefined;
 declare class Albums {
     constructor(request: any);
     albums: any;
