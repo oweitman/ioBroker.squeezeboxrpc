@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
 import { Alert, Button, Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
+import { translate } from '../../shared/translate';
 
 import { configuredPlayerSelection, decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import {
@@ -24,7 +24,7 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
 
     const refresh = useCallback(async () => {
         if (!instance) {
-            setError(I18n.t('squeezeboxrpc_select_players_widget'));
+            setError(translate('squeezeboxrpc_select_players_widget'));
             return;
         }
         setLoading(true);
@@ -34,7 +34,7 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
             update(mergeFavorites(favorites, parseFavorites(states, instance)));
         } catch (loadError) {
             console.error(loadError);
-            setError(I18n.t('squeezeboxrpc_favorites_load_error'));
+            setError(translate('squeezeboxrpc_favorites_load_error'));
         } finally {
             setLoading(false);
         }
@@ -57,11 +57,11 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
                 disabled={loading || !instance}
                 onClick={() => void refresh()}
             >
-                {I18n.t('squeezeboxrpc_refresh_favorites')}
+                {translate('squeezeboxrpc_refresh_favorites')}
             </Button>
             {error ? <Alert severity="warning">{error}</Alert> : null}
             {!favorites.length && !loading ? (
-                <Typography variant="body2">{I18n.t('squeezeboxrpc_no_favorites')}</Typography>
+                <Typography variant="body2">{translate('squeezeboxrpc_no_favorites')}</Typography>
             ) : null}
             {favorites.map((favorite, index) => (
                 <Stack

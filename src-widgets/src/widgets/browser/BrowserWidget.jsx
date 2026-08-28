@@ -1,8 +1,8 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { parseRequestFactory } from '../../../../widgets/squeezeboxrpc/js/sbClasses';
 import { playerReferenceField } from '../values/PlayerStateWidget';
+import { translate } from '../../shared/translate';
 import {
     browserActionCommand,
     browserBreadcrumb,
@@ -34,8 +34,18 @@ function BrowserIcon({ type }) {
         );
     }
     return (
-        <svg focusable="false" aria-hidden="true" viewBox={viewBox}>
-            <g fill="currentColor" stroke="currentColor" strokeWidth=".3">{content}</g>
+        <svg
+            focusable="false"
+            aria-hidden="true"
+            viewBox={viewBox}
+        >
+            <g
+                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth=".3"
+            >
+                {content}
+            </g>
         </svg>
     );
 }
@@ -63,7 +73,7 @@ class BrowserWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcBrowser2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Browser',
             visAttrs: [
@@ -123,10 +133,14 @@ class BrowserWidget extends WidgetBase {
             this.selectionWidget = widgetPlayer;
             this.selection = null;
             this.unsubscribeSelection = widgetPlayer
-                ? subscribePlayerSelection(widgetPlayer, selection => {
-                      this.selection = selection;
-                      void this.openBrowser();
-                  }, this.props.context.views)
+                ? subscribePlayerSelection(
+                      widgetPlayer,
+                      selection => {
+                          this.selection = selection;
+                          void this.openBrowser();
+                      },
+                      this.props.context.views,
+                  )
                 : null;
             if (!widgetPlayer) this.setState({ browserItems: [], browserHistory: [], browserError: '' });
             return;
@@ -160,7 +174,11 @@ class BrowserWidget extends WidgetBase {
     handleError(request, error) {
         if (request !== this.browserRequest) return;
         console.error(error);
-        this.setState({ browserItems: [], browserLoading: false, browserError: I18n.t('squeezeboxrpc_browser_load_error') });
+        this.setState({
+            browserItems: [],
+            browserLoading: false,
+            browserError: translate('squeezeboxrpc_browser_load_error'),
+        });
     }
 
     async sendCommand(command) {
@@ -180,12 +198,23 @@ class BrowserWidget extends WidgetBase {
 
     async fetchChildren(item) {
         if (item.id === 'home') return browserHomeItems;
-        if (item.id === 'radio') return this.parsedMenu({ playerid: this.playerId, cmdArray: ['radios', 0, '25000', 'menu:radio'] });
-        if (item.id === 'favorites') return this.parsedMenu({ playerid: this.playerId, cmdArray: ['favorites', 'items', 0, '25000', 'menu:favorites'] });
-        if (item.id === 'apps') return this.parsedMenu({ playerid: this.playerId, cmdArray: ['myapps', 'items', 0, '25000', 'menu:1'] });
+        if (item.id === 'radio')
+            return this.parsedMenu({ playerid: this.playerId, cmdArray: ['radios', 0, '25000', 'menu:radio'] });
+        if (item.id === 'favorites')
+            return this.parsedMenu({
+                playerid: this.playerId,
+                cmdArray: ['favorites', 'items', 0, '25000', 'menu:favorites'],
+            });
+        if (item.id === 'apps')
+            return this.parsedMenu({ playerid: this.playerId, cmdArray: ['myapps', 'items', 0, '25000', 'menu:1'] });
         if (item.id === 'myMusic' || item.id === 'extra') {
-            const items = await this.parsedMenu({ playerid: this.playerId, cmdArray: ['menu', 'items', 0, '25000', 'direct:1'] });
-            return items.filter(menuItem => menuItem?.item?.node === item.id).sort((a, b) => (a.item?.weight || 0) - (b.item?.weight || 0));
+            const items = await this.parsedMenu({
+                playerid: this.playerId,
+                cmdArray: ['menu', 'items', 0, '25000', 'direct:1'],
+            });
+            return items
+                .filter(menuItem => menuItem?.item?.node === item.id)
+                .sort((a, b) => (a.item?.weight || 0) - (b.item?.weight || 0));
         }
         const action = parseBrowserActions(item.actions).next;
         const command = browserCommand(action, this.playerId);
@@ -232,14 +261,14 @@ class BrowserWidget extends WidgetBase {
             await this.sendCommand(command);
         } catch (error) {
             console.error(error);
-            this.setState({ browserError: I18n.t('squeezeboxrpc_browser_action_error') });
+            this.setState({ browserError: translate('squeezeboxrpc_browser_action_error') });
         }
     }
 
     renderAction(item, actionName) {
         const actions = parseBrowserActions(item.actions);
         if (!actions[actionName]) return null;
-        const label = I18n.t(`squeezeboxrpc_browser_${actionName}`);
+        const label = translate(`squeezeboxrpc_browser_${actionName}`);
         return (
             <button
                 key={actionName}
@@ -260,19 +289,25 @@ class BrowserWidget extends WidgetBase {
 
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
-        if (!this.selectionWidget) return <div>{I18n.t('squeezeboxrpc_select_players_widget')}</div>;
+        if (!this.selectionWidget) return <div>{translate('squeezeboxrpc_select_players_widget')}</div>;
         const history = this.widgetState.browserHistory;
         return (
             <div className="squeezeboxrpc-browser">
-                <button type="button" className="squeezeboxrpc-browser-parent" onClick={() => void this.goBack()}>
+                <button
+                    type="button"
+                    className="squeezeboxrpc-browser-parent"
+                    onClick={() => void this.goBack()}
+                >
                     <span className="squeezeboxrpc-browser-menu-icon">
                         <BrowserIcon type="back" />
                     </span>
                     <span>{browserBreadcrumb(history)}</span>
                 </button>
-                {this.widgetState.browserError ? <div className="squeezeboxrpc-browser-status">{this.widgetState.browserError}</div> : null}
+                {this.widgetState.browserError ? (
+                    <div className="squeezeboxrpc-browser-status">{this.widgetState.browserError}</div>
+                ) : null}
                 {this.widgetState.browserLoading && !this.widgetState.browserItems.length ? (
-                    <div className="squeezeboxrpc-browser-status">{I18n.t('squeezeboxrpc_browser_loading')}</div>
+                    <div className="squeezeboxrpc-browser-status">{translate('squeezeboxrpc_browser_loading')}</div>
                 ) : null}
                 <div className="squeezeboxrpc-browser-list">
                     {this.widgetState.browserItems.map((item, index) => {

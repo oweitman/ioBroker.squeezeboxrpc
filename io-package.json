@@ -129,9 +129,9 @@
         "dataSource": "poll",
         "messagebox": true,
         "visWidgets": {
-            "vis2squeezeboxrpc": {
+            "vis2vis-squeezeboxrpc": {
                 "i18n": "component",
-                "name": "vis2squeezeboxrpc",
+                "name": "vis2vis-squeezeboxrpc",
                 "url": "vis2squeezeboxrpc/customWidgets.js",
                 "bundlerType": "module",
                 "components": [

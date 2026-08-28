@@ -20,6 +20,24 @@ async function loadPlayerConfigUtils() {
     return module.exports;
 }
 
+async function loadTranslate(hostWidget) {
+    const result = await esbuild.build({
+        entryPoints: [path.join(__dirname, '..', 'src-widgets', 'src', 'shared', 'translate.js')],
+        bundle: true,
+        format: 'cjs',
+        platform: 'node',
+        target: ['node22'],
+        write: false,
+    });
+    const module = { exports: {} };
+    vm.runInNewContext(result.outputFiles[0].text, {
+        module,
+        exports: module.exports,
+        window: hostWidget ? { visRxWidget: hostWidget } : {},
+    });
+    return module.exports;
+}
+
 async function loadModule(file) {
     const moduleDirectories = {
         'browserUtils.js': ['widgets', 'browser'],
@@ -193,7 +211,39 @@ describe('VIS-2 Players configuration', () => {
         expect(translations.prefix).to.equal('squeezeboxrpc_');
         expect(translations.en).to.have.property('squeezeboxrpc_players_widget', 'Players');
         expect(translations.de).to.have.property('squeezeboxrpc_players_widget', 'Player');
-        expect(translations.ru).to.equal(translations.en);
+        expect(Object.keys(translations).sort()).to.deep.equal([
+            'de',
+            'en',
+            'es',
+            'fr',
+            'it',
+            'nl',
+            'pl',
+            'prefix',
+            'pt',
+            'ru',
+            'uk',
+            'zh-cn',
+        ]);
+        expect(translations.ru).to.have.property('squeezeboxrpc_players_widget');
+    });
+
+    it('translates through the initialized VIS-2 host instead of a federated I18n copy', async () => {
+        const calls = [];
+        const hostWidget = {
+            t(key, ...args) {
+                calls.push({ receiver: this, key, args });
+                return `translated:${key}:${args.join(',')}`;
+            },
+        };
+        const { translate } = await loadTranslate(hostWidget);
+
+        expect(translate('squeezeboxrpc_test', 'one')).to.equal('translated:squeezeboxrpc_test:one');
+        expect(calls).to.have.length(1);
+        expect(calls[0].receiver).to.equal(hostWidget);
+
+        const fallback = await loadTranslate(null);
+        expect(fallback.translate('Value %s', 12)).to.equal('Value 12');
     });
 
     it('normalizes adapter instance object IDs', async () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
 
 import { instanceId, normalizeInstance } from '../../shared/playerConfigUtils';
+import { translate } from '../../shared/translate';
 
 export default function InstanceConfigField({ data, onDataChange, props }) {
     const [instances, setInstances] = useState(/** @type {string[]} */ ([]));
@@ -23,7 +23,7 @@ export default function InstanceConfigField({ data, onDataChange, props }) {
             })
             .catch(loadError => {
                 console.error(loadError);
-                if (active) setError(I18n.t('squeezeboxrpc_instances_load_error'));
+                if (active) setError(translate('squeezeboxrpc_instances_load_error'));
             });
         return () => {
             active = false;
@@ -38,7 +38,7 @@ export default function InstanceConfigField({ data, onDataChange, props }) {
                 onChange={event => onDataChange({ ...data, ainstance: event.target.value })}
                 style={{ boxSizing: 'border-box', minHeight: 36, width: '100%' }}
             >
-                <option value="">{I18n.t('squeezeboxrpc_select_instance')}</option>
+                <option value="">{translate('squeezeboxrpc_select_instance')}</option>
                 {options.map(instance => <option key={instance} value={instance}>{instance}</option>)}
             </select>
             {error ? <div style={{ color: '#d32f2f', marginTop: 4 }}>{error}</div> : null}

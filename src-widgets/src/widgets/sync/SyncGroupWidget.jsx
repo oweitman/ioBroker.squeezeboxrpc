@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerReferenceField } from '../values/PlayerStateWidget';
@@ -8,6 +7,7 @@ import { mergePlayerNames, readConfiguredPlayers, cssLength } from '../../shared
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { syncCommand, syncGroupStatus } from './syncGroupUtils';
 import TextImage from '../../shared/TextImage';
+import { translate } from '../../shared/translate';
 import './syncGroupWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -64,7 +64,7 @@ class SyncGroupWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcSyncGroup2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Syncgroup',
             visAttrs: [
@@ -155,10 +155,14 @@ class SyncGroupWidget extends WidgetBase {
             this.selection = null;
             this.unsubscribeStates();
             this.unsubscribeSelection = widgetPlayer
-                ? subscribePlayerSelection(widgetPlayer, selection => {
-                      this.selection = selection;
-                      void this.loadPlayers();
-                  }, this.props.context.views)
+                ? subscribePlayerSelection(
+                      widgetPlayer,
+                      selection => {
+                          this.selection = selection;
+                          void this.loadPlayers();
+                      },
+                      this.props.context.views,
+                  )
                 : null;
             if (!widgetPlayer) this.setState({ players: [], playerStates: {}, syncError: '' });
             return;
@@ -203,7 +207,7 @@ class SyncGroupWidget extends WidgetBase {
         } catch (error) {
             if (request !== this.loadRequest) return;
             console.error(error);
-            this.setState({ players: [], playerStates: {}, syncError: I18n.t('squeezeboxrpc_players_load_error') });
+            this.setState({ players: [], playerStates: {}, syncError: translate('squeezeboxrpc_players_load_error') });
         }
     }
 
@@ -250,7 +254,7 @@ class SyncGroupWidget extends WidgetBase {
         const data = this.widgetState.rxData || this.widgetState.data || {};
         const playerData = { ...this.referencedPlayerData(), ...(this.selection?.appearance || {}) };
         if (this.widgetState.syncError) return <div>{this.widgetState.syncError}</div>;
-        if (!this.widgetState.players.length) return <div>{I18n.t('squeezeboxrpc_no_visible_players')}</div>;
+        if (!this.widgetState.players.length) return <div>{translate('squeezeboxrpc_no_visible_players')}</div>;
         const width = Math.max(1, Number(playerData.picWidth) || 50);
         const height = Math.max(1, Number(playerData.picHeight) || 50);
         return (

@@ -1,10 +1,10 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { cssLength } from '../../shared/playerConfigUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { playerReferenceField } from '../values/PlayerStateWidget';
+import { translate } from '../../shared/translate';
 import {
     formatPlaylistDuration,
     parsePlaylistDetail,
@@ -69,7 +69,7 @@ class PlaylistDetailWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcPlaylistDetail2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox PlaylistDetail',
             visAttrs: [
@@ -263,10 +263,10 @@ class PlaylistDetailWidget extends WidgetBase {
         const showThumbnail = data.showThumbnail !== false;
         const showIndex = data.showIndex !== false;
         if (!this.selectionWidget) {
-            return <div>{I18n.t('squeezeboxrpc_select_players_widget')}</div>;
+            return <div>{translate('squeezeboxrpc_select_players_widget')}</div>;
         }
         if (!this.widgetState.entries.length) {
-            return <div>{I18n.t('squeezeboxrpc_playlist_detail_empty')}</div>;
+            return <div>{translate('squeezeboxrpc_playlist_detail_empty')}</div>;
         }
         return (
             <div className="squeezeboxrpc-playlist-detail">
@@ -331,7 +331,7 @@ class PlaylistDetailWidget extends WidgetBase {
                                     <button
                                         type="button"
                                         className="squeezeboxrpc-playlist-detail-button"
-                                        title={I18n.t('squeezeboxrpc_play')}
+                                        title={translate('squeezeboxrpc_play')}
                                         onClick={() => void this.play(entry.index)}
                                     >
                                         <PlayIcon />
@@ -339,7 +339,7 @@ class PlaylistDetailWidget extends WidgetBase {
                                     <button
                                         type="button"
                                         className="squeezeboxrpc-playlist-detail-button"
-                                        title={I18n.t('squeezeboxrpc_playlist_detail_delete')}
+                                        title={translate('squeezeboxrpc_playlist_detail_delete')}
                                         onClick={() => void this.remove(entry.index)}
                                     >
                                         <DeleteIcon />

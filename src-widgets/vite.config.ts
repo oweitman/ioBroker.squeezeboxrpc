@@ -14,7 +14,7 @@ export default {
     plugins: [
         federation({
             manifest: true,
-            name: 'vis2squeezeboxrpc',
+            name: 'vis2vissqueezeboxrpcWidgets',
             filename: 'customWidgets.js',
             exposes: {
                 './PlayersWidget': './src/widgets/players/PlayersWidget',
@@ -75,6 +75,7 @@ export default {
     build: {
         target: 'chrome89',
         outDir: './build',
+        sourcemap: true,
         rollupOptions: {
             output: {
                 entryFileNames: 'assets/e-[hash].js',

@@ -1,9 +1,9 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import PlayerConfigField from './PlayerConfigField';
 import InstanceConfigField from './InstanceConfigField';
 import TextImage from '../../shared/TextImage';
+import { translate } from '../../shared/translate';
 import {
     cssLength,
     mergePlayerNames,
@@ -49,7 +49,7 @@ class PlayersWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcPlayers2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Players',
             visAttrs: [
@@ -217,7 +217,7 @@ class PlayersWidget extends WidgetBase {
                 playerNames: [],
                 selectedPlayer: '',
                 loadingPlayers: false,
-                playerError: I18n.t('squeezeboxrpc_select_instance'),
+                playerError: translate('squeezeboxrpc_select_instance'),
             });
             return;
         }
@@ -235,7 +235,7 @@ class PlayersWidget extends WidgetBase {
                 return;
             }
             if (!Array.isArray(playerNames)) {
-                throw new TypeError(I18n.t('squeezeboxrpc_invalid_response'));
+                throw new TypeError(translate('squeezeboxrpc_invalid_response'));
             }
             const available = visiblePlayers(data, playerNames);
             const defaultPlayer = available.some(player => player.name === data.defaultPlayer)
@@ -257,7 +257,7 @@ class PlayersWidget extends WidgetBase {
                 return;
             }
             console.error(error);
-            this.setState({ loadingPlayers: false, playerError: I18n.t('squeezeboxrpc_players_load_error') });
+            this.setState({ loadingPlayers: false, playerError: translate('squeezeboxrpc_players_load_error') });
         }
     }
 
@@ -273,7 +273,7 @@ class PlayersWidget extends WidgetBase {
             return <div>…</div>;
         }
         if (!players.length) {
-            return <div>{I18n.t('squeezeboxrpc_no_visible_players')}</div>;
+            return <div>{translate('squeezeboxrpc_no_visible_players')}</div>;
         }
         if (data.formattype === 'formatselect') {
             return (

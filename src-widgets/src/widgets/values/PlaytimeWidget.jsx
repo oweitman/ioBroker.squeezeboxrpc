@@ -22,39 +22,80 @@ class PlaytimeWidget extends WidgetBase {
         this.handleState = this.handleState.bind(this);
     }
 
-    get widgetState() { return /** @type {Record<string, any>} */ (/** @type {unknown} */ (this.state)); }
-    static getI18nPrefix() { return 'squeezeboxrpc_'; }
+    get widgetState() {
+        return /** @type {Record<string, any>} */ (/** @type {unknown} */ (this.state));
+    }
+    static getI18nPrefix() {
+        return 'squeezeboxrpc_';
+    }
 
     static getWidgetInfo() {
         return {
-            id: 'tplSqueezeboxrpcPlaytime2', visSet: 'vis2squeezeboxrpc', visSetLabel: 'widget_set',
+            id: 'tplSqueezeboxrpcPlaytime2',
+            visSet: 'squeezeboxrpc',
+            visSetLabel: 'widget_set',
             visName: 'Squeezebox Playtime bar',
-            visAttrs: [{ name: 'common', fields: [
-                playerReferenceField,
-                { name: 'mainbarcolor', type: 'color', default: '#909090', label: 'squeezeboxrpc_main_bar_color' },
-                { name: 'playtimebarcolor', type: 'color', default: '#00ff00', label: 'squeezeboxrpc_playtime_color' },
-                { name: 'borderwidth', type: 'text', default: '2px', label: 'squeezeboxrpc_border_width' },
+            visAttrs: [
                 {
-                    name: 'borderstyle',
-                    type: 'select',
-                    default: 'solid',
-                    label: 'squeezeboxrpc_border_style',
-                    noTranslation: true,
-                    options: ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'],
+                    name: 'common',
+                    fields: [
+                        playerReferenceField,
+                        {
+                            name: 'mainbarcolor',
+                            type: 'color',
+                            default: '#909090',
+                            label: 'squeezeboxrpc_main_bar_color',
+                        },
+                        {
+                            name: 'playtimebarcolor',
+                            type: 'color',
+                            default: '#00ff00',
+                            label: 'squeezeboxrpc_playtime_color',
+                        },
+                        { name: 'borderwidth', type: 'text', default: '2px', label: 'squeezeboxrpc_border_width' },
+                        {
+                            name: 'borderstyle',
+                            type: 'select',
+                            default: 'solid',
+                            label: 'squeezeboxrpc_border_style',
+                            noTranslation: true,
+                            options: [
+                                'none',
+                                'hidden',
+                                'dotted',
+                                'dashed',
+                                'solid',
+                                'double',
+                                'groove',
+                                'ridge',
+                                'inset',
+                                'outset',
+                            ],
+                        },
+                        { name: 'bordercolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_border_color' },
+                        { name: 'borderradius', type: 'text', default: '2px', label: 'squeezeboxrpc_border_radius' },
+                    ],
                 },
-                { name: 'bordercolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_border_color' },
-                { name: 'borderradius', type: 'text', default: '2px', label: 'squeezeboxrpc_border_radius' },
-            ] }],
+            ],
             visDefaultStyle: { width: 200, height: 10 },
             visPrev: 'widgets/squeezeboxrpc/img/playtime.png',
         };
     }
 
-    getWidgetInfo() { return PlaytimeWidget.getWidgetInfo(); }
+    getWidgetInfo() {
+        return PlaytimeWidget.getWidgetInfo();
+    }
 
-    componentDidMount() { super.componentDidMount(); this.syncSelectionSubscription(); }
-    componentDidUpdate() { this.syncSelectionSubscription(); }
-    onRxDataChanged() { this.syncSelectionSubscription(); }
+    componentDidMount() {
+        super.componentDidMount();
+        this.syncSelectionSubscription();
+    }
+    componentDidUpdate() {
+        this.syncSelectionSubscription();
+    }
+    onRxDataChanged() {
+        this.syncSelectionSubscription();
+    }
     componentWillUnmount() {
         this.unsubscribeSelection?.();
         this.unsubscribeStates();
@@ -69,11 +110,12 @@ class PlaytimeWidget extends WidgetBase {
         this.unsubscribeSelection = null;
         this.selectionWidget = widgetPlayer;
         this.unsubscribeStates();
-        if (widgetPlayer) this.unsubscribeSelection = subscribePlayerSelection(
-            widgetPlayer,
-            selection => void this.usePlayerSelection(selection),
-            this.props.context.views,
-        );
+        if (widgetPlayer)
+            this.unsubscribeSelection = subscribePlayerSelection(
+                widgetPlayer,
+                selection => void this.usePlayerSelection(selection),
+                this.props.context.views,
+            );
     }
 
     async usePlayerSelection(selection) {
@@ -93,7 +135,9 @@ class PlaytimeWidget extends WidgetBase {
         try {
             const states = await Promise.all(nextIds.map(id => this.props.context.socket.getState(id)));
             if (request === this.stateRequest && nextIds.join('|') === this.subscribedIds.join('|')) {
-                states.forEach((state, index) => { if (state) this.handleState(nextIds[index], state); });
+                states.forEach((state, index) => {
+                    if (state) this.handleState(nextIds[index], state);
+                });
             }
         } catch (error) {
             console.error(error);
@@ -136,16 +180,23 @@ class PlaytimeWidget extends WidgetBase {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
         const width = playtimePercent(this.widgetState.time, this.widgetState.duration, this.widgetState.playback);
-        return <div
-            className={`squeezeboxrpc-playtime${this.widgetState.playtimeIds ? '' : ' disabled'}`}
-            onClick={event => void this.seek(event)}
-            onPointerDown={event => event.stopPropagation()}
-            style={{
-                backgroundColor: data.mainbarcolor || '#909090',
-                border: `${cssLength(data.borderwidth, '2px')} ${data.borderstyle || 'solid'} ${data.bordercolor || '#ffffff'}`,
-                borderRadius: cssLength(data.borderradius, '2px'),
-            }}
-        ><div className="squeezeboxrpc-playtime-value" style={{ width: `${width}%`, backgroundColor: data.playtimebarcolor || '#00ff00' }} /></div>;
+        return (
+            <div
+                className={`squeezeboxrpc-playtime${this.widgetState.playtimeIds ? '' : ' disabled'}`}
+                onClick={event => void this.seek(event)}
+                onPointerDown={event => event.stopPropagation()}
+                style={{
+                    backgroundColor: data.mainbarcolor || '#909090',
+                    border: `${cssLength(data.borderwidth, '2px')} ${data.borderstyle || 'solid'} ${data.bordercolor || '#ffffff'}`,
+                    borderRadius: cssLength(data.borderradius, '2px'),
+                }}
+            >
+                <div
+                    className="squeezeboxrpc-playtime-value"
+                    style={{ width: `${width}%`, backgroundColor: data.playtimebarcolor || '#00ff00' }}
+                />
+            </div>
+        );
     }
 }
 

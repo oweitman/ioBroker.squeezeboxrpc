@@ -1,10 +1,10 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { normalizePlaybackState, playerStateId } from './playButtonUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { translate } from '../../shared/translate';
 import './playButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -53,7 +53,7 @@ class PlayButtonWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcPlay2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Play button',
             visAttrs: [
@@ -65,7 +65,11 @@ class PlayButtonWidget extends WidgetBase {
                             type: 'custom',
                             label: 'squeezeboxrpc_players_widget_reference',
                             component: (field, data, onDataChange, props) => (
-                                <PlayerWidgetReferenceField data={data} onDataChange={onDataChange} props={props} />
+                                <PlayerWidgetReferenceField
+                                    data={data}
+                                    onDataChange={onDataChange}
+                                    props={props}
+                                />
                             ),
                         },
                         { name: 'imagepause', type: 'image', label: 'squeezeboxrpc_pause_image' },
@@ -125,9 +129,13 @@ class PlayButtonWidget extends WidgetBase {
         this.selectionWidget = widgetPlayer;
         this.unsubscribePlayerState();
         if (widgetPlayer) {
-            this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => {
-                void this.usePlayerSelection(selection);
-            }, this.props.context.views);
+            this.unsubscribeSelection = subscribePlayerSelection(
+                widgetPlayer,
+                selection => {
+                    void this.usePlayerSelection(selection);
+                },
+                this.props.context.views,
+            );
         }
     }
 
@@ -194,7 +202,7 @@ class PlayButtonWidget extends WidgetBase {
                 type="button"
                 className="squeezeboxrpc-play-button"
                 disabled={!this.widgetState.playerStateId}
-                title={mode === 'pause' ? I18n.t('squeezeboxrpc_pause') : I18n.t('squeezeboxrpc_play')}
+                title={mode === 'pause' ? translate('squeezeboxrpc_pause') : translate('squeezeboxrpc_play')}
                 onClick={() => void this.togglePlayback()}
             >
                 {image ? (

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
+import { translate } from './translate';
 
 import {
     decodePlayerWidgetReference,
@@ -32,7 +32,7 @@ export default function PlayerWidgetReferenceField({ data, onDataChange, props }
             }
             style={{ boxSizing: 'border-box', minHeight: 36, width: '100%' }}
         >
-            <option value="">{I18n.t('squeezeboxrpc_none')}</option>
+            <option value="">{translate('squeezeboxrpc_none')}</option>
             {options.map(widget => (
                 <option
                     key={widget.id}

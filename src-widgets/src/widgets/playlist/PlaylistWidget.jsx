@@ -1,7 +1,7 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerReferenceField } from '../values/PlayerStateWidget';
+import { translate } from '../../shared/translate';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { parsePlaylists, playlistLoadCommand } from './playlistUtils';
@@ -31,7 +31,7 @@ class PlaylistWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcPlaylist2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Playlist',
             visAttrs: [{ name: 'common', fields: [playerReferenceField] }],
@@ -72,10 +72,14 @@ class PlaylistWidget extends WidgetBase {
             this.selectionWidget = widgetPlayer;
             this.selection = null;
             this.unsubscribeSelection = widgetPlayer
-                ? subscribePlayerSelection(widgetPlayer, selection => {
-                      this.selection = selection;
-                      void this.loadPlaylists();
-                  }, this.props.context.views)
+                ? subscribePlayerSelection(
+                      widgetPlayer,
+                      selection => {
+                          this.selection = selection;
+                          void this.loadPlaylists();
+                      },
+                      this.props.context.views,
+                  )
                 : null;
             if (!widgetPlayer) this.setState({ playlists: [], playlistError: '' });
             return;
@@ -101,7 +105,11 @@ class PlaylistWidget extends WidgetBase {
         } catch (error) {
             if (request !== this.loadRequest) return;
             console.error(error);
-            this.setState({ playlists: [], loadingPlaylists: false, playlistError: I18n.t('squeezeboxrpc_playlists_load_error') });
+            this.setState({
+                playlists: [],
+                loadingPlaylists: false,
+                playlistError: translate('squeezeboxrpc_playlists_load_error'),
+            });
         }
     }
 
@@ -119,26 +127,45 @@ class PlaylistWidget extends WidgetBase {
 
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
-        if (!this.selectionWidget) return <div>{I18n.t('squeezeboxrpc_select_players_widget')}</div>;
+        if (!this.selectionWidget) return <div>{translate('squeezeboxrpc_select_players_widget')}</div>;
         if (this.widgetState.playlistError) return <div>{this.widgetState.playlistError}</div>;
         return (
             <ul className="squeezeboxrpc-playlist">
                 <li className="squeezeboxrpc-playlist-refresh-item">
-                    <button type="button" className="squeezeboxrpc-playlist-refresh" title={I18n.t('squeezeboxrpc_refresh_playlists')} onClick={() => void this.loadPlaylists()}>
-                        <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 16.22 7.78L13 11h7V4z" />
+                    <button
+                        type="button"
+                        className="squeezeboxrpc-playlist-refresh"
+                        title={translate('squeezeboxrpc_refresh_playlists')}
+                        onClick={() => void this.loadPlaylists()}
+                    >
+                        <svg
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                fill="currentColor"
+                                d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 16.22 7.78L13 11h7V4z"
+                            />
                         </svg>
                     </button>
                 </li>
                 {this.widgetState.playlists.map(playlist => (
-                    <li key={playlist.id} className="squeezeboxrpc-playlist-entry">
-                        <button type="button" title={playlist.name} onClick={() => void this.playPlaylist(playlist.id)}>
+                    <li
+                        key={playlist.id}
+                        className="squeezeboxrpc-playlist-entry"
+                    >
+                        <button
+                            type="button"
+                            title={playlist.name}
+                            onClick={() => void this.playPlaylist(playlist.id)}
+                        >
                             {playlist.name}
                         </button>
                     </li>
                 ))}
                 {!this.widgetState.loadingPlaylists && !this.widgetState.playlists.length ? (
-                    <li>{I18n.t('squeezeboxrpc_no_playlists')}</li>
+                    <li>{translate('squeezeboxrpc_no_playlists')}</li>
                 ) : null}
             </ul>
         );

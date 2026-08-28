@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
 import { Alert, Box, Button, Checkbox, FormControlLabel, IconButton, Radio, Stack, Typography } from '@mui/material';
+import { translate } from '../../shared/translate';
 
 import {
     mergePlayerNames,
@@ -26,7 +26,7 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
 
     const refresh = useCallback(async () => {
         if (!instance) {
-            setError(I18n.t('squeezeboxrpc_select_instance'));
+            setError(translate('squeezeboxrpc_select_instance'));
             return;
         }
         setLoading(true);
@@ -37,13 +37,13 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
                 throw new TypeError('Invalid getPlayerNames response');
             }
             if (!names.length) {
-                setError(I18n.t('squeezeboxrpc_no_players_received'));
+                setError(translate('squeezeboxrpc_no_players_received'));
                 return;
             }
             updatePlayers(mergePlayerNames(players, names));
         } catch (refreshError) {
             console.error(refreshError);
-            setError(I18n.t('squeezeboxrpc_players_load_error'));
+            setError(translate('squeezeboxrpc_players_load_error'));
         } finally {
             setLoading(false);
         }
@@ -60,12 +60,12 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
         <Stack spacing={1} sx={{ width: '100%' }}>
             <Box>
                 <Button disabled={loading || !instance} onClick={() => void refresh()}>
-                    {I18n.t('squeezeboxrpc_refresh_players')}
+                    {translate('squeezeboxrpc_refresh_players')}
                 </Button>
             </Box>
             {error ? <Alert severity="warning">{error}</Alert> : null}
             {!players.length && !loading ? (
-                <Typography variant="body2">{I18n.t('squeezeboxrpc_no_configured_players')}</Typography>
+                <Typography variant="body2">{translate('squeezeboxrpc_no_configured_players')}</Typography>
             ) : null}
             {players.map((player, index) => (
                 <Stack key={player.name} direction="row" spacing={0.5} alignItems="center">
@@ -74,7 +74,7 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
                         checked={data.defaultPlayer === player.name}
                         disabled={player.enabled === false}
                         onChange={() => updatePlayers(players, player.name)}
-                        inputProps={{ 'aria-label': I18n.t('squeezeboxrpc_default_player') }}
+                        inputProps={{ 'aria-label': translate('squeezeboxrpc_default_player') }}
                     />
                     <FormControlLabel
                         sx={{ flexGrow: 1, marginRight: 0 }}
@@ -94,7 +94,7 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
                     <IconButton
                         size="small"
                         disabled={index === 0}
-                        aria-label={I18n.t('squeezeboxrpc_move_up')}
+                        aria-label={translate('squeezeboxrpc_move_up')}
                         onClick={() => updatePlayers(movePlayer(players, index, -1))}
                     >
                         ↑
@@ -102,7 +102,7 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
                     <IconButton
                         size="small"
                         disabled={index === players.length - 1}
-                        aria-label={I18n.t('squeezeboxrpc_move_down')}
+                        aria-label={translate('squeezeboxrpc_move_down')}
                         onClick={() => updatePlayers(movePlayer(players, index, 1))}
                     >
                         ↓

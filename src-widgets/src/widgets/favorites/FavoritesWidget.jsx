@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import FavoriteConfigField from './FavoriteConfigField';
@@ -8,6 +7,7 @@ import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceU
 import { mergeFavorites, parseFavorites, readConfiguredFavorites } from './favoriteUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { cssLength } from '../../shared/playerConfigUtils';
+import { translate } from '../../shared/translate';
 import TextImage from '../../shared/TextImage';
 import './favoritesWidget.css';
 
@@ -18,7 +18,10 @@ function FavoriteContent({ favorite, width, height, backgroundColor, wrapCamelCa
     useEffect(() => setImageFailed(false), [favorite.image]);
     const showImage = Boolean(favorite.image) && !imageFailed;
     return (
-        <div className="squeezeboxrpc-favorite-content" style={style}>
+        <div
+            className="squeezeboxrpc-favorite-content"
+            style={style}
+        >
             {showImage ? (
                 <img
                     src={favorite.image}
@@ -35,9 +38,7 @@ function FavoriteContent({ favorite, width, height, backgroundColor, wrapCamelCa
                     style={{ color: '#fff' }}
                 />
             )}
-            {indexHelper === null ? null : (
-                <span className="squeezeboxrpc-favorite-index-helper">{indexHelper}</span>
-            )}
+            {indexHelper === null ? null : <span className="squeezeboxrpc-favorite-index-helper">{indexHelper}</span>}
         </div>
     );
 }
@@ -67,7 +68,7 @@ class FavoritesWidget extends WidgetBase {
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcFavorites2',
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: 'Squeezebox Favorites',
             visAttrs: [
@@ -80,7 +81,11 @@ class FavoritesWidget extends WidgetBase {
                             type: 'custom',
                             label: 'squeezeboxrpc_favorite_configuration',
                             component: (field, data, onDataChange, props) => (
-                                <FavoriteConfigField data={data} onDataChange={onDataChange} props={props} />
+                                <FavoriteConfigField
+                                    data={data}
+                                    onDataChange={onDataChange}
+                                    props={props}
+                                />
                             ),
                         },
                         {
@@ -89,7 +94,12 @@ class FavoritesWidget extends WidgetBase {
                             default: false,
                             label: 'squeezeboxrpc_edit_mode_index_helper',
                         },
-                        { name: 'wrapcamelcase', type: 'checkbox', default: true, label: 'squeezeboxrpc_wrap_camel_case' },
+                        {
+                            name: 'wrapcamelcase',
+                            type: 'checkbox',
+                            default: true,
+                            label: 'squeezeboxrpc_wrap_camel_case',
+                        },
                     ],
                 },
                 {
@@ -98,14 +108,47 @@ class FavoritesWidget extends WidgetBase {
                     fields: [
                         { name: 'picWidth', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_width' },
                         { name: 'picHeight', type: 'number', default: 50, min: 1, label: 'squeezeboxrpc_image_height' },
-                        { name: 'opacity', type: 'slider', default: 0.5, min: 0, max: 1, step: 0.05, label: 'squeezeboxrpc_opacity' },
+                        {
+                            name: 'opacity',
+                            type: 'slider',
+                            default: 0.5,
+                            min: 0,
+                            max: 1,
+                            step: 0.05,
+                            label: 'squeezeboxrpc_opacity',
+                        },
                         { name: 'borderwidth', type: 'text', default: '2px', label: 'squeezeboxrpc_border_width' },
                         {
-                            name: 'borderstyle', type: 'select', default: 'solid', label: 'squeezeboxrpc_border_style', noTranslation: true,
-                            options: ['none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'],
+                            name: 'borderstyle',
+                            type: 'select',
+                            default: 'solid',
+                            label: 'squeezeboxrpc_border_style',
+                            noTranslation: true,
+                            options: [
+                                'none',
+                                'hidden',
+                                'dotted',
+                                'dashed',
+                                'solid',
+                                'double',
+                                'groove',
+                                'ridge',
+                                'inset',
+                                'outset',
+                            ],
                         },
-                        { name: 'bordercolornormal', type: 'color', default: '#2e2e2e', label: 'squeezeboxrpc_border_normal' },
-                        { name: 'bordercoloractive', type: 'color', default: '#87ceeb', label: 'squeezeboxrpc_border_active' },
+                        {
+                            name: 'bordercolornormal',
+                            type: 'color',
+                            default: '#2e2e2e',
+                            label: 'squeezeboxrpc_border_normal',
+                        },
+                        {
+                            name: 'bordercoloractive',
+                            type: 'color',
+                            default: '#87ceeb',
+                            label: 'squeezeboxrpc_border_active',
+                        },
                         { name: 'borderradius', type: 'text', default: '5px', label: 'squeezeboxrpc_border_radius' },
                         { name: 'buttonbkcolor', type: 'color', default: '#000000', label: 'squeezeboxrpc_background' },
                         { name: 'buttonmargin', type: 'text', default: '0px', label: 'squeezeboxrpc_button_margin' },
@@ -160,10 +203,14 @@ class FavoritesWidget extends WidgetBase {
             this.selectionWidget = widgetPlayer;
             this.selection = null;
             this.unsubscribeSelection = widgetPlayer
-                ? subscribePlayerSelection(widgetPlayer, selection => {
-                      this.selection = selection;
-                      void this.loadFavorites();
-                  }, this.props.context.views)
+                ? subscribePlayerSelection(
+                      widgetPlayer,
+                      selection => {
+                          this.selection = selection;
+                          void this.loadFavorites();
+                      },
+                      this.props.context.views,
+                  )
                 : null;
             if (!widgetPlayer) this.setState({ discoveredFavorites: [], favoritesError: '', activeFavorite: '' });
             return;
@@ -173,7 +220,8 @@ class FavoritesWidget extends WidgetBase {
 
     unsubscribeFavorites() {
         this.loadRequest++;
-        if (this.favoritePattern) this.props.context.socket.unsubscribeState(this.favoritePattern, this.handleFavoriteState);
+        if (this.favoritePattern)
+            this.props.context.socket.unsubscribeState(this.favoritePattern, this.handleFavoriteState);
         this.favoritePattern = '';
         this.favoriteStates = {};
     }
@@ -200,7 +248,7 @@ class FavoritesWidget extends WidgetBase {
         } catch (error) {
             if (request !== this.loadRequest) return;
             console.error(error);
-            this.setState({ discoveredFavorites: [], favoritesError: I18n.t('squeezeboxrpc_favorites_load_error') });
+            this.setState({ discoveredFavorites: [], favoritesError: translate('squeezeboxrpc_favorites_load_error') });
         }
     }
 
@@ -234,15 +282,20 @@ class FavoritesWidget extends WidgetBase {
         const favorites = mergeFavorites(readConfiguredFavorites(data), this.widgetState.discoveredFavorites)
             .map((favorite, configurationIndex) => ({ ...favorite, configurationIndex }))
             .filter(favorite => favorite.enabled !== false);
-        if (!favorites.length) return <div>{I18n.t('squeezeboxrpc_no_favorites')}</div>;
+        if (!favorites.length) return <div>{translate('squeezeboxrpc_no_favorites')}</div>;
         const width = Math.max(1, Number(data.picWidth) || 50);
         const height = Math.max(1, Number(data.picHeight) || 50);
         const opacity = Number(data.opacity ?? 0.5);
         return (
-            <div className="squeezeboxrpc-favorites" style={{ gap: cssLength(data.buttonmargin, '0px') }}>
+            <div
+                className="squeezeboxrpc-favorites"
+                style={{ gap: cssLength(data.buttonmargin, '0px') }}
+            >
                 {favorites.map(favorite => {
                     const active = favorite.id === this.widgetState.activeFavorite;
-                    const borderColor = active ? data.bordercoloractive || '#87ceeb' : data.bordercolornormal || '#2e2e2e';
+                    const borderColor = active
+                        ? data.bordercoloractive || '#87ceeb'
+                        : data.bordercolornormal || '#2e2e2e';
                     return (
                         <button
                             key={favorite.id}
@@ -250,7 +303,11 @@ class FavoritesWidget extends WidgetBase {
                             className="squeezeboxrpc-favorite-button"
                             title={favorite.name || favorite.id}
                             onClick={() => void this.playFavorite(favorite.id)}
-                            style={/** @type {any} */ ({ '--squeezeboxrpc-active-border-color': data.bordercoloractive || '#87ceeb' })}
+                            style={
+                                /** @type {any} */ ({
+                                    '--squeezeboxrpc-active-border-color': data.bordercoloractive || '#87ceeb',
+                                })
+                            }
                         >
                             <FavoriteContent
                                 favorite={favorite}
@@ -258,11 +315,16 @@ class FavoritesWidget extends WidgetBase {
                                 height={height}
                                 backgroundColor={data.buttonbkcolor || '#000000'}
                                 wrapCamelCase={data.wrapcamelcase !== false}
-                                indexHelper={this.props.editMode && data.editmodehelper ? favorite.configurationIndex : null}
+                                indexHelper={
+                                    this.props.editMode && data.editmodehelper ? favorite.configurationIndex : null
+                                }
                                 style={{
-                                    boxSizing: 'border-box', width, height,
+                                    boxSizing: 'border-box',
+                                    width,
+                                    height,
                                     border: `${cssLength(data.borderwidth, '2px')} ${data.borderstyle || 'solid'} ${borderColor}`,
-                                    borderRadius: cssLength(data.borderradius, '5px'), opacity: active ? 1 : opacity,
+                                    borderRadius: cssLength(data.borderradius, '5px'),
+                                    opacity: active ? 1 : opacity,
                                 }}
                             />
                         </button>

@@ -1,10 +1,10 @@
-import { I18n } from '@iobroker/adapter-react-v5';
 import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerCommandStateId } from './playerCommandUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { translate } from '../../shared/translate';
 import './playerCommandButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -12,7 +12,10 @@ const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 export function DefaultCommandIcon({ direction, fill, stroke, strokeWidth }) {
     const transform = direction === 'rewind' ? 'translate(26.458 0) scale(-1 1)' : undefined;
     return (
-        <svg viewBox="0 0 26.458 26.458" aria-hidden="true">
+        <svg
+            viewBox="0 0 26.458 26.458"
+            aria-hidden="true"
+        >
             <g
                 fill={fill}
                 stroke={stroke}
@@ -23,7 +26,13 @@ export function DefaultCommandIcon({ direction, fill, stroke, strokeWidth }) {
             >
                 <path d="M5.376 18.805V7.588c0-.594.665-.984 1.159-.647l8.948 6.107-8.948 6.096c-.494.337-1.159-.052-1.159-.647z" />
                 <path d="M10.668 18.805V7.588c0-.594.665-.984 1.159-.647l8.948 6.107-8.948 6.096c-.494.337-1.159-.052-1.159-.647z" />
-                <rect x="18.586" y="5.357" width="2.515" height="15.744" rx="0.289" />
+                <rect
+                    x="18.586"
+                    y="5.357"
+                    width="2.515"
+                    height="15.744"
+                    rx="0.289"
+                />
             </g>
         </svg>
     );
@@ -51,7 +60,7 @@ class PlayerCommandButton extends WidgetBase {
     static createWidgetInfo(settings) {
         return {
             id: settings.id,
-            visSet: 'vis2squeezeboxrpc',
+            visSet: 'squeezeboxrpc',
             visSetLabel: 'widget_set',
             visName: settings.visName,
             visAttrs: [
@@ -63,7 +72,11 @@ class PlayerCommandButton extends WidgetBase {
                             type: 'custom',
                             label: 'squeezeboxrpc_players_widget_reference',
                             component: (field, data, onDataChange, props) => (
-                                <PlayerWidgetReferenceField data={data} onDataChange={onDataChange} props={props} />
+                                <PlayerWidgetReferenceField
+                                    data={data}
+                                    onDataChange={onDataChange}
+                                    props={props}
+                                />
                             ),
                         },
                         { name: settings.imageName, type: 'image', label: settings.imageLabel },
@@ -116,9 +129,13 @@ class PlayerCommandButton extends WidgetBase {
         this.selectionWidget = widgetPlayer;
         this.setState({ commandStateId: '' });
         if (widgetPlayer) {
-            this.unsubscribeSelection = subscribePlayerSelection(widgetPlayer, selection => {
-                this.setState({ commandStateId: playerCommandStateId(selection, this.commandConfig.command) });
-            }, this.props.context.views);
+            this.unsubscribeSelection = subscribePlayerSelection(
+                widgetPlayer,
+                selection => {
+                    this.setState({ commandStateId: playerCommandStateId(selection, this.commandConfig.command) });
+                },
+                this.props.context.views,
+            );
         }
     }
 
@@ -140,10 +157,15 @@ class PlayerCommandButton extends WidgetBase {
                 type="button"
                 className="squeezeboxrpc-command-button"
                 disabled={!this.widgetState.commandStateId}
-                title={I18n.t(this.commandConfig.titleKey)}
+                title={translate(this.commandConfig.titleKey)}
                 onClick={() => void this.sendCommand()}
             >
-                {image ? <img src={image} alt="" /> : (
+                {image ? (
+                    <img
+                        src={image}
+                        alt=""
+                    />
+                ) : (
                     <DefaultCommandIcon
                         direction={this.commandConfig.command}
                         fill={data.fillcolor || '#ffffff'}

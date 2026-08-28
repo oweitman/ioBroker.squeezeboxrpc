@@ -17,6 +17,21 @@
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "**/node_modules/**"]
         },
         {
+            "type": "node",
+            "request": "launch",
+            "name": "launch vis-2 ",
+            "skipFiles": ["<node_internals>/**"],
+            "args": ["--debug", "0"],
+            "program": "node_modules/iobroker.vis-2/build/main.js",
+            "cwd": "${workspaceFolder}/.dev-server/default",
+            "runtimeExecutable": "c:/Users/oweit/AppData/Roaming/fnm/aliases/default/node.exe",
+            "stopOnEntry": true,
+            "sourceMaps": true,
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "**/node_modules/**"]
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "vis1 runtime",
@@ -35,7 +50,7 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "vis2 edit",
+            "name": "vis2 edit 3000",
             "url": "http://localhost:3000/edit.html#test",
             "trace": true,
             "skipFiles": ["socket.io.js"]
@@ -43,10 +58,36 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "vis2 runtime",
-            "url": "http://localhost:8082/vis-2/?main#default",
+            "name": "vis2 edit 8082",
+            "url": "http://192.168.1.81:8082/vis-2/edit.html#squeezebox",
+
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}",
+
+            "sourceMapPathOverrides": {
+                "../../src/*": "${workspaceFolder}/src-widgets/src/*",
+                "*/src/*": "${workspaceFolder}/src-widgets/src/*"
+            },
+
+            "trace": true,
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis2 runtime 3000",
+            "url": "http://localhost:3000/vis-2/?main#default",
             "trace": true,
             "skipFiles": ["socket.io.js"]
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis2 runtime 8082",
+            "url": "http://localhost:8082/vis-2/?main#default",
+            "trace": true,
+            "skipFiles": ["socket.io.js"],
+            "webRoot": "${workspaceFolder}/src-widgets/src"
         },
         {
             "name": "dev-server",
