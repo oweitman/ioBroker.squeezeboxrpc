@@ -700,6 +700,13 @@ are contained in the following CLI documentation:
 
 ### **WORK IN PROGRESS**
 
+- fix of empty rewrite artwork and some other datapoints
+- Breaking release for vis-1 to vis-2
+- new widgetset for vis-2
+- Details see readme
+
+### **WORK IN PROGRESS**
+
 - **BREAKING CHANGE**
 - Due to the extensive revision of the vis-1 widgets—including adjustments to
   their configuration attributes—they are no longer directly compatible with

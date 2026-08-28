@@ -3,6 +3,19 @@
         "name": "squeezeboxrpc",
         "version": "1.6.4",
         "news": {
+            "2.0.0-alpha.0": {
+                "en": "fix empty rewrite artwork and other data points\nbreaking changes from vis-1 to vis-2\nnew widget set for vis-2\nsee README for details",
+                "de": "Fehler bei leerem Rewrite-Artwork und weiteren Datenpunkten behoben\nBreaking Changes beim Wechsel von vis-1 auf vis-2\nneues Widget-Set für vis-2\nDetails siehe README",
+                "ru": "исправлена ошибка с пустым rewrite artwork и другими точками данных\nкритические изменения при переходе с vis-1 на vis-2\nновый набор виджетов для vis-2\nподробности см. в README",
+                "pt": "corrigido o problema de rewrite artwork vazio e outros pontos de dados\nalterações incompatíveis na migração do vis-1 para o vis-2\nnovo conjunto de widgets para o vis-2\nconsulte o README para mais detalhes",
+                "nl": "probleem met lege rewrite artwork en andere datapunten opgelost\nbreaking changes bij de overstap van vis-1 naar vis-2\nnieuwe widgetset voor vis-2\nzie README voor details",
+                "fr": "correction du problème de rewrite artwork vide et d'autres points de données\nchangements incompatibles lors du passage de vis-1 à vis-2\nnouvel ensemble de widgets pour vis-2\nvoir le README pour plus de détails",
+                "it": "risolto il problema di rewrite artwork vuoto e di altri punti dati\nmodifiche incompatibili nel passaggio da vis-1 a vis-2\nnuovo set di widget per vis-2\nvedere il README per i dettagli",
+                "es": "corregido el problema de rewrite artwork vacío y otros puntos de datos\ncambios incompatibles al pasar de vis-1 a vis-2\nnuevo conjunto de widgets para vis-2\nconsulta el README para más detalles",
+                "pl": "naprawiono problem z pustym rewrite artwork i innymi punktami danych\nniekompatybilne zmiany przy przejściu z vis-1 na vis-2\nnowy zestaw widżetów dla vis-2\nszczegóły w README",
+                "uk": "виправлено проблему з порожнім rewrite artwork та іншими точками даних\nнесумісні зміни під час переходу з vis-1 на vis-2\nновий набір віджетів для vis-2\nдетальніше див. у README",
+                "zh-cn": "修复空 rewrite artwork 和其他数据点的问题\n从 vis-1 升级到 vis-2 时包含不兼容变更\nvis-2 的新组件集\n详情请参阅 README"
+            },
             "1.6.4": {
                 "en": "test remove node 18,extend to node 24\nupdate packages",
                 "de": "test entfernen node 18,extend to node 24\nupdate-pakete",
