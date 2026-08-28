@@ -1,4 +1,10 @@
 # Older changes
+## 1.6.0 (2025-05-05)
+
+- upgrade dependency js-controller
+- new widget, but only alpha version for testing and improvement
+- fix issues of adapter checker
+
 ## 1.5.2 (2024-12-16)
 
 - fix spelling of iobroker upload squeezeboxrpc in readme

@@ -697,6 +697,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 2.0.0-alpha.1 (2026-08-28)
+
+- fix lint error
+
 ### 2.0.0-alpha.0 (2026-08-28)
 
 - fix of empty rewrite artwork and some other datapoints
@@ -716,12 +720,6 @@ are contained in the following CLI documentation:
 ### 1.6.1 (2025-05-05)
 
 - Fix eslint
-
-### 1.6.0 (2025-05-05)
-
-- upgrade dependency js-controller
-- new widget, but only alpha version for testing and improvement
-- fix issues of adapter checker
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
