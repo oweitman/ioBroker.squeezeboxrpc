@@ -90,6 +90,7 @@
     "squeezeboxrpc_favorites_load_error": "无法加载收藏项。",
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "请先选择一个 Players 小部件。",
+    "squeezeboxrpc_select_player_attribute": "请选择播放器属性。",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
     "squeezeboxrpc_edit_mode_index_helper": "在编辑模式下显示收藏项索引",
     "squeezeboxrpc_playlist_widget": "Playlist",

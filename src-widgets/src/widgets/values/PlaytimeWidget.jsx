@@ -5,6 +5,7 @@ import { playtimePercent, playtimeStateIds } from './playerStateUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { playerReferenceField } from './PlayerStateWidget';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './playtimeWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -179,6 +180,8 @@ class PlaytimeWidget extends WidgetBase {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const width = playtimePercent(this.widgetState.time, this.widgetState.duration, this.widgetState.playback);
         return (
             <div

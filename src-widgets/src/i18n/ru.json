@@ -90,6 +90,7 @@
     "squeezeboxrpc_favorites_load_error": "Не удалось загрузить избранное.",
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "Сначала выберите виджет Players.",
+    "squeezeboxrpc_select_player_attribute": "Выберите атрибут проигрывателя.",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
     "squeezeboxrpc_edit_mode_index_helper": "Показывать индекс избранного в режиме редактирования",
     "squeezeboxrpc_playlist_widget": "Playlist",

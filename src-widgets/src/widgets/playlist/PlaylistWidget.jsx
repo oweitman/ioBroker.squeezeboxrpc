@@ -2,6 +2,7 @@ import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerReferenceField } from '../values/PlayerStateWidget';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { parsePlaylists, playlistLoadCommand } from './playlistUtils';
@@ -127,7 +128,9 @@ class PlaylistWidget extends WidgetBase {
 
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
-        if (!this.selectionWidget) return <div>{translate('squeezeboxrpc_select_players_widget')}</div>;
+        const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         if (this.widgetState.playlistError) return <div>{this.widgetState.playlistError}</div>;
         return (
             <ul className="squeezeboxrpc-playlist">

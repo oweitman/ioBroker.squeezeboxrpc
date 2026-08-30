@@ -698,6 +698,12 @@ are contained in the following CLI documentation:
 
 -->
 
+### **WORK IN PROGRESS**
+
+- vis2 reorder player attributes
+- vis2 add messages for missing attributes
+- fix 2 small build tool problems
+
 ### 2.0.0-alpha.2 (2026-08-28)
 
 - fix tests

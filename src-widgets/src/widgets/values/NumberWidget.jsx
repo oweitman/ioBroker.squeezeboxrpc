@@ -35,6 +35,8 @@ class NumberWidget extends PlayerStateWidget {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = this.configurationMessage();
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const value = formatNumber(this.widgetState.playerValue, data.digits, data.is_tdp, data.is_comma);
         return (
             <div

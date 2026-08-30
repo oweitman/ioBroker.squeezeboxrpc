@@ -48,6 +48,7 @@ async function loadModule(file) {
         'playerSelectionBus.js': ['shared'],
         'playerStateUtils.js': ['widgets', 'values'],
         'playerWidgetReferenceUtils.js': ['shared'],
+        'widgetConfiguration.js': ['shared'],
         'playlistDetailUtils.js': ['widgets', 'playlist-detail'],
         'playlistUtils.js': ['widgets', 'playlist'],
         'syncGroupUtils.js': ['widgets', 'sync'],
@@ -246,6 +247,51 @@ describe('VIS-2 Players configuration', () => {
 
         const fallback = await loadTranslate(null);
         expect(fallback.translate('Value %s', 12)).to.equal('Value 12');
+    });
+
+    it('reports incomplete player-dependent widget configuration', async () => {
+        const { playerWidgetConfigurationMessage } = await loadModule('widgetConfiguration.js');
+
+        expect(playerWidgetConfigurationMessage({})).to.equal('squeezeboxrpc_select_players_widget');
+        expect(
+            playerWidgetConfigurationMessage(
+                { widgetPlayer: 'squeezeboxrpc-player:w00001' },
+                { requireAttribute: true },
+            ),
+        ).to.equal('squeezeboxrpc_select_player_attribute');
+        expect(
+            playerWidgetConfigurationMessage(
+                { widgetPlayer: 'squeezeboxrpc-player:w00001', playerattribute: 'Title' },
+                { requireAttribute: true },
+            ),
+        ).to.equal('');
+    });
+
+    it('validates every player-dependent VIS-2 renderer before displaying widget content', () => {
+        const renderers = [
+            ['browser', 'BrowserWidget.jsx'],
+            ['controls', 'PlayButtonWidget.jsx'],
+            ['controls', 'PlayerCommandButton.jsx'],
+            ['controls', 'PlayerModeButton.jsx'],
+            ['favorites', 'FavoritesWidget.jsx'],
+            ['playlist', 'PlaylistWidget.jsx'],
+            ['playlist-detail', 'PlaylistDetailWidget.jsx'],
+            ['sync', 'SyncGroupWidget.jsx'],
+            ['values', 'PlaytimeWidget.jsx'],
+            ['values', 'StringWidget.jsx'],
+            ['values', 'NumberWidget.jsx'],
+            ['values', 'DateTimeWidget.jsx'],
+            ['values', 'ImageWidget.jsx'],
+            ['values', 'VolumeWidget.jsx'],
+        ];
+
+        for (const parts of renderers) {
+            const source = fs.readFileSync(
+                path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', ...parts),
+                'utf8',
+            );
+            expect(source, parts.join('/')).to.match(/playerWidgetConfigurationMessage|configurationMessage\(/);
+        }
     });
 
     it('normalizes adapter instance object IDs', async () => {

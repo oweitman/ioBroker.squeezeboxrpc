@@ -90,6 +90,7 @@
     "squeezeboxrpc_favorites_load_error": "No se pudieron cargar los favoritos.",
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "Seleccione primero un widget Players.",
+    "squeezeboxrpc_select_player_attribute": "Seleccione un atributo del reproductor.",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
     "squeezeboxrpc_edit_mode_index_helper": "Mostrar el índice de favoritos en el modo de edición",
     "squeezeboxrpc_playlist_widget": "Playlist",

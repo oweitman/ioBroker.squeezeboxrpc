@@ -128,6 +128,8 @@ class VolumeWidget extends PlayerStateWidget {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = this.configurationMessage(false);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const segments = Math.max(2, Number.parseInt(data.segments, 10) || 10);
         const active = activeVolumeSegments(this.widgetState.playerValue, segments);
         const reverse = Boolean(data.reverse);

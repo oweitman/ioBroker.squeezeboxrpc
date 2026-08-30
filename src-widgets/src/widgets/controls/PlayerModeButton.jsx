@@ -5,6 +5,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './playerModeButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -230,6 +231,8 @@ class PlayerModeButton extends WidgetBase {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const state = this.widgetState.modeState;
         const configuredImage = data[`${this.modeConfig.imagePrefix}${state}`];
         const repeat0Fallback =

@@ -8,6 +8,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { syncCommand, syncGroupStatus } from './syncGroupUtils';
 import TextImage from '../../shared/TextImage';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './syncGroupWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -252,6 +253,8 @@ class SyncGroupWidget extends WidgetBase {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const playerData = { ...this.referencedPlayerData(), ...(this.selection?.appearance || {}) };
         if (this.widgetState.syncError) return <div>{this.widgetState.syncError}</div>;
         if (!this.widgetState.players.length) return <div>{translate('squeezeboxrpc_no_visible_players')}</div>;

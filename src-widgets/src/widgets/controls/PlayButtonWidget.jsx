@@ -5,6 +5,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './playButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
@@ -189,6 +190,8 @@ class PlayButtonWidget extends WidgetBase {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         const mode = this.widgetState.playerState === 1 ? 'pause' : 'play';
         const image =
             mode === 'pause'

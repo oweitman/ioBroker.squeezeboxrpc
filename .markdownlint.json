@@ -1,7 +1,13 @@
 {
+    "ul-indent": {
+        "indent": 4
+    },
     "first-line-heading": false,
     "MD013": {
         "tables": false,
         "code_block_line_length": 200
+    },
+    "MD033": {
+        "allowed_elements": ["details", "summary"]
     }
 }

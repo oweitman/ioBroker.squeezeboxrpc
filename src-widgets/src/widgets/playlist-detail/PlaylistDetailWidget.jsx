@@ -5,6 +5,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { playerReferenceField } from '../values/PlayerStateWidget';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import {
     formatPlaylistDuration,
     parsePlaylistDetail,
@@ -262,9 +263,8 @@ class PlaylistDetailWidget extends WidgetBase {
         const data = this.widgetState.rxData || this.widgetState.data || {};
         const showThumbnail = data.showThumbnail !== false;
         const showIndex = data.showIndex !== false;
-        if (!this.selectionWidget) {
-            return <div>{translate('squeezeboxrpc_select_players_widget')}</div>;
-        }
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         if (!this.widgetState.entries.length) {
             return <div>{translate('squeezeboxrpc_playlist_detail_empty')}</div>;
         }

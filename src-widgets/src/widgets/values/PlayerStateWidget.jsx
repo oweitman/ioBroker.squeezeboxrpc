@@ -4,6 +4,7 @@ import { playerAttributeStateId, PLAYER_ATTRIBUTES } from './playerStateUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 
@@ -119,6 +120,11 @@ class PlayerStateWidget extends WidgetBase {
     handlePlayerState(id, state) {
         if (id !== this.subscribedStateId || !state) return;
         this.setState({ playerValue: state.val });
+    }
+
+    configurationMessage(requireAttribute = true) {
+        const data = this.widgetState.rxData || this.widgetState.data || {};
+        return playerWidgetConfigurationMessage(data, { requireAttribute });
     }
 }
 

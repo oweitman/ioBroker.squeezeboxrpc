@@ -8,6 +8,7 @@ import { mergeFavorites, parseFavorites, readConfiguredFavorites } from './favor
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { cssLength } from '../../shared/playerConfigUtils';
 import { translate } from '../../shared/translate';
+import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import TextImage from '../../shared/TextImage';
 import './favoritesWidget.css';
 
@@ -278,6 +279,8 @@ class FavoritesWidget extends WidgetBase {
     renderWidgetBody(props) {
         super.renderWidgetBody(props);
         const data = this.widgetState.rxData || this.widgetState.data || {};
+        const configurationMessage = playerWidgetConfigurationMessage(data);
+        if (configurationMessage) return <div>{configurationMessage}</div>;
         if (this.widgetState.favoritesError) return <div>{this.widgetState.favoritesError}</div>;
         const favorites = mergeFavorites(readConfiguredFavorites(data), this.widgetState.discoveredFavorites)
             .map((favorite, configurationIndex) => ({ ...favorite, configurationIndex }))

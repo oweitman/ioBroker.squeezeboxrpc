@@ -90,6 +90,7 @@
     "squeezeboxrpc_favorites_load_error": "Не вдалося завантажити обране.",
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "Спочатку виберіть віджет Players.",
+    "squeezeboxrpc_select_player_attribute": "Виберіть атрибут програвача.",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
     "squeezeboxrpc_edit_mode_index_helper": "Показувати індекс обраного в режимі редагування",
     "squeezeboxrpc_playlist_widget": "Playlist",

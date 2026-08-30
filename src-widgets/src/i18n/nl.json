@@ -90,6 +90,7 @@
     "squeezeboxrpc_favorites_load_error": "De favorieten konden niet worden geladen.",
     "squeezeboxrpc_no_favorites": "No audio favorites available",
     "squeezeboxrpc_select_players_widget": "Selecteer eerst een Players-widget.",
+    "squeezeboxrpc_select_player_attribute": "Selecteer een spelerattribuut.",
     "squeezeboxrpc_individual_favorites": "Individual favorite appearance",
     "squeezeboxrpc_edit_mode_index_helper": "Favorietenindex in de bewerkingsmodus weergeven",
     "squeezeboxrpc_playlist_widget": "Playlist",
