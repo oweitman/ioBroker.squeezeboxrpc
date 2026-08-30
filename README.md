@@ -669,6 +669,53 @@ are contained in the following CLI documentation:
 
 [CLI-Documentation](#further-api-documentation)
 
+## Development
+
+### vis-1
+
+- start dev-server with `dev-server watch --noStart`
+- start adapter with launch configuration "default Launch ioBroker Adapter"
+- start watch script in widgets directory with `npm run watch`
+- open vis-1 editor or runtime
+- if you change something in the vis-1 widget wait some seconds
+  to upload changes to dev-server
+- in vis-1 reload the vis-1 page
+- if something changed in squeeboxrpc.html you have to restart vis-1 adapter
+
+### vis-2
+
+- for debugging vis-2 widget you have to run vis-2 in a second vis-2 window.
+- to install and run follow instructions in <https://github.com/ioBroker/ioBroker.vis-2#development-and-debugging>
+- start adapter with launch configuration "default Launch ioBroker Adapter"
+- start vite dev server in directory src-widgets with `npm run start`
+- in iobroker admin/objects tab, in expert mode, edit the object of `system.adapter.squeezeboxrpc.0`
+- change common.visWidgets.vis2vis-squeezeboxrpc.url from
+  vis2squeezeboxrpc/customWidgets.js
+  to
+  <http://localhost:4173/customWidgets.js>
+  this is the address of the vite def server.
+- open vis in edit or runtime with the launch configuration
+  "vis2 edit 3000" or "vis2 runtime 3000"
+- if you change something in the vis-2 widget code an auto reload is triggered
+  or you press F5 in browser
+
+### final runtime test
+
+- stop `dev-server` and your adapter in vscode
+- create a production build and upload to dev-server with build with `dev-server upload`
+- start iobroker with `npm run start`
+- revert the change in system.adapter.squeezeboxrpc.0 to the original value
+- open vis-1 or vis-2 in edit or runtime mode
+
+### additional test on a real iobroker server
+
+- in root directory create a npm package file with `npm pack`
+- in iobroker on the admin/adapter tab in expert mode press the cat button
+- in the dialog, select tab `from file`
+- select the created package file
+- press install
+- if something does not work, on shell start `iobroker upload all`
+
 ## Todo
 
 - add player controlled circle knob widget
