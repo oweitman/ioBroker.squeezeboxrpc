@@ -744,8 +744,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 2.0.0-alpha.3 (2026-08-30)
 
 - vis2 reorder player attributes
 - vis2 add messages for missing attributes
@@ -798,15 +797,6 @@ are contained in the following CLI documentation:
   widget, including previews, configuration tables and usage notes
 - add translated datapoint descriptions
 - cmdGeneral for server
-
-### 1.6.4 (2026-03-25)
-
-- test remove node 18,extend to node 24
-- update packages
-
-### 1.6.2 (2025-05-05)
-
-- fix node version in github workflow
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

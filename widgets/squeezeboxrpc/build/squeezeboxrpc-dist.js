@@ -1361,7 +1361,7 @@
   }
 
   // ../package.json
-  var version = "2.0.0-alpha.2";
+  var version = "2.0.0-alpha.3";
 
   // squeezeboxrpc/js/textImage.js
   String.prototype.regexIndexOf = function(regex, startpos) {

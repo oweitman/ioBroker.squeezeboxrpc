@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "2.0.0-alpha.2",
+    "version": "2.0.0-alpha.3",
     "news": {
+      "2.0.0-alpha.3": {
+        "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
+        "de": "vis2 Spielerattribute neu anordnen; Meldungen für fehlende Attribute hinzufügen; zwei kleine Probleme mit den Build-Tools beheben; SVG-Icons verbessern; Theme-Unterstützung für SVG-Icons verbessern",
+        "ru": "vis2 изменить порядок атрибутов игрока; добавить сообщения об отсутствующих атрибутах; исправить две небольшие проблемы инструментов сборки; улучшить SVG-иконки; улучшить поддержку тем для SVG-иконок",
+        "pt": "vis2 reordenar os atributos do jogador; adicionar mensagens para atributos ausentes; corrigir dois pequenos problemas nas ferramentas de build; melhorar os ícones SVG; melhorar o suporte a temas dos ícones SVG",
+        "nl": "vis2 spelerattributen opnieuw ordenen; meldingen toevoegen voor ontbrekende attributen; twee kleine problemen met de buildtools oplossen; SVG-iconen verbeteren; thema-afhandeling van SVG-iconen verbeteren",
+        "fr": "vis2 réorganiser les attributs du joueur ; ajouter des messages pour les attributs manquants ; corriger deux petits problèmes des outils de build ; améliorer les icônes SVG ; améliorer la gestion des thèmes pour les icônes SVG",
+        "it": "vis2 riordinare gli attributi del giocatore; aggiungere messaggi per gli attributi mancanti; correggere due piccoli problemi degli strumenti di build; migliorare le icone SVG; migliorare la gestione dei temi per le icone SVG",
+        "es": "vis2 reordenar los atributos del jugador; añadir mensajes para los atributos que faltan; corregir dos pequeños problemas de las herramientas de build; mejorar los iconos SVG; mejorar la gestión de temas de los iconos SVG",
+        "pl": "vis2 zmienić kolejność atrybutów gracza; dodać komunikaty o brakujących atrybutach; naprawić dwa drobne problemy z narzędziami build; ulepszyć ikony SVG; ulepszyć obsługę motywów dla ikon SVG",
+        "uk": "vis2 змінити порядок атрибутів гравця; додати повідомлення про відсутні атрибути; виправити дві невеликі проблеми інструментів збірки; покращити SVG-іконки; покращити підтримку тем для SVG-іконок",
+        "zh-cn": "vis2 重新排列玩家属性；为缺失的属性添加提示信息；修复两个小型构建工具问题；改进 SVG 图标；改进 SVG 图标的主题处理"
+      },
       "2.0.0-alpha.2": {
         "en": "fix tests",
         "de": "Fixtests",
@@ -80,19 +93,6 @@
         "pl": "naprawić pisownię iobroker wysyłania squeezeboxrpc w readme\nnaprawić pasek czasu odtwarzania",
         "uk": "фіксувати заклинання iobroker upload squeezeboxrpc в читме\nфіксувати час гри",
         "zh-cn": "在readme中固定 iobroster 上传压缩盒的拼写\n修复播放时间栏"
-      },
-      "1.5.1": {
-        "en": "improve documentation\nremove margin from plcontainer\nimprove textoverflow with ellipsis\nadjust initial widgetsize of playlist widget\nrepair attributes for playlist widget\nadd light mode css for playlist widget",
-        "de": "verbesserung der dokumentation\nentfernen sie den rand von plcontainer\ntextoverflow mit ellipsis verbessern\neinstellen der ersten widgetsize der wiedergabeliste widget\nreparatur-attribute für playlist widget\nlichtmodus css für playlist widget hinzufügen",
-        "ru": "улучшение документации\nудалить маржу от plcontainer\nулучшить текстовый поток с эллипсисом\nнастроить первоначальный виджет\nатрибуты для воспроизведения виджета\nдобавить режим cs для виджета списка воспроизведения",
-        "pt": "melhorar a documentação\nremover a margem do plcontainer\nmelhorar o fluxo de texto com ellipsis\najustar o widget inicial do widget da lista de reprodução\natributos de reparo para widget de lista de reprodução\nadd light mode css para widget da lista de reprodução",
-        "nl": "de documentatie verbeteren\nde marge uit plcontainer verwijderen\nverbeteren textoverflow met ellipsis\nde initiële widgetgrootte van afspeellijstwidget aanpassen\nreparatie attributen voor afspeellijst widget\nlichtmodus css toevoegen voor afspeellijstwidget",
-        "fr": "améliorer la documentation\nenlever la marge du plcontainer\naméliorer le textoverflow avec ellipse\najustez le widget initial du widget playlist\nattributs de réparation pour widget playlist\najouter le mode lumière css pour le widget playlist",
-        "it": "migliorare la documentazione\nrimuovere il margine da plcontainer\nmigliorare il flusso di testo con ellipsis\nregolare la dimensione iniziale del widget di playlist\nattributi di riparazione per widget di playlist\naggiungere css modalità di luce per widget di playlist",
-        "es": "mejorar la documentación\neliminar el margen de plcontainer\nmejorar el flujo de textover con elipsis\najustar el widgetsize inicial del widget de lista de reproducción\natributos de reparación para el widget de lista\nañadir light mode css para el widget de lista de reproducción",
-        "pl": "poprawić dokumentację\nusunąć margines z plakietki\npoprawić przepływ tekstuwerwiru za pomocą elipsy\ndostosować początkowy rozmiar widgetsize widget listy odtwarzania\nnaprawa atrybutów widgetu listy odtwarzania\ndodaj tryb światła css dla widżetu listy odtwarzania",
-        "uk": "вдосконалення документації\nприбрати запас від plcontainer\nполіпшення текстового потоку з еліпсом\nналаштування початкового віджетурозміри віджету\nвідремонтувати атрибути для відтворення віджету\nadd light режим css для playlist віджет",
-        "zh-cn": "改进文件编制\n从容器中删除边距\n改进带有椭圆的文本流\n调整播放列表部件的初始部件大小\n播放列表部件的修复属性\n为播放列表部件添加轻模式 ccs"
       }
     },
     "titleLang": {

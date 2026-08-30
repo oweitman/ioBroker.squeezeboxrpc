@@ -1,7 +1,7 @@
 {
     "name": "iobroker.vis2-widget-squeezeboxrpc",
     "private": true,
-    "version": "2.0.0-alpha.2",
+    "version": "2.0.0-alpha.3",
     "type": "module",
     "dependencies": {
         "@emotion/react": "^11.14.0",

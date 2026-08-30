@@ -1,4 +1,13 @@
 # Older changes
+## 1.6.4 (2026-03-25)
+
+- test remove node 18,extend to node 24
+- update packages
+
+## 1.6.2 (2025-05-05)
+
+- fix node version in github workflow
+
 ## 1.6.1 (2025-05-05)
 
 - Fix eslint
