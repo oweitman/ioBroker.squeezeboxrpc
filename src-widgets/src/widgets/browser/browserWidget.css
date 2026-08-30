@@ -4,6 +4,8 @@
     height: 100%;
     margin: 0 auto;
     overflow: auto;
+    background: inherit;
+    color: inherit;
     scrollbar-width: none;
 }
 
@@ -21,8 +23,8 @@
     padding: 0;
     overflow: hidden;
     border: 0;
-    border-bottom: 1px solid #ccc;
-    background: #000;
+    border-bottom: 1px solid currentColor;
+    background: inherit;
     color: inherit;
     font: inherit;
     text-align: left;
@@ -63,7 +65,7 @@
     justify-content: space-between;
     margin: 0.2rem 0;
     padding: 0.2rem;
-    border: 1px solid #ccc;
+    border: 1px solid currentColor;
     border-radius: 4px;
 }
 
@@ -86,7 +88,7 @@
 
 .squeezeboxrpc-browser-action {
     display: block;
-    border: 1px solid #fff;
+    border: 1px solid currentColor;
     background: transparent;
     cursor: pointer;
 }

@@ -11,7 +11,8 @@ class RewindButtonWidget extends PlayerCommandButton {
             visName: 'Squeezebox Rewind button',
             imageName: this.imageName,
             imageLabel: 'squeezeboxrpc_rewind_image',
-            preview: 'widgets/squeezeboxrpc/img/rew.png',
+            preview:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/rew.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/rew.svg) center/contain no-repeat;"></span>',
         });
     }
 

@@ -6,32 +6,19 @@ import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField'
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { translate } from '../../shared/translate';
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
+import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './playButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 
 function DefaultIcon({ mode, fill, stroke, strokeWidth }) {
     return (
-        <svg
-            viewBox="0 0 26.458 26.458"
-            aria-hidden="true"
-        >
-            <g
-                fill={fill}
-                stroke={stroke}
-                strokeWidth={strokeWidth}
-                strokeLinecap="round"
-            >
-                {mode === 'pause' ? (
-                    <>
-                        <path d="M5.684 5.396h5.83c.45.087.238.637.288.964v14.415c-.087.451-.637.238-.964.287H5.684c-.451-.087-.239-.636-.288-.963V5.684a.286.286 0 0 1 .288-.288z" />
-                        <path d="M14.944 5.396h5.83c.451.087.239.637.288.964v14.415c-.087.451-.637.238-.963.287h-5.155c-.451-.087-.238-.636-.288-.963V5.684a.286.286 0 0 1 .288-.288z" />
-                    </>
-                ) : (
-                    <path d="M5.292 21.67V4.355c.263-1.038 1.472-1.561 2.451-1.199.808.237 1.469.803 2.208 1.194 4.385 2.627 8.781 5.238 13.16 7.874.795.541.45 1.744-.35 2.076l-14.56 8.702c-1.033.366-2.332.038-2.827-1.003a.84.84 0 0 1-.082-.329z" />
-                )}
-            </g>
-        </svg>
+        <InlineSvgIcon
+            name={mode === 'pause' ? 'pause' : 'play'}
+            fill={fill}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+        />
     );
 }
 
@@ -82,14 +69,15 @@ class PlayButtonWidget extends WidgetBase {
                     name: 'svgSettings',
                     label: 'squeezeboxrpc_svg_settings',
                     fields: [
-                        { name: 'fillcolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_fill_color' },
-                        { name: 'strokecolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_stroke_color' },
+                        { name: 'fillcolor', type: 'color', label: 'squeezeboxrpc_fill_color' },
+                        { name: 'strokecolor', type: 'color', label: 'squeezeboxrpc_stroke_color' },
                         { name: 'strokewidth', type: 'number', default: 0.3, label: 'squeezeboxrpc_stroke_width' },
                     ],
                 },
             ],
             visDefaultStyle: { width: 50, height: 50 },
-            visPrev: 'widgets/squeezeboxrpc/img/play.png',
+            visPrev:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/play.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/play.svg) center/contain no-repeat;"></span>',
         };
     }
 
@@ -216,8 +204,8 @@ class PlayButtonWidget extends WidgetBase {
                 ) : (
                     <DefaultIcon
                         mode={mode}
-                        fill={data.fillcolor || '#ffffff'}
-                        stroke={data.strokecolor || '#ffffff'}
+                        fill={data.fillcolor || 'currentColor'}
+                        stroke={data.strokecolor || 'currentColor'}
                         strokeWidth={Number(data.strokewidth ?? 0.3)}
                     />
                 )}

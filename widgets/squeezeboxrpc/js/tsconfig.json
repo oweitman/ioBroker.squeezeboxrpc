@@ -1,7 +1,10 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "noEmit": true
+        "noEmit": true,
+        "checkJs": false,
+        "lib": ["ES2022", "DOM", "DOM.Iterable"],
+        "types": ["jquery"]
     },
     "include": ["**/*.js", "**/*.d.ts"],
     "exclude": ["../build"]

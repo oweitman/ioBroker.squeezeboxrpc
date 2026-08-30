@@ -11,7 +11,8 @@ class ForwardButtonWidget extends PlayerCommandButton {
             visName: 'Squeezebox Forward button',
             imageName: this.imageName,
             imageLabel: 'squeezeboxrpc_forward_image',
-            preview: 'widgets/squeezeboxrpc/img/fwd.png',
+            preview:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/fwd.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/fwd.svg) center/contain no-repeat;"></span>',
         });
     }
 

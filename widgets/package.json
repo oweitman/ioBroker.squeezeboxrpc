@@ -8,13 +8,14 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch": "npm-watch",
-        "build": "esbuild ./squeezeboxrpc/js/bundle.js --bundle --outfile=./squeezeboxrpc/build/squeezeboxrpc-dist.js --target=es6 --sourcemap",
-        "buildxx": "esbuild squeezeboxrpc/js/bundle.js --minify --bundle --outfile=squeezeboxrpc/js/squeezeboxrpc-dist.js --target=es6 --sourcemap"
+        "build": "esbuild ./squeezeboxrpc/js/bundle.js --bundle --outfile=./squeezeboxrpc/build/squeezeboxrpc-dist.js --target=es6 --sourcemap --loader:.svg=text",
+        "buildxx": "esbuild squeezeboxrpc/js/bundle.js --minify --bundle --outfile=squeezeboxrpc/js/squeezeboxrpc-dist.js --target=es6 --sourcemap --loader:.svg=text"
     },
     "author": "",
     "license": "MIT",
     "description": "",
     "devDependencies": {
+        "@types/jquery": "^4.0.1",
         "npm-watch": "^0.13.0"
     }
 }

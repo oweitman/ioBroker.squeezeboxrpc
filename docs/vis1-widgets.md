@@ -75,7 +75,7 @@ when necessary. A narrow scrollbar is used.
 
 ## Play button
 
-![Play button](../widgets/squeezeboxrpc/img/play.png)
+<img src="../widgets/squeezeboxrpc/img/play.svg" width="128px" alt="Play button">
 
 Controls play, pause and stop for the active player and reflects its current state.
 
@@ -90,7 +90,7 @@ Custom images replace the built-in SVG for the corresponding state.
 
 ## Forward button
 
-![Forward button](../widgets/squeezeboxrpc/img/fwd.png)
+<img src="../widgets/squeezeboxrpc/img/fwd.svg" width="128px" alt="Forward button">
 
 Sends the LMS jump-forward button command to the active player.
 
@@ -103,7 +103,7 @@ Sends the LMS jump-forward button command to the active player.
 
 ## Rewind button
 
-![Rewind button](../widgets/squeezeboxrpc/img/rew.png)
+<img src="../widgets/squeezeboxrpc/img/rew.svg" width="128px" alt="Rewind button">
 
 Sends the LMS jump-back command to the active player.
 
@@ -116,7 +116,7 @@ Sends the LMS jump-back command to the active player.
 
 ## Repeat button
 
-![Repeat button](../widgets/squeezeboxrpc/img/repeat0.svg)
+<img src="../widgets/squeezeboxrpc/img/repeat0.svg" width="128px" alt="Repeat button">
 
 Displays and changes `PlaylistRepeat` for the active player.
 
@@ -134,7 +134,12 @@ built-in icon is reused.
 
 ## Shuffle button
 
-![Shuffle button](../widgets/squeezeboxrpc/img/shuffle0.svg)
+<img
+src="../widgets/squeezeboxrpc/img/shuffle0.svg"
+width="128px"
+alt="Shuffle button"
+
+>
 
 Displays and changes `PlaylistShuffle` for the active player.
 
@@ -300,7 +305,7 @@ The scroll position is retained after actions.
 
 ## Browser
 
-![Browser widget](../widgets/squeezeboxrpc/img/browser.png)
+<img src="../widgets/squeezeboxrpc/img/browser.svg" width="128px" alt="Browser widget">
 
 Navigates the LMS menu hierarchy and provides next, play and add actions
 offered by LMS.

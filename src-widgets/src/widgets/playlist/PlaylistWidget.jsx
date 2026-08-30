@@ -3,6 +3,7 @@ import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 import { playerReferenceField } from '../values/PlayerStateWidget';
 import { translate } from '../../shared/translate';
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
+import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { parsePlaylists, playlistLoadCommand } from './playlistUtils';
@@ -141,16 +142,7 @@ class PlaylistWidget extends WidgetBase {
                         title={translate('squeezeboxrpc_refresh_playlists')}
                         onClick={() => void this.loadPlaylists()}
                     >
-                        <svg
-                            focusable="false"
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                fill="currentColor"
-                                d="M17.65 6.35A7.96 7.96 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 16.22 7.78L13 11h7V4z"
-                            />
-                        </svg>
+                        <InlineSvgIcon name="refresh" />
                     </button>
                 </li>
                 {this.widgetState.playlists.map(playlist => (

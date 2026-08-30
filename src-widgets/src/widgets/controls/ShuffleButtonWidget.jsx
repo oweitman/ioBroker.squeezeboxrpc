@@ -10,7 +10,8 @@ class ShuffleButtonWidget extends PlayerModeButton {
             id: 'tplSqueezeboxrpcShuffle2',
             visName: 'Squeezebox Shuffle button',
             imagePrefix: this.imagePrefix,
-            preview: 'widgets/squeezeboxrpc/img/shuffle0.svg',
+            preview:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/shuffle0.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/shuffle0.svg) center/contain no-repeat;"></span>',
         });
     }
 

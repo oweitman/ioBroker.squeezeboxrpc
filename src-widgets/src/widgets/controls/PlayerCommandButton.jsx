@@ -6,36 +6,19 @@ import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField'
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { translate } from '../../shared/translate';
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
+import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './playerCommandButton.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 
 export function DefaultCommandIcon({ direction, fill, stroke, strokeWidth }) {
-    const transform = direction === 'rewind' ? 'translate(26.458 0) scale(-1 1)' : undefined;
     return (
-        <svg
-            viewBox="0 0 26.458 26.458"
-            aria-hidden="true"
-        >
-            <g
-                fill={fill}
-                stroke={stroke}
-                strokeWidth={strokeWidth}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                transform={transform}
-            >
-                <path d="M5.376 18.805V7.588c0-.594.665-.984 1.159-.647l8.948 6.107-8.948 6.096c-.494.337-1.159-.052-1.159-.647z" />
-                <path d="M10.668 18.805V7.588c0-.594.665-.984 1.159-.647l8.948 6.107-8.948 6.096c-.494.337-1.159-.052-1.159-.647z" />
-                <rect
-                    x="18.586"
-                    y="5.357"
-                    width="2.515"
-                    height="15.744"
-                    rx="0.289"
-                />
-            </g>
-        </svg>
+        <InlineSvgIcon
+            name={direction === 'rewind' ? 'rew' : 'fwd'}
+            fill={fill}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
+        />
     );
 }
 
@@ -87,8 +70,8 @@ class PlayerCommandButton extends WidgetBase {
                     name: 'svgSettings',
                     label: 'squeezeboxrpc_svg_settings',
                     fields: [
-                        { name: 'fillcolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_fill_color' },
-                        { name: 'strokecolor', type: 'color', default: '#ffffff', label: 'squeezeboxrpc_stroke_color' },
+                        { name: 'fillcolor', type: 'color', label: 'squeezeboxrpc_fill_color' },
+                        { name: 'strokecolor', type: 'color', label: 'squeezeboxrpc_stroke_color' },
                         { name: 'strokewidth', type: 'number', default: 0.3, label: 'squeezeboxrpc_stroke_width' },
                     ],
                 },
@@ -171,8 +154,8 @@ class PlayerCommandButton extends WidgetBase {
                 ) : (
                     <DefaultCommandIcon
                         direction={this.commandConfig.command}
-                        fill={data.fillcolor || '#ffffff'}
-                        stroke={data.strokecolor || '#ffffff'}
+                        fill={data.fillcolor || 'currentColor'}
+                        stroke={data.strokecolor || 'currentColor'}
                         strokeWidth={Number(data.strokewidth ?? 0.3)}
                     />
                 )}

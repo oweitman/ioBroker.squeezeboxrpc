@@ -13,42 +13,14 @@ import {
 } from './browserUtils';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
+import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './browserWidget.css';
 
 const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
 
 function BrowserIcon({ type }) {
-    let viewBox = '0 0 24 24';
-    let content;
-    if (type === 'back') {
-        content = <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z" />;
-    } else if (type === 'next') {
-        content = <path d="m12 4-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />;
-    } else if (type === 'add') {
-        content = <path d="M14 10H3v2h11zm0-4H3v2h11zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2zM3 16h7v-2H3z" />;
-    } else {
-        viewBox = '0 0 26.458 26.458';
-        content = (
-            <g transform="translate(0 -270.54)">
-                <path d="m5.2917 292.21c1.638e-4 -5.7717-3.275e-4 -11.543 2.455e-4 -17.315 0.26319-1.0382 1.4726-1.5611 2.4514-1.1989 0.80816 0.23695 1.4691 0.80297 2.2081 1.194 4.3854 2.6267 8.7811 5.2375 13.16 7.8742 0.79505 0.54047 0.45033 1.7439-0.34988 2.0757-4.8532 2.9006-9.7064 5.8011-14.56 8.7017-1.0328 0.36658-2.332 0.0381-2.8269-1.0022-0.045938-0.10342-0.084738-0.21463-0.083483-0.32941z" />
-            </g>
-        );
-    }
-    return (
-        <svg
-            focusable="false"
-            aria-hidden="true"
-            viewBox={viewBox}
-        >
-            <g
-                fill="currentColor"
-                stroke="currentColor"
-                strokeWidth=".3"
-            >
-                {content}
-            </g>
-        </svg>
-    );
+    const name = type === 'back' ? 'menuback' : type === 'next' || type === 'add' ? type : 'play';
+    return <InlineSvgIcon name={name} />;
 }
 
 class BrowserWidget extends WidgetBase {
@@ -93,7 +65,8 @@ class BrowserWidget extends WidgetBase {
                 },
             ],
             visDefaultStyle: { width: 200, height: 200, overflow: 'hidden' },
-            visPrev: 'widgets/squeezeboxrpc/img/browser.png',
+            visPrev:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/browser.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/browser.svg) center/contain no-repeat;"></span>',
         };
     }
 

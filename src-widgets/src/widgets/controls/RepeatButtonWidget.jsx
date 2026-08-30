@@ -10,7 +10,8 @@ class RepeatButtonWidget extends PlayerModeButton {
             id: 'tplSqueezeboxrpcRepeat2',
             visName: 'Squeezebox Repeat button',
             imagePrefix: this.imagePrefix,
-            preview: 'widgets/squeezeboxrpc/img/repeat0.svg',
+            preview:
+                '<span style="display:block;margin-left:auto;margin-right:auto;aspect-ratio:1;background-color:currentColor;-webkit-mask:url(widgets/squeezeboxrpc/img/repeat0.svg) center/contain no-repeat;mask:url(widgets/squeezeboxrpc/img/repeat0.svg) center/contain no-repeat;"></span>',
         });
     }
 

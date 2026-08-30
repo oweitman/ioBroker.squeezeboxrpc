@@ -244,6 +244,7 @@ describe('VIS widget modules', () => {
             bundle: true,
             format: 'iife',
             target: ['es6'],
+            loader: { '.svg': 'text' },
             write: false,
         });
         const eventHandlers = [];
@@ -488,6 +489,7 @@ describe('VIS widget modules', () => {
             bundle: true,
             format: 'iife',
             target: ['es6'],
+            loader: { '.svg': 'text' },
             write: false,
         });
         const data = new Map();

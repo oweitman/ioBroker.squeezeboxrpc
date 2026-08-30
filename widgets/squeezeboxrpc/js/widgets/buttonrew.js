@@ -49,7 +49,7 @@ export const buttonrew = {
         text += '  <div> \n';
         text += `    <input type="submit" id="${widgetID}button" name="${widgetID}" value="rew" >`;
         text += '    <span> \n';
-        text += '      <img src="widgets/squeezeboxrpc/img/rew.svg"> \n';
+        text += '      <img src=""> \n';
         text += '    </span> \n';
         text += '  </div> \n';
         text += '</div> \n';

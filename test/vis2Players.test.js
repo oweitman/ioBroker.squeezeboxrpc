@@ -175,12 +175,36 @@ describe('VIS-2 Players configuration', () => {
             path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'browser', 'BrowserWidget.jsx'),
             'utf8',
         );
+        const inlineIcons = fs.readFileSync(
+            path.join(__dirname, '..', 'src-widgets', 'src', 'shared', 'InlineSvgIcon.jsx'),
+            'utf8',
+        );
         expect(css).to.include('fill: currentColor;');
         expect(css).to.include('align-items: center;');
-        expect(widget).to.include('fill="currentColor"');
-        expect(widget).to.include('stroke="currentColor"');
-        expect(widget).to.include('strokeWidth=".3"');
-        expect(widget).to.include("viewBox = '0 0 26.458 26.458'");
+        expect(css).to.include('background: inherit;');
+        expect(css).to.include('color: inherit;');
+        expect(css).to.include('border: 1px solid currentColor;');
+        expect(css).not.to.include('background: #000;');
+        expect(css).not.to.include('border: 1px solid #fff;');
+        expect(widget).to.include("import InlineSvgIcon from '../../shared/InlineSvgIcon'");
+        expect(widget).to.include("type === 'back' ? 'menuback'");
+        expect(inlineIcons).to.include("menuback.svg?raw");
+        expect(inlineIcons).to.include("play.svg?raw");
+        expect(inlineIcons).to.include(".split('fill=\"currentColor\"')");
+        expect(inlineIcons).to.include(".split('stroke=\"currentColor\"')");
+    });
+
+    it('inherits the widget foreground color for every SVG control button', () => {
+        const styles = [
+            'playButton.css',
+            'playerCommandButton.css',
+            'playerModeButton.css',
+        ].map(file =>
+            fs.readFileSync(path.join(__dirname, '..', 'src-widgets', 'src', 'widgets', 'controls', file), 'utf8'),
+        );
+        for (const style of styles) {
+            expect(style).to.include('color: inherit;');
+        }
     });
 
     it('shows the optional zero-based favorite index helper only in edit mode', () => {

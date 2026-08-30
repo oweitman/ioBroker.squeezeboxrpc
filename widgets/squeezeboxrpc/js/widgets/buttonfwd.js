@@ -49,7 +49,7 @@ export const buttonfwd = {
         text += '  <div> \n';
         text += `    <input type="submit" id="${widgetID}button" name="${widgetID}" value="fwd" >`;
         text += '    <span> \n';
-        text += '      <img src="widgets/squeezeboxrpc/img/fwd.png"> \n';
+        text += '      <img src=""> \n';
         text += '    </span> \n';
         text += '  </div> \n';
         text += '</div> \n';

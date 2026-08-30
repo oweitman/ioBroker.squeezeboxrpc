@@ -289,7 +289,7 @@ are displayed in the widget.
 
 ### Play Button
 
-![Play Button](/widgets/squeezeboxrpc/img/play.png)
+![Play Button](/widgets/squeezeboxrpc/img/play.svg)
 
 The play button starts or stops the music on the selected player.\
 To prepare, you must connect the button to the player widget.\
@@ -310,7 +310,7 @@ alternatively you can also select your own graphics.
 
 ### Forward
 
-![Forward](/widgets/squeezeboxrpc/img/fwd.png)
+![Forward](/widgets/squeezeboxrpc/img/fwd.svg)
 
 The Forward widget allows you to skip forward in the current track.\
 The button can be configured to skip forward by a specific amount\
@@ -327,7 +327,7 @@ of time if the player supports this feature.
 
 ### Rewind
 
-![Rewind](/widgets/squeezeboxrpc/img/rew.png)
+![Rewind](/widgets/squeezeboxrpc/img/rew.svg)
 
 The Rewind widget allows you to jump back in the current track.\
 Similar to the Forward widget, a time period can be set.
@@ -554,7 +554,7 @@ Light-mode
 
 ### Browser
 
-![Browser](/widgets/squeezeboxrpc/img/browser.png)
+![Browser](/widgets/squeezeboxrpc/img/browser.svg)
 
 Displays music, albums, artists, radio stations, apps, etc. from the server.
 Click on an item to navigate deeper into the hierarchy. The available commands
@@ -671,11 +671,11 @@ are contained in the following CLI documentation:
 
 ## Todo
 
-- more testing/fixing
-- more configuration to optionaly turn features on/off to improve memory and performance
-- add playlist widget
 - add player controlled circle knob widget
-- stop playing if favorite button is pressed again.
+- ~~stop playing if favorite button is pressed again. dont implemented~~
+- ~~more testing/fixing~~
+- ~~more configuration to optionaly turn features on/off to improve memory and performance~~
+- ~~add playlist widget~~
 - ~~add browse widget to browse in `LMS`-Menu~~
 - ~~reduce dependencys to other packages (squeezenode)~~
 - ~~cmdGeneral für Server.~~
@@ -703,6 +703,8 @@ are contained in the following CLI documentation:
 - vis2 reorder player attributes
 - vis2 add messages for missing attributes
 - fix 2 small build tool problems
+- improve svg icons
+- improve theme handling of the svg icons
 
 ### 2.0.0-alpha.2 (2026-08-28)
 
