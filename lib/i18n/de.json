@@ -57,6 +57,7 @@
     "psl_url": "Url der Songdatei.",
     "psl_remote_title": "Titel der Internet-Radiostation.",
     "pb_cmdPlayFavorite": "Befehl zum Abspielen eines Favoriten, Setzen der ID des Favoriten",
+    "pb_announce": "Durchsage aus einem absoluten Dateipfad oder einer HTTP(S)-URL abspielen",
     "pb_cmdPlayUrl": "Befehl zum Abspielen einer Url",
     "pb_cmdGeneral": "Allgemeine Befehle",
     "pb_cmdGoTime": "Befehl zum Wechseln in die Zeit",

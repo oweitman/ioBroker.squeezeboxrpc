@@ -57,6 +57,7 @@
     "psl_url": "URL du fichier de la chanson.",
     "psl_remote_title": "Titre de la station de radio internet.",
     "pb_cmdPlayFavorite": "Commande pour jouer un favori, définir l'id du favori",
+    "pb_announce": "Lire une annonce depuis un chemin absolu ou une URL HTTP(S)",
     "pb_cmdPlayUrl": "Commande pour jouer une url",
     "pb_cmdGeneral": "Commandes générales",
     "pb_cmdGoTime": "Commande pour passer à l'heure",

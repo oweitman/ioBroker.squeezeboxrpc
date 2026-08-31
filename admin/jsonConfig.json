@@ -171,6 +171,35 @@
                 }
             }
         },
+        "announcetab": {
+            "type": "panel",
+            "label": "sb-announcetab",
+            "items": {
+                "announceWebUrl": {
+                    "type": "text",
+                    "label": "sb-announceweburl",
+                    "help": "sb-announceweburl-help",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3,
+                    "newLine": true
+                },
+                "announceVolume": {
+                    "type": "number",
+                    "label": "sb-announcevolume",
+                    "min": 0,
+                    "max": 100,
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3,
+                    "newLine": true
+                }
+            }
+        },
         "debugtab": {
             "type": "panel",
             "label": "sb-debugtab",

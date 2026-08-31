@@ -57,6 +57,7 @@
     "psl_url": "歌曲文件的 URL。",
     "psl_remote_title": "网络电台的名称。",
     "pb_cmdPlayFavorite": "播放收藏项的命令，请设置收藏项的 ID",
+    "pb_announce": "从绝对文件路径或 HTTP(S) URL 播放播报",
     "pb_cmdPlayUrl": "播放 URL 的命令",
     "pb_cmdGeneral": "常规命令",
     "pb_cmdGoTime": "跳转到指定时间的命令",

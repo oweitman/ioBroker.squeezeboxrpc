@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "Omroepinstellingen",
+    "sb-announceweburl": "ioBroker-webbasis-URL",
+    "sb-announceweburl-help": "Vereist voor lokale bestanden. Voorbeeld: http://192.168.1.10:8082",
+    "sb-announcevolume": "Omroepvolume",
     "sb-debugtab": "Foutopsporingsinstellingen",
     "sb-discover": "Autodiscovered Servers (selecteer item om gegevens automatisch in te vullen)",
     "sb-discoveryrefresh": "Ontdekking vernieuwen (sec)",

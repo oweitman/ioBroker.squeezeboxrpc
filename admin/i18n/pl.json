@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "Ustawienia komunikatów",
+    "sb-announceweburl": "Bazowy URL ioBroker web",
+    "sb-announceweburl-help": "Wymagany dla plików lokalnych. Przykład: http://192.168.1.10:8082",
+    "sb-announcevolume": "Głośność komunikatu",
     "sb-debugtab": "Ustawienia debugowania",
     "sb-discover": "Serwery wykryte automatycznie (wybierz wpis, aby automatycznie wypełnić dane)",
     "sb-discoveryrefresh": "Odświeżanie odkrycia (s)",

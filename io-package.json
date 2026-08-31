@@ -198,6 +198,8 @@
         "usediscovery": true,
         "usetelnet": false,
         "usefavorites": true,
+        "announceWebUrl": "",
+        "announceVolume": 50,
         "outputserverdebug": false,
         "outputserversilly": false,
         "outputplayerdebug": false,
@@ -205,6 +207,15 @@
     },
     "objects": [],
     "instanceObjects": [
+        {
+            "_id": "",
+            "type": "meta",
+            "common": {
+                "name": "Temporary announcement files",
+                "type": "meta.user"
+            },
+            "native": {}
+        },
         {
             "_id": "info",
             "type": "channel",

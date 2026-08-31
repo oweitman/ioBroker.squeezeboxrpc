@@ -57,6 +57,7 @@
     "psl_url": "Song file url.",
     "psl_remote_title": "Title of the internet radio station.",
     "pb_cmdPlayFavorite": "Command to play a favorite, set the id of the favorite",
+    "pb_announce": "Play an announcement from an absolute file path or HTTP(S) URL",
     "pb_cmdPlayUrl": "Command to Play a url",
     "pb_cmdGeneral": "General Commands",
     "pb_cmdGoTime": "Command to go to Time",

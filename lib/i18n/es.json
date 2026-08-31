@@ -57,6 +57,7 @@
     "psl_url": "Url del archivo de la canción.",
     "psl_remote_title": "Título de la emisora de radio por Internet.",
     "pb_cmdPlayFavorite": "Comando para reproducir un favorito, establecer el id del favorito",
+    "pb_announce": "Reproducir un anuncio desde una ruta absoluta o URL HTTP(S)",
     "pb_cmdPlayUrl": "Comando para reproducir una url",
     "pb_cmdGeneral": "Comandos generales",
     "pb_cmdGoTime": "Comando para ir a Tiempo",

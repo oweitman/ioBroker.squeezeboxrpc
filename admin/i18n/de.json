@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "Durchsage-Einstellungen",
+    "sb-announceweburl": "ioBroker-Web-Basis-URL",
+    "sb-announceweburl-help": "Für lokale Dateien erforderlich. Beispiel: http://192.168.1.10:8082",
+    "sb-announcevolume": "Durchsage-Lautstärke",
     "sb-debugtab": "Debug-Einstellungen",
     "sb-discover": "Automatisch erkannte Server (Eintrag auswählen, um Daten automatisch auszufüllen)",
     "sb-discoveryrefresh": "Discovery-Aktualisierung (Sek.)",

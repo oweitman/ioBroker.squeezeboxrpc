@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "Announcement settings",
+    "sb-announceweburl": "ioBroker web base URL",
+    "sb-announceweburl-help": "Required for local files. Example: http://192.168.1.10:8082",
+    "sb-announcevolume": "Announcement volume",
     "sb-debugtab": "Debug settings",
     "sb-discover": "Autodiscovered Servers (select entry to fill data automaticly)",
     "sb-discoveryrefresh": "Discovery refresh (sec)",

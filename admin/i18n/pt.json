@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "Definições de anúncios",
+    "sb-announceweburl": "URL base web do ioBroker",
+    "sb-announceweburl-help": "Necessário para ficheiros locais. Exemplo: http://192.168.1.10:8082",
+    "sb-announcevolume": "Volume do anúncio",
     "sb-debugtab": "Configurações de depuração",
     "sb-discover": "Servidores descobertos automaticamente (selecione a entrada para preencher os dados automaticamente)",
     "sb-discoveryrefresh": "Atualização de descoberta (seg)",

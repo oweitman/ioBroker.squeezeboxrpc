@@ -1,5 +1,8 @@
 {
-    "": "",
+    "sb-announcetab": "播报设置",
+    "sb-announceweburl": "ioBroker Web 基础 URL",
+    "sb-announceweburl-help": "本地文件必填。例如：http://192.168.1.10:8082",
+    "sb-announcevolume": "播报音量",
     "sb-debugtab": "调试设置",
     "sb-discover": "自动发现的服务器（选择条目自动填充数据）",
     "sb-discoveryrefresh": "发现刷新（秒）",

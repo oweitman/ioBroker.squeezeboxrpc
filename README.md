@@ -29,6 +29,7 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 
 - [Features](#features)
 - [Installation](#installation)
+- [Configuration](#configuration)
 - [Update](#update)
 - [Troubleshooting](#trouble-shooting)
 - [Provided states](#provided-states)
@@ -65,6 +66,60 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 - Configure the Instance with the IP of the logitech/Lyrion media server
   and the port (normaly 9000)
 - start/restart the instance
+
+## Configuration
+
+### Main settings
+
+| Option          | Default   | Description                                                                                                     |
+| --------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
+| LMS server      | `0.0.0.0` | Hostname or IP address of the Logitech/Lyrion Media Server. An automatically discovered server can be selected. |
+| LMS port        | `9000`    | HTTP/JSON-RPC port of the LMS.                                                                                  |
+| LMS Telnet port | `9090`    | CLI/Telnet port of the LMS. It is used only when Telnet signaling is enabled.                                   |
+| Username        | empty     | Optional LMS username.                                                                                          |
+| Password        | empty     | Optional LMS password.                                                                                          |
+
+### Timer settings
+
+| Option                      | Default | Minimum | Description                                                        |
+| --------------------------- | ------- | ------- | ------------------------------------------------------------------ |
+| Server refresh (seconds)    | `30`    | `15`    | Interval for refreshing LMS server information.                    |
+| Player refresh (ms)         | `950`   | `200`   | Interval for refreshing player status information.                 |
+| Favorite refresh (minutes)  | `720`   | `1`     | Interval for refreshing the favorites tree.                        |
+| Discovery refresh (seconds) | `30`    | `10`    | Interval for searching for other LMS servers on the local network. |
+
+Short refresh intervals increase the number of requests sent to the LMS.
+
+### Performance settings
+
+| Option                       | Default  | Description                                                                                      |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| Provide playlist information | enabled  | Creates and updates the `Playlist` JSON state for every player.                                  |
+| Search for other LMS servers | enabled  | Enables discovery of other LMS servers on the local network.                                     |
+| Use Telnet signaling         | disabled | Uses the LMS CLI/Telnet connection for additional player connection and disconnection signaling. |
+| Request favorites            | enabled  | Periodically retrieves the favorites tree from the LMS.                                          |
+
+Disable information that is not required to reduce LMS requests and adapter processing.
+
+### Announcement settings
+
+| Option                | Default | Description                                                                                                                     |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| ioBroker web base URL | empty   | Base URL of an ioBroker web instance, for example `http://192.168.1.10:8082`. Required only for announcements from local files. |
+| Announcement volume   | `50`    | Volume used while playing the announcement. Valid range: 0 to 100.                                                              |
+
+For local announcement files, the LMS must be able to reach the configured ioBroker web URL. HTTP(S) announcement URLs are passed directly to the LMS and do not require this setting. All volume values are set directly and verified with the LMS.
+
+### Debug settings
+
+| Option              | Default  | Description                                                  |
+| ------------------- | -------- | ------------------------------------------------------------ |
+| Player debug output | disabled | Enables additional debug messages for player processing.     |
+| Player silly output | disabled | Enables very detailed player messages.                       |
+| Server debug output | disabled | Enables additional debug messages for LMS server processing. |
+| Server silly output | disabled | Enables very detailed LMS server messages.                   |
+
+Debug and especially silly logging should normally remain disabled and be enabled only while diagnosing a problem.
 
 ## Update
 
@@ -133,36 +188,37 @@ for each player
 The mode shows if you can change the value. the taken action is
 described at the attribute
 
-| State                  | mode | Description                                                                                                          |
-| ---------------------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| `Alarms`               | R/-  | All registered Alarms for this player as JSON                                                                        |
-| `Album`                | R/-  | Name of the current album                                                                                            |
-| `Artist`               | R/-  | Name of Artist                                                                                                       |
-| `ArtworkUrl`           | R/-  | url to the Artwork                                                                                                   |
-| `Bitrate`              | R/-  | Bitrate of the track                                                                                                 |
-| `Connected`            | R/-  | connectionstate of player (0/1)                                                                                      |
-| `Duration`             | R/-  | Duration of the track                                                                                                |
-| `Genre`                | R/-  | genre of the track                                                                                                   |
-| `IP`                   | R/-  | IP of the player                                                                                                     |
-| `Mode`                 | R/-  | play / pause / stop                                                                                                  |
-| `Playername`           | R/-  | Name of the Player                                                                                                   |
-| `PlayerID`             | R/-  | Player ID                                                                                                            |
-| `Playlist`             | R/-  | The actual Playlist as JSON                                                                                          |
-| `PlaylistCurrentIndex` | R/W  | go to a absolut position by specifying thetrackindex or go relative with a + or - at the beginning. Example 10,-3,+2 |
-| `PlaylistRepeat`       | R/W  | Repeat song(1)/playlist(2)/dont repeat(0)                                                                            |
-| `PlaylistShuffle`      | R/W  | shuffle playlist(1)/shuffle album(2)/dont shuffle(0)                                                                 |
-| `Power`                | R/W  | get/set Powerstate of player off(0)/on(1)                                                                            |
-| `RadioName`            | R/-  | Name of Radiostation                                                                                                 |
-| `Rate`                 | R/-  | Rating of the song                                                                                                   |
-| `Remote`               | R/-  | If remote stream (1)                                                                                                 |
-| `SyncMaster`           | R/-  | ID/MAC of Syncmaster                                                                                                 |
-| `SyncSlaves`           | R/-  | ID/Mac of Players in Syncgroup                                                                                       |
-| `Time`                 | R/-  | elapsed song time                                                                                                    |
-| `Title`                | R/-  | song title                                                                                                           |
-| `Type`                 | R/-  | type of media (eg MP3 Radio)                                                                                         |
-| `Url`                  | R/-  | Url of track / stream                                                                                                |
-| `Volume`               | R/W  | get/set Volume of the player (0-100)                                                                                 |
-| `state`                | R/W  | get/set play state: pause(0),play(1),stop(2)                                                                         |
+| State                  | mode | Description                                                                                                                                                                              |
+| ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Alarms`               | R/-  | All registered Alarms for this player as JSON                                                                                                                                            |
+| `Album`                | R/-  | Name of the current album                                                                                                                                                                |
+| `Announce`             | -/W  | Play an audio file from an absolute path or HTTP(S) URL, then restore playback and volume. Local files require the configured ioBroker web URL (for example `http://192.168.1.10:8082`). |
+| `Artist`               | R/-  | Name of Artist                                                                                                                                                                           |
+| `ArtworkUrl`           | R/-  | url to the Artwork                                                                                                                                                                       |
+| `Bitrate`              | R/-  | Bitrate of the track                                                                                                                                                                     |
+| `Connected`            | R/-  | connectionstate of player (0/1)                                                                                                                                                          |
+| `Duration`             | R/-  | Duration of the track                                                                                                                                                                    |
+| `Genre`                | R/-  | genre of the track                                                                                                                                                                       |
+| `IP`                   | R/-  | IP of the player                                                                                                                                                                         |
+| `Mode`                 | R/-  | play / pause / stop                                                                                                                                                                      |
+| `Playername`           | R/-  | Name of the Player                                                                                                                                                                       |
+| `PlayerID`             | R/-  | Player ID                                                                                                                                                                                |
+| `Playlist`             | R/-  | The actual Playlist as JSON                                                                                                                                                              |
+| `PlaylistCurrentIndex` | R/W  | go to a absolut position by specifying thetrackindex or go relative with a + or - at the beginning. Example 10,-3,+2                                                                     |
+| `PlaylistRepeat`       | R/W  | Repeat song(1)/playlist(2)/dont repeat(0)                                                                                                                                                |
+| `PlaylistShuffle`      | R/W  | shuffle playlist(1)/shuffle album(2)/dont shuffle(0)                                                                                                                                     |
+| `Power`                | R/W  | get/set Powerstate of player off(0)/on(1)                                                                                                                                                |
+| `RadioName`            | R/-  | Name of Radiostation                                                                                                                                                                     |
+| `Rate`                 | R/-  | Rating of the song                                                                                                                                                                       |
+| `Remote`               | R/-  | If remote stream (1)                                                                                                                                                                     |
+| `SyncMaster`           | R/-  | ID/MAC of Syncmaster                                                                                                                                                                     |
+| `SyncSlaves`           | R/-  | ID/Mac of Players in Syncgroup                                                                                                                                                           |
+| `Time`                 | R/-  | elapsed song time                                                                                                                                                                        |
+| `Title`                | R/-  | song title                                                                                                                                                                               |
+| `Type`                 | R/-  | type of media (eg MP3 Radio)                                                                                                                                                             |
+| `Url`                  | R/-  | Url of track / stream                                                                                                                                                                    |
+| `Volume`               | R/W  | get/set Volume of the player (0-100)                                                                                                                                                     |
+| `state`                | R/W  | get/set play state: pause(0),play(1),stop(2)                                                                                                                                             |
 
 The playlist provide actual the following attributes if available in `LMS`.
 Somme attributes depends of the type of songs (stream/file/...)
@@ -194,6 +250,13 @@ additional defined buttons:
 | `cmdPlayFavorite` | to play a favorite set the id of the favorite                                                                                                                     |
 | `cmdPlayUrl`      | to play a url. example "<http://50.7.77.114:8101/>;"                                                                                                              |
 | `cmdGoTime`       | jump to a absolut position by specifying a number of seconds or jump relative with a + or - at the beginning of the seconds. Example 100,-50,+50                  |
+
+The announcement settings define its volume. The previous and announcement
+volumes are set directly without fading. For local files, you must configure
+the base URL of an ioBroker web instance
+(for example `http://192.168.1.10:8082`). The LMS host must be able to reach
+that URL. Remote streams are restored without seeking because they generally
+do not support a playback position.
 
 #### Remarks on Datapoints depending of the Setting TPE2 in LMS
 
@@ -744,6 +807,11 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- Add announcement feature.
+
 ### 2.0.0-alpha.3 (2026-08-30)
 
 - vis2 reorder player attributes

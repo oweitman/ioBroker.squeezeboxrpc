@@ -57,6 +57,7 @@
     "psl_url": "Adres url pliku utworu.",
     "psl_remote_title": "Nazwa internetowej stacji radiowej.",
     "pb_cmdPlayFavorite": "Polecenie odtwarzania ulubionego, ustaw identyfikator ulubionego",
+    "pb_announce": "Odtwórz komunikat z bezwzględnej ścieżki lub adresu HTTP(S)",
     "pb_cmdPlayUrl": "Polecenie odtwarzania adresu url",
     "pb_cmdGeneral": "Polecenia ogólne",
     "pb_cmdGoTime": "Polecenie przejścia do Time",

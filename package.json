@@ -74,6 +74,7 @@
         "npm:main": "npm i -f",
         "npm:vis1widgets": "npm install --prefix widgets",
         "npm:vis2widgets": "cd src-widgets && npm i -f && cd ..",
+        "devupload": "dev-server upload",
         "build": "npm run build-vis1widgets && npm run build-vis2widgets",
         "buildx": "npm run build-vis1widgets ",
         "build-vis1widgets": "npm run build --prefix widgets",

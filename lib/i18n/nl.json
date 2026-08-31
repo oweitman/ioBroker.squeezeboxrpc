@@ -57,6 +57,7 @@
     "psl_url": "Bestandsadres van het nummer.",
     "psl_remote_title": "Titel van het internetradiostation.",
     "pb_cmdPlayFavorite": "Opdracht om een favoriet af te spelen, stel de id van de favoriet in",
+    "pb_announce": "Speel een omroep af vanaf een absoluut pad of HTTP(S)-URL",
     "pb_cmdPlayUrl": "Opdracht om een url af te spelen",
     "pb_cmdGeneral": "Algemene opdrachten",
     "pb_cmdGoTime": "Commando om naar Tijd te gaan",
