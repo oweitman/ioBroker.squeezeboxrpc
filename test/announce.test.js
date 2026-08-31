@@ -60,12 +60,14 @@ function lastSetVolume(commands) {
 }
 
 describe('announcement playback', () => {
-    it('accepts supported HTTP URLs and absolute Windows paths', () => {
+    it('accepts supported HTTP URLs and absolute paths on every platform', () => {
         expect(validateSource('https://example.org/sounds/door.mp3?token=1')).to.include({
             local: false,
             extension: '.mp3',
         });
         expect(validateSource('C:\\sounds\\door.wav')).to.include({ local: true, extension: '.wav' });
+        expect(validateSource('/sounds/door.flac')).to.include({ local: true, extension: '.flac' });
+        expect(validateSource('\\\\server\\share\\door.mp3')).to.include({ local: true, extension: '.mp3' });
     });
 
     it('rejects relative and unsupported sources', () => {

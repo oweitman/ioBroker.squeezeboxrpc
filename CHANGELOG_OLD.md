@@ -1,4 +1,11 @@
 # Older changes
+## 2.0.0-alpha.0 (2026-08-28)
+
+- fix of empty rewrite artwork and some other datapoints
+- Breaking release for vis-1 to vis-2
+- new widgetset for vis-2
+- Details see readme
+
 ## 2.0.0-alpha (2026-08-28)
 
 - **BREAKING CHANGE**
