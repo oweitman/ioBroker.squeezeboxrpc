@@ -807,8 +807,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 2.0.0-alpha.4 (2026-08-31)
 
 - Add announcement feature.
 
@@ -834,37 +833,6 @@ are contained in the following CLI documentation:
 - Breaking release for vis-1 to vis-2
 - new widgetset for vis-2
 - Details see readme
-
-### 2.0.0-alpha (2026-08-28)
-
-- **BREAKING CHANGE**
-- Due to the extensive revision of the vis-1 widgets—including adjustments to
-  their configuration attributes—they are no longer directly compatible with
-  those from version 1. Recreating the vis-1 widgets is recommended.
-- Importing or transferring them from vis-1 to vis-2 is not a viable option.
-- Several fundamental concepts regarding the vis-1 widgets have been improved.
-- add a complete VIS 2 widget set for player selection and control, favorites,
-  playlists, browsing, synchronization, volume and player information
-- add PlaylistDetail widgets for VIS 1 and VIS 2 with artwork, track metadata,
-  duration, current-track highlighting, scrolling, playback and removal actions
-- make player selection available across views and show the related
-  SqueezeboxRPC instance in player-widget selectors
-- improve the Players and Favorites configuration with reliable show/hide,
-  ordering, default-player, custom-label and custom-image options
-- improve the Playtime bar with accurate progress updates, an empty state for
-  streams without a duration and click-to-seek support
-- correct Play, Repeat, Shuffle, Forward and Rewind behavior and provide
-  state-aware icons with support for custom button images
-- improve widget styling for light and dark designs, including inherited
-  colors, reliable borders, spacing, alignment, hover effects and thin scrollbars
-- align VIS 1 and VIS 2 DateTime formatting and provide configurable,
-  predictable date and time output
-- prevent unchanged player and server values from being rewritten and keep
-  artwork, artist and other player information stable during status updates
-- add comprehensive English user documentation for every VIS 1 and VIS 2
-  widget, including previews, configuration tables and usage notes
-- add translated datapoint descriptions
-- cmdGeneral for server
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
