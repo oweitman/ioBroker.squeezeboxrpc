@@ -134,7 +134,6 @@ export const players = {
                 $(`#${widgetID}`).html(text);
 
                 const spans = $(`#${widgetID} span`);
-                const font = new Font($(`#${widgetID}`));
                 const opt = {};
                 opt.wrapCamelCase = data.wrapcamelcase;
                 opt.style = {
@@ -144,6 +143,7 @@ export const players = {
                 };
                 opt.backgroundcolor = backgroundColor;
                 for (let i = 0; i < configuredPlayers.length; i++) {
+                    const font = new Font($(`#${widgetID}`));
                     const buttonsImage = configuredPlayers[i].image || '';
                     const buttonsText = configuredPlayers[i].text || configuredPlayers[i].id;
                     if (buttonsImage.trim() == '') {
