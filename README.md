@@ -819,10 +819,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 2.0.1 (2026-09-05)
 
 - fix package-lock
+- fix tests
 
 ### 2.0.0 (2026-09-05)
 
@@ -845,10 +845,6 @@ are contained in the following CLI documentation:
 - fix 2 small build tool problems
 - improve svg icons
 - improve theme handling of the svg icons
-
-### 2.0.0-alpha.2 (2026-08-28)
-
-- fix tests
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

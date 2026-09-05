@@ -1,244 +1,259 @@
 {
-    "common": {
-        "name": "squeezeboxrpc",
-        "version": "2.0.0",
-        "news": {
-            "2.0.0": {
-                "en": "power/connected state fixed\nplayers button font size fixed\nbring back fade in/out for Announcement with additional LMS plugin",
-                "de": "Netz-/Netzzustand fest\nFester Player-Button\nFade-In/Out für Ankündigung mit zusätzlichem LMS-Plugin",
-                "ru": "питание/состояние подключения фиксировано\nисправлен размер шрифта кнопок плееров\nс помощью дополнительного плагина LMS можно вернуться к функции fade information",
-                "pt": "potência/conexão fixa\nfonte de botão de jogadores fixa\ntraga fade in/out para anúncio com plugin LMS adicional",
-                "nl": "stroom/aangesloten toestand: vast\nDe lettergrootte van de spelersknop is opgelost\nfade-in/out terugbrengen voor aankondigingen met een extra LMS-plug-in",
-                "fr": "alimentation/état connecté fixe\npolice des boutons des joueurs fixe\nbring back fade in/out for Announcement avec un plugin LMS supplémentaire",
-                "it": "potenza/connessione fissa\ntasto giocatori con font fisso\nriportare fade in/out per annuncio con plugin LMS aggiuntivo",
-                "es": "alimentación/estado de conexión fijo\nbotón de jugador tamaño fijo\nvolver a fade/out para el anuncio con un plugin LMS adicional",
-                "pl": "stan zasilania/podłączenia stały\nNaprawiono rozmiar czcionki przycisku odtwarzacza\nprzywróć zanikanie wejścia/wyjścia dla ogłoszenia za pomocą dodatkowej wtyczki LMS",
-                "uk": "живлення/підключений стан фіксований\nфіксований розмір шрифту кнопки гравців\nповернути згасання в/вимкнути для оголошення за допомогою додаткового плагіна LMS",
-                "zh-cn": "电源/连接状态已修复\n玩家按钮字体大小已修复\n使用额外的 LMS 插件恢复公告的淡入/淡出"
-            },
-            "2.1.0": {
-                "en": "fix power/connected state; fix players button font size; restore fade in/out for announcements with additional LMS plugin",
-                "de": "Power/Connected-Status korrigiert; Schriftgröße der Player-Schaltfläche korrigiert; Ein-/Ausblenden für Ansagen mit zusätzlichem LMS-Plugin wiederhergestellt",
-                "ru": "исправлено состояние power/connected; исправлен размер шрифта кнопки игроков; восстановлено плавное появление/исчезновение объявлений с дополнительным плагином LMS",
-                "pt": "corrigido o estado power/connected; corrigido o tamanho da fonte do botão de players; restaurado o fade in/out para anúncios com plugin LMS adicional",
-                "nl": "power/connected-status gecorrigeerd; lettergrootte van de players-knop gecorrigeerd; fade-in/out voor aankondigingen met extra LMS-plugin hersteld",
-                "fr": "état power/connected corrigé ; taille de police du bouton des lecteurs corrigée ; rétablissement du fondu entrant/sortant pour les annonces avec un plugin LMS supplémentaire",
-                "it": "corretto lo stato power/connected; corretta la dimensione del carattere del pulsante dei player; ripristinata la dissolvenza in entrata/uscita per gli annunci con plugin LMS aggiuntivo",
-                "es": "corregido el estado power/connected; corregido el tamaño de fuente del botón de reproductores; restaurado el fundido de entrada/salida para anuncios con un plugin LMS adicional",
-                "pl": "naprawiono stan power/connected; poprawiono rozmiar czcionki przycisku odtwarzaczy; przywrócono efekt fade in/out dla komunikatów z dodatkową wtyczką LMS",
-                "uk": "виправлено стан power/connected; виправлено розмір шрифту кнопки програвачів; відновлено плавну появу/зникнення оголошень із додатковим плагіном LMS",
-                "zh-cn": "修复 power/connected 状态；修复播放器按钮字体大小；恢复使用额外 LMS 插件时公告的淡入/淡出效果"
-            },
-            "2.0.0-alpha.5": {
-                "en": "fix tests",
-                "de": "Fixtests",
-                "ru": "исправить тесты",
-                "pt": "corrigir testes",
-                "nl": "fix tests",
-                "fr": "tests de correction",
-                "it": "test di correzione",
-                "es": "pruebas de corrección",
-                "pl": "naprawić testy",
-                "uk": "виправити тести",
-                "zh-cn": "修复测试"
-            },
-            "2.0.0-alpha.4": {
-                "en": "Add announcement feature.",
-                "de": "Füge eine Ankündigungsfunktion hinzu.",
-                "ru": "Добавить функцию объявления.",
-                "pt": "Adicionar recurso de anúncios.",
-                "nl": "Voeg een aankondigingsfunctie toe.",
-                "fr": "Ajout d'une fonctionnalité d'annonce.",
-                "it": "Aggiungere la funzione di annuncio.",
-                "es": "Agregar función de anuncios.",
-                "pl": "Dodaj funkcję ogłoszeń.",
-                "uk": "Додати функцію оголошень.",
-                "zh-cn": "增加公告功能。"
-            },
-            " ": {
-                "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
-                "de": "vis2 Spielerattribute neu anordnen; Meldungen für fehlende Attribute hinzufügen; zwei kleine Probleme mit den Build-Tools beheben; SVG-Icons verbessern; Theme-Unterstützung für SVG-Icons verbessern",
-                "ru": "vis2 изменить порядок атрибутов игрока; добавить сообщения об отсутствующих атрибутах; исправить две небольшие проблемы инструментов сборки; улучшить SVG-иконки; улучшить поддержку тем для SVG-иконок",
-                "pt": "vis2 reordenar os atributos do jogador; adicionar mensagens para atributos ausentes; corrigir dois pequenos problemas nas ferramentas de build; melhorar os ícones SVG; melhorar o suporte a temas dos ícones SVG",
-                "nl": "vis2 spelerattributen opnieuw ordenen; meldingen toevoegen voor ontbrekende attributen; twee kleine problemen met de buildtools oplossen; SVG-iconen verbeteren; thema-afhandeling van SVG-iconen verbeteren",
-                "fr": "vis2 réorganiser les attributs du joueur ; ajouter des messages pour les attributs manquants ; corriger deux petits problèmes des outils de build ; améliorer les icônes SVG ; améliorer la gestion des thèmes pour les icônes SVG",
-                "it": "vis2 riordinare gli attributi del giocatore; aggiungere messaggi per gli attributi mancanti; correggere due piccoli problemi degli strumenti di build; migliorare le icone SVG; migliorare la gestione dei temi per le icone SVG",
-                "es": "vis2 reordenar los atributos del jugador; añadir mensajes para los atributos que faltan; corregir dos pequeños problemas de las herramientas de build; mejorar los iconos SVG; mejorar la gestión de temas de los iconos SVG",
-                "pl": "vis2 zmienić kolejność atrybutów gracza; dodać komunikaty o brakujących atrybutach; naprawić dwa drobne problemy z narzędziami build; ulepszyć ikony SVG; ulepszyć obsługę motywów dla ikon SVG",
-                "uk": "vis2 змінити порядок атрибутів гравця; додати повідомлення про відсутні атрибути; виправити дві невеликі проблеми інструментів збірки; покращити SVG-іконки; покращити підтримку тем для SVG-іконок",
-                "zh-cn": "vis2 重新排列玩家属性；为缺失的属性添加提示信息；修复两个小型构建工具问题；改进 SVG 图标；改进 SVG 图标的主题处理"
-            },
-            "2.0.0-alpha.2": {
-                "en": "fix tests",
-                "de": "Fixtests",
-                "ru": "исправить тесты",
-                "pt": "corrigir testes",
-                "nl": "fix tests",
-                "fr": "tests de correction",
-                "it": "test di correzione",
-                "es": "pruebas de corrección",
-                "pl": "naprawić testy",
-                "uk": "виправити тести",
-                "zh-cn": "修复测试"
-            },
-            "2.0.0-alpha.1": {
-                "en": "fix lint error",
-                "de": "Lint-Fehler beheben",
-                "ru": "исправить ошибку линтера",
-                "pt": "corrigir erro de lint",
-                "nl": "lintfout corrigeren",
-                "fr": "corriger l'erreur de lint",
-                "it": "correggere l'errore di lint",
-                "es": "corregir error de lint",
-                "pl": "napraw błąd lint",
-                "uk": "виправити помилку lint",
-                "zh-cn": "修复 lint 错误"
-            }
-        },
-        "titleLang": {
-            "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
-            "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
-            "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
-            "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
-            "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
-            "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
-            "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
-            "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
-            "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
-            "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
-            "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
-        },
-        "desc": {
-            "en": "SqueezeboxRPC: Controller for Logitech Media Server via RPC protocol",
-            "de": "SqueezeboxRPC: Controller für Logitech Media Server über das RPC-Protokoll",
-            "ru": "SqueezeboxRPC: контроллер для Logitech Media Server через протокол RPC",
-            "pt": "SqueezeboxRPC: controlador para Logitech Media Server através do protocolo RPC",
-            "nl": "SqueezeboxRPC: controller voor Logitech Media Server via het RPC-protocol",
-            "fr": "SqueezeboxRPC : contrôleur pour Logitech Media Server via le protocole RPC",
-            "it": "SqueezeboxRPC: controller per Logitech Media Server tramite protocollo RPC",
-            "es": "SqueezeboxRPC: controlador para Logitech Media Server mediante el protocolo RPC",
-            "pl": "SqueezeboxRPC: kontroler dla Logitech Media Server za pośrednictwem protokołu RPC",
-            "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
-            "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
-        },
-        "authors": ["oweitman <oweitman@gmx.de>"],
-        "keywords": ["squeezebox", "LMS", "Logitech Media Server", "Lyrion Media Server", "music server"],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "icon": "squeezeboxrpc.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
-        "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
-        "loglevel": "info",
-        "tier": 3,
-        "restartAdapters": ["vis", "vis-2"],
-        "mode": "daemon",
-        "type": "multimedia",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "poll",
-        "messagebox": true,
-        "visWidgets": {
-            "vis2vis-squeezeboxrpc": {
-                "i18n": "component",
-                "name": "vis2vis-squeezeboxrpc",
-                "url": "vis2squeezeboxrpc/customWidgets.js",
-                "bundlerType": "module",
-                "components": [
-                    "PlayersWidget",
-                    "PlayButtonWidget",
-                    "ForwardButtonWidget",
-                    "RewindButtonWidget",
-                    "ShuffleButtonWidget",
-                    "RepeatButtonWidget",
-                    "VolumeWidget",
-                    "PlaytimeWidget",
-                    "StringWidget",
-                    "NumberWidget",
-                    "DateTimeWidget",
-                    "ImageWidget",
-                    "SyncGroupWidget",
-                    "FavoritesWidget",
-                    "PlaylistWidget",
-                    "PlaylistDetailWidget",
-                    "BrowserWidget"
-                ]
-            }
-        },
-        "adminUI": {
-            "config": "json"
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=6.0.12"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=7.6.17"
-            }
+  "common": {
+    "name": "squeezeboxrpc",
+    "version": "2.0.1",
+    "news": {
+      "2.0.1": {
+        "en": "fix package-lock\nfix tests",
+        "de": "Paketsperre fixen\nFix Tests",
+        "ru": "исправить блокировку пакета\nисправить тесты",
+        "pt": "fix packagelock\nfixar testes",
+        "nl": "pakketvergrendeling repareren\ntests repareren",
+        "fr": "fix package-lock\nfix tests",
+        "it": "fix package-lock\nfix test",
+        "es": "arreglar paquetería\nfix tests",
+        "pl": "naprawić blokadę pakietów\ntesty naprawcze",
+        "uk": "фіксуйте блокування пакета\nвиправляти тести",
+        "zh-cn": "修复包锁\n修复测试"
+      },
+      "2.0.0": {
+        "en": "power/connected state fixed\nplayers button font size fixed\nbring back fade in/out for Announcement with additional LMS plugin",
+        "de": "Netz-/Netzzustand fest\nFester Player-Button\nFade-In/Out für Ankündigung mit zusätzlichem LMS-Plugin",
+        "ru": "питание/состояние подключения фиксировано\nисправлен размер шрифта кнопок плееров\nс помощью дополнительного плагина LMS можно вернуться к функции fade information",
+        "pt": "potência/conexão fixa\nfonte de botão de jogadores fixa\ntraga fade in/out para anúncio com plugin LMS adicional",
+        "nl": "stroom/aangesloten toestand: vast\nDe lettergrootte van de spelersknop is opgelost\nfade-in/out terugbrengen voor aankondigingen met een extra LMS-plug-in",
+        "fr": "alimentation/état connecté fixe\npolice des boutons des joueurs fixe\nbring back fade in/out for Announcement avec un plugin LMS supplémentaire",
+        "it": "potenza/connessione fissa\ntasto giocatori con font fisso\nriportare fade in/out per annuncio con plugin LMS aggiuntivo",
+        "es": "alimentación/estado de conexión fijo\nbotón de jugador tamaño fijo\nvolver a fade/out para el anuncio con un plugin LMS adicional",
+        "pl": "stan zasilania/podłączenia stały\nNaprawiono rozmiar czcionki przycisku odtwarzacza\nprzywróć zanikanie wejścia/wyjścia dla ogłoszenia za pomocą dodatkowej wtyczki LMS",
+        "uk": "живлення/підключений стан фіксований\nфіксований розмір шрифту кнопки гравців\nповернути згасання в/вимкнути для оголошення за допомогою додаткового плагіна LMS",
+        "zh-cn": "电源/连接状态已修复\n玩家按钮字体大小已修复\n使用额外的 LMS 插件恢复公告的淡入/淡出"
+      },
+      "2.1.0": {
+        "en": "fix power/connected state; fix players button font size; restore fade in/out for announcements with additional LMS plugin",
+        "de": "Power/Connected-Status korrigiert; Schriftgröße der Player-Schaltfläche korrigiert; Ein-/Ausblenden für Ansagen mit zusätzlichem LMS-Plugin wiederhergestellt",
+        "ru": "исправлено состояние power/connected; исправлен размер шрифта кнопки игроков; восстановлено плавное появление/исчезновение объявлений с дополнительным плагином LMS",
+        "pt": "corrigido o estado power/connected; corrigido o tamanho da fonte do botão de players; restaurado o fade in/out para anúncios com plugin LMS adicional",
+        "nl": "power/connected-status gecorrigeerd; lettergrootte van de players-knop gecorrigeerd; fade-in/out voor aankondigingen met extra LMS-plugin hersteld",
+        "fr": "état power/connected corrigé ; taille de police du bouton des lecteurs corrigée ; rétablissement du fondu entrant/sortant pour les annonces avec un plugin LMS supplémentaire",
+        "it": "corretto lo stato power/connected; corretta la dimensione del carattere del pulsante dei player; ripristinata la dissolvenza in entrata/uscita per gli annunci con plugin LMS aggiuntivo",
+        "es": "corregido el estado power/connected; corregido el tamaño de fuente del botón de reproductores; restaurado el fundido de entrada/salida para anuncios con un plugin LMS adicional",
+        "pl": "naprawiono stan power/connected; poprawiono rozmiar czcionki przycisku odtwarzaczy; przywrócono efekt fade in/out dla komunikatów z dodatkową wtyczką LMS",
+        "uk": "виправлено стан power/connected; виправлено розмір шрифту кнопки програвачів; відновлено плавну появу/зникнення оголошень із додатковим плагіном LMS",
+        "zh-cn": "修复 power/connected 状态；修复播放器按钮字体大小；恢复使用额外 LMS 插件时公告的淡入/淡出效果"
+      },
+      "2.0.0-alpha.5": {
+        "en": "fix tests",
+        "de": "Fixtests",
+        "ru": "исправить тесты",
+        "pt": "corrigir testes",
+        "nl": "fix tests",
+        "fr": "tests de correction",
+        "it": "test di correzione",
+        "es": "pruebas de corrección",
+        "pl": "naprawić testy",
+        "uk": "виправити тести",
+        "zh-cn": "修复测试"
+      },
+      "2.0.0-alpha.4": {
+        "en": "Add announcement feature.",
+        "de": "Füge eine Ankündigungsfunktion hinzu.",
+        "ru": "Добавить функцию объявления.",
+        "pt": "Adicionar recurso de anúncios.",
+        "nl": "Voeg een aankondigingsfunctie toe.",
+        "fr": "Ajout d'une fonctionnalité d'annonce.",
+        "it": "Aggiungere la funzione di annuncio.",
+        "es": "Agregar función de anuncios.",
+        "pl": "Dodaj funkcję ogłoszeń.",
+        "uk": "Додати функцію оголошень.",
+        "zh-cn": "增加公告功能。"
+      },
+      " ": {
+        "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
+        "de": "vis2 Spielerattribute neu anordnen; Meldungen für fehlende Attribute hinzufügen; zwei kleine Probleme mit den Build-Tools beheben; SVG-Icons verbessern; Theme-Unterstützung für SVG-Icons verbessern",
+        "ru": "vis2 изменить порядок атрибутов игрока; добавить сообщения об отсутствующих атрибутах; исправить две небольшие проблемы инструментов сборки; улучшить SVG-иконки; улучшить поддержку тем для SVG-иконок",
+        "pt": "vis2 reordenar os atributos do jogador; adicionar mensagens para atributos ausentes; corrigir dois pequenos problemas nas ferramentas de build; melhorar os ícones SVG; melhorar o suporte a temas dos ícones SVG",
+        "nl": "vis2 spelerattributen opnieuw ordenen; meldingen toevoegen voor ontbrekende attributen; twee kleine problemen met de buildtools oplossen; SVG-iconen verbeteren; thema-afhandeling van SVG-iconen verbeteren",
+        "fr": "vis2 réorganiser les attributs du joueur ; ajouter des messages pour les attributs manquants ; corriger deux petits problèmes des outils de build ; améliorer les icônes SVG ; améliorer la gestion des thèmes pour les icônes SVG",
+        "it": "vis2 riordinare gli attributi del giocatore; aggiungere messaggi per gli attributi mancanti; correggere due piccoli problemi degli strumenti di build; migliorare le icone SVG; migliorare la gestione dei temi per le icone SVG",
+        "es": "vis2 reordenar los atributos del jugador; añadir mensajes para los atributos que faltan; corregir dos pequeños problemas de las herramientas de build; mejorar los iconos SVG; mejorar la gestión de temas de los iconos SVG",
+        "pl": "vis2 zmienić kolejność atrybutów gracza; dodać komunikaty o brakujących atrybutach; naprawić dwa drobne problemy z narzędziami build; ulepszyć ikony SVG; ulepszyć obsługę motywów dla ikon SVG",
+        "uk": "vis2 змінити порядок атрибутів гравця; додати повідомлення про відсутні атрибути; виправити дві невеликі проблеми інструментів збірки; покращити SVG-іконки; покращити підтримку тем для SVG-іконок",
+        "zh-cn": "vis2 重新排列玩家属性；为缺失的属性添加提示信息；修复两个小型构建工具问题；改进 SVG 图标；改进 SVG 图标的主题处理"
+      },
+      "2.0.0-alpha.2": {
+        "en": "fix tests",
+        "de": "Fixtests",
+        "ru": "исправить тесты",
+        "pt": "corrigir testes",
+        "nl": "fix tests",
+        "fr": "tests de correction",
+        "it": "test di correzione",
+        "es": "pruebas de corrección",
+        "pl": "naprawić testy",
+        "uk": "виправити тести",
+        "zh-cn": "修复测试"
+      }
+    },
+    "titleLang": {
+      "en": "SqueezeboxRPC: Controller for Logitech media Server over RPC-protokol",
+      "de": "SqueezeboxRPC: Controller für Logitech Media Server über RPC-Protokoll",
+      "ru": "SqueezeboxRPC: контроллер для медиасервера Logitech по протоколу RPC",
+      "pt": "SqueezeboxRPC: Controlador para Logitech Media Server sobre protocolo RPC",
+      "nl": "SqueezeboxRPC: Controller voor Logitech-mediaserver via RPC-protocol",
+      "fr": "SqueezeboxRPC : contrôleur pour serveur multimédia Logitech via protocole RPC",
+      "it": "SqueezeboxRPC: controller per Logitech media Server su protocollo RPC",
+      "es": "SqueezeboxRPC: Controlador para servidor de medios Logitech sobre protocolo RPC",
+      "pl": "SqueezeboxRPC: Kontroler serwera multimediów Logitech poprzez protokół RPC",
+      "uk": "SqueezeboxRPC: контролер для медіасервера Logitech через RPC-протокол",
+      "zh-cn": "SqueezeboxRPC：基于 RPC 协议的 Logitech 媒体服务器控制器"
+    },
+    "desc": {
+      "en": "SqueezeboxRPC: Controller for Logitech Media Server via RPC protocol",
+      "de": "SqueezeboxRPC: Controller für Logitech Media Server über das RPC-Protokoll",
+      "ru": "SqueezeboxRPC: контроллер для Logitech Media Server через протокол RPC",
+      "pt": "SqueezeboxRPC: controlador para Logitech Media Server através do protocolo RPC",
+      "nl": "SqueezeboxRPC: controller voor Logitech Media Server via het RPC-protocol",
+      "fr": "SqueezeboxRPC : contrôleur pour Logitech Media Server via le protocole RPC",
+      "it": "SqueezeboxRPC: controller per Logitech Media Server tramite protocollo RPC",
+      "es": "SqueezeboxRPC: controlador para Logitech Media Server mediante el protocolo RPC",
+      "pl": "SqueezeboxRPC: kontroler dla Logitech Media Server za pośrednictwem protokołu RPC",
+      "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
+      "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
+    },
+    "authors": [
+      "oweitman <oweitman@gmx.de>"
+    ],
+    "keywords": [
+      "squeezebox",
+      "LMS",
+      "Logitech Media Server",
+      "Lyrion Media Server",
+      "music server"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "icon": "squeezeboxrpc.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/oweitman/ioBroker.squeezeboxrpc/main/admin/squeezeboxrpc.png",
+    "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "restartAdapters": [
+      "vis",
+      "vis-2"
+    ],
+    "mode": "daemon",
+    "type": "multimedia",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "poll",
+    "messagebox": true,
+    "visWidgets": {
+      "vis2vis-squeezeboxrpc": {
+        "i18n": "component",
+        "name": "vis2vis-squeezeboxrpc",
+        "url": "vis2squeezeboxrpc/customWidgets.js",
+        "bundlerType": "module",
+        "components": [
+          "PlayersWidget",
+          "PlayButtonWidget",
+          "ForwardButtonWidget",
+          "RewindButtonWidget",
+          "ShuffleButtonWidget",
+          "RepeatButtonWidget",
+          "VolumeWidget",
+          "PlaytimeWidget",
+          "StringWidget",
+          "NumberWidget",
+          "DateTimeWidget",
+          "ImageWidget",
+          "SyncGroupWidget",
+          "FavoritesWidget",
+          "PlaylistWidget",
+          "PlaylistDetailWidget",
+          "BrowserWidget"
         ]
+      }
     },
-    "encryptedNative": ["password"],
-    "protectedNative": ["password"],
-    "native": {
-        "server": "0.0.0.0",
-        "port": 9000,
-        "telnetport": 9090,
-        "username": "",
-        "password": "",
-        "serverrefresh": 30,
-        "playerrefresh": 950,
-        "favoriterefresh": 720,
-        "discoveryrefresh": 30,
-        "useplaylist": true,
-        "usediscovery": true,
-        "usetelnet": false,
-        "usefavorites": true,
-        "announceWebUrl": "",
-        "announceVolume": 50,
-        "announceUseFadeTools": false,
-        "announceFadeOutSeconds": 2,
-        "announceFadeInSeconds": 2,
-        "outputserverdebug": false,
-        "outputserversilly": false,
-        "outputplayerdebug": false,
-        "outputplayersilly": false
+    "adminUI": {
+      "config": "json"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "",
-            "type": "meta",
-            "common": {
-                "name": "Temporary announcement files",
-                "type": "meta.user"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "dependencies": [
+      {
+        "js-controller": ">=6.0.12"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
     ]
+  },
+  "encryptedNative": [
+    "password"
+  ],
+  "protectedNative": [
+    "password"
+  ],
+  "native": {
+    "server": "0.0.0.0",
+    "port": 9000,
+    "telnetport": 9090,
+    "username": "",
+    "password": "",
+    "serverrefresh": 30,
+    "playerrefresh": 950,
+    "favoriterefresh": 720,
+    "discoveryrefresh": 30,
+    "useplaylist": true,
+    "usediscovery": true,
+    "usetelnet": false,
+    "usefavorites": true,
+    "announceWebUrl": "",
+    "announceVolume": 50,
+    "announceUseFadeTools": false,
+    "announceFadeOutSeconds": 2,
+    "announceFadeInSeconds": 2,
+    "outputserverdebug": false,
+    "outputserversilly": false,
+    "outputplayerdebug": false,
+    "outputplayersilly": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "",
+      "type": "meta",
+      "common": {
+        "name": "Temporary announcement files",
+        "type": "meta.user"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }

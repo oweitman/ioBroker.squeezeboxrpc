@@ -1,4 +1,8 @@
 # Older changes
+## 2.0.0-alpha.2 (2026-08-28)
+
+- fix tests
+
 ## 2.0.0-alpha.1 (2026-08-28)
 
 - fix lint error
