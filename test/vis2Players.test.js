@@ -3,8 +3,11 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const vm = require('node:vm');
+const { createRequire } = require('node:module');
 const esbuild = require('esbuild');
 const { expect } = require('chai');
+
+const widgetRequire = createRequire(path.join(__dirname, '..', 'src-widgets', 'package.json'));
 
 async function loadPlayerConfigUtils() {
     const result = await esbuild.build({
@@ -64,7 +67,7 @@ async function loadModule(file) {
         external: ['react', '@iobroker/adapter-react-v5'],
     });
     const module = { exports: {} };
-    vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports, require });
+    vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports, require: widgetRequire });
     return module.exports;
 }
 
