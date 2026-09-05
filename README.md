@@ -819,8 +819,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 2.0.0 (2026-09-05)
 
 - power/connected state fixed
 - players button font size fixed
@@ -845,10 +844,6 @@ are contained in the following CLI documentation:
 ### 2.0.0-alpha.2 (2026-08-28)
 
 - fix tests
-
-### 2.0.0-alpha.1 (2026-08-28)
-
-- fix lint error
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

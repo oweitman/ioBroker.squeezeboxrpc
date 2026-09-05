@@ -1,4 +1,8 @@
 # Older changes
+## 2.0.0-alpha.1 (2026-08-28)
+
+- fix lint error
+
 ## 2.0.0-alpha.0 (2026-08-28)
 
 - fix of empty rewrite artwork and some other datapoints
