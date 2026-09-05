@@ -197,6 +197,58 @@
                     "lg": 3,
                     "xl": 3,
                     "newLine": true
+                },
+                "announceUseFadeTools": {
+                    "type": "checkbox",
+                    "label": "sb-announceusefadetools",
+                    "help": "sb-announceusefadetools-help",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3,
+                    "newLine": true
+                },
+                "announceFadeOutSeconds": {
+                    "type": "number",
+                    "label": "sb-announcefadeoutseconds",
+                    "min": 1,
+                    "max": 60,
+                    "step": 1,
+                    "hidden": "!data.announceUseFadeTools",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3,
+                    "newLine": true
+                },
+                "announceFadeInSeconds": {
+                    "type": "number",
+                    "label": "sb-announcefadeinseconds",
+                    "min": 1,
+                    "max": 60,
+                    "step": 1,
+                    "hidden": "!data.announceUseFadeTools",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3,
+                    "newLine": true
+                },
+                "announceFadeToolsLink": {
+                    "type": "staticLink",
+                    "label": "sb-announcefadetoolslink",
+                    "href": "https://github.com/oweitman/LMS-FadeTools",
+                    "target": "_blank",
+                    "icon": "web",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 8,
+                    "lg": 6,
+                    "xl": 6,
+                    "newLine": true
                 }
             }
         },

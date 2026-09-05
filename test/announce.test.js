@@ -3,15 +3,16 @@
 const { expect } = require('chai');
 const { Announcement, getResultValue, validateSource } = require('../lib/announce');
 
-function createAnnouncement({ remote = 0, mode = 'play', duration = 0.01, volumeLagQueries = 0 } = {}) {
+function createAnnouncement({ remote = 0, mode = 'play', duration = 0.01, volumeLagQueries = 0, config = {} } = {}) {
     const commands = [];
+    const delays = [];
     const values = { mode, _volume: 40, time: 12.5, remote, duration, path: 'http://example.org/announce.mp3' };
     let pendingVolume;
     let remainingVolumeLag = 0;
     const adapter = {
         namespace: 'squeezeboxrpc.0',
-        config: { announceVolume: 65 },
-        delay: async () => {},
+        config: { announceVolume: 65, ...config },
+        delay: async milliseconds => delays.push(milliseconds),
         log: { debug() {}, warn() {} },
     };
     const player = {
@@ -50,7 +51,7 @@ function createAnnouncement({ remote = 0, mode = 'play', duration = 0.01, volume
             },
         },
     };
-    return { announcement: new Announcement(player), commands };
+    return { announcement: new Announcement(player), commands, delays };
 }
 
 function lastSetVolume(commands) {
@@ -157,5 +158,51 @@ describe('announcement playback', () => {
 
         expect(commands.filter(command => command[0] === 'mixer' && command.at(-1) === '?')).to.have.length(3);
         expect(lastSetVolume(commands)).to.deep.equal(['mixer', 'volume', 65]);
+    });
+
+    it('uses FadeTools only when enabled and waits for fade-out before the announcement', async () => {
+        const { announcement, commands, delays } = createAnnouncement({
+            config: {
+                announceUseFadeTools: true,
+                announceFadeOutSeconds: 3,
+                announceFadeInSeconds: 2,
+            },
+        });
+
+        await announcement.play('http://example.org/announce.mp3');
+
+        const fadeOutIndex = commands.findIndex(command => command[0] === 'fadeout');
+        const announcementIndex = commands.findIndex(
+            command => command[0] === 'playlist' && command[1] === 'play' && command[2].includes('announce.mp3'),
+        );
+        expect(commands[fadeOutIndex]).to.deep.equal(['fadeout', 'stop', '3']);
+        expect(delays).to.include(3000);
+        expect(fadeOutIndex).to.be.lessThan(announcementIndex);
+        expect(commands).to.deep.include(['fadein', 'play', '2']);
+        expect(commands).not.to.deep.include(['play']);
+    });
+
+    it('does not send FadeTools commands when the option is disabled', async () => {
+        const { announcement, commands } = createAnnouncement({
+            config: {
+                announceUseFadeTools: false,
+                announceFadeOutSeconds: 3,
+                announceFadeInSeconds: 2,
+            },
+        });
+
+        await announcement.play('http://example.org/announce.mp3');
+
+        expect(commands.some(command => command[0] === 'fadeout' || command[0] === 'fadein')).to.equal(false);
+        expect(commands).to.deep.include(['play']);
+    });
+
+    it('normalizes FadeTools durations to whole seconds between 1 and 60', () => {
+        const { announcement } = createAnnouncement();
+
+        expect(announcement.getFadeSeconds(2.6)).to.equal(3);
+        expect(announcement.getFadeSeconds(0.2)).to.equal(1);
+        expect(announcement.getFadeSeconds(99)).to.equal(60);
+        expect(announcement.getFadeSeconds('invalid')).to.equal(2);
     });
 });

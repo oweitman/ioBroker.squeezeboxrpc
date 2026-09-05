@@ -103,12 +103,19 @@ Disable information that is not required to reduce LMS requests and adapter proc
 
 ### Announcement settings
 
-| Option                | Default | Description                                                                                                                     |
-| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| ioBroker web base URL | empty   | Base URL of an ioBroker web instance, for example `http://192.168.1.10:8082`. Required only for announcements from local files. |
-| Announcement volume   | `50`    | Volume used while playing the announcement. Valid range: 0 to 100.                                                              |
+| Option                | Default  | Description                                                                                                                     |
+| --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| ioBroker web base URL | empty    | Base URL of an ioBroker web instance, for example `http://192.168.1.10:8082`. Required only for announcements from local files. |
+| Announcement volume   | `50`     | Volume used while playing the announcement. Valid range: 0 to 100.                                                              |
+| Use FadeTools         | disabled | Uses the optional [LMS FadeTools plugin](https://github.com/oweitman/LMS-FadeTools) before and after announcements.             |
+| Fade-out duration     | `2` s    | Whole seconds passed to `fadeout stop`. Valid range: 1 to 60 seconds.                                                           |
+| Fade-in duration      | `2` s    | Whole seconds passed to `fadein play`. Valid range: 1 to 60 seconds.                                                            |
 
-For local announcement files, the LMS must be able to reach the configured ioBroker web URL. HTTP(S) announcement URLs are passed directly to the LMS and do not require this setting. All volume values are set directly and verified with the LMS.
+For local announcement files, the LMS must be able to reach the configured
+ioBroker web URL. HTTP(S) announcement URLs are passed directly to the LMS and
+do not require this setting. FadeTools commands are sent only when the option is
+enabled. Without FadeTools, all volume values are set directly and verified
+with the LMS.
 
 ### Debug settings
 
@@ -119,7 +126,8 @@ For local announcement files, the LMS must be able to reach the configured ioBro
 | Server debug output | disabled | Enables additional debug messages for LMS server processing. |
 | Server silly output | disabled | Enables very detailed LMS server messages.                   |
 
-Debug and especially silly logging should normally remain disabled and be enabled only while diagnosing a problem.
+Debug and especially silly logging should normally remain disabled and be
+enabled only while diagnosing a problem.
 
 ## Update
 
@@ -251,9 +259,12 @@ additional defined buttons:
 | `cmdPlayUrl`      | to play a url. example "<http://50.7.77.114:8101/>;"                                                                                                              |
 | `cmdGoTime`       | jump to a absolut position by specifying a number of seconds or jump relative with a + or - at the beginning of the seconds. Example 100,-50,+50                  |
 
-The announcement settings define its volume. The previous and announcement
-volumes are set directly without fading. For local files, you must configure
-the base URL of an ioBroker web instance
+The announcement settings define its volume and optional integration with the
+[LMS FadeTools plugin](https://github.com/oweitman/LMS-FadeTools). When enabled,
+the adapter sends `fadeout stop`, waits for the configured fade-out duration,
+and later resumes playback using `fadein play`. When disabled, the previous and
+announcement volumes are set directly. For local files, you must configure the
+base URL of an ioBroker web instance
 (for example `http://192.168.1.10:8082`). The LMS host must be able to reach
 that URL. Remote streams are restored without seeking because they generally
 do not support a playback position.
@@ -765,7 +776,8 @@ are contained in the following CLI documentation:
 ### final runtime test
 
 - stop `dev-server` and your adapter in vscode
-- create a production build and upload to dev-server with build with `dev-server upload`
+- create a production build and upload to dev-server with build
+  with `dev-server upload`
 - start iobroker with `npm run start`
 - revert the change in system.adapter.squeezeboxrpc.0 to the original value
 - open vis-1 or vis-2 in edit or runtime mode
@@ -807,6 +819,13 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- power/connected state fixed
+- players button font size fixed
+- bring back fade in/out for Announcement with additional LMS plugin
+
 ### 2.0.0-alpha.5 (2026-08-31)
 
 - fix tests
