@@ -819,6 +819,11 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- fix package-lock
+
 ### 2.0.0 (2026-09-05)
 
 - power/connected state fixed
