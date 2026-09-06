@@ -71,7 +71,11 @@ describe('LMS connection facade', () => {
             useTelnet: true,
             telnetPort: 9090,
             onEvent,
-            clientFactory: () => ({ request: () => undefined, requestAsync: async () => undefined, close: () => undefined }),
+            clientFactory: () => ({
+                request: async () => ({}),
+                requestAsync: async () => ({}),
+                close: () => undefined,
+            }),
             telnetClientClass: FakeTelnetClient,
         });
 
@@ -87,5 +91,40 @@ describe('LMS connection facade', () => {
         });
         expect(started).to.equal(true);
         expect(closed).to.equal(true);
+    });
+
+    it('uses one WebSocket client and suppresses Telnet notifications', () => {
+        let commandStarted = false;
+        let commandClosed = false;
+        let telnetCreated = false;
+        const connection = new LmsConnection({
+            host: 'lms.local',
+            port: 9000,
+            connectionType: 'websocket',
+            useTelnet: true,
+            telnetPort: 9090,
+            clientFactory: () => ({
+                start: () => (commandStarted = true),
+                request: async () => ({}),
+                requestAsync: async () => ({}),
+                close: () => (commandClosed = true),
+            }),
+            telnetClientClass: class {
+                constructor() {
+                    telnetCreated = true;
+                }
+
+                start() {}
+
+                close() {}
+            },
+        });
+
+        connection.start();
+        connection.close();
+
+        expect(commandStarted).to.equal(true);
+        expect(commandClosed).to.equal(true);
+        expect(telnetCreated).to.equal(false);
     });
 });

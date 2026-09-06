@@ -37,7 +37,7 @@ describe('LMS Telnet event client', () => {
     it('logs in, enables listening and preserves split TCP lines', () => {
         const socket = new FakeSocket();
         const events = [];
-        let connected = () => undefined;
+        let connected = /** @type {() => void} */ (() => undefined);
         const client = new LmsTelnetEventClient({
             host: 'lms.local',
             port: 9090,

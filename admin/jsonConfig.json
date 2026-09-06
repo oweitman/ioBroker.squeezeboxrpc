@@ -43,6 +43,27 @@
                     "xl": 4,
                     "newLine": true
                 },
+                "connectionType": {
+                    "type": "select",
+                    "label": "sb-connectiontype",
+                    "help": "sb-connectiontype-help",
+                    "options": [
+                        {
+                            "label": "sb-connectiontype-jsonrpc",
+                            "value": "jsonrpc"
+                        },
+                        {
+                            "label": "sb-connectiontype-websocket",
+                            "value": "websocket"
+                        }
+                    ],
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
+                    "newLine": true
+                },
                 "telnetport": {
                     "type": "text",
                     "label": "sb-telnetport",
@@ -51,6 +72,7 @@
                     "md": 6,
                     "lg": 4,
                     "xl": 4,
+                    "hidden": "data.connectionType === 'websocket'",
                     "newLine": true
                 },
                 "username": {
@@ -157,6 +179,7 @@
                     "md": 6,
                     "lg": 4,
                     "xl": 4,
+                    "hidden": "data.connectionType === 'websocket'",
                     "newLine": true
                 },
                 "usefavorites": {

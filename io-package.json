@@ -205,6 +205,7 @@
     "telnetport": 9090,
     "username": "",
     "password": "",
+    "connectionType": "jsonrpc",
     "serverrefresh": 30,
     "playerrefresh": 950,
     "favoriterefresh": 720,

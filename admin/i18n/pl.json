@@ -1,4 +1,8 @@
 {
+    "sb-connectiontype": "LMS connection type",
+    "sb-connectiontype-help": "WebSocket is experimental and requires the LMS WebSocket plugin. Telnet notifications are not used in WebSocket mode.",
+    "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
+    "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "Ustawienia komunikatów",
     "sb-announceweburl": "Bazowy URL ioBroker web",
     "sb-announceweburl-help": "Wymagany dla plików lokalnych. Przykład: http://192.168.1.10:8082",
