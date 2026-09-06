@@ -27,5 +27,5 @@
         "sourceMap": true
     },
     "include": ["lib/**/*.js", "lib/**/*.d.ts", "squeezeboxrpc.js"],
-    "exclude": ["node_modules/**", "widgets/**", "lib/squeezenode/**"]
+    "exclude": ["node_modules/**", "widgets/**"]
 }
