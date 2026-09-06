@@ -64,6 +64,19 @@
                     "xl": 4,
                     "newLine": true
                 },
+                "webSocketUrl": {
+                    "type": "text",
+                    "label": "sb-websocketurl",
+                    "help": "sb-websocketurl-help",
+                    "placeholder": "http://192.168.1.87/",
+                    "hidden": "data.connectionType !== 'websocket'",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
+                    "newLine": true
+                },
                 "telnetport": {
                     "type": "text",
                     "label": "sb-telnetport",

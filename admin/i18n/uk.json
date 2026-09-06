@@ -1,4 +1,6 @@
 {
+    "sb-websocketurl": "WebSocket web-server URL",
+    "sb-websocketurl-help": "Optional independent URL of the LMS WebSocket web server, for example http://192.168.1.87/. HTTP(S) is converted to WS(S), and /ws is added to a root URL.",
     "sb-connectiontype": "LMS connection type",
     "sb-connectiontype-help": "WebSocket is experimental and requires the LMS WebSocket plugin. Telnet notifications are not used in WebSocket mode.",
     "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
