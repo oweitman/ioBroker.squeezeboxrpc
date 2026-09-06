@@ -5,5 +5,5 @@
         "types": ["node", "mocha"]
     },
     "include": ["**/*.js", "**/*.d.ts"],
-    "exclude": ["**/build", "node_modules/", "widgets/", "src-widgets/"]
+    "exclude": ["**/build", "node_modules/", "widgets/", "src-widgets/", "bin/translate.js"]
 }
