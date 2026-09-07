@@ -811,12 +811,12 @@ are contained in the following CLI documentation:
 - ~~add browse widget to browse in `LMS`-Menu~~
 - ~~reduce dependencys to other packages (squeezenode)~~
 - ~~cmdGeneral für Server.~~
-- ~~add telnet communication to get push events from the server to\
-  optimize the polling~~
-- ~~implement a command state to place user individual commands (via json)\
-  for server and player~~
-- ~~implement more control features (select playlist pos to play,ffwd,frew,\
-  jump to a time position in song,repeat song,random song)~~
+- ~~add telnet communication to get push events from the server to~~
+  ~~optimize the polling~~
+- ~~implement a command state to place user individual commands (via json)~~
+  ~~for server and player~~
+- ~~implement more control features (select playlist pos to play,ffwd,frew,~~
+  ~~jump to a time position in song,repeat song,random song)~~
 - ~~add the playlist to playerdata as json array~~
 - ~~add artwork (station-logo/playlist-cover) for favorites~~
 - ~~implement more levels (subdirectories) of favorites~~
@@ -832,33 +832,8 @@ are contained in the following CLI documentation:
 
 ### **WORK IN PROGRESS**
 
-- replace the bundled and unmaintained `squeezenode` implementation with
-  project-owned LMS clients
-- add a central LMS connection facade so command and notification transports
-  can be selected without changing the server, player, or announcement logic
-- keep HTTP JSON-RPC as the stable default connection and retain optional LMS
-  CLI/Telnet notifications
-- add an experimental WebSocket connection for commands and push notifications;
-  it requires the experimental
-  [LMS WebSocket plugin][lms-websocket-plugin]
-- disable the separate Telnet notification connection automatically when
-  WebSocket is selected
-- add authenticated WebSocket requests, request timeouts, reconnect handling,
-  pending-request cleanup, and notification subscription
-- use debounced WebSocket events for timely metadata, playback, volume, power,
-  and connection updates while retaining player polling as a fallback
-- separate LMS UDP discovery from the adapter server implementation, parse
-  length-prefixed responses as binary data, reject malformed packets, and
-  remove expired servers cleanly
-- remove the obsolete `squeezenode`, `jayson`, `lodash`, and `super`
-  dependencies together with unused AWS and SSH tunnel functionality from the
-  former LMS client implementation
-- preserve the existing ioBroker object and state structure, state semantics,
-  command handling, discovery configuration, and player polling intervals
-- add focused tests for JSON-RPC, Telnet notifications, WebSocket communication,
-  transport selection, and LMS discovery
-
-[lms-websocket-plugin]: https://github.com/LMS-Community/slimserver/tree/d1d0a683d8301c04e64be0425e0aec51fc4e8397/Slim/Plugin/WebSocket
+- complete rework of the LMS API
+- add experimental websocket support, only usable with LMS 9.2 build after 5.9.2026
 
 ### 2.0.2 (2026-09-07)
 
