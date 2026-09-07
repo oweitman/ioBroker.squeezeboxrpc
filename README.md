@@ -819,6 +819,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 2.0.2 (2026-09-07)
+
+- fix io-package.json
+
 ### 2.0.1 (2026-09-05)
 
 - fix package-lock
@@ -837,14 +841,6 @@ are contained in the following CLI documentation:
 ### 2.0.0-alpha.4 (2026-08-31)
 
 - Add announcement feature.
-
-### 2.0.0-alpha.3 (2026-08-30)
-
-- vis2 reorder player attributes
-- vis2 add messages for missing attributes
-- fix 2 small build tool problems
-- improve svg icons
-- improve theme handling of the svg icons
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

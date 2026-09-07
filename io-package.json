@@ -1,8 +1,34 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "news": {
+      "2.0.2": {
+        "en": "fix io-package.json",
+        "de": "fix io-Paket.json",
+        "ru": "исправить файл io-package.json",
+        "pt": "fix io-package.json",
+        "nl": "io-package.json repareren",
+        "fr": "fix io-package.json",
+        "it": "fix io-package.json",
+        "es": "arreglar io-package.json",
+        "pl": "naprawić io-package.json",
+        "uk": "виправлення IO-пакету.json",
+        "zh-cn": "修复io-package.json"
+      },
+      "2.1.0": {
+        "en": "fix power/connected state; fix players button font size; restore fade in/out for announcements with additional LMS plugin",
+        "de": "Power/Connected-Status korrigiert; Schriftgröße der Player-Schaltfläche korrigiert; Ein-/Ausblenden für Ansagen mit zusätzlichem LMS-Plugin wiederhergestellt",
+        "ru": "исправлено состояние power/connected; исправлен размер шрифта кнопки игроков; восстановлено плавное появление/исчезновение объявлений с дополнительным плагином LMS",
+        "pt": "corrigido o estado power/connected; corrigido o tamanho da fonte do botão de players; restaurado o fade in/out para anúncios com plugin LMS adicional",
+        "nl": "power/connected-status gecorrigeerd; lettergrootte van de players-knop gecorrigeerd; fade-in/out voor aankondigingen met extra LMS-plugin hersteld",
+        "fr": "état power/connected corrigé ; taille de police du bouton des lecteurs corrigée ; rétablissement du fondu entrant/sortant pour les annonces avec un plugin LMS supplémentaire",
+        "it": "corretto lo stato power/connected; corretta la dimensione del carattere del pulsante dei player; ripristinata la dissolvenza in entrata/uscita per gli annunci con plugin LMS aggiuntivo",
+        "es": "corregido el estado power/connected; corregido el tamaño de fuente del botón de reproductores; restaurado el fundido de entrada/salida para anuncios con un plugin LMS adicional",
+        "pl": "naprawiono stan power/connected; poprawiono rozmiar czcionki przycisku odtwarzaczy; przywrócono efekt fade in/out dla komunikatów z dodatkową wtyczką LMS",
+        "uk": "виправлено стан power/connected; виправлено розмір шрифту кнопки програвачів; відновлено плавну появу/зникнення оголошень із додатковим плагіном LMS",
+        "zh-cn": "修复 power/connected 状态；修复播放器按钮字体大小；恢复使用额外 LMS 插件时公告的淡入/淡出效果"
+      },
       "2.0.1": {
         "en": "fix package-lock\nfix tests",
         "de": "Paketsperre fixen\nFix Tests",
@@ -28,19 +54,6 @@
         "pl": "stan zasilania/podłączenia stały\nNaprawiono rozmiar czcionki przycisku odtwarzacza\nprzywróć zanikanie wejścia/wyjścia dla ogłoszenia za pomocą dodatkowej wtyczki LMS",
         "uk": "живлення/підключений стан фіксований\nфіксований розмір шрифту кнопки гравців\nповернути згасання в/вимкнути для оголошення за допомогою додаткового плагіна LMS",
         "zh-cn": "电源/连接状态已修复\n玩家按钮字体大小已修复\n使用额外的 LMS 插件恢复公告的淡入/淡出"
-      },
-      "2.1.0": {
-        "en": "fix power/connected state; fix players button font size; restore fade in/out for announcements with additional LMS plugin",
-        "de": "Power/Connected-Status korrigiert; Schriftgröße der Player-Schaltfläche korrigiert; Ein-/Ausblenden für Ansagen mit zusätzlichem LMS-Plugin wiederhergestellt",
-        "ru": "исправлено состояние power/connected; исправлен размер шрифта кнопки игроков; восстановлено плавное появление/исчезновение объявлений с дополнительным плагином LMS",
-        "pt": "corrigido o estado power/connected; corrigido o tamanho da fonte do botão de players; restaurado o fade in/out para anúncios com plugin LMS adicional",
-        "nl": "power/connected-status gecorrigeerd; lettergrootte van de players-knop gecorrigeerd; fade-in/out voor aankondigingen met extra LMS-plugin hersteld",
-        "fr": "état power/connected corrigé ; taille de police du bouton des lecteurs corrigée ; rétablissement du fondu entrant/sortant pour les annonces avec un plugin LMS supplémentaire",
-        "it": "corretto lo stato power/connected; corretta la dimensione del carattere del pulsante dei player; ripristinata la dissolvenza in entrata/uscita per gli annunci con plugin LMS aggiuntivo",
-        "es": "corregido el estado power/connected; corregido el tamaño de fuente del botón de reproductores; restaurado el fundido de entrada/salida para anuncios con un plugin LMS adicional",
-        "pl": "naprawiono stan power/connected; poprawiono rozmiar czcionki przycisku odtwarzaczy; przywrócono efekt fade in/out dla komunikatów z dodatkową wtyczką LMS",
-        "uk": "виправлено стан power/connected; виправлено розмір шрифту кнопки програвачів; відновлено плавну появу/зникнення оголошень із додатковим плагіном LMS",
-        "zh-cn": "修复 power/connected 状态；修复播放器按钮字体大小；恢复使用额外 LMS 插件时公告的淡入/淡出效果"
       },
       "2.0.0-alpha.5": {
         "en": "fix tests",
@@ -68,7 +81,7 @@
         "uk": "Додати функцію оголошень.",
         "zh-cn": "增加公告功能。"
       },
-      " ": {
+      "2.0.0-alpha.3": {
         "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
         "de": "vis2 Spielerattribute neu anordnen; Meldungen für fehlende Attribute hinzufügen; zwei kleine Probleme mit den Build-Tools beheben; SVG-Icons verbessern; Theme-Unterstützung für SVG-Icons verbessern",
         "ru": "vis2 изменить порядок атрибутов игрока; добавить сообщения об отсутствующих атрибутах; исправить две небольшие проблемы инструментов сборки; улучшить SVG-иконки; улучшить поддержку тем для SVG-иконок",
@@ -80,19 +93,6 @@
         "pl": "vis2 zmienić kolejność atrybutów gracza; dodać komunikaty o brakujących atrybutach; naprawić dwa drobne problemy z narzędziami build; ulepszyć ikony SVG; ulepszyć obsługę motywów dla ikon SVG",
         "uk": "vis2 змінити порядок атрибутів гравця; додати повідомлення про відсутні атрибути; виправити дві невеликі проблеми інструментів збірки; покращити SVG-іконки; покращити підтримку тем для SVG-іконок",
         "zh-cn": "vis2 重新排列玩家属性；为缺失的属性添加提示信息；修复两个小型构建工具问题；改进 SVG 图标；改进 SVG 图标的主题处理"
-      },
-      "2.0.0-alpha.2": {
-        "en": "fix tests",
-        "de": "Fixtests",
-        "ru": "исправить тесты",
-        "pt": "corrigir testes",
-        "nl": "fix tests",
-        "fr": "tests de correction",
-        "it": "test di correzione",
-        "es": "pruebas de corrección",
-        "pl": "naprawić testy",
-        "uk": "виправити тести",
-        "zh-cn": "修复测试"
       }
     },
     "titleLang": {

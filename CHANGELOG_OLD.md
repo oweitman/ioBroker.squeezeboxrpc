@@ -1,4 +1,12 @@
 # Older changes
+## 2.0.0-alpha.3 (2026-08-30)
+
+- vis2 reorder player attributes
+- vis2 add messages for missing attributes
+- fix 2 small build tool problems
+- improve svg icons
+- improve theme handling of the svg icons
+
 ## 2.0.0-alpha.2 (2026-08-28)
 
 - fix tests
