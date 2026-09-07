@@ -1,4 +1,11 @@
 {
+    "sb-websocketurl": "WebSocket web-server URL",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
+    "sb-websocketurl-help": "可选的独立 LMS WebSocket 网络服务器 URL，例如 http://192.168.1.87/。HTTP(S) 会转换为 WS(S)，并为根 URL 添加 /ws。",
+    "sb-connectiontype": "LMS connection type",
+    "sb-connectiontype-help": "WebSocket 为实验性功能，需要 LMS WebSocket 插件。WebSocket 模式下不使用 Telnet 通知。",
+    "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
+    "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "播报设置",
     "sb-announceweburl": "ioBroker Web 基础 URL",
     "sb-announceweburl-help": "本地文件必填。例如：http://192.168.1.10:8082",

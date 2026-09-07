@@ -4,45 +4,19 @@
     "version": "2.0.2",
     "news": {
       "2.0.2": {
-        "en": "fix io-package.json",
-        "de": "fix io-Paket.json",
-        "ru": "исправить файл io-package.json",
-        "pt": "fix io-package.json",
-        "nl": "io-package.json repareren",
-        "fr": "fix io-package.json",
-        "it": "fix io-package.json",
-        "es": "arreglar io-package.json",
-        "pl": "naprawić io-package.json",
-        "uk": "виправлення IO-пакету.json",
-        "zh-cn": "修复io-package.json"
-      },
-      "2.1.0": {
-        "en": "fix power/connected state; fix players button font size; restore fade in/out for announcements with additional LMS plugin",
-        "de": "Power/Connected-Status korrigiert; Schriftgröße der Player-Schaltfläche korrigiert; Ein-/Ausblenden für Ansagen mit zusätzlichem LMS-Plugin wiederhergestellt",
-        "ru": "исправлено состояние power/connected; исправлен размер шрифта кнопки игроков; восстановлено плавное появление/исчезновение объявлений с дополнительным плагином LMS",
-        "pt": "corrigido o estado power/connected; corrigido o tamanho da fonte do botão de players; restaurado o fade in/out para anúncios com plugin LMS adicional",
-        "nl": "power/connected-status gecorrigeerd; lettergrootte van de players-knop gecorrigeerd; fade-in/out voor aankondigingen met extra LMS-plugin hersteld",
-        "fr": "état power/connected corrigé ; taille de police du bouton des lecteurs corrigée ; rétablissement du fondu entrant/sortant pour les annonces avec un plugin LMS supplémentaire",
-        "it": "corretto lo stato power/connected; corretta la dimensione del carattere del pulsante dei player; ripristinata la dissolvenza in entrata/uscita per gli annunci con plugin LMS aggiuntivo",
-        "es": "corregido el estado power/connected; corregido el tamaño de fuente del botón de reproductores; restaurado el fundido de entrada/salida para anuncios con un plugin LMS adicional",
-        "pl": "naprawiono stan power/connected; poprawiono rozmiar czcionki przycisku odtwarzaczy; przywrócono efekt fade in/out dla komunikatów z dodatkową wtyczką LMS",
-        "uk": "виправлено стан power/connected; виправлено розмір шрифту кнопки програвачів; відновлено плавну появу/зникнення оголошень із додатковим плагіном LMS",
-        "zh-cn": "修复 power/connected 状态；修复播放器按钮字体大小；恢复使用额外 LMS 插件时公告的淡入/淡出效果"
+        "en": "Fix io-package.json",
+        "de": "io-package.json korrigiert",
+        "ru": "Исправлен файл io-package.json",
+        "pt": "Corrigido o arquivo io-package.json",
+        "nl": "io-package.json gecorrigeerd",
+        "fr": "Correction du fichier io-package.json",
+        "it": "Corretto il file io-package.json",
+        "es": "Corregido el archivo io-package.json",
+        "pl": "Poprawiono plik io-package.json",
+        "uk": "Виправлено файл io-package.json",
+        "zh-cn": "修复 io-package.json"
       },
       "2.0.1": {
-        "en": "fix package-lock\nfix tests",
-        "de": "Paketsperre fixen\nFix Tests",
-        "ru": "исправить блокировку пакета\nисправить тесты",
-        "pt": "fix packagelock\nfixar testes",
-        "nl": "pakketvergrendeling repareren\ntests repareren",
-        "fr": "fix package-lock\nfix tests",
-        "it": "fix package-lock\nfix test",
-        "es": "arreglar paquetería\nfix tests",
-        "pl": "naprawić blokadę pakietów\ntesty naprawcze",
-        "uk": "фіксуйте блокування пакета\nвиправляти тести",
-        "zh-cn": "修复包锁\n修复测试"
-      },
-      "2.0.0": {
         "en": "power/connected state fixed\nplayers button font size fixed\nbring back fade in/out for Announcement with additional LMS plugin",
         "de": "Netz-/Netzzustand fest\nFester Player-Button\nFade-In/Out für Ankündigung mit zusätzlichem LMS-Plugin",
         "ru": "питание/состояние подключения фиксировано\nисправлен размер шрифта кнопок плееров\nс помощью дополнительного плагина LMS можно вернуться к функции fade information",
@@ -60,26 +34,13 @@
         "de": "Fixtests",
         "ru": "исправить тесты",
         "pt": "corrigir testes",
-        "nl": "fix tests",
+        "nl": "fix tests nl",
         "fr": "tests de correction",
         "it": "test di correzione",
         "es": "pruebas de corrección",
         "pl": "naprawić testy",
         "uk": "виправити тести",
         "zh-cn": "修复测试"
-      },
-      "2.0.0-alpha.4": {
-        "en": "Add announcement feature.",
-        "de": "Füge eine Ankündigungsfunktion hinzu.",
-        "ru": "Добавить функцию объявления.",
-        "pt": "Adicionar recurso de anúncios.",
-        "nl": "Voeg een aankondigingsfunctie toe.",
-        "fr": "Ajout d'une fonctionnalité d'annonce.",
-        "it": "Aggiungere la funzione di annuncio.",
-        "es": "Agregar función de anuncios.",
-        "pl": "Dodaj funkcję ogłoszeń.",
-        "uk": "Додати функцію оголошень.",
-        "zh-cn": "增加公告功能。"
       },
       "2.0.0-alpha.3": {
         "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
@@ -121,16 +82,8 @@
       "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
       "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
     },
-    "authors": [
-      "oweitman <oweitman@gmx.de>"
-    ],
-    "keywords": [
-      "squeezebox",
-      "LMS",
-      "Logitech Media Server",
-      "Lyrion Media Server",
-      "music server"
-    ],
+    "authors": ["oweitman <oweitman@gmx.de>"],
+    "keywords": ["squeezebox", "LMS", "Logitech Media Server", "Lyrion Media Server", "music server"],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
@@ -142,10 +95,7 @@
     "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
     "loglevel": "info",
     "tier": 3,
-    "restartAdapters": [
-      "vis",
-      "vis-2"
-    ],
+    "restartAdapters": ["vis", "vis-2"],
     "mode": "daemon",
     "type": "multimedia",
     "compact": true,
@@ -193,12 +143,8 @@
       }
     ]
   },
-  "encryptedNative": [
-    "password"
-  ],
-  "protectedNative": [
-    "password"
-  ],
+  "encryptedNative": ["password"],
+  "protectedNative": ["password"],
   "native": {
     "server": "0.0.0.0",
     "port": 9000,

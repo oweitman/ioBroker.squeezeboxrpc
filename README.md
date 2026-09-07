@@ -71,13 +71,23 @@ or `NAS`, connect to different streaming providers like `Spotify`, `Deezer`,
 
 ### Main settings
 
-| Option          | Default   | Description                                                                                                     |
-| --------------- | --------- | --------------------------------------------------------------------------------------------------------------- |
-| LMS server      | `0.0.0.0` | Hostname or IP address of the Logitech/Lyrion Media Server. An automatically discovered server can be selected. |
-| LMS port        | `9000`    | HTTP/JSON-RPC port of the LMS.                                                                                  |
-| LMS Telnet port | `9090`    | CLI/Telnet port of the LMS. It is used only when Telnet signaling is enabled.                                   |
-| Username        | empty     | Optional LMS username.                                                                                          |
-| Password        | empty     | Optional LMS password.                                                                                          |
+| Option          | Default    | Description                                                                                                     |
+| --------------- | ---------- | --------------------------------------------------------------------------------------------------------------- |
+| LMS server      | `0.0.0.0`  | Hostname or IP address of the Logitech/Lyrion Media Server. An automatically discovered server can be selected. |
+| LMS port        | `9000`     | HTTP port used by JSON-RPC or the experimental WebSocket plugin.                                                |
+| Connection type | `JSON-RPC` | Uses stable HTTP JSON-RPC or the experimental LMS WebSocket plugin.                                             |
+| WebSocket URL   | empty      | Optional independent plugin web-server URL, for example `http://192.168.1.87/`.                                 |
+| LMS Telnet port | `9090`     | CLI/Telnet port. Used only with JSON-RPC when Telnet signaling is enabled.                                      |
+| Username        | empty      | Optional LMS username.                                                                                          |
+| Password        | empty      | Optional LMS password.                                                                                          |
+
+WebSocket mode requires the experimental
+[LMS WebSocket plugin](https://github.com/LMS-Community/slimserver/tree/d1d0a683d8301c04e64be0425e0aec51fc4e8397/Slim/Plugin/WebSocket).
+It carries commands and notifications over the same connection, so the Telnet
+settings are ignored in this mode. The regular player polling remains enabled
+as a fallback for missing or incomplete notifications. HTTP(S) WebSocket URLs
+are converted to WS(S), and `/ws` is added automatically when only a root URL
+is configured.
 
 ### Timer settings
 
@@ -96,7 +106,7 @@ Short refresh intervals increase the number of requests sent to the LMS.
 | ---------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
 | Provide playlist information | enabled  | Creates and updates the `Playlist` JSON state for every player.                                  |
 | Search for other LMS servers | enabled  | Enables discovery of other LMS servers on the local network.                                     |
-| Use Telnet signaling         | disabled | Uses the LMS CLI/Telnet connection for additional player connection and disconnection signaling. |
+| Use Telnet signaling         | disabled | With JSON-RPC, uses LMS CLI/Telnet for additional player connection and disconnection signaling. |
 | Request favorites            | enabled  | Periodically retrieves the favorites tree from the LMS.                                          |
 
 Disable information that is not required to reduce LMS requests and adapter processing.
@@ -819,6 +829,37 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- replace the bundled and unmaintained `squeezenode` implementation with
+  project-owned LMS clients
+- add a central LMS connection facade so command and notification transports
+  can be selected without changing the server, player, or announcement logic
+- keep HTTP JSON-RPC as the stable default connection and retain optional LMS
+  CLI/Telnet notifications
+- add an experimental WebSocket connection for commands and push notifications;
+  it requires the experimental
+  [LMS WebSocket plugin][lms-websocket-plugin]
+- disable the separate Telnet notification connection automatically when
+  WebSocket is selected
+- add authenticated WebSocket requests, request timeouts, reconnect handling,
+  pending-request cleanup, and notification subscription
+- use debounced WebSocket events for timely metadata, playback, volume, power,
+  and connection updates while retaining player polling as a fallback
+- separate LMS UDP discovery from the adapter server implementation, parse
+  length-prefixed responses as binary data, reject malformed packets, and
+  remove expired servers cleanly
+- remove the obsolete `squeezenode`, `jayson`, `lodash`, and `super`
+  dependencies together with unused AWS and SSH tunnel functionality from the
+  former LMS client implementation
+- preserve the existing ioBroker object and state structure, state semantics,
+  command handling, discovery configuration, and player polling intervals
+- add focused tests for JSON-RPC, Telnet notifications, WebSocket communication,
+  transport selection, and LMS discovery
+
+[lms-websocket-plugin]: https://github.com/LMS-Community/slimserver/tree/d1d0a683d8301c04e64be0425e0aec51fc4e8397/Slim/Plugin/WebSocket
+
 ### 2.0.2 (2026-09-07)
 
 - fix io-package.json

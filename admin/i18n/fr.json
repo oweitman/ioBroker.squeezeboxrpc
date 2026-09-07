@@ -1,4 +1,11 @@
 {
+    "sb-websocketurl": "WebSocket web-server URL",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
+    "sb-websocketurl-help": "URL indépendante facultative du serveur WebSocket LMS, par exemple http://192.168.1.87/. HTTP(S) est converti en WS(S) et /ws est ajouté à une URL racine.",
+    "sb-connectiontype": "LMS connection type",
+    "sb-connectiontype-help": "WebSocket est expérimental et nécessite le plugin WebSocket LMS. Les notifications Telnet ne sont pas utilisées en mode WebSocket.",
+    "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
+    "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "Paramètres des annonces",
     "sb-announceweburl": "URL de base web ioBroker",
     "sb-announceweburl-help": "Requise pour les fichiers locaux. Exemple : http://192.168.1.10:8082",

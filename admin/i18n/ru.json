@@ -1,4 +1,11 @@
 {
+    "sb-websocketurl": "WebSocket web-server URL",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
+    "sb-websocketurl-help": "Необязательный независимый URL-адрес WebSocket-сервера LMS, например http://192.168.1.87/. HTTP(S) преобразуется в WS(S), а /ws добавляется к корневому URL-адресу.",
+    "sb-connectiontype": "LMS connection type",
+    "sb-connectiontype-help": "WebSocket является экспериментальным и требует плагин WebSocket для LMS. Уведомления Telnet не используются в режиме WebSocket.",
+    "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
+    "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "Настройки объявлений",
     "sb-announceweburl": "Базовый URL ioBroker web",
     "sb-announceweburl-help": "Требуется для локальных файлов. Пример: http://192.168.1.10:8082",

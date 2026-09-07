@@ -1,7 +1,9 @@
 // Specialized tsconfig for type-checking js files
 {
     "extends": "./tsconfig.json",
-    "compilerOptions": {},
+    "compilerOptions": {
+        "types": ["node", "mocha"]
+    },
     "include": ["**/*.js", "**/*.d.ts"],
-    "exclude": ["**/build", "node_modules/", "widgets/", "src-widgets/", "lib/squeezenode/**"]
+    "exclude": ["**/build", "node_modules/", "widgets/", "src-widgets/", "bin/translate.js"]
 }

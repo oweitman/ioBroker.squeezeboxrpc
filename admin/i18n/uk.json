@@ -1,4 +1,11 @@
 {
+    "sb-websocketurl": "WebSocket web-server URL",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
+    "sb-websocketurl-help": "Необов’язкова незалежна URL-адреса WebSocket-сервера LMS, наприклад http://192.168.1.87/. HTTP(S) перетворюється на WS(S), а /ws додається до кореневої URL-адреси.",
+    "sb-connectiontype": "LMS connection type",
+    "sb-connectiontype-help": "WebSocket є експериментальним і потребує плагіна WebSocket для LMS. Сповіщення Telnet не використовуються в режимі WebSocket.",
+    "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
+    "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "Налаштування оголошень",
     "sb-announceweburl": "Базова URL-адреса ioBroker web",
     "sb-announceweburl-help": "Потрібна для локальних файлів. Приклад: http://192.168.1.10:8082",
