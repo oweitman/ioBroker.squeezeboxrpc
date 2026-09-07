@@ -1,4 +1,8 @@
 # Older changes
+## 2.0.0-alpha.4 (2026-08-31)
+
+- Add announcement feature.
+
 ## 2.0.0-alpha.3 (2026-08-30)
 
 - vis2 reorder player attributes

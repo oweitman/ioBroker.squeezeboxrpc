@@ -829,8 +829,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 3.0.0 (2026-09-07)
 
 - complete rework of the LMS API
 - add experimental websocket support, only usable with LMS 9.2 build after 5.9.2026
@@ -853,10 +852,6 @@ are contained in the following CLI documentation:
 ### 2.0.0-alpha.5 (2026-08-31)
 
 - fix tests
-
-### 2.0.0-alpha.4 (2026-08-31)
-
-- Add announcement feature.
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

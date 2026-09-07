@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "news": {
+      "3.0.0": {
+        "en": "complete rework of the LMS API\nadd experimental websocket support, only usable with LMS 9.2 build after 5.9.2026",
+        "de": "Komplette Überarbeitung der LMS API\nWebsocket-Support hinzufügen, nur nutzbar mit LMS 9.2 Build nach 5.9.2026",
+        "ru": "полная переработка API LMS\nдобавить поддержку экспериментальных веб-сокетов, которую можно использовать только в сборке LMS 9.2 после 5.9.2026",
+        "pt": "reformulação total da API LMS\nadicione suporte experimental a websocket, só para uso com o LMS 9.2 após 5.9.2026",
+        "nl": "volledige herwerking van de LMS API\nexperimentele websocketondersteuning toevoegen, alleen bruikbaar met LMS 9.2 gebouwd na 5.9.2026",
+        "fr": "refonte complète de l'API LMS\najouter un support Websocket expérimental, utilisable uniquement avec LMS 9.2 après le 5.9.2026",
+        "it": "rielaborazione API LMS\naggiungere supporto websocket sperimentale, solo con LMS 9.2 dopo 5.9.2026",
+        "es": "revisión total de la API LMS\nañadir soporte websocket experimental, solo se puede usar con LMS 9.2 después del 5.9.2026",
+        "pl": "kompletna przeróbka interfejsu API LMS\ndodaj eksperymentalną obsługę websocket, używaną tylko z kompilacją LMS 9.2 po 5.9.2026",
+        "uk": "повна переробка LMS API\nдодати експериментальну підтримку веб-сокетів, яка може бути використана лише для збірки LMS 9.2 після 5.9.2026",
+        "zh-cn": "完成对 LMS API 的修改\n添加实验性 websocket 支持，仅适用于 5.9.2026 之后的 LMS 9.2 版本"
+      },
       "2.0.2": {
         "en": "Fix io-package.json",
         "de": "io-package.json korrigiert",
@@ -82,8 +95,16 @@
       "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
       "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
     },
-    "authors": ["oweitman <oweitman@gmx.de>"],
-    "keywords": ["squeezebox", "LMS", "Logitech Media Server", "Lyrion Media Server", "music server"],
+    "authors": [
+      "oweitman <oweitman@gmx.de>"
+    ],
+    "keywords": [
+      "squeezebox",
+      "LMS",
+      "Logitech Media Server",
+      "Lyrion Media Server",
+      "music server"
+    ],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
@@ -95,7 +116,10 @@
     "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
     "loglevel": "info",
     "tier": 3,
-    "restartAdapters": ["vis", "vis-2"],
+    "restartAdapters": [
+      "vis",
+      "vis-2"
+    ],
     "mode": "daemon",
     "type": "multimedia",
     "compact": true,
@@ -143,8 +167,12 @@
       }
     ]
   },
-  "encryptedNative": ["password"],
-  "protectedNative": ["password"],
+  "encryptedNative": [
+    "password"
+  ],
+  "protectedNative": [
+    "password"
+  ],
   "native": {
     "server": "0.0.0.0",
     "port": 9000,
