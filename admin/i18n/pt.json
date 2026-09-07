@@ -1,8 +1,9 @@
 {
     "sb-websocketurl": "WebSocket web-server URL",
-    "sb-websocketurl-help": "Optional independent URL of the LMS WebSocket web server, for example http://192.168.1.87/. HTTP(S) is converted to WS(S), and /ws is added to a root URL.",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
+    "sb-websocketurl-help": "URL independente opcional do servidor WebSocket LMS, por exemplo http://192.168.1.87/. HTTP(S) é convertido em WS(S) e /ws é adicionado a um URL raiz.",
     "sb-connectiontype": "LMS connection type",
-    "sb-connectiontype-help": "WebSocket is experimental and requires the LMS WebSocket plugin. Telnet notifications are not used in WebSocket mode.",
+    "sb-connectiontype-help": "O WebSocket é experimental e requer o plugin WebSocket do LMS. As notificações Telnet não são utilizadas no modo WebSocket.",
     "sb-connectiontype-jsonrpc": "JSON-RPC (stable)",
     "sb-connectiontype-websocket": "WebSocket (experimental)",
     "sb-announcetab": "Definições de anúncios",

@@ -5,6 +5,7 @@
     "sb-connectiontype-jsonrpc": "JSON-RPC (stabil)",
     "sb-connectiontype-websocket": "WebSocket (experimentell)",
     "sb-websocketurl": "WebSocket-Webserver-URL",
+    "sb-websocketurl-placeholder": "http://192.168.1.87/",
     "sb-websocketurl-help": "Optionale unabhängige URL des LMS-WebSocket-Webservers, zum Beispiel http://192.168.1.87/. HTTP(S) wird in WS(S) umgewandelt und /ws bei einer Root-URL ergänzt.",
     "sb-announceweburl": "ioBroker-Web-Basis-URL",
     "sb-announceweburl-help": "Für lokale Dateien erforderlich. Beispiel: http://192.168.1.10:8082",

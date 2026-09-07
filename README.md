@@ -106,7 +106,7 @@ Short refresh intervals increase the number of requests sent to the LMS.
 | ---------------------------- | -------- | ------------------------------------------------------------------------------------------------ |
 | Provide playlist information | enabled  | Creates and updates the `Playlist` JSON state for every player.                                  |
 | Search for other LMS servers | enabled  | Enables discovery of other LMS servers on the local network.                                     |
-| Use Telnet signaling         | disabled | With JSON-RPC, uses LMS CLI/Telnet for additional player connection and disconnection signaling.  |
+| Use Telnet signaling         | disabled | With JSON-RPC, uses LMS CLI/Telnet for additional player connection and disconnection signaling. |
 | Request favorites            | enabled  | Periodically retrieves the favorites tree from the LMS.                                          |
 
 Disable information that is not required to reduce LMS requests and adapter processing.
@@ -829,6 +829,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
 ### **WORK IN PROGRESS**
 
 - replace the bundled and unmaintained `squeezenode` implementation with
@@ -858,6 +859,10 @@ are contained in the following CLI documentation:
   transport selection, and LMS discovery
 
 [lms-websocket-plugin]: https://github.com/LMS-Community/slimserver/tree/d1d0a683d8301c04e64be0425e0aec51fc4e8397/Slim/Plugin/WebSocket
+
+### 2.0.2 (2026-09-07)
+
+- fix io-package.json
 
 ### 2.0.1 (2026-09-05)
 
