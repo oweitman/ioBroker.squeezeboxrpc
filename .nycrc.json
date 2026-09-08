@@ -1,0 +1,8 @@
+{
+  "all": true,
+  "include": ["squeezeboxrpc.js", "lib/**/*.js"],
+  "exclude": ["test/**", "node_modules/**", "coverage/**", "src-widgets/**", "widgets/**"],
+  "reporter": ["text", "html", "lcov"],
+  "report-dir": "coverage/adapter",
+  "check-coverage": false
+}

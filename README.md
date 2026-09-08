@@ -6,6 +6,7 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.squeezeboxrpc.svg)](https://www.npmjs.com/package/iobroker.squeezeboxrpc)
 ![Number of Installations](https://iobroker.live/badges/squeezeboxrpc-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/squeezeboxrpc-stable.svg)
+[![nycrc config on GitHub](https://img.shields.io/nycrc/oweitman/ioBroker.squeezeboxrpc?preferredThreshold=functions)](https://html-preview.github.io/?url=https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/coverage/adapter/index.html)
 
 [![NPM](https://nodei.co/npm/iobroker.squeezeboxrpc.png?downloads=true)](https://nodei.co/npm/iobroker.squeezeboxrpc/)
 
@@ -829,6 +830,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
 ### 3.0.0 (2026-09-07)
 
 - complete rework of the LMS API

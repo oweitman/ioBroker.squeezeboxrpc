@@ -7,6 +7,7 @@
 .git
 .idea
 node_modules
+coverage/
 nbproject
 debug.info
 gulpfile.js

@@ -1,9 +1,28 @@
+// @ts-nocheck Test factories intentionally use minimal transport implementations.
 'use strict';
 
 const { expect } = require('chai');
-const { LmsConnection } = require('../lib/lms/connection');
+const { LmsConnection, createLmsConnection } = require('../lib/lms/connection');
+const { createLmsClient } = require('../lib/lms/client');
+const { LmsJsonRpcClient } = require('../lib/lms/jsonRpcClient');
+const { LmsWebSocketClient } = require('../lib/lms/webSocketClient');
 
 describe('LMS connection facade', () => {
+    it('selects the configured command transport', () => {
+        expect(createLmsClient({ host: 'lms', port: 9000 })).to.be.instanceOf(LmsJsonRpcClient);
+        const websocket = createLmsClient({ host: 'lms', port: 9000, connectionType: 'websocket' });
+        expect(websocket).to.be.instanceOf(LmsWebSocketClient);
+        websocket.close();
+    });
+
+    it('creates the public connection facade', () => {
+        const connection = createLmsConnection({
+            clientFactory: () => ({ request() {}, requestAsync() {}, close() {} }),
+        });
+        expect(connection).to.be.instanceOf(LmsConnection);
+        connection.close();
+    });
+
     it('uses JSON-RPC commands without creating Telnet by default', async () => {
         const calls = [];
         let commandClosed = false;
