@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "news": {
+      "3.0.1": {
+        "en": "fix little regressions",
+        "de": "Kleine Regressionen lösen",
+        "ru": "исправить небольшие регрессии",
+        "pt": "fixe pequenas voltas",
+        "nl": "kleine regressies corrigeren",
+        "fr": "corriger les petites régressions",
+        "it": "corregge piccoli ritardi",
+        "es": "arreglar regresiones",
+        "pl": "naprawić małe regresje",
+        "uk": "виправляти невеликі регресії",
+        "zh-cn": "修复小回归"
+      },
       "3.0.0": {
         "en": "complete rework of the LMS API\nadd experimental websocket support, only usable with LMS 9.2 build after 5.9.2026",
         "de": "Komplette Überarbeitung der LMS API\nWebsocket-Support hinzufügen, nur nutzbar mit LMS 9.2 Build nach 5.9.2026",
@@ -176,6 +189,7 @@
   "native": {
     "server": "0.0.0.0",
     "port": 9000,
+    "connectionType": "jsonrpc",
     "telnetport": 9090,
     "username": "",
     "password": "",

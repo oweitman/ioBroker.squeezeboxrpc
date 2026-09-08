@@ -137,6 +137,12 @@ describe('server lifecycle and command handling', () => {
         expect(calls).to.deep.include(['timeout', 'favorites', 300000]);
     });
 
+    it('uses JSON-RPC when an older instance has no connection type', () => {
+        const { connectionOptions } = createFixture({ connectionType: '' });
+
+        expect(connectionOptions.connectionType).to.equal('jsonrpc');
+    });
+
     it('dispatches SendTo messages and validates general commands', async () => {
         const { server, calls } = createFixture();
         server.players.one = { playername: 'Kitchen' };
@@ -213,6 +219,23 @@ describe('server lifecycle and command handling', () => {
         expect(calls).to.deep.include(['io.close']);
         expect(calls).to.deep.include(['player.close']);
         expect(calls).to.deep.include(['connection.close']);
+    });
+
+    it('suppresses pending favorite work after the object database closes', async () => {
+        const { server, calls } = createFixture({ usefavorites: true });
+        server.delFavorites = async () => {
+            throw new Error('DB closed');
+        };
+        server.setFavorites = async () => {
+            throw new Error('DB closed');
+        };
+
+        server.ioUtil.doClose = true;
+        server.doObserverFavorites();
+        await Promise.resolve();
+        await Promise.resolve();
+
+        expect(calls.some(call => call[0] === 'error' && call[1].includes('DB closed'))).to.equal(false);
     });
 
     it('converts state values and checks object existence', async () => {

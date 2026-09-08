@@ -127,6 +127,19 @@ describe('ioUtil', () => {
         expect(calls.filter(call => call[0] === 'setTimeout')).to.have.length(2);
     });
 
+    it('normalizes configured timer strings and rejects invalid delays', () => {
+        const { adapter, calls } = createAdapter();
+        const util = new ioUtil(adapter, false, false);
+
+        util.setMyTimeout('player', () => undefined, '950');
+        util.setMyTimeout('invalid', () => undefined, 'not-a-number');
+        util.setMyTimeout('negative', () => undefined, -1);
+
+        expect(calls.find(call => call[0] === 'setTimeout' && call[2] === 950)).to.exist;
+        expect(calls.filter(call => call[0] === 'setTimeout')).to.have.length(1);
+        expect(calls.filter(call => call[0] === 'error')).to.have.length(2);
+    });
+
     it('logs at configured levels, adds translations and validates ranges', () => {
         const { adapter, calls } = createAdapter();
         const util = new ioUtil(adapter, true, true);

@@ -1,4 +1,8 @@
 # Older changes
+## 2.0.0-alpha.5 (2026-08-31)
+
+- fix tests
+
 ## 2.0.0-alpha.4 (2026-08-31)
 
 - Add announcement feature.

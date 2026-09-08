@@ -45,6 +45,7 @@
                 },
                 "connectionType": {
                     "type": "select",
+                    "default": "jsonrpc",
                     "label": "sb-connectiontype",
                     "help": "sb-connectiontype-help",
                     "options": [

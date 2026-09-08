@@ -830,6 +830,9 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 3.0.1 (2026-09-08)
+
+- fix little regressions
 
 ### 3.0.0 (2026-09-07)
 
@@ -850,10 +853,6 @@ are contained in the following CLI documentation:
 - power/connected state fixed
 - players button font size fixed
 - bring back fade in/out for Announcement with additional LMS plugin
-
-### 2.0.0-alpha.5 (2026-08-31)
-
-- fix tests
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
