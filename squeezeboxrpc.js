@@ -25,6 +25,7 @@ class Squeezeboxrpc extends utils.Adapter {
         this.on('stateChange', this.onStateChange.bind(this));
         this.on('unload', this.onUnload.bind(this));
         this.on('message', this.onMessage.bind(this));
+        this.serverInitialization = null;
     }
 
     /**
@@ -40,11 +41,14 @@ class Squeezeboxrpc extends utils.Adapter {
         this.subscribeStates('*');
         // Initialize your adapter here
         if (!squeezeboxServer) {
-            this.log.debug('main onReady open squeezeboxrpc');
-            await utils.I18n.init(join(__dirname, 'lib'), this);
+            this.serverInitialization ||= (async () => {
+                this.log.debug('main onReady open squeezeboxrpc');
+                await utils.I18n.init(join(__dirname, 'lib'), this);
 
-            squeezeboxServer = new IoSbServerRequire(this, utils.I18n);
-            this.subscribeStates('*');
+                squeezeboxServer = new IoSbServerRequire(this, utils.I18n);
+                this.subscribeStates('*');
+            })();
+            await this.serverInitialization;
         }
     }
 
@@ -55,15 +59,16 @@ class Squeezeboxrpc extends utils.Adapter {
      */
     onUnload(callback) {
         try {
-            squeezeboxServer.closeConnections();
+            squeezeboxServer?.closeConnections();
             callback();
         } catch {
             callback();
         }
     }
-    onMessage(obj) {
+    async onMessage(obj) {
         if (typeof obj === 'object' && obj.message) {
-            squeezeboxServer.processMessages(obj);
+            await this.serverInitialization;
+            squeezeboxServer?.processMessages(obj);
         }
     }
     /**
