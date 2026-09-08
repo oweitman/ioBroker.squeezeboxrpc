@@ -77,7 +77,10 @@ Failed images fall back to generated text images.
 
 ## Play button
 
-<img src="../widgets/squeezeboxrpc/img/play.svg" width="128px" alt="Play button">
+<img src="../widgets/squeezeboxrpc/img/play.svg"
+width="128px"
+alt="Play button"
+style="background-color: #ffffff">
 
 Controls and displays play, pause and stop for the selected player.
 
@@ -90,7 +93,8 @@ Controls and displays play, pause and stop for the selected player.
 
 ## Forward button
 
-<img src="../widgets/squeezeboxrpc/img/fwd.svg" width="128px" alt="Forward button">
+<img src="../widgets/squeezeboxrpc/img/fwd.svg"
+ width="128px" alt="Forward button" style="background-color: #ffffff">
 
 Sends the LMS jump-forward command to the selected player.
 
@@ -103,7 +107,8 @@ Sends the LMS jump-forward command to the selected player.
 
 ## Rewind button
 
-<img src="../widgets/squeezeboxrpc/img/rew.svg" width="128px" alt="Rewind button">
+<img src="../widgets/squeezeboxrpc/img/rew.svg"
+width="128px" alt="Rewind button" style="background-color: #ffffff">
 
 Sends the LMS jump-back command to the selected player.
 
@@ -116,7 +121,8 @@ Sends the LMS jump-back command to the selected player.
 
 ## Repeat button
 
-<img src="../widgets/squeezeboxrpc/img/repeat0.svg" width="128px" alt="Repeat button">
+<img src="../widgets/squeezeboxrpc/img/repeat0.svg"
+ width="128px" alt="Repeat button" style="background-color: #ffffff">
 
 Displays and changes the selected player's `PlaylistRepeat` state.
 
@@ -136,9 +142,8 @@ the state-0 custom image or built-in repeat icon is reused.
 <img
 src="../widgets/squeezeboxrpc/img/shuffle0.svg"
 width="128px"
-alt="Shuffle button"
-
->
+alt="Shuffle button"  
+style="background-color: #ffffff">
 
 Displays and changes the selected player's `PlaylistShuffle` state.
 
@@ -298,7 +303,8 @@ an ellipsis, and overflow is vertically scrollable.
 
 ## Browser
 
-<img src="../widgets/squeezeboxrpc/img/browser.svg" width="128px" alt="Browser widget">
+<img src="../widgets/squeezeboxrpc/img/browser.svg"
+ width="128px" alt="Browser widget"  style="background-color: #ffffff">
 
 Navigates My Music, radio, favorites, apps and other menu items exposed by LMS.
 
