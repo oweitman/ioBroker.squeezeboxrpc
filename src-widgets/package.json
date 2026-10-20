@@ -10,7 +10,7 @@
         "@iobroker/types-vis-2": "^2.14.4",
         "@iobroker/vis-2-widgets-react-dev": "^4.0.4",
         "@module-federation/runtime": "^0.18.3",
-        "@module-federation/vite": "^1.7.2",
+        "@module-federation/vite": "^1.23.5",
         "@mui/icons-material": "^6.5.0",
         "@mui/material": "^6.5.0",
         "@types/ace": "^0.0.52",
