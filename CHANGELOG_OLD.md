@@ -1,4 +1,10 @@
 # Older changes
+## 2.0.0 (2026-09-05)
+
+- power/connected state fixed
+- players button font size fixed
+- bring back fade in/out for Announcement with additional LMS plugin
+
 ## 2.0.0-alpha.5 (2026-08-31)
 
 - fix tests

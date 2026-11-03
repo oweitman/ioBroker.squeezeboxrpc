@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "3.0.1",
+    "version": "4.0.0",
     "news": {
+      "4.0.0": {
+        "en": "* Migrated to React 19 and `vis-2@2.20.x`\n  (vis-2 >= 2.20.0 is required now)",
+        "de": "* Migration zu React 19 und vis-2 @2 .20.x\n  (vis-2 >= 2.20.0 ist jetzt nötig)",
+        "ru": "* Перешел на React 19 и `vis-2 @2 .20.x`\n  (теперь требуется vis-2 >= 2.20.0)",
+        "pt": "* Migrou para React 19 e `vis-2 @2 .20.x`\n  (vis-2 >= 2.20.0 é exigido agora)",
+        "nl": "* Gemigreerd naar React 19 en `vis-2 @2 .20.x`\n  (vis-2 >= 2.20.0 is nu vereist)",
+        "fr": "* Migré vers React 19 et `vis-2 @2 .20.x`\n  (vis-2 >= 2.20.0 est requis)",
+        "it": "* Migrato a React 19 e `vis-2 @2 .20.x`\n  (vis-2 >= 2.20.0 ora serve)",
+        "es": "* Migró a React 19 y a `vis-2 @2 .20.x`\n  (Ahora se necesita vis-2 >= 2.20.0)",
+        "pl": "* Przemigrowany do React 19 i `vis-2 @2 .20.x`\n  (vis-2 >= 2.20.0 jest teraz wymagane)",
+        "uk": "* Перенесено до React 19 та `vis-2 @2 .20.x`\n  (тепер потрібно vis-2 >= 2.20.0)",
+        "zh-cn": "* 迁移到 React 19 和 `vis-2 @2 .20.x`\n  （现在需要 vis-2 >= 2.20.0）"
+      },
       "3.0.1": {
         "en": "fix little regressions",
         "de": "Kleine Regressionen lösen",
@@ -108,8 +121,16 @@
       "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
       "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
     },
-    "authors": ["oweitman <oweitman@gmx.de>"],
-    "keywords": ["squeezebox", "LMS", "Logitech Media Server", "Lyrion Media Server", "music server"],
+    "authors": [
+      "oweitman <oweitman@gmx.de>"
+    ],
+    "keywords": [
+      "squeezebox",
+      "LMS",
+      "Logitech Media Server",
+      "Lyrion Media Server",
+      "music server"
+    ],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
@@ -121,7 +142,10 @@
     "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
     "loglevel": "info",
     "tier": 3,
-    "restartAdapters": ["vis", "vis-2"],
+    "restartAdapters": [
+      "vis",
+      "vis-2"
+    ],
     "mode": "daemon",
     "type": "multimedia",
     "compact": true,
@@ -172,8 +196,12 @@
       "vis-2": ">=2.20.0"
     }
   },
-  "encryptedNative": ["password"],
-  "protectedNative": ["password"],
+  "encryptedNative": [
+    "password"
+  ],
+  "protectedNative": [
+    "password"
+  ],
   "native": {
     "server": "0.0.0.0",
     "port": 9000,

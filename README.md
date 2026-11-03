@@ -830,8 +830,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 4.0.0 (2026-11-03)
 
 - (@oweitman) Migrated to React 19 and `vis-2@2.20.x`
   (vis-2 >= 2.20.0 is required now)
@@ -853,12 +852,6 @@ are contained in the following CLI documentation:
 
 - fix package-lock
 - fix tests
-
-### 2.0.0 (2026-09-05)
-
-- power/connected state fixed
-- players button font size fixed
-- bring back fade in/out for Announcement with additional LMS plugin
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 
