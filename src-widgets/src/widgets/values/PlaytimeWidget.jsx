@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { cssLength } from '../../shared/playerConfigUtils';
 import { playtimePercent, playtimeStateIds } from './playerStateUtils';
@@ -8,7 +7,7 @@ import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceU
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './playtimeWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 class PlaytimeWidget extends WidgetBase {
     constructor(props) {

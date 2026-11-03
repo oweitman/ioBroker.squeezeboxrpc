@@ -830,6 +830,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+
+- (@oweitman) Migrated to React 19 and vis-2@2.20.x (vis-2 >= 2.20.0 is required now)
+
 ### 3.0.1 (2026-09-08)
 
 - fix little regressions

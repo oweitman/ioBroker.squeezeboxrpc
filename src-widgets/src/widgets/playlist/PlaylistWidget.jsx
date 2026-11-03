@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerReferenceField } from '../values/PlayerStateWidget';
 import { translate } from '../../shared/translate';
@@ -9,7 +8,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import { parsePlaylists, playlistLoadCommand } from './playlistUtils';
 import './playlistWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 class PlaylistWidget extends WidgetBase {
     constructor(props) {

@@ -40,6 +40,9 @@ describe('VIS widget modules', () => {
         expect(fs.existsSync(path.join(projectRoot, 'widgets', 'vis2squeezeboxrpc', 'customWidgets.js'))).to.equal(
             true,
         );
+        expect(fs.existsSync(path.join(projectRoot, 'widgets', 'vis2squeezeboxrpc', 'mf-manifest.json'))).to.equal(
+            true,
+        );
         expect(fs.readdirSync(path.join(projectRoot, 'widgets', 'vis2squeezeboxrpc', 'assets')).length).to.be.greaterThan(
             0,
         );

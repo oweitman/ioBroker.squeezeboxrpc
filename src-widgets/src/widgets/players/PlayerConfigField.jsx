@@ -68,13 +68,13 @@ export default function PlayerConfigField({ data, onDataChange, props }) {
                 <Typography variant="body2">{translate('squeezeboxrpc_no_configured_players')}</Typography>
             ) : null}
             {players.map((player, index) => (
-                <Stack key={player.name} direction="row" spacing={0.5} alignItems="center">
+                <Stack key={player.name} direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
                     <Radio
                         size="small"
                         checked={data.defaultPlayer === player.name}
                         disabled={player.enabled === false}
                         onChange={() => updatePlayers(players, player.name)}
-                        inputProps={{ 'aria-label': translate('squeezeboxrpc_default_player') }}
+                        slotProps={{ input: { 'aria-label': translate('squeezeboxrpc_default_player') } }}
                     />
                     <FormControlLabel
                         sx={{ flexGrow: 1, marginRight: 0 }}

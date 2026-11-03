@@ -68,7 +68,6 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
                     key={favorite.id}
                     direction="row"
                     spacing={0.5}
-                    alignItems="center"
                     draggable
                     onDragStart={event => {
                         setDragIndex(index);
@@ -86,6 +85,7 @@ export default function FavoriteConfigField({ data, onDataChange, props }) {
                     }}
                     onDragEnd={() => setDragIndex(-1)}
                     sx={{
+                        alignItems: 'center',
                         border: '1px solid',
                         borderColor: dragIndex === index ? 'primary.main' : 'divider',
                         borderRadius: 1,

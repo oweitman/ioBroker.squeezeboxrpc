@@ -1,0 +1,2 @@
+import{r as e,t}from"./rolldown-runtime-XKyaHtl9.js";var n=t((e=>{e.Fragment=Symbol.for(`react.fragment`),e.jsxDEV=void 0})),r=e(t(((e,t)=>{t.exports=n()}))()),i=Reflect.get(r,`default`)??r,a=i.Fragment,o=i.jsxDEV;export{a as Fragment,i as default,o as jsxDEV};
+//# sourceMappingURL=_virtual_mf___mfe_internal__vis2vissqueezeboxrpcWidgets__mf_owner__83121708404605__prebuild__react_mf_1_jsx_mf_2_dev_mf_2_runtime__prebuild__-h2ezph5B.js.map

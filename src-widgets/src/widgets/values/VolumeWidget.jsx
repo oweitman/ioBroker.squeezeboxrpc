@@ -4,6 +4,8 @@ import { cssLength } from '../../shared/playerConfigUtils';
 import './volumeWidget.css';
 
 class VolumeWidget extends PlayerStateWidget {
+    subscribedStateId = '';
+
     static getWidgetInfo() {
         return {
             id: 'tplSqueezeboxrpcVolume2',

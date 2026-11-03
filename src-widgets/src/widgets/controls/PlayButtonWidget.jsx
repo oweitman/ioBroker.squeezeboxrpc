@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { normalizePlaybackState, playerStateId } from './playButtonUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
@@ -9,7 +8,7 @@ import { playerWidgetConfigurationMessage } from '../../shared/widgetConfigurati
 import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './playButton.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 function DefaultIcon({ mode, fill, stroke, strokeWidth }) {
     return (

@@ -108,16 +108,8 @@
       "zh-cn": "SqueezeboxRPC：通过 RPC 协议控制 Logitech Media Server 的控制器",
       "uk": "SqueezeboxRPC: контролер для Logitech Media Server через протокол RPC"
     },
-    "authors": [
-      "oweitman <oweitman@gmx.de>"
-    ],
-    "keywords": [
-      "squeezebox",
-      "LMS",
-      "Logitech Media Server",
-      "Lyrion Media Server",
-      "music server"
-    ],
+    "authors": ["oweitman <oweitman@gmx.de>"],
+    "keywords": ["squeezebox", "LMS", "Logitech Media Server", "Lyrion Media Server", "music server"],
     "licenseInformation": {
       "type": "free",
       "license": "MIT"
@@ -129,10 +121,7 @@
     "readme": "https://github.com/oweitman/ioBroker.squeezeboxrpc/blob/main/README.md",
     "loglevel": "info",
     "tier": 3,
-    "restartAdapters": [
-      "vis",
-      "vis-2"
-    ],
+    "restartAdapters": ["vis", "vis-2"],
     "mode": "daemon",
     "type": "multimedia",
     "compact": true,
@@ -178,14 +167,13 @@
       {
         "admin": ">=7.6.17"
       }
-    ]
+    ],
+    "ifInstalledDependencies": {
+      "vis-2": ">=2.20.0"
+    }
   },
-  "encryptedNative": [
-    "password"
-  ],
-  "protectedNative": [
-    "password"
-  ],
+  "encryptedNative": ["password"],
+  "protectedNative": ["password"],
   "native": {
     "server": "0.0.0.0",
     "port": 9000,

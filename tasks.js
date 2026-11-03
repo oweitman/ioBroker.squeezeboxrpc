@@ -10,11 +10,7 @@ function clean() {
 }
 
 function copyBuild() {
-    copyFiles(
-        ['src-widgets/build/customWidgets.js', 'src-widgets/build/customWidgets.js.map'],
-        'widgets/vis2squeezeboxrpc',
-    );
-    copyFiles(['src-widgets/build/assets/*.*'], 'widgets/vis2squeezeboxrpc/assets');
+    copyFiles(['src-widgets/build/**/*', '!src-widgets/build/index.html'], 'widgets/vis2squeezeboxrpc');
 }
 
 function waitForBuildOutput(timeoutMs = 300000) {

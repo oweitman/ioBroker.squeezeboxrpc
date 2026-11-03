@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import FavoriteConfigField from './FavoriteConfigField';
 import { playerReferenceField } from '../values/PlayerStateWidget';
@@ -12,7 +11,7 @@ import { playerWidgetConfigurationMessage } from '../../shared/widgetConfigurati
 import TextImage from '../../shared/TextImage';
 import './favoritesWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 function FavoriteContent({ favorite, width, height, backgroundColor, wrapCamelCase, style, indexHelper }) {
     const [imageFailed, setImageFailed] = useState(false);

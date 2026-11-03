@@ -1,16 +1,12 @@
+// @ts-expect-error no types
 import react from '@vitejs/plugin-react';
-import path from 'node:path';
-import commonjs from 'vite-plugin-commonjs';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
 import { federation } from '@module-federation/vite';
 import { moduleFederationShared } from '@iobroker/types-vis-2/modulefederation.vis.config';
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
 
-const pack = JSON.parse(readFileSync('./package.json').toString());
-const sourceDirectory = path.dirname(fileURLToPath(import.meta.url));
+const pack = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
 
-export default {
+const config = {
     plugins: [
         federation({
             manifest: true,
@@ -38,10 +34,9 @@ export default {
             },
             remotes: {},
             shared: moduleFederationShared(pack),
+            dts: false,
         }),
         react(),
-        viteTsConfigPaths(),
-        commonjs(),
     ],
     server: {
         port: 4173,
@@ -54,40 +49,20 @@ export default {
         },
     },
     base: './',
-    optimizeDeps: {
-        // Federation exposes are loaded after Vite's initial dependency scan. With
-        // multiple widgets, Vite 7.3.2 can otherwise start a second optimizer run
-        // and compare incomplete metadata (missing fileHash/browserHash entries).
-        include: [
-            '@emotion/react',
-            '@emotion/styled',
-            '@iobroker/adapter-react-v5',
-            '@iobroker/vis-2-widgets-react-dev',
-            '@mui/icons-material',
-            '@mui/material',
-            'react',
-            'react-dom',
-            'react-dom/client',
-            'react/jsx-dev-runtime',
-            'react/jsx-runtime',
-        ],
+    resolve: {
+        tsconfigPaths: true,
+        dedupe: ['react', 'react-dom', '@emotion/react', '@mui/material', '@mui/system', '@mui/icons-material'],
     },
     build: {
-        target: 'chrome89',
+        target: ['chrome89', 'edge89', 'firefox89', 'safari15'],
         outDir: './build',
         sourcemap: true,
-        rollupOptions: {
-            output: {
-                entryFileNames: 'assets/e-[hash].js',
-                chunkFileNames: 'assets/c-[hash].js',
-                assetFileNames: 'assets/a-[hash][extname]',
-            },
-        },
     },
-    resolve: {
-        alias: {
-            fs: path.resolve(sourceDirectory, 'src/empty.js'),
-            path: path.resolve(sourceDirectory, 'src/empty.js'),
+    oxc: {
+        jsx: {
+            development: false,
         },
     },
 };
+
+export default config;

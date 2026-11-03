@@ -67,7 +67,7 @@ async function loadModule(file) {
         platform: 'node',
         target: ['node22'],
         write: false,
-        external: ['react', '@iobroker/adapter-react-v5'],
+        external: ['react'],
     });
     const module = { exports: {} };
     vm.runInNewContext(result.outputFiles[0].text, { module, exports: module.exports, require: requireTestDependency });

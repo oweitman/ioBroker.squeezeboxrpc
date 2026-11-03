@@ -1,5 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
-
 import PlayerConfigField from './PlayerConfigField';
 import InstanceConfigField from './InstanceConfigField';
 import TextImage from '../../shared/TextImage';
@@ -14,7 +12,7 @@ import {
 import { publishPlayerSelection } from '../../shared/playerSelectionBus';
 import './players.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 function visiblePlayers(data, playerNames) {
     return mergePlayerNames(readConfiguredPlayers(data), playerNames).filter(

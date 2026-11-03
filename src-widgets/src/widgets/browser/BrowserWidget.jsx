@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { parseRequestFactory } from '../../../../widgets/squeezeboxrpc/js/sbClasses';
 import { playerReferenceField } from '../values/PlayerStateWidget';
@@ -16,7 +15,7 @@ import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
 import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './browserWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 function BrowserIcon({ type }) {
     const name = type === 'back' ? 'menuback' : type === 'next' || type === 'add' ? type : 'play';

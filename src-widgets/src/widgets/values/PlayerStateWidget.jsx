@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerAttributeStateId, PLAYER_ATTRIBUTES } from './playerStateUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
@@ -6,7 +5,7 @@ import PlayerWidgetReferenceField from '../../shared/PlayerWidgetReferenceField'
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 export const playerReferenceField = {
     name: 'widgetPlayer',

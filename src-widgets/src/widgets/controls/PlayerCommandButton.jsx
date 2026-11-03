@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerCommandStateId } from './playerCommandUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
@@ -9,7 +8,7 @@ import { playerWidgetConfigurationMessage } from '../../shared/widgetConfigurati
 import InlineSvgIcon from '../../shared/InlineSvgIcon';
 import './playerCommandButton.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 export function DefaultCommandIcon({ direction, fill, stroke, strokeWidth }) {
     return (

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { playerReferenceField } from '../values/PlayerStateWidget';
 import { decodePlayerWidgetReference } from '../../shared/playerWidgetReferenceUtils';
@@ -11,7 +10,7 @@ import { translate } from '../../shared/translate';
 import { playerWidgetConfigurationMessage } from '../../shared/widgetConfiguration';
 import './syncGroupWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 const STATE_NAMES = ['PlayerID', 'SyncMaster', 'SyncSlaves'];
 
 function SyncPlayerContent({ player, text, width, height, backgroundColor, wrapCamelCase, style }) {

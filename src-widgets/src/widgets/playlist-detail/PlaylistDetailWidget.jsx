@@ -1,4 +1,3 @@
-import { VisRxWidget } from '@iobroker/vis-2-widgets-react-dev';
 
 import { cssLength } from '../../shared/playerConfigUtils';
 import { subscribePlayerSelection } from '../../shared/playerSelectionBus';
@@ -15,7 +14,7 @@ import {
 } from './playlistDetailUtils';
 import './playlistDetailWidget.css';
 
-const WidgetBase = /** @type {any} */ (window.visRxWidget || VisRxWidget);
+const WidgetBase = /** @type {any} */ (window.visRxWidget);
 
 function PlayIcon() {
     return <InlineSvgIcon name="play" />;
