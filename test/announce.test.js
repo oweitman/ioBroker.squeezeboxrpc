@@ -81,6 +81,93 @@ describe('announcement playback', () => {
         expect(getResultValue({ result: { arbitrary: 42 } }, 'missing')).to.equal(42);
     });
 
+    it('queues consecutive announcements for the same player', async () => {
+        const { announcement } = createAnnouncement();
+        const played = [];
+        let finishFirst = () => {};
+        announcement.play = async url => {
+            played.push(url);
+            if (played.length === 1) {
+                await new Promise(resolve => (finishFirst = () => resolve(undefined)));
+            }
+        };
+
+        const first = announcement.start('http://example.org/first.mp3');
+        const second = announcement.start('http://example.org/second.mp3');
+        await Promise.resolve();
+
+        expect(played).to.deep.equal(['http://example.org/first.mp3']);
+        expect(announcement.running).to.equal(true);
+        finishFirst();
+        await first;
+        await second;
+
+        expect(played).to.deep.equal(['http://example.org/first.mp3', 'http://example.org/second.mp3']);
+        expect(announcement.running).to.equal(false);
+    });
+
+    it('continues the announcement queue after an earlier item fails', async () => {
+        const { announcement } = createAnnouncement();
+        const played = [];
+        announcement.play = async url => {
+            played.push(url);
+            if (played.length === 1) {
+                throw new Error('first failed');
+            }
+        };
+
+        const first = announcement.start('http://example.org/first.mp3');
+        const second = announcement.start('http://example.org/second.mp3');
+        let error;
+        try {
+            await first;
+        } catch (caught) {
+            error = caught;
+        }
+
+        expect(error).to.be.instanceOf(Error).with.property('message', 'first failed');
+        await second;
+        expect(played).to.deep.equal(['http://example.org/first.mp3', 'http://example.org/second.mp3']);
+    });
+
+    it('treats queued announcements as one playback and FadeTools session', async () => {
+        const { announcement, commands } = createAnnouncement({
+            config: {
+                announceUseFadeTools: true,
+                announceFadeOutSeconds: 3,
+                announceFadeInSeconds: 2,
+            },
+        });
+
+        const first = announcement.start('http://example.org/first.mp3?ts=1');
+        const second = announcement.start('http://example.org/second.mp3?ts=2');
+        await first;
+        await second;
+
+        const playedUrls = commands
+            .filter(command => command[0] === 'playlist' && command[1] === 'play')
+            .map(command => command[2]);
+        expect(playedUrls).to.deep.equal([
+            'http://example.org/first.mp3?ts=1',
+            'http://example.org/second.mp3?ts=2',
+            'file:///music/first.mp3',
+        ]);
+        expect(commands.filter(command => command[0] === 'fadeout')).to.deep.equal([['fadeout', 'stop', '3']]);
+        expect(commands.filter(command => command[0] === 'fadein')).to.deep.equal([['fadein', 'play', '2']]);
+    });
+
+    it('starts a new FadeTools session after the queue has become empty', async () => {
+        const { announcement, commands } = createAnnouncement({
+            config: { announceUseFadeTools: true },
+        });
+
+        await announcement.start('http://example.org/first.mp3');
+        await announcement.start('http://example.org/second.mp3');
+
+        expect(commands.filter(command => command[0] === 'fadeout')).to.have.length(2);
+        expect(commands.filter(command => command[0] === 'fadein')).to.have.length(2);
+    });
+
     it('plays the announcement and restores the queue and local track position', async () => {
         const { announcement, commands } = createAnnouncement();
         await announcement.play('http://example.org/announce.mp3');
