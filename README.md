@@ -118,6 +118,7 @@ Disable information that is not required to reduce LMS requests and adapter proc
 | --------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | ioBroker web base URL | empty    | Base URL of an ioBroker web instance, for example `http://192.168.1.10:8082`. Required only for announcements from local files. |
 | Announcement volume   | `50`     | Volume used while playing the announcement. Valid range: 0 to 100.                                                              |
+| Delay before playback | `0` ms   | Wait after LMS confirms the announcement volume and before playback starts. Valid range: 0 to 10000 milliseconds.               |
 | Use FadeTools         | disabled | Uses the optional [LMS FadeTools plugin](https://github.com/oweitman/LMS-FadeTools) before and after announcements.             |
 | Fade-out duration     | `2` s    | Whole seconds passed to `fadeout stop`. Valid range: 1 to 60 seconds.                                                           |
 | Fade-in duration      | `2` s    | Whole seconds passed to `fadein play`. Valid range: 1 to 60 seconds.                                                            |
@@ -274,7 +275,9 @@ The announcement settings define its volume and optional integration with the
 [LMS FadeTools plugin](https://github.com/oweitman/LMS-FadeTools). When enabled,
 the adapter sends `fadeout stop`, waits for the configured fade-out duration,
 and later resumes playback using `fadein play`. When disabled, the previous and
-announcement volumes are set directly. For local files, you must configure the
+announcement volumes are set directly. The optional playback delay is applied
+after the announcement volume has been confirmed and before each announcement
+file is started. For local files, you must configure the
 base URL of an ioBroker web instance
 (for example `http://192.168.1.10:8082`). The LMS host must be able to reach
 that URL. Remote streams are restored without seeking because they generally
@@ -830,6 +833,12 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+
+### **WORK IN PROGRESS**
+
+- The restoration of the status following an announcement has been optimized.
+- A delay for announcements has been added for slower LMS instances.
+
 ### 4.0.0 (2026-11-03)
 
 - (@oweitman) Migrated to React 19 and `vis-2@2.20.x`

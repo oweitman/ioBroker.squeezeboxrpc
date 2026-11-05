@@ -219,6 +219,7 @@
     "usefavorites": true,
     "announceWebUrl": "",
     "announceVolume": 50,
+    "announcePlaybackDelayMs": 0,
     "announceUseFadeTools": false,
     "announceFadeOutSeconds": 2,
     "announceFadeInSeconds": 2,

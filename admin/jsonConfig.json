@@ -1,339 +1,354 @@
 {
-    "i18n": true,
-    "type": "tabs",
-    "tabsStyle": {
-        "width": "calc(100% - 100px)"
-    },
-    "items": {
-        "maintab": {
-            "type": "panel",
-            "label": "sb-maintab",
-            "newLine": true,
-            "items": {
-                "server": {
-                    "type": "text",
-                    "label": "sb-server",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4
-                },
-                "_discover": {
-                    "type": "selectSendTo",
-                    "label": "sb-discover",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "command": "discoverlms",
-                    "jsonData": "{}",
-                    "onChange": {
-                        "calculateFunc": "data.server = data._discover ? data._discover : data.server // console.log('meintest') //&& data.discover && data.server=data.discover"
-                    }
-                },
-                "port": {
-                    "type": "text",
-                    "label": "sb-port",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "connectionType": {
-                    "type": "select",
-                    "default": "jsonrpc",
-                    "label": "sb-connectiontype",
-                    "help": "sb-connectiontype-help",
-                    "options": [
-                        {
-                            "label": "sb-connectiontype-jsonrpc",
-                            "value": "jsonrpc"
-                        },
-                        {
-                            "label": "sb-connectiontype-websocket",
-                            "value": "websocket"
-                        }
-                    ],
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "webSocketUrl": {
-                    "type": "text",
-                    "label": "sb-websocketurl",
-                    "help": "sb-websocketurl-help",
-                    "placeholder": "sb-websocketurl-placeholder",
-                    "hidden": "data.connectionType !== 'websocket'",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "telnetport": {
-                    "type": "text",
-                    "label": "sb-telnetport",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "hidden": "data.connectionType === 'websocket'",
-                    "newLine": true
-                },
-                "username": {
-                    "type": "text",
-                    "label": "sb-username",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "password": {
-                    "type": "password",
-                    "label": "sb-password",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                }
-            }
+  "i18n": true,
+  "type": "tabs",
+  "tabsStyle": {
+    "width": "calc(100% - 100px)"
+  },
+  "items": {
+    "maintab": {
+      "type": "panel",
+      "label": "sb-maintab",
+      "newLine": true,
+      "items": {
+        "server": {
+          "type": "text",
+          "label": "sb-server",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4
         },
-        "timertab": {
-            "type": "panel",
-            "label": "sb-timertab",
-            "items": {
-                "serverrefresh": {
-                    "type": "number",
-                    "label": "sb-serverrefresh",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "min": 15,
-                    "newLine": true
-                },
-                "playerrefresh": {
-                    "type": "number",
-                    "label": "sb-playerrefresh",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "min": 200,
-                    "newLine": true
-                },
-                "favoriterefresh": {
-                    "type": "number",
-                    "label": "sb-favoriterefresh",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "min": 1,
-                    "newLine": true
-                },
-                "discoveryrefresh": {
-                    "type": "number",
-                    "label": "sb-discoveryrefresh",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "min": 10,
-                    "newLine": true
-                }
-            }
+        "_discover": {
+          "type": "selectSendTo",
+          "label": "sb-discover",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "command": "discoverlms",
+          "jsonData": "{}",
+          "onChange": {
+            "calculateFunc": "data.server = data._discover ? data._discover : data.server // console.log('meintest') //&& data.discover && data.server=data.discover"
+          }
         },
-        "performancetab": {
-            "type": "panel",
-            "label": "sb-performancetab",
-            "items": {
-                "useplaylist": {
-                    "type": "checkbox",
-                    "label": "sb-useplaylist",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "usediscovery": {
-                    "type": "checkbox",
-                    "label": "sb-usediscovery",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "usetelnet": {
-                    "type": "checkbox",
-                    "label": "sb-usetelnet",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "hidden": "data.connectionType === 'websocket'",
-                    "newLine": true
-                },
-                "usefavorites": {
-                    "type": "checkbox",
-                    "label": "sb-usefavorites",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                }
-            }
+        "port": {
+          "type": "text",
+          "label": "sb-port",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
         },
-        "announcetab": {
-            "type": "panel",
-            "label": "sb-announcetab",
-            "items": {
-                "announceWebUrl": {
-                    "type": "text",
-                    "label": "sb-announceweburl",
-                    "help": "sb-announceweburl-help",
-                    "xs": 12,
-                    "sm": 6,
-                    "md": 4,
-                    "lg": 3,
-                    "xl": 3,
-                    "newLine": true
-                },
-                "announceVolume": {
-                    "type": "number",
-                    "label": "sb-announcevolume",
-                    "min": 0,
-                    "max": 100,
-                    "xs": 12,
-                    "sm": 6,
-                    "md": 4,
-                    "lg": 3,
-                    "xl": 3,
-                    "newLine": true
-                },
-                "announceUseFadeTools": {
-                    "type": "checkbox",
-                    "label": "sb-announceusefadetools",
-                    "help": "sb-announceusefadetools-help",
-                    "xs": 12,
-                    "sm": 6,
-                    "md": 4,
-                    "lg": 3,
-                    "xl": 3,
-                    "newLine": true
-                },
-                "announceFadeOutSeconds": {
-                    "type": "number",
-                    "label": "sb-announcefadeoutseconds",
-                    "min": 1,
-                    "max": 60,
-                    "step": 1,
-                    "hidden": "!data.announceUseFadeTools",
-                    "xs": 12,
-                    "sm": 6,
-                    "md": 4,
-                    "lg": 3,
-                    "xl": 3,
-                    "newLine": true
-                },
-                "announceFadeInSeconds": {
-                    "type": "number",
-                    "label": "sb-announcefadeinseconds",
-                    "min": 1,
-                    "max": 60,
-                    "step": 1,
-                    "hidden": "!data.announceUseFadeTools",
-                    "xs": 12,
-                    "sm": 6,
-                    "md": 4,
-                    "lg": 3,
-                    "xl": 3,
-                    "newLine": true
-                },
-                "announceFadeToolsLink": {
-                    "type": "staticLink",
-                    "label": "sb-announcefadetoolslink",
-                    "href": "https://github.com/oweitman/LMS-FadeTools",
-                    "target": "_blank",
-                    "icon": "web",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 8,
-                    "lg": 6,
-                    "xl": 6,
-                    "newLine": true
-                }
+        "connectionType": {
+          "type": "select",
+          "default": "jsonrpc",
+          "label": "sb-connectiontype",
+          "help": "sb-connectiontype-help",
+          "options": [
+            {
+              "label": "sb-connectiontype-jsonrpc",
+              "value": "jsonrpc"
+            },
+            {
+              "label": "sb-connectiontype-websocket",
+              "value": "websocket"
             }
+          ],
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
         },
-        "debugtab": {
-            "type": "panel",
-            "label": "sb-debugtab",
-            "items": {
-                "outputserverdebug": {
-                    "type": "checkbox",
-                    "label": "sb-outputserverdebug",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "outputserversilly": {
-                    "type": "checkbox",
-                    "label": "sb-outputserversilly",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "outputplayerdebug": {
-                    "type": "checkbox",
-                    "label": "sb-outputplayerdebug",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                },
-                "outputplayersilly": {
-                    "type": "checkbox",
-                    "label": "sb-outputplayersilly",
-                    "xs": 12,
-                    "sm": 12,
-                    "md": 6,
-                    "lg": 4,
-                    "xl": 4,
-                    "newLine": true
-                }
-            }
+        "webSocketUrl": {
+          "type": "text",
+          "label": "sb-websocketurl",
+          "help": "sb-websocketurl-help",
+          "placeholder": "sb-websocketurl-placeholder",
+          "hidden": "data.connectionType !== 'websocket'",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "telnetport": {
+          "type": "text",
+          "label": "sb-telnetport",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType === 'websocket'",
+          "newLine": true
+        },
+        "username": {
+          "type": "text",
+          "label": "sb-username",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "password": {
+          "type": "password",
+          "label": "sb-password",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
         }
+      }
+    },
+    "timertab": {
+      "type": "panel",
+      "label": "sb-timertab",
+      "items": {
+        "serverrefresh": {
+          "type": "number",
+          "label": "sb-serverrefresh",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "min": 15,
+          "newLine": true
+        },
+        "playerrefresh": {
+          "type": "number",
+          "label": "sb-playerrefresh",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "min": 200,
+          "newLine": true
+        },
+        "favoriterefresh": {
+          "type": "number",
+          "label": "sb-favoriterefresh",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "min": 1,
+          "newLine": true
+        },
+        "discoveryrefresh": {
+          "type": "number",
+          "label": "sb-discoveryrefresh",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "min": 10,
+          "newLine": true
+        }
+      }
+    },
+    "performancetab": {
+      "type": "panel",
+      "label": "sb-performancetab",
+      "items": {
+        "useplaylist": {
+          "type": "checkbox",
+          "label": "sb-useplaylist",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "usediscovery": {
+          "type": "checkbox",
+          "label": "sb-usediscovery",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "usetelnet": {
+          "type": "checkbox",
+          "label": "sb-usetelnet",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "hidden": "data.connectionType === 'websocket'",
+          "newLine": true
+        },
+        "usefavorites": {
+          "type": "checkbox",
+          "label": "sb-usefavorites",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        }
+      }
+    },
+    "announcetab": {
+      "type": "panel",
+      "label": "sb-announcetab",
+      "items": {
+        "announceWebUrl": {
+          "type": "text",
+          "label": "sb-announceweburl",
+          "help": "sb-announceweburl-help",
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announceVolume": {
+          "type": "number",
+          "label": "sb-announcevolume",
+          "min": 0,
+          "max": 100,
+          "default": 50,
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announcePlaybackDelayMs": {
+          "type": "number",
+          "label": "sb-announceplaybackdelayms",
+          "min": 0,
+          "max": 10000,
+          "step": 50,
+          "default": 0,
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announceUseFadeTools": {
+          "type": "checkbox",
+          "label": "sb-announceusefadetools",
+          "help": "sb-announceusefadetools-help",
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announceFadeOutSeconds": {
+          "type": "number",
+          "label": "sb-announcefadeoutseconds",
+          "min": 1,
+          "max": 60,
+          "step": 1,
+          "hidden": "!data.announceUseFadeTools",
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announceFadeInSeconds": {
+          "type": "number",
+          "label": "sb-announcefadeinseconds",
+          "min": 1,
+          "max": 60,
+          "step": 1,
+          "hidden": "!data.announceUseFadeTools",
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 3,
+          "xl": 3,
+          "newLine": true
+        },
+        "announceFadeToolsLink": {
+          "type": "staticLink",
+          "label": "sb-announcefadetoolslink",
+          "href": "https://github.com/oweitman/LMS-FadeTools",
+          "target": "_blank",
+          "icon": "web",
+          "xs": 12,
+          "sm": 12,
+          "md": 8,
+          "lg": 6,
+          "xl": 6,
+          "newLine": true
+        }
+      }
+    },
+    "debugtab": {
+      "type": "panel",
+      "label": "sb-debugtab",
+      "items": {
+        "outputserverdebug": {
+          "type": "checkbox",
+          "label": "sb-outputserverdebug",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "outputserversilly": {
+          "type": "checkbox",
+          "label": "sb-outputserversilly",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "outputplayerdebug": {
+          "type": "checkbox",
+          "label": "sb-outputplayerdebug",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        },
+        "outputplayersilly": {
+          "type": "checkbox",
+          "label": "sb-outputplayersilly",
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 4,
+          "xl": 4,
+          "newLine": true
+        }
+      }
     }
+  }
 }

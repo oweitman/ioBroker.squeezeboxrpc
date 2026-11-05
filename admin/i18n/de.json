@@ -10,6 +10,7 @@
     "sb-announceweburl": "ioBroker-Web-Basis-URL",
     "sb-announceweburl-help": "Für lokale Dateien erforderlich. Beispiel: http://192.168.1.10:8082",
     "sb-announcevolume": "Durchsage-Lautstärke",
+    "sb-announceplaybackdelayms": "Verzögerung vor Wiedergabe (ms)",
     "sb-announceusefadetools": "FadeTools für Durchsagen verwenden",
     "sb-announceusefadetools-help": "Erfordert das FadeTools-Plugin auf dem LMS-Server.",
     "sb-announcefadeoutseconds": "Fade-out-Dauer (Sekunden)",

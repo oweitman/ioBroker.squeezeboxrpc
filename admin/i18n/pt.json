@@ -10,6 +10,7 @@
     "sb-announceweburl": "URL base web do ioBroker",
     "sb-announceweburl-help": "Necessário para ficheiros locais. Exemplo: http://192.168.1.10:8082",
     "sb-announcevolume": "Volume do anúncio",
+    "sb-announceplaybackdelayms": "Atraso antes da reprodução (ms)",
     "sb-announceusefadetools": "Usar FadeTools para anúncios",
     "sb-announceusefadetools-help": "Requer o plugin FadeTools no servidor LMS.",
     "sb-announcefadeoutseconds": "Duração do fade-out (segundos)",

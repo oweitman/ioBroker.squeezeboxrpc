@@ -10,6 +10,7 @@
     "sb-announceweburl": "ioBroker Web 基础 URL",
     "sb-announceweburl-help": "本地文件必填。例如：http://192.168.1.10:8082",
     "sb-announcevolume": "播报音量",
+    "sb-announceplaybackdelayms": "播放前延迟（毫秒）",
     "sb-announceusefadetools": "为播报使用 FadeTools",
     "sb-announceusefadetools-help": "需要在 LMS 服务器上安装 FadeTools 插件。",
     "sb-announcefadeoutseconds": "淡出时长（秒）",

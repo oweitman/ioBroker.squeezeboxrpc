@@ -35,6 +35,15 @@ function createAnnouncement({ remote = 0, mode = 'play', duration = 0.01, volume
         server: {
             async requestAsync(playerid, command) {
                 commands.push(command);
+                if (command[0] === 'stop') {
+                    values.mode = 'stop';
+                } else if (command[0] === 'play' || command[0] === 'fadein') {
+                    values.mode = 'play';
+                } else if (command[0] === 'pause') {
+                    values.mode = 'pause';
+                } else if (command[0] === 'playlist' && ['play', 'index'].includes(command[1])) {
+                    values.mode = 'play';
+                }
                 if (command[0] === 'mixer' && command[1] === 'volume' && command.at(-1) !== '?') {
                     pendingVolume = Number(command[2]);
                     remainingVolumeLag = volumeLagQueries;
@@ -156,6 +165,43 @@ describe('announcement playback', () => {
         expect(commands.filter(command => command[0] === 'fadein')).to.deep.equal([['fadein', 'play', '2']]);
     });
 
+    it('captures the original state when the first announcement is received', async () => {
+        const { announcement, commands } = createAnnouncement();
+        let releaseQueue;
+        announcement.queue = new Promise(resolve => (releaseQueue = resolve));
+
+        const gong = announcement.start('http://example.org/gong.mp3');
+
+        // Simulate delayed player status updates already reporting the announcement
+        // before the queued operation gets a chance to run.
+        announcement.player.currentStates['Players.Kitchen.Mode'] = 'play';
+        announcement.player.currentStates['Players.Kitchen.Volume'] = 65;
+        announcement.player.currentStates['Players.Kitchen.Time'] = 0;
+        announcement.player.currentStates['Players.Kitchen.Url'] = 'http://example.org/text.mp3';
+        announcement.player.currentStates['Players.Kitchen.PlaylistCurrentIndex'] = 0;
+        announcement.player.currentStates['Players.Kitchen.Playlist'] = JSON.stringify([
+            { url: 'http://example.org/text.mp3', title: 'Announcement' },
+        ]);
+
+        const text = announcement.start('http://example.org/text.mp3');
+        releaseQueue();
+        await gong;
+        await text;
+
+        const playedUrls = commands
+            .filter(command => command[0] === 'playlist' && command[1] === 'play')
+            .map(command => command[2]);
+        expect(playedUrls).to.deep.equal([
+            'http://example.org/gong.mp3',
+            'http://example.org/text.mp3',
+            'file:///music/first.mp3',
+        ]);
+        expect(commands).to.deep.include(['playlist', 'index', '1']);
+        expect(commands).to.deep.include(['time', '12.5']);
+        expect(commands).to.deep.include(['play']);
+        expect(lastSetVolume(commands)).to.deep.equal(['mixer', 'volume', 40]);
+    });
+
     it('starts a new FadeTools session after the queue has become empty', async () => {
         const { announcement, commands } = createAnnouncement({
             config: { announceUseFadeTools: true },
@@ -198,11 +244,58 @@ describe('announcement playback', () => {
         expect(commands).to.deep.include(['play']);
     });
 
-    it('restores volume without restarting when playback was stopped', async () => {
+    it('restores playlist position and stop mode without restarting playback', async () => {
         const { announcement, commands } = createAnnouncement({ mode: 'stop' });
         await announcement.play('http://example.org/announce.mp3');
 
         expect(commands).not.to.deep.include(['play']);
+        expect(commands).to.deep.include(['playlist', 'index', '1']);
+        expect(commands).to.deep.include(['time', '12.5']);
+        expect(commands).to.deep.include(['playlist', 'clear']);
+        expect(commands).to.deep.include(['playlist', 'add', 'file:///music/first.mp3', 'First']);
+        expect(commands).to.deep.include(['playlist', 'add', 'file:///music/song.mp3', 'Song']);
+        expect(
+            commands.filter(command => command[0] === 'playlist' && command[1] === 'play').map(command => command[2]),
+        ).to.deep.equal(['http://example.org/announce.mp3']);
+        const finalStop = commands.findLastIndex(command => command[0] === 'stop');
+        const confirmedStop = commands.findIndex(
+            (command, index) => index > finalStop && command[0] === 'mode' && command[1] === '?',
+        );
+        const restoredVolume = commands.findLastIndex(
+            command => command[0] === 'mixer' && command[1] === 'volume' && command.at(-1) !== '?',
+        );
+        expect(confirmedStop).to.be.greaterThan(finalStop);
+        expect(restoredVolume).to.be.greaterThan(confirmedStop);
+        expect(lastSetVolume(commands)).to.deep.equal(['mixer', 'volume', 40]);
+    });
+
+    it('restores playlist position and pause mode without starting playback', async () => {
+        const { announcement, commands } = createAnnouncement({ mode: 'pause' });
+        await announcement.play('http://example.org/announce.mp3');
+
+        expect(commands).not.to.deep.include(['play']);
+        expect(commands).to.deep.include(['playlist', 'index', '1']);
+        expect(commands).to.deep.include(['time', '12.5']);
+        expect(commands).to.deep.include(['playlist', 'clear']);
+        expect(commands).to.deep.include(['playlist', 'add', 'file:///music/first.mp3', 'First']);
+        expect(commands).to.deep.include(['playlist', 'add', 'file:///music/song.mp3', 'Song']);
+        expect(
+            commands.filter(command => command[0] === 'playlist' && command[1] === 'play').map(command => command[2]),
+        ).to.deep.equal(['http://example.org/announce.mp3']);
+        const finalPause = commands.findLastIndex(command => command[0] === 'pause' && command[1] === '1');
+        const confirmedPause = commands.findIndex(
+            (command, index) => index > finalPause && command[0] === 'mode' && command[1] === '?',
+        );
+        const restoredVolume = commands.findLastIndex(
+            command => command[0] === 'mixer' && command[1] === 'volume' && command.at(-1) !== '?',
+        );
+        expect(confirmedPause).to.be.greaterThan(finalPause);
+        expect(restoredVolume).to.be.greaterThan(confirmedPause);
+        expect(
+            commands.findIndex(
+                (command, index) => index > confirmedPause && command[0] === 'pause' && command[1] === '1',
+            ),
+        ).to.equal(-1);
         expect(lastSetVolume(commands)).to.deep.equal(['mixer', 'volume', 40]);
     });
 
@@ -245,6 +338,49 @@ describe('announcement playback', () => {
 
         expect(commands.filter(command => command[0] === 'mixer' && command.at(-1) === '?')).to.have.length(3);
         expect(lastSetVolume(commands)).to.deep.equal(['mixer', 'volume', 65]);
+    });
+
+    it('waits the configured time after confirming volume and before playback', async () => {
+        const { announcement, commands, delays } = createAnnouncement({
+            config: { announcePlaybackDelayMs: 350 },
+        });
+
+        await announcement.play('http://example.org/announce.mp3');
+
+        expect(delays).to.include(350);
+        const volumeQuery = commands.findIndex(
+            command => command[0] === 'mixer' && command[1] === 'volume' && command.at(-1) === '?',
+        );
+        const playback = commands.findIndex(
+            command => command[0] === 'playlist' && command[1] === 'play' && command[2].includes('announce.mp3'),
+        );
+        expect(volumeQuery).to.be.lessThan(playback);
+    });
+
+    it('normalizes the announcement playback delay', () => {
+        const { announcement } = createAnnouncement();
+
+        expect(announcement.getPlaybackDelayMs(250.6)).to.equal(251);
+        expect(announcement.getPlaybackDelayMs(-1)).to.equal(0);
+        expect(announcement.getPlaybackDelayMs('invalid')).to.equal(0);
+        expect(announcement.getPlaybackDelayMs(20_000)).to.equal(10_000);
+    });
+
+    it('requires the restored playback mode to remain stable', async () => {
+        const { announcement, commands } = createAnnouncement();
+        const replies = ['pause', 'play', 'pause', 'pause', 'pause', 'pause', 'pause'];
+        announcement.player.server.requestAsync = async (playerid, command) => {
+            commands.push(command);
+            if (command[0] === 'mode' && command[1] === '?') {
+                return { ok: true, result: { mode: replies.shift() } };
+            }
+            return { ok: true, result: {} };
+        };
+
+        await announcement.setModeAndWait('pause');
+
+        expect(commands[0]).to.deep.equal(['pause', '1']);
+        expect(commands.filter(command => command[0] === 'mode' && command[1] === '?')).to.have.length(7);
     });
 
     it('uses FadeTools only when enabled and waits for fade-out before the announcement', async () => {
