@@ -833,8 +833,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-
-### **WORK IN PROGRESS**
+### 4.1.0 (2026-11-05)
 
 - The restoration of the status following an announcement has been optimized.
 - A delay for announcements has been added for slower LMS instances.
@@ -856,11 +855,6 @@ are contained in the following CLI documentation:
 ### 2.0.2 (2026-09-07)
 
 - fix io-package.json
-
-### 2.0.1 (2026-09-05)
-
-- fix package-lock
-- fix tests
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

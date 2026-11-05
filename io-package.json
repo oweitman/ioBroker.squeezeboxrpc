@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "4.0.0",
+    "version": "4.1.0",
     "news": {
+      "4.1.0": {
+        "en": "The restoration of the status following an announcement has been optimized.\nA delay for announcements has been added for slower LMS instances.",
+        "de": "Die Wiederherstellung des Status nach einer Ankündigung wurde optimiert.\nLangsamere LMS-Instanzen wurden verzögert angekündigt.",
+        "ru": "Оптимизировано восстановление статуса после объявления.\nДля более медленных экземпляров LMS добавлена задержка анонсов.",
+        "pt": "A restauração do status após um anúncio foi otimizada.\nInstâncias de LMS mais lentas atrasaram os anúncios.",
+        "nl": "Het herstel van de status na een aankondiging is geoptimaliseerd.\nVoor langzamere LMS-gevallen is een vertraging toegevoegd voor aankondigingen.",
+        "fr": "Le rétablissement du statut après une annonce a été optimisé.\nUn délai d'annonce a été ajouté pour les instances LMS lentes.",
+        "it": "Il ripristino dello status dopo un annuncio è stato ottimizzato.\nÈ stato aggiunto un ritardo per gli annunci per le istanze LMS più lente.",
+        "es": "Se ha optimizado la restauración del estado tras un anuncio.\nSe ha añadido un retraso en los anuncios para las instancias de LMS más lentas.",
+        "pl": "Przywrócenie statusu po ogłoszeniu zostało zoptymalizowane.\nW przypadku wolniejszych instancji LMS dodano opóźnienie dla ogłoszeń.",
+        "uk": "Відновлення статусу після оголошення оптимізовано.\nДодано затримку для оголошень для повільніших екземплярів LMS.",
+        "zh-cn": "发布公告后的状态恢复已得到优化。\n对于速度较慢的 LMS 实例，增加了公告延迟。"
+      },
       "4.0.0": {
         "en": "* Migrated to React 19 and `vis-2@2.20.x`\n  (vis-2 >= 2.20.0 is required now)",
         "de": "* Migration zu React 19 und vis-2 @2 .20.x\n  (vis-2 >= 2.20.0 ist jetzt nötig)",
@@ -80,19 +93,6 @@
         "pl": "naprawić testy",
         "uk": "виправити тести",
         "zh-cn": "修复测试"
-      },
-      "2.0.0-alpha.3": {
-        "en": "vis2 reorder player attributes; add messages for missing attributes; fix two small build tool issues; improve SVG icons; improve theme handling for SVG icons",
-        "de": "vis2 Spielerattribute neu anordnen; Meldungen für fehlende Attribute hinzufügen; zwei kleine Probleme mit den Build-Tools beheben; SVG-Icons verbessern; Theme-Unterstützung für SVG-Icons verbessern",
-        "ru": "vis2 изменить порядок атрибутов игрока; добавить сообщения об отсутствующих атрибутах; исправить две небольшие проблемы инструментов сборки; улучшить SVG-иконки; улучшить поддержку тем для SVG-иконок",
-        "pt": "vis2 reordenar os atributos do jogador; adicionar mensagens para atributos ausentes; corrigir dois pequenos problemas nas ferramentas de build; melhorar os ícones SVG; melhorar o suporte a temas dos ícones SVG",
-        "nl": "vis2 spelerattributen opnieuw ordenen; meldingen toevoegen voor ontbrekende attributen; twee kleine problemen met de buildtools oplossen; SVG-iconen verbeteren; thema-afhandeling van SVG-iconen verbeteren",
-        "fr": "vis2 réorganiser les attributs du joueur ; ajouter des messages pour les attributs manquants ; corriger deux petits problèmes des outils de build ; améliorer les icônes SVG ; améliorer la gestion des thèmes pour les icônes SVG",
-        "it": "vis2 riordinare gli attributi del giocatore; aggiungere messaggi per gli attributi mancanti; correggere due piccoli problemi degli strumenti di build; migliorare le icone SVG; migliorare la gestione dei temi per le icone SVG",
-        "es": "vis2 reordenar los atributos del jugador; añadir mensajes para los atributos que faltan; corregir dos pequeños problemas de las herramientas de build; mejorar los iconos SVG; mejorar la gestión de temas de los iconos SVG",
-        "pl": "vis2 zmienić kolejność atrybutów gracza; dodać komunikaty o brakujących atrybutach; naprawić dwa drobne problemy z narzędziami build; ulepszyć ikony SVG; ulepszyć obsługę motywów dla ikon SVG",
-        "uk": "vis2 змінити порядок атрибутів гравця; додати повідомлення про відсутні атрибути; виправити дві невеликі проблеми інструментів збірки; покращити SVG-іконки; покращити підтримку тем для SVG-іконок",
-        "zh-cn": "vis2 重新排列玩家属性；为缺失的属性添加提示信息；修复两个小型构建工具问题；改进 SVG 图标；改进 SVG 图标的主题处理"
       }
     },
     "titleLang": {

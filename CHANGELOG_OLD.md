@@ -1,4 +1,9 @@
 # Older changes
+## 2.0.1 (2026-09-05)
+
+- fix package-lock
+- fix tests
+
 ## 2.0.0 (2026-09-05)
 
 - power/connected state fixed
