@@ -11,6 +11,7 @@ const { join } = require('node:path');
 let squeezeboxServer;
 
 const IoSbServerRequire = require(`${__dirname}/lib/iosbserver`);
+const { COMMANDS, HELP } = require(`${__dirname}/lib/help`);
 
 class Squeezeboxrpc extends utils.Adapter {
     /**
@@ -66,6 +67,13 @@ class Squeezeboxrpc extends utils.Adapter {
         }
     }
     async onMessage(obj) {
+        if (obj?.command === 'help') {
+            // A description of all commands and states for AI agents and script authors, also while LMS is offline
+            if (obj.callback) {
+                this.sendTo(obj.from, obj.command, { help: HELP, commands: COMMANDS }, obj.callback);
+            }
+            return;
+        }
         if (typeof obj === 'object' && obj.message) {
             await this.serverInitialization;
             squeezeboxServer?.processMessages(obj);

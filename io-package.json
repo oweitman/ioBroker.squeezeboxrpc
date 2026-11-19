@@ -152,6 +152,10 @@
     "connectionType": "local",
     "dataSource": "poll",
     "messagebox": true,
+    "supportedMessages": {
+      "help": true,
+      "custom": true
+    },
     "visWidgets": {
       "vis2vis-squeezeboxrpc": {
         "i18n": "component",
