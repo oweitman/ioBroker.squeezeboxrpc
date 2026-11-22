@@ -848,6 +848,10 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### 4.1.2 (2026-11-22)
+
+- fix test
+
 ### 4.1.1 (2026-11-22)
 
 - (@GermanBluefox) Added the message "help": a description of all messages
@@ -866,11 +870,6 @@ are contained in the following CLI documentation:
 ### 3.0.1 (2026-09-08)
 
 - fix little regressions
-
-### 3.0.0 (2026-09-07)
-
-- complete rework of the LMS API
-- add experimental websocket support, only usable with LMS 9.2 build after 5.9.2026
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

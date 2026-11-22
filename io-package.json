@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "4.1.1",
+    "version": "4.1.2",
     "news": {
+      "4.1.2": {
+        "en": "fix test",
+        "de": "Fixtest",
+        "ru": "исправить тест",
+        "pt": "fix test",
+        "nl": "test repareren",
+        "fr": "fix test",
+        "it": "fix test",
+        "es": "fix test",
+        "pl": "test naprawy",
+        "uk": "виправлення тесту",
+        "zh-cn": "修复测试"
+      },
       "4.1.1": {
         "en": "* Added the message \"help\": a description of all messages\n  for AI agents (e.g. pi-agent), and common.supportedMessages.help",
         "de": "* Nachricht „Hilfe“ hinzugefügt: Beschreibung aller Nachrichten\n  für AI-Agenten (z. B. pi-Agent) und common.supportedMessages.Help",
@@ -80,19 +93,6 @@
         "pl": "Poprawiono plik io-package.json",
         "uk": "Виправлено файл io-package.json",
         "zh-cn": "修复 io-package.json"
-      },
-      "2.0.1": {
-        "en": "power/connected state fixed\nplayers button font size fixed\nbring back fade in/out for Announcement with additional LMS plugin",
-        "de": "Netz-/Netzzustand fest\nFester Player-Button\nFade-In/Out für Ankündigung mit zusätzlichem LMS-Plugin",
-        "ru": "питание/состояние подключения фиксировано\nисправлен размер шрифта кнопок плееров\nс помощью дополнительного плагина LMS можно вернуться к функции fade information",
-        "pt": "potência/conexão fixa\nfonte de botão de jogadores fixa\ntraga fade in/out para anúncio com plugin LMS adicional",
-        "nl": "stroom/aangesloten toestand: vast\nDe lettergrootte van de spelersknop is opgelost\nfade-in/out terugbrengen voor aankondigingen met een extra LMS-plug-in",
-        "fr": "alimentation/état connecté fixe\npolice des boutons des joueurs fixe\nbring back fade in/out for Announcement avec un plugin LMS supplémentaire",
-        "it": "potenza/connessione fissa\ntasto giocatori con font fisso\nriportare fade in/out per annuncio con plugin LMS aggiuntivo",
-        "es": "alimentación/estado de conexión fijo\nbotón de jugador tamaño fijo\nvolver a fade/out para el anuncio con un plugin LMS adicional",
-        "pl": "stan zasilania/podłączenia stały\nNaprawiono rozmiar czcionki przycisku odtwarzacza\nprzywróć zanikanie wejścia/wyjścia dla ogłoszenia za pomocą dodatkowej wtyczki LMS",
-        "uk": "живлення/підключений стан фіксований\nфіксований розмір шрифту кнопки гравців\nповернути згасання в/вимкнути для оголошення за допомогою додаткового плагіна LMS",
-        "zh-cn": "电源/连接状态已修复\n玩家按钮字体大小已修复\n使用额外的 LMS 插件恢复公告的淡入/淡出"
       }
     },
     "titleLang": {

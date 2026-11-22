@@ -1,4 +1,9 @@
 # Older changes
+## 3.0.0 (2026-09-07)
+
+- complete rework of the LMS API
+- add experimental websocket support, only usable with LMS 9.2 build after 5.9.2026
+
 ## 2.0.2 (2026-09-07)
 
 - fix io-package.json
