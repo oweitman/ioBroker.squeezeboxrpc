@@ -1,4 +1,8 @@
 # Older changes
+## 2.0.2 (2026-09-07)
+
+- fix io-package.json
+
 ## 2.0.1 (2026-09-05)
 
 - fix package-lock

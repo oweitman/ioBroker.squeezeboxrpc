@@ -848,7 +848,7 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
-### **WORK IN PROGRESS**
+### 4.1.1 (2026-11-22)
 
 - (@GermanBluefox) Added the message "help": a description of all messages
   for AI agents (e.g. pi-agent), and common.supportedMessages.help
@@ -871,10 +871,6 @@ are contained in the following CLI documentation:
 
 - complete rework of the LMS API
 - add experimental websocket support, only usable with LMS 9.2 build after 5.9.2026
-
-### 2.0.2 (2026-09-07)
-
-- fix io-package.json
 
 Older entries are in [CHANGELOG_OLD.md](CHANGELOG_OLD.md).
 

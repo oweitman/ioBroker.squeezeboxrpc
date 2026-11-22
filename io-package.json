@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "squeezeboxrpc",
-    "version": "4.1.0",
+    "version": "4.1.1",
     "news": {
+      "4.1.1": {
+        "en": "* Added the message \"help\": a description of all messages\n  for AI agents (e.g. pi-agent), and common.supportedMessages.help",
+        "de": "* Nachricht „Hilfe“ hinzugefügt: Beschreibung aller Nachrichten\n  für AI-Agenten (z. B. pi-Agent) und common.supportedMessages.Help",
+        "ru": "* Добавлено сообщение «help»: описание всех сообщений\n  для агентов искусственного интеллекта (например, pi-agent) и common.supportedMessages.help",
+        "pt": "* Adicionado “help”: descrição de todas as mensagens\n  para agentes de IA (p. ex. pi-agent) e common.supportedMessages.help",
+        "nl": "* De boodschap „help” toegevoegd: een beschrijving van alle berichten\n  voor AI-agenten (bijv. pi-agent) en Common.SupportedMessages.help",
+        "fr": "* Ajout du message « Aide » : description de tous les messages\n  pour les agents IA (p.ex. pi-agent) et common.SupportedMessages.Help",
+        "it": "* Aggiunto «aiuto»: descrizione di tutti i messaggi\n  per agenti AI (es. pi-agent) e common.supportedmessages.help",
+        "es": "* Añadió el mensaje «ayuda»: descripción de todos los mensajes\n  para agentes de IA (p. ej. pi-agent) y common.SupportedMessages.Help",
+        "pl": "* Dodano komunikat „help”: opis wszystkich wiadomości\n  dla agentów AI (np. pi-agent) i common.supportedMessages.help",
+        "uk": "* Додано повідомлення «help»: опис всіх повідомлень\n  для агентів штучного інтелекту (наприклад, pi-агент) та Common.SupportedMessages.help",
+        "zh-cn": "* 添加了 “帮助” 消息：所有消息的描述\n  适用于 AI 代理（例如 pi-agent）和 common.supportedMessages.Help"
+      },
       "4.1.0": {
         "en": "The restoration of the status following an announcement has been optimized.\nA delay for announcements has been added for slower LMS instances.",
         "de": "Die Wiederherstellung des Status nach einer Ankündigung wurde optimiert.\nLangsamere LMS-Instanzen wurden verzögert angekündigt.",
@@ -80,19 +93,6 @@
         "pl": "stan zasilania/podłączenia stały\nNaprawiono rozmiar czcionki przycisku odtwarzacza\nprzywróć zanikanie wejścia/wyjścia dla ogłoszenia za pomocą dodatkowej wtyczki LMS",
         "uk": "живлення/підключений стан фіксований\nфіксований розмір шрифту кнопки гравців\nповернути згасання в/вимкнути для оголошення за допомогою додаткового плагіна LMS",
         "zh-cn": "电源/连接状态已修复\n玩家按钮字体大小已修复\n使用额外的 LMS 插件恢复公告的淡入/淡出"
-      },
-      "2.0.0-alpha.5": {
-        "en": "fix tests",
-        "de": "Fixtests",
-        "ru": "исправить тесты",
-        "pt": "corrigir testes",
-        "nl": "fix tests nl",
-        "fr": "tests de correction",
-        "it": "test di correzione",
-        "es": "pruebas de corrección",
-        "pl": "naprawić testy",
-        "uk": "виправити тести",
-        "zh-cn": "修复测试"
       }
     },
     "titleLang": {
