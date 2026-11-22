@@ -698,6 +698,21 @@ please provide as detailed a description as possible:
 
 ## SendTo commands
 
+### help
+
+Returns a description of all commands and of the states that control a player,
+for AI agents (e.g. ioBroker.pi-agent) and scripts: `{ help, commands }`.
+`commands` lists every command with `write: true` if it can change something
+(only `cmdGeneral`).
+
+```js
+async function main() {
+    const answer = await sendToAsync('squeezeboxrpc.0', 'help', {});
+    console.log(answer.help, JSON.stringify(answer.commands));
+}
+main();
+```
+
 ### getPlayerNames
 
 Returns the names of all players currently registered in the adapter.
@@ -833,6 +848,11 @@ are contained in the following CLI documentation:
    ### **WORK IN PROGRESS**
 
 -->
+### **WORK IN PROGRESS**
+
+- (@GermanBluefox) Added the message "help": a description of all messages
+  for AI agents (e.g. pi-agent), and common.supportedMessages.help
+
 ### 4.1.0 (2026-11-05)
 
 - The restoration of the status following an announcement has been optimized.
